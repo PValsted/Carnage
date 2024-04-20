@@ -8,6 +8,7 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Org.BouncyCastle.Asn1.Cmp.Challenge;
 
 namespace Carnage
 {
@@ -50,6 +51,11 @@ namespace Carnage
                         if (random == 1)
                         {
                             sb.AppendLine(list[i].getName() + " broke every one of " + list[i + 1].getName() + "'s fingers for a ham sandwhich.\n");
+                            if (game.Mode == "Realistic")
+                            {
+                                double rand = rng.randomDouble(3);
+                                list[i].Hunger += rand;
+                            }
                         }
                         else if (random == 2)
                         {
@@ -98,13 +104,23 @@ namespace Carnage
                 }
                 else if (eventType == "Gain")
                 {
-                    if (game.FunValue >= 10)
+                    int random = rng.randomInt(1, 7);
+                    if (game.FunValue >= 10 && random > 2)
                     {
                         sb.AppendLine("After sneaking into the cornucopia, " + loot.lootEvent(list[i], "Common"));
                     }
-                    else
+                    else if (game.FunValue < 10 && random > 2)
                     {
                         sb.AppendLine("After sneaking into the cornucopia, " + loot.lootEvent(list[i], "Rare"));
+                    }
+                    else
+                    {
+                        sb.AppendLine("Just inside the cornucopia, " + list[i].Name + " found some food.\n");
+                        if (game.Mode=="Realistic")
+                        {
+                            double rand = rng.randomDouble(4);
+                            list[i].Hunger += rand;
+                        }
                     }
                     unassignedPlayers--;
                     i++;

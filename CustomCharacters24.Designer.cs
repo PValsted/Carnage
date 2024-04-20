@@ -211,6 +211,7 @@
             txtD1C2 = new TextBox();
             lblD1 = new Label();
             txtD1C1 = new TextBox();
+            btnBack = new Button();
             panelCharacterSelect.SuspendLayout();
             gboD12C2.SuspendLayout();
             gboD12C1.SuspendLayout();
@@ -254,6 +255,7 @@
             // 
             panelCharacterSelect.AutoScroll = true;
             panelCharacterSelect.BackColor = SystemColors.Control;
+            panelCharacterSelect.Controls.Add(btnBack);
             panelCharacterSelect.Controls.Add(btnFillIn);
             panelCharacterSelect.Controls.Add(btnEnterCharacters);
             panelCharacterSelect.Controls.Add(gboD12C2);
@@ -318,7 +320,7 @@
             panelCharacterSelect.Controls.Add(txtD1C1);
             panelCharacterSelect.Location = new Point(31, 26);
             panelCharacterSelect.Name = "panelCharacterSelect";
-            panelCharacterSelect.Size = new Size(1352, 710);
+            panelCharacterSelect.Size = new Size(1352, 817);
             panelCharacterSelect.TabIndex = 0;
             // 
             // btnFillIn
@@ -2213,14 +2215,25 @@
             txtD1C1.Size = new Size(208, 23);
             txtD1C1.TabIndex = 1;
             // 
+            // btnBack
+            // 
+            btnBack.Location = new Point(865, 723);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(151, 62);
+            btnBack.TabIndex = 67;
+            btnBack.Text = "Back";
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
+            // 
             // CustomCharacters24
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1395, 725);
+            ClientSize = new Size(1395, 866);
             Controls.Add(panelCharacterSelect);
             Name = "CustomCharacters24";
             Text = "Enter Custom Characters";
+            WindowState = FormWindowState.Maximized;
             panelCharacterSelect.ResumeLayout(false);
             panelCharacterSelect.PerformLayout();
             gboD12C2.ResumeLayout(false);
@@ -2530,5 +2543,6 @@
         private RadioButton rdoMaleD9C1;
         private Button btnEnterCharacters;
         private Button btnFillIn;
+        private Button btnBack;
     }
 }

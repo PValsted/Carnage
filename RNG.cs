@@ -20,7 +20,7 @@ namespace Carnage
         //Generates a random double between 0 and just before the upper bound provided
         public double randomDouble(double upperBound)
         {
-            return (random.NextDouble() * upperBound);
+            return Math.Round((random.NextDouble() * upperBound),2);
         }
 
         //Returns a random int without bounds

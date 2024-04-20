@@ -27,6 +27,7 @@ namespace Carnage
             grbNumberOptions.Visible = true;
             pnlTest.Visible = true;
             pnlOptions.Visible = true;
+            btnBack.Visible = true;
         }
 
         private void btnCustom_Click(object sender, EventArgs e)
@@ -57,6 +58,7 @@ namespace Carnage
         {
             RNG rng = new();
             List<character> charList = new List<character>();
+            List<character> testCharList = new List<character>();
             character test = new character("Frodo", "he");
             character test2 = new character("Darth Vader", "he");
             character test3 = new character("sans", "he");
@@ -98,6 +100,18 @@ namespace Carnage
             test4.setHealingAmount(5);
             test4.fillHealSlot(true);
 
+            for (int i = 0; i < charList.Count; i++)
+            {
+                testCharList.Add(charList[i]);
+            }
+            testCharList.Remove(test);
+
+            for (int i = 0; i < charList.Count; i++)
+            {
+                rtbTest.AppendText(charList[i].ToString());
+            }
+
+
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -113,6 +127,7 @@ namespace Carnage
                 Game game = new Game(24);
                 if (cboRealistic.Checked) game.Mode = "Realistic";
                 if (cboShortBattles.Checked) game.DoFullBattles = false;
+                if (cboCombatLevel.Checked && cboRealistic.Checked) game.ShowCombatLevel = true;
                 PresetCharacters24 presetCharacters24 = new PresetCharacters24(game);
                 this.Hide();
                 presetCharacters24.Show();
@@ -122,12 +137,29 @@ namespace Carnage
                 Game game = new Game(48);
                 if (cboRealistic.Checked) game.Mode = "Realistic";
                 if (cboShortBattles.Checked) game.DoFullBattles = false;
+                if (cboCombatLevel.Checked && cboRealistic.Checked) game.ShowCombatLevel = true;
                 PresetCharacters48 presetCharacters48 = new PresetCharacters48(game);
                 this.Hide();
                 presetCharacters48.Show();
             }
             else { MessageBox.Show("You must select the number of characters."); }
 
+        }
+
+        private void cboRealistic_CheckedChanged(object sender, EventArgs e)
+        {
+            cboCombatLevel.Visible = true;
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            btnClassic.Visible = true;
+            btnCustom.Visible = false;
+            btnPreset.Visible = false;
+            btnBack.Visible = false;
+            grbNumberOptions.Visible = false;
+            pnlTest.Visible = false;
+            pnlOptions.Visible = false;
         }
     }
 }

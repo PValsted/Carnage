@@ -51,6 +51,7 @@ namespace Carnage
                 else if (eventType == "Gain")
                 {
                     int random = rng.randomInt(1, 5);
+                    double rand = Math.Round(rng.randomDouble(4), 2);
 
                     if (random == 1)
                     {
@@ -73,6 +74,7 @@ namespace Carnage
                     else if (random == 4)
                     {
                         sb.AppendLine(list[i].getName() + " found some food in the Cornucopia and ate it.\n");
+                        list[i].Hunger += rand;
                         unassignedPlayers--;
                         i++;
                     }

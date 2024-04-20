@@ -390,12 +390,14 @@ namespace Carnage
                             if (spot0Attack == true) //If classic mode or character 0 is stronger (realistic mode)
                             {
                                 battleList.ElementAt(0).hurt(2);
+                                battleList.ElementAt(0).Health = Math.Round(battleList.ElementAt(0).Health, 2);
                                 if (game.DoFullBattles == true) sb.AppendLine("-- " + battleList.ElementAt(1).getName() + " dodged " + battleList.ElementAt(0).getName() + "'s attack! Then, taking advantage of the situation, " + this.getBattleText(battleList.ElementAt(1), battleList.ElementAt(0), "Unarmed") + " " + battleList.ElementAt(0).getName() + " is at " + battleList.ElementAt(0).getHealth() + " health.");
                                 continue;
                             }
                             else //If character 1 is stronger (realistic mode)
                             {
                                 battleList.ElementAt(1).hurt(2);
+                                battleList.ElementAt(1).Health = Math.Round(battleList.ElementAt(1).Health, 2);
                                 if (game.DoFullBattles == true) sb.AppendLine("-- " + battleList.ElementAt(0).getName() + " dodged " + battleList.ElementAt(1).getName() + "'s attack! Then, taking advantage of the situation, " + this.getBattleText(battleList.ElementAt(0), battleList.ElementAt(1), "Unarmed") + " " + battleList.ElementAt(1).getName() + " is at " + battleList.ElementAt(1).getHealth() + " health.");
                                 continue;
                             }
@@ -406,12 +408,14 @@ namespace Carnage
                             if (spot0Attack == true) //If classic mode or character 0 is stronger (realistic mode)
                             {
                                 battleList.ElementAt(0).hurt(3);
+                                battleList.ElementAt(0).Health = Math.Round(battleList.ElementAt(0).Health, 2);
                                 if (game.DoFullBattles == true) sb.AppendLine("-- " + battleList.ElementAt(1).getName() + " dodged " + battleList.ElementAt(0).getName() + "'s attack! Then, taking advantage of the situation, " + this.getBattleText(battleList.ElementAt(1), battleList.ElementAt(0), "Unarmed") + " Critical hit! " + battleList.ElementAt(0).getName() + " is at " + battleList.ElementAt(0).getHealth() + " health.");
                                 continue;
                             }
                             else //If character 1 is stronger (realistic mode)
                             {
                                 battleList.ElementAt(1).hurt(3);
+                                battleList.ElementAt(1).Health = Math.Round(battleList.ElementAt(1).Health, 2);
                                 if (game.DoFullBattles == true) sb.AppendLine("-- " + battleList.ElementAt(0).getName() + " dodged " + battleList.ElementAt(1).getName() + "'s attack! Then, taking advantage of the situation, " + this.getBattleText(battleList.ElementAt(0), battleList.ElementAt(0), "Unarmed") + " Critical hit! " + battleList.ElementAt(1).getName() + " is at " + battleList.ElementAt(1).getHealth() + " health.");
                                 continue;
                             }
@@ -429,17 +433,20 @@ namespace Carnage
                                     int damage = rng.explosionDamage();
 
                                     battleList.ElementAt(1).hurt(damage);
+                                    battleList.ElementAt(1).Health = Math.Round(battleList.ElementAt(1).Health, 2);
                                     if (game.DoFullBattles == true) sb.AppendLine("-- " + this.getBattleText(battleList.ElementAt(0), battleList.ElementAt(1), "Explosive") + " It did " + damage + " damage. " + battleList.ElementAt(1).getName() + " is at " + battleList.ElementAt(1).getHealth() + " health.");
                                     battleList.ElementAt(0).HasExplosive = false;
                                 }
                                 else if (crit == false) //Player does normal unarmed attack
                                 {
                                     battleList.ElementAt(1).hurt(battleList.ElementAt(0).getWeaponAttack());
+                                    battleList.ElementAt(1).Health = Math.Round(battleList.ElementAt(1).Health, 2);
                                     if (game.DoFullBattles == true) sb.AppendLine("--- " + this.getBattleText(battleList.ElementAt(0), battleList.ElementAt(1), "Unarmed") + " " + battleList.ElementAt(1).getName() + " is at " + battleList.ElementAt(1).getHealth() + " health.");
                                 }
                                 else //Player does critical unarmed attack
                                 {
                                     battleList.ElementAt(1).hurt(1.5 * battleList.ElementAt(0).getWeaponAttack());
+                                    battleList.ElementAt(1).Health = Math.Round(battleList.ElementAt(1).Health, 2);
                                     if (game.DoFullBattles == true) sb.AppendLine("-- " + this.getBattleText(battleList.ElementAt(0), battleList.ElementAt(1), "Unarmed") + " Critical hit! " + battleList.ElementAt(1).getName() + " is at " + battleList.ElementAt(1).getHealth() + " health.");
                                 }
                             }
@@ -450,17 +457,20 @@ namespace Carnage
                                     int damage = rng.explosionDamage();
 
                                     battleList.ElementAt(1).hurt(damage);
+                                    battleList.ElementAt(1).Health = Math.Round(battleList.ElementAt(1).Health, 2);
                                     if (game.DoFullBattles == true) sb.AppendLine("-- " + this.getBattleText(battleList.ElementAt(0), battleList.ElementAt(1), "Explosive") + " It did " + damage + " damage. " + battleList.ElementAt(1).getName() + " is at " + battleList.ElementAt(1).getHealth() + " health.");
                                     battleList.ElementAt(0).HasExplosive = false;
                                 }
                                 else if (crit == false) //Player is armed and attacks based on their weapon type
                                 {
                                     battleList.ElementAt(1).hurt((battleList.ElementAt(0).getWeaponAttack()));
+                                    battleList.ElementAt(1).Health = Math.Round(battleList.ElementAt(1).Health, 2);
                                     if (game.DoFullBattles == true) sb.AppendLine("--- " + this.getBattleText(battleList.ElementAt(0), battleList.ElementAt(1), battleList.ElementAt(0).getWeaponType()) + " " + battleList.ElementAt(1).getName() + " is at " + battleList.ElementAt(1).getHealth() + " health.");
                                 }
                                 else //Player is armed and does critical attack based on their weapon type
                                 {
                                     battleList.ElementAt(1).hurt(1.5 * (battleList.ElementAt(0).getWeaponAttack()));
+                                    battleList.ElementAt(1).Health = Math.Round(battleList.ElementAt(1).Health, 2);
                                     if (game.DoFullBattles == true) sb.AppendLine("-- " + this.getBattleText(battleList.ElementAt(0), battleList.ElementAt(1), battleList.ElementAt(0).getWeaponType()) + " Critical hit! " + battleList.ElementAt(1).getName() + " is at " + battleList.ElementAt(1).getHealth() + " health.");
                                 }
                             }
@@ -474,17 +484,20 @@ namespace Carnage
                                     int damage = rng.explosionDamage();
 
                                     battleList.ElementAt(0).hurt(damage);
+                                    battleList.ElementAt(0).Health = Math.Round(battleList.ElementAt(0).Health, 2);
                                     if (game.DoFullBattles == true) sb.AppendLine("-- " + this.getBattleText(battleList.ElementAt(1), battleList.ElementAt(0), "Explosive") + " It did " + damage + " damage. " + battleList.ElementAt(0).getName() + " is at " + battleList.ElementAt(0).getHealth() + " health.");
                                     battleList.ElementAt(1).HasExplosive = false;
                                 }
                                 else if (crit == false) //Player does normal unarmed attack
                                 {
                                     battleList.ElementAt(0).hurt(battleList.ElementAt(1).getWeaponAttack());
+                                    battleList.ElementAt(0).Health = Math.Round(battleList.ElementAt(0).Health, 2);
                                     if (game.DoFullBattles == true) sb.AppendLine("--- " + this.getBattleText(battleList.ElementAt(1), battleList.ElementAt(0), "Unarmed") + " " + battleList.ElementAt(0).getName() + " is at " + battleList.ElementAt(0).getHealth() + " health.");
                                 }
                                 else //Player does critical unarmed attack
                                 {
                                     battleList.ElementAt(0).hurt(1.5 * battleList.ElementAt(1).getWeaponAttack());
+                                    battleList.ElementAt(0).Health = Math.Round(battleList.ElementAt(0).Health, 2);
                                     if (game.DoFullBattles == true) sb.AppendLine("-- " + this.getBattleText(battleList.ElementAt(1), battleList.ElementAt(0), "Unarmed") + " Critical hit! " + battleList.ElementAt(0).getName() + " is at " + battleList.ElementAt(0).getHealth() + " health.");
                                 }
                             }
@@ -495,17 +508,20 @@ namespace Carnage
                                     int damage = rng.explosionDamage();
 
                                     battleList.ElementAt(0).hurt(damage);
+                                    battleList.ElementAt(0).Health = Math.Round(battleList.ElementAt(0).Health, 2);
                                     if (game.DoFullBattles == true) sb.AppendLine("-- " + this.getBattleText(battleList.ElementAt(1), battleList.ElementAt(0), "Explosive") + " It did " + damage + " damage. " + battleList.ElementAt(0).getName() + " is at " + battleList.ElementAt(0).getHealth() + " health.");
                                     battleList.ElementAt(1).HasExplosive = false;
                                 }
                                 else if (crit == false) //Player is armed and attacks based on their weapon type
                                 {
                                     battleList.ElementAt(0).hurt((battleList.ElementAt(1).getWeaponAttack()));
+                                    battleList.ElementAt(0).Health = Math.Round(battleList.ElementAt(0).Health, 2);
                                     if (game.DoFullBattles == true) sb.AppendLine("--- " + this.getBattleText(battleList.ElementAt(1), battleList.ElementAt(0), battleList.ElementAt(1).getWeaponType()) + " " + battleList.ElementAt(0).getName() + " is at " + battleList.ElementAt(0).getHealth() + " health.");
                                 }
                                 else //Player is armed and does critical attack based on their weapon type
                                 {
                                     battleList.ElementAt(0).hurt(1.5 * (battleList.ElementAt(1).getWeaponAttack()));
+                                    battleList.ElementAt(0).Health = Math.Round(battleList.ElementAt(0).Health, 2);
                                     if (game.DoFullBattles == true) sb.AppendLine("-- " + this.getBattleText(battleList.ElementAt(1), battleList.ElementAt(0), battleList.ElementAt(1).getWeaponType()) + " Critical hit! " + battleList.ElementAt(0).getName() + " is at " + battleList.ElementAt(0).getHealth() + " health.");
                                 }
                             }
@@ -513,7 +529,7 @@ namespace Carnage
                     }
                 }
 
-                if (spot0Attack == true && battleList.ElementAt(1).aliveCheck() == false) //If classic mode or character 0 is stronger (realistic mode) and attacked player is defeated
+                if (battleList.ElementAt(1).aliveCheck() == false) //If player 1 is defeated
                 {
                     battleList.ElementAt(0).Kills++;
                     sb.AppendLine("- " + battleList.ElementAt(1).getName() + " has been defeated by " + battleList[0].Name + ".");
@@ -537,7 +553,7 @@ namespace Carnage
                     }
                     battleList.Remove(battleList.ElementAt(1));
                 }
-                else if (spot0Attack == false && battleList.ElementAt(0).aliveCheck() == false) //If character 1 is stronger (realistic mode) and attacked player is defeated
+                else if (battleList.ElementAt(0).aliveCheck() == false) //If character 0 is defeated
                 {
                     battleList.ElementAt(1).Kills++;
                     sb.AppendLine("- " + battleList.ElementAt(0).getName() + " has been defeated by " + battleList[1].Name + ".");
@@ -626,12 +642,14 @@ namespace Carnage
                         if (crit == false) //Player dodges and does 2 damage in return
                         {
                             battleList.ElementAt(0).hurt(2);
+                            battleList.ElementAt(0).Health = Math.Round(battleList.ElementAt(0).Health, 2);
                             if (game.DoFullBattles == true) sb3.AppendLine("-- " + battleList.ElementAt(1).getName() + " dodged " + battleList.ElementAt(0).getName() + "'s attack! Then, taking advantage of the situation, " + this.getBattleText(battleList.ElementAt(1), battleList.ElementAt(0), battleList.ElementAt(1).getWeaponType()) + " " + battleList.ElementAt(0).getName() + " is at " + battleList.ElementAt(0).getHealth() + " health.");
                             continue;
                         }
                         else //Player dodges and does a critical hit for 3 damage in return
                         {
                             battleList.ElementAt(0).hurt(3);
+                            battleList.ElementAt(0).Health = Math.Round(battleList.ElementAt(0).Health, 2);
                             if (game.DoFullBattles == true) sb3.AppendLine("-- " + battleList.ElementAt(1).getName() + " dodged " + battleList.ElementAt(0).getName() + "'s attack! Then, taking advantage of the situation, " + this.getBattleText(battleList.ElementAt(1), battleList.ElementAt(0), battleList.ElementAt(1).getWeaponType()) + " Critical hit! " + battleList.ElementAt(0).getName() + " is at " + battleList.ElementAt(0).getHealth() + " health.");
                             continue;
                         }
@@ -645,17 +663,20 @@ namespace Carnage
                                 int damage = rng.explosionDamage();
 
                                 battleList.ElementAt(1).hurt(damage);
+                                battleList.ElementAt(1).Health = Math.Round(battleList.ElementAt(1).Health, 2);
                                 if (game.DoFullBattles == true) sb3.AppendLine("-- " + this.getBattleText(battleList.ElementAt(0), battleList.ElementAt(1), "Explosive") + " It did " + damage + " damage. " + battleList.ElementAt(1).getName() + " is at " + battleList.ElementAt(1).getHealth() + " health.");
                                 battleList.ElementAt(0).HasExplosive = false;
                             }
                             else if (crit == false) //Player does normal unarmed attack
                             {
                                 battleList.ElementAt(1).hurt(battleList.ElementAt(0).getWeaponAttack());
+                                battleList.ElementAt(1).Health = Math.Round(battleList.ElementAt(1).Health, 2);
                                 if (game.DoFullBattles == true) sb3.AppendLine("--- " + this.getBattleText(battleList.ElementAt(0), battleList.ElementAt(1), "Unarmed") + " " + battleList.ElementAt(1).getName() + " is at " + battleList.ElementAt(1).getHealth() + " health.");
                             }
                             else //Player does critical unarmed attack
                             {
                                 battleList.ElementAt(1).hurt(1.5 * battleList.ElementAt(0).getWeaponAttack());
+                                battleList.ElementAt(1).Health = Math.Round(battleList.ElementAt(1).Health, 2);
                                 if (game.DoFullBattles == true) sb3.AppendLine("-- " + this.getBattleText(battleList.ElementAt(0), battleList.ElementAt(1), "Unarmed") + " Critical hit! " + battleList.ElementAt(1).getName() + " is at " + battleList.ElementAt(1).getHealth() + " health.");
                             }
                         }
@@ -666,17 +687,20 @@ namespace Carnage
                                 int damage = rng.explosionDamage();
 
                                 battleList.ElementAt(1).hurt(damage);
+                                battleList.ElementAt(1).Health = Math.Round(battleList.ElementAt(1).Health, 2);
                                 if (game.DoFullBattles == true) sb3.AppendLine("-- " + this.getBattleText(battleList.ElementAt(0), battleList.ElementAt(1), "Explosive") + " It did " + damage + " damage. " + battleList.ElementAt(1).getName() + " is at " + battleList.ElementAt(1).getHealth() + " health.");
                                 battleList.ElementAt(0).HasExplosive = false;
                             }
                             else if (crit == false) //Player is armed and attacks based on their weapon type
                             {
                                 battleList.ElementAt(1).hurt((battleList.ElementAt(0).getWeaponAttack()));
+                                battleList.ElementAt(1).Health = Math.Round(battleList.ElementAt(1).Health, 2);
                                 if (game.DoFullBattles == true) sb3.AppendLine("--- " + this.getBattleText(battleList.ElementAt(0), battleList.ElementAt(1), battleList.ElementAt(0).getWeaponType()) + " " + battleList.ElementAt(1).getName() + " is at " + battleList.ElementAt(1).getHealth() + " health.");
                             }
                             else //Player is armed and does critical attack based on their weapon type
                             {
                                 battleList.ElementAt(1).hurt(1.5 * (battleList.ElementAt(0).getWeaponAttack()));
+                                battleList.ElementAt(1).Health = Math.Round(battleList.ElementAt(1).Health, 2);
                                 if (game.DoFullBattles == true) sb3.AppendLine("-- " + this.getBattleText(battleList.ElementAt(0), battleList.ElementAt(1), battleList.ElementAt(0).getWeaponType()) + " Critical hit! " + battleList.ElementAt(1).getName() + " is at " + battleList.ElementAt(1).getHealth() + " health.");
                             }
                         }

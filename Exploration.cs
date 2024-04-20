@@ -165,7 +165,7 @@ namespace Carnage
                     }
                     else //If this isn't the first time this option was triggered
                     {
-                        sb.AppendLine("Finding a secret and safe path, " + character.getName() + " reached a secret treasure room and opened a pristine-looking chest. The contents looked rummaged-through, but a couple leftover items still remained. " + loot.lootEvent(character, "Common"));
+                        sb.Append("Finding a secret and safe path, " + character.getName() + " reached a secret treasure room and opened a pristine-looking chest. The contents looked rummaged-through, but a couple leftover items still remained. " + loot.lootEvent(character, "Common"));
                     }
                     
                     break;
@@ -288,7 +288,7 @@ namespace Carnage
                 }
                 else if (rand == 5)
                 {
-                    sb2.AppendLine("In a random cabinet on the first floor, " + character.getName() + " found a strange-looking liquid. Some unseen force compelled " + character.getPronounObj().ToLower() + " to drink it, so " + character.getPronounSub().ToLower() + " took a sip. " + loot.potionEvent(character));
+                    sb2.AppendLine("In a random cabinet on the first floor, " + character.getName() + " found a strange-looking liquid. Some unseen force compelled " + character.getPronounObj().ToLower() + " to drink it, so " + character.getPronounSub().ToLower() + " took a sip. " + loot.potionEvent(character, game));
                     if (character.IsAlive==true) //If potion doesn't kill character
                     {
                         sb2.AppendLine(character.getPronounSub() + " decided that was enough adventuring and turned away and left.");

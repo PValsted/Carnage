@@ -75,10 +75,18 @@ namespace Carnage
             if (ci.CheckList(stringList, 24) == "")
             {
                 rtbSearch.Clear();
-                if (game.Mode=="Classic") charList = ci.ConvertToCharacters(stringList, "Classic", 24);
-                else if (game.Mode=="Realistic") charList = ci.ConvertToCharacters(stringList, "Realistic", 24);
+                if (game.Mode == "Classic") charList = ci.ConvertToCharacters(stringList, "Classic", 24);
+                else if (game.Mode == "Realistic") charList = ci.ConvertToCharacters(stringList, "Realistic", 24);
 
                 charList = rng.shuffleList(charList);
+
+                if (game.ShowCombatLevel == true)
+                {
+                    for (int i = 0; i < charList.Count; i++)
+                    {
+                        charList[i].Name = charList[i].Name + " (" + charList[i].CombatLevel + ")";
+                    }
+                }
 
                 Sim1 game1 = new Sim1(charList, game);
 
@@ -117,6 +125,14 @@ namespace Carnage
         {
             rtbSearch.Clear();
             rtbSearch.AppendText(ci.ShowAll());
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            Start start = new Start();
+
+            start.Show();
+            this.Hide();
         }
     }
 }

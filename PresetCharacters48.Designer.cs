@@ -49,6 +49,7 @@
             txtD9C2 = new TextBox();
             lblD9 = new Label();
             panelCharacterSelect = new Panel();
+            lblWarning = new Label();
             txtD12C4 = new TextBox();
             txtD12C3 = new TextBox();
             txtD8C4 = new TextBox();
@@ -100,7 +101,7 @@
             txtD1C1 = new TextBox();
             toolTip2 = new ToolTip(components);
             toolTip1 = new ToolTip(components);
-            lblWarning = new Label();
+            btnBack = new Button();
             panelCharacterSelect.SuspendLayout();
             SuspendLayout();
             // 
@@ -270,6 +271,7 @@
             // 
             panelCharacterSelect.AutoScroll = true;
             panelCharacterSelect.BackColor = SystemColors.Control;
+            panelCharacterSelect.Controls.Add(btnBack);
             panelCharacterSelect.Controls.Add(lblWarning);
             panelCharacterSelect.Controls.Add(txtD12C4);
             panelCharacterSelect.Controls.Add(txtD12C3);
@@ -343,6 +345,15 @@
             panelCharacterSelect.Name = "panelCharacterSelect";
             panelCharacterSelect.Size = new Size(1451, 739);
             panelCharacterSelect.TabIndex = 2;
+            // 
+            // lblWarning
+            // 
+            lblWarning.AutoSize = true;
+            lblWarning.Location = new Point(208, 680);
+            lblWarning.Name = "lblWarning";
+            lblWarning.Size = new Size(341, 15);
+            lblWarning.TabIndex = 99;
+            lblWarning.Text = "Expect a small wait time as the program loads the characters in.";
             // 
             // txtD12C4
             // 
@@ -707,14 +718,15 @@
             // 
             toolTip2.AutomaticDelay = 3000;
             // 
-            // lblWarning
+            // btnBack
             // 
-            lblWarning.AutoSize = true;
-            lblWarning.Location = new Point(208, 680);
-            lblWarning.Name = "lblWarning";
-            lblWarning.Size = new Size(341, 15);
-            lblWarning.TabIndex = 99;
-            lblWarning.Text = "Expect a small wait time as the program loads the characters in.";
+            btnBack.Location = new Point(705, 656);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(151, 62);
+            btnBack.TabIndex = 98;
+            btnBack.Text = "Back";
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
             // 
             // PresetCharacters48
             // 
@@ -724,6 +736,7 @@
             Controls.Add(panelCharacterSelect);
             Name = "PresetCharacters48";
             Text = "Enter Preset Characters";
+            WindowState = FormWindowState.Maximized;
             panelCharacterSelect.ResumeLayout(false);
             panelCharacterSelect.PerformLayout();
             ResumeLayout(false);
@@ -803,5 +816,6 @@
         private TextBox txtD8C4;
         private TextBox txtD8C3;
         private Label lblWarning;
+        private Button btnBack;
     }
 }

@@ -86,6 +86,14 @@ namespace Carnage
 
                 charList = rng.shuffleList(charList);
 
+                if (game.ShowCombatLevel == true)
+                {
+                    for (int i = 0; i < charList.Count; i++)
+                    {
+                        charList[i].Name = charList[i].Name + " (" + charList[i].CombatLevel + ")";
+                    }
+                }
+
                 Sim1 game1 = new Sim1(charList, game);
 
                 this.Hide();
@@ -123,6 +131,14 @@ namespace Carnage
         {
             rtbSearch.Clear();
             rtbSearch.AppendText(ci.ShowAll());
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            Start start = new Start();
+
+            start.Show();
+            this.Hide();
         }
     }
 }

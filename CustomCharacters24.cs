@@ -55,30 +55,30 @@ namespace Carnage
         public void btnEnterCharacters_Click(object sender, EventArgs e)
         {
             //instantiates all 24 characters
-            character charD1C1 = new character(1);
-            character charD1C2 = new character(1);
-            character charD2C1 = new character(2);
-            character charD2C2 = new character(2);
-            character charD3C1 = new character(3);
-            character charD3C2 = new character(3);
-            character charD4C1 = new character(4);
-            character charD4C2 = new character(4);
-            character charD5C1 = new character(5);
-            character charD5C2 = new character(5);
-            character charD6C1 = new character(6);
-            character charD6C2 = new character(6);
-            character charD7C1 = new character(7);
-            character charD7C2 = new character(7);
-            character charD8C1 = new character(8);
-            character charD8C2 = new character(8);
-            character charD9C1 = new character(9);
-            character charD9C2 = new character(9);
-            character charD10C1 = new character(10);
-            character charD10C2 = new character(10);
-            character charD11C1 = new character(11);
-            character charD11C2 = new character(11);
-            character charD12C1 = new character(12);
-            character charD12C2 = new character(12);
+            character charD1C1 = new character("D1C1", 1);
+            character charD1C2 = new character("D1C2", 1);
+            character charD2C1 = new character("D2C1", 2);
+            character charD2C2 = new character("D2C2", 2);
+            character charD3C1 = new character("D3C1", 3);
+            character charD3C2 = new character("D3C2", 3);
+            character charD4C1 = new character("D4C1", 4);
+            character charD4C2 = new character("D4C2", 4);
+            character charD5C1 = new character("D5C1", 5);
+            character charD5C2 = new character("D5C2", 5);
+            character charD6C1 = new character("D6C1", 6);
+            character charD6C2 = new character("D6C2", 6);
+            character charD7C1 = new character("D7C1", 7);
+            character charD7C2 = new character("D7C2", 7);
+            character charD8C1 = new character("D8C1", 8);
+            character charD8C2 = new character("D8C2", 8);
+            character charD9C1 = new character("D9C1", 9);
+            character charD9C2 = new character("D9C2", 9);
+            character charD10C1 = new character("D10C1", 10);
+            character charD10C2 = new character("D10C2", 10);
+            character charD11C1 = new character("D11C1", 11);
+            character charD11C2 = new character("D11C2", 11);
+            character charD12C1 = new character("D12C1", 12);
+            character charD12C2 = new character("D12C2", 12);
 
             //checks to make sure a name is entered on every line or the below code won't execute
             if (txtD1C1.Text.Length != 0 && txtD1C2.Text.Length != 0 && txtD2C1.Text.Length != 0 && txtD2C2.Text.Length != 0 && txtD3C1.Text.Length != 0 && txtD3C2.Text.Length != 0 &&
@@ -332,6 +332,14 @@ namespace Carnage
         private void btnFillIn_Click(object sender, EventArgs e)
         {
             this.fillIn();
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            Start start = new Start();
+
+            start.Show();
+            this.Hide();
         }
     }
 }

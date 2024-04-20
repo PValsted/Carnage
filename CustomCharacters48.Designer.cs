@@ -379,6 +379,7 @@
             txtD1C2 = new TextBox();
             lblD1 = new Label();
             txtD1C1 = new TextBox();
+            btnBack = new Button();
             panelCharacterSelect.SuspendLayout();
             gboD12C4.SuspendLayout();
             gboD10C4.SuspendLayout();
@@ -458,6 +459,7 @@
             // 
             panelCharacterSelect.AutoScroll = true;
             panelCharacterSelect.BackColor = SystemColors.Control;
+            panelCharacterSelect.Controls.Add(btnBack);
             panelCharacterSelect.Controls.Add(gboD12C4);
             panelCharacterSelect.Controls.Add(gboD10C4);
             panelCharacterSelect.Controls.Add(gboD12C3);
@@ -4229,6 +4231,16 @@
             txtD1C1.Size = new Size(208, 23);
             txtD1C1.TabIndex = 1;
             // 
+            // btnBack
+            // 
+            btnBack.Location = new Point(1376, 843);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(151, 62);
+            btnBack.TabIndex = 96;
+            btnBack.Text = "Back";
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
+            // 
             // CustomCharacters48
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -4237,6 +4249,7 @@
             Controls.Add(panelCharacterSelect);
             Name = "CustomCharacters48";
             Text = "Enter Custom Characters";
+            WindowState = FormWindowState.Maximized;
             panelCharacterSelect.ResumeLayout(false);
             panelCharacterSelect.PerformLayout();
             gboD12C4.ResumeLayout(false);
@@ -4739,5 +4752,6 @@
         private TextBox txtD3C2;
         private Label lblD3;
         private TextBox txtD3C1;
+        private Button btnBack;
     }
 }

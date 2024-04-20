@@ -193,10 +193,12 @@ namespace Carnage
             return sb.ToString();
         }
 
-        public string potionEvent(character character)
+        public string potionEvent(character character, Game game)
         {
             StringBuilder sb2 = new StringBuilder();
-            int rand = rng.randomInt(0, 2);
+            int rand=0;
+            if (game.Mode=="Realistic") rand = rng.randomInt(0, 5);
+            else rand = rng.randomInt(0, 2);
 
             if (rand == 0) //Health boost
             {
@@ -206,12 +208,45 @@ namespace Carnage
             else if (rand == 1) //Super strength
             {
                 character.setWeaponAttack(6.5);
-                sb2.Append(character.getName() + " felt a wave of strength flow in. " + character.getPronounSub() + " is now stronger than before.");
+                character.setWeaponType("Unarmed");
+                character.setWeaponName("");
+                if (game.Mode=="Realistic") character.CombatLevel = Math.Round(((character.Speed + character.Strength) / 4), 2);
+                sb2.Append(character.getName() + " felt a wave of strength flow in. " + character.getPronounSub() + " is now stronger than before, and doesn't feel the need to use a weapon.");
             }
             else if (rand == 2) //Hurt 5 damage
             {
                 character.hurt(5);
                 sb2.Append(character.getName() + " felt a horrible pain in " + character.getPronounPosAdj().ToLower() + " " + rng.randomBodyPart() + ". This was clearly not a desirable outcome. " + character.getName() + " took 5 damage.");
+            }
+            else if (rand == 3) //Full hunger
+            {
+                character.Hunger=10;
+                sb2.Append(character.getName() + " felt " + character.getPronounPosAdj().ToLower() + " hunger disappear, as if haven eaten a three-course meal.");
+            }
+            else if (rand == 4) //Super speed
+            {
+                character.Speed=10;
+                character.CombatLevel = Math.Round(((character.Speed + character.Strength) / 4), 2);
+                sb2.Append(character.getName() + " suddenly felt as light as a feather, and is now super fast.");
+            }
+            else if (rand == 5) //Morality swap
+            {
+                if (character.Morality > 6) //If morality is 6 or higher
+                {
+                    character.Morality = 1;
+                    sb2.Append(character.getName() + " started seeing red and felt all sense of morality vanish.");
+                }
+                else if (character.Morality <= 6 && character.Morality >= 4) //If morality is between 4 and 6
+                {                
+                    character.Morality = 9;
+                    sb2.Append(character.getName() + " started feeling a warm fuzzy feeling and decided being morally grey wasn't the right path anymore.");
+                
+                }
+                else //If morality is below 4
+                {
+                    character.Morality = 9;
+                    sb2.Append(character.getName() + " started feeling a warm fuzzy feeling and decided being villainous wasn't the right path anymore.");
+                }
             }
 
             return sb2.ToString();

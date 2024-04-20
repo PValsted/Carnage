@@ -8,7 +8,7 @@ namespace Carnage
 {
     public class character
     {
-        private String name, pronounSub, pronounObj, pronounPos, pronounPosAdj, pronounRefl, weaponName = "", weaponType="Unarmed";
+        private string id, name, pronounSub, pronounObj, pronounPos, pronounPosAdj, pronounRefl, weaponName = "", weaponType="Unarmed";
         private int kills=0, district;
         private double weaponAttack = 2, health, healingAmount;
         private double strength = 0, morality = 5.0, speed = 2.0, hunger = 10.0, combatLevel = 0; //Realistic mode only
@@ -24,7 +24,7 @@ namespace Carnage
             Health = 20;
         }//end empty-argument constructor
 
-        public character(int District)
+        public character(string id, int District)
         {
             pronounSub = "They";
             pronounObj = "Them";
@@ -32,28 +32,30 @@ namespace Carnage
             pronounPosAdj = "Their";
             pronounRefl = "Themselves";
             Health = 20;
+            Id = id;
             this.District = District;
         }
 
-        public character(string name, string pronoun, int District)
+        public character(string id, string name, string pronoun, int District)
         {
+            Id=id;
             Name = name;
             this.setPronoun(pronoun);
             Health = 20;
             this.District = District;
         }
 
-        public character(string name, string pronoun, double strength, double morality, double speed, int District)
+        public character(string id, string name, string pronoun, double strength, double morality, double speed, int District)
         {
-            
+            Id = id;
             this.setPronoun(pronoun);
             Health = 20;
             this.Strength = strength;
             this.Morality = morality;
             this.Speed = speed;
             this.District = District;
-            combatLevel = (speed + strength) / 4;
-            this.Name = name+"("+combatLevel+")";
+            combatLevel = Math.Round(((speed + strength) / 4),2);
+            this.Name = name;
             weaponAttack = strength / 2;
 
         } //end realistic mode constructor
@@ -104,17 +106,10 @@ namespace Carnage
                 else speed = 10;
             }
         }
-        public double Hunger
-        {
-            get => hunger;
-            set
-            {
-                if (this.Hunger - value > 0) hunger = value;
-                else IsAlive = false;
-            }
-        }
 
         public double CombatLevel { get => combatLevel; set => combatLevel = value; }
+        public double Hunger { get => hunger; set => hunger = value; }
+        public string Id { get => id; set => id = value; }
 
         public String getName()
         {

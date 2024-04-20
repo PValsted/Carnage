@@ -41,7 +41,9 @@
             cboShortBattles = new CheckBox();
             lblOptions = new Label();
             pnlOptions = new Panel();
+            cboCombatLevel = new CheckBox();
             cboRealistic = new CheckBox();
+            btnBack = new Button();
             grbNumberOptions.SuspendLayout();
             pnlTest.SuspendLayout();
             pnlOptions.SuspendLayout();
@@ -172,14 +174,26 @@
             // 
             // pnlOptions
             // 
+            pnlOptions.Controls.Add(cboCombatLevel);
             pnlOptions.Controls.Add(cboRealistic);
             pnlOptions.Controls.Add(lblOptions);
             pnlOptions.Controls.Add(cboShortBattles);
             pnlOptions.Location = new Point(361, 47);
             pnlOptions.Name = "pnlOptions";
-            pnlOptions.Size = new Size(132, 74);
+            pnlOptions.Size = new Size(264, 74);
             pnlOptions.TabIndex = 7;
             pnlOptions.Visible = false;
+            // 
+            // cboCombatLevel
+            // 
+            cboCombatLevel.AutoSize = true;
+            cboCombatLevel.Location = new Point(121, 22);
+            cboCombatLevel.Name = "cboCombatLevel";
+            cboCombatLevel.Size = new Size(131, 19);
+            cboCombatLevel.TabIndex = 8;
+            cboCombatLevel.Text = "Show Combat Level";
+            cboCombatLevel.UseVisualStyleBackColor = true;
+            cboCombatLevel.Visible = false;
             // 
             // cboRealistic
             // 
@@ -190,12 +204,25 @@
             cboRealistic.TabIndex = 7;
             cboRealistic.Text = "Realistic Mode";
             cboRealistic.UseVisualStyleBackColor = true;
+            cboRealistic.CheckedChanged += cboRealistic_CheckedChanged;
+            // 
+            // btnBack
+            // 
+            btnBack.Location = new Point(48, 130);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(75, 23);
+            btnBack.TabIndex = 8;
+            btnBack.Text = "Back";
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Visible = false;
+            btnBack.Click += btnBack_Click;
             // 
             // Start
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnBack);
             Controls.Add(pnlOptions);
             Controls.Add(pnlTest);
             Controls.Add(grbNumberOptions);
@@ -204,6 +231,7 @@
             Controls.Add(btnClassic);
             Name = "Start";
             Text = "Start";
+            WindowState = FormWindowState.Maximized;
             grbNumberOptions.ResumeLayout(false);
             grbNumberOptions.PerformLayout();
             pnlTest.ResumeLayout(false);
@@ -228,5 +256,7 @@
         private Label lblOptions;
         private Panel pnlOptions;
         private CheckBox cboRealistic;
+        private CheckBox cboCombatLevel;
+        private Button btnBack;
     }
 }
