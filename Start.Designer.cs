@@ -28,24 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Start));
             btnClassic = new Button();
             btnCustom = new Button();
             btnPreset = new Button();
             grbNumberOptions = new GroupBox();
             rdo48 = new RadioButton();
             rdo24 = new RadioButton();
-            pnlTest = new Panel();
-            btnClear = new Button();
-            btnTest = new Button();
-            rtbTest = new RichTextBox();
             cboShortBattles = new CheckBox();
             lblOptions = new Label();
             pnlOptions = new Panel();
+            cboSponsor = new CheckBox();
             cboCombatLevel = new CheckBox();
             cboRealistic = new CheckBox();
             btnBack = new Button();
             grbNumberOptions.SuspendLayout();
-            pnlTest.SuspendLayout();
             pnlOptions.SuspendLayout();
             SuspendLayout();
             // 
@@ -57,7 +54,7 @@
             btnClassic.TabIndex = 0;
             btnClassic.Text = "Classic Mode";
             btnClassic.UseVisualStyleBackColor = true;
-            btnClassic.Click += btnClassic_Click_1;
+            btnClassic.Click += btnClassic_Click;
             // 
             // btnCustom
             // 
@@ -114,49 +111,10 @@
             rdo24.Text = "24 Characters";
             rdo24.UseVisualStyleBackColor = true;
             // 
-            // pnlTest
-            // 
-            pnlTest.Controls.Add(btnClear);
-            pnlTest.Controls.Add(btnTest);
-            pnlTest.Controls.Add(rtbTest);
-            pnlTest.Location = new Point(48, 175);
-            pnlTest.Name = "pnlTest";
-            pnlTest.Size = new Size(729, 251);
-            pnlTest.TabIndex = 4;
-            pnlTest.Visible = false;
-            // 
-            // btnClear
-            // 
-            btnClear.Location = new Point(639, 100);
-            btnClear.Name = "btnClear";
-            btnClear.Size = new Size(75, 23);
-            btnClear.TabIndex = 2;
-            btnClear.Text = "Clear";
-            btnClear.UseVisualStyleBackColor = true;
-            btnClear.Click += btnClear_Click;
-            // 
-            // btnTest
-            // 
-            btnTest.Location = new Point(639, 129);
-            btnTest.Name = "btnTest";
-            btnTest.Size = new Size(75, 23);
-            btnTest.TabIndex = 1;
-            btnTest.Text = "Test";
-            btnTest.UseVisualStyleBackColor = true;
-            btnTest.Click += btnTest_Click;
-            // 
-            // rtbTest
-            // 
-            rtbTest.Location = new Point(3, 3);
-            rtbTest.Name = "rtbTest";
-            rtbTest.Size = new Size(630, 245);
-            rtbTest.TabIndex = 0;
-            rtbTest.Text = "";
-            // 
             // cboShortBattles
             // 
             cboShortBattles.AutoSize = true;
-            cboShortBattles.Location = new Point(3, 42);
+            cboShortBattles.Location = new Point(3, 44);
             cboShortBattles.Name = "cboShortBattles";
             cboShortBattles.Size = new Size(92, 19);
             cboShortBattles.TabIndex = 5;
@@ -174,20 +132,31 @@
             // 
             // pnlOptions
             // 
+            pnlOptions.Controls.Add(cboSponsor);
             pnlOptions.Controls.Add(cboCombatLevel);
             pnlOptions.Controls.Add(cboRealistic);
             pnlOptions.Controls.Add(lblOptions);
             pnlOptions.Controls.Add(cboShortBattles);
             pnlOptions.Location = new Point(361, 47);
             pnlOptions.Name = "pnlOptions";
-            pnlOptions.Size = new Size(264, 74);
+            pnlOptions.Size = new Size(264, 88);
             pnlOptions.TabIndex = 7;
             pnlOptions.Visible = false;
+            // 
+            // cboSponsor
+            // 
+            cboSponsor.AutoSize = true;
+            cboSponsor.Location = new Point(3, 66);
+            cboSponsor.Name = "cboSponsor";
+            cboSponsor.Size = new Size(105, 19);
+            cboSponsor.TabIndex = 9;
+            cboSponsor.Text = "No Sponsoring";
+            cboSponsor.UseVisualStyleBackColor = true;
             // 
             // cboCombatLevel
             // 
             cboCombatLevel.AutoSize = true;
-            cboCombatLevel.Location = new Point(121, 22);
+            cboCombatLevel.Location = new Point(112, 22);
             cboCombatLevel.Name = "cboCombatLevel";
             cboCombatLevel.Size = new Size(131, 19);
             cboCombatLevel.TabIndex = 8;
@@ -224,17 +193,16 @@
             ClientSize = new Size(800, 450);
             Controls.Add(btnBack);
             Controls.Add(pnlOptions);
-            Controls.Add(pnlTest);
             Controls.Add(grbNumberOptions);
             Controls.Add(btnPreset);
             Controls.Add(btnCustom);
             Controls.Add(btnClassic);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Start";
-            Text = "Start";
+            Text = "Carnage";
             WindowState = FormWindowState.Maximized;
             grbNumberOptions.ResumeLayout(false);
             grbNumberOptions.PerformLayout();
-            pnlTest.ResumeLayout(false);
             pnlOptions.ResumeLayout(false);
             pnlOptions.PerformLayout();
             ResumeLayout(false);
@@ -248,15 +216,12 @@
         private GroupBox grbNumberOptions;
         private RadioButton rdo24;
         private RadioButton rdo48;
-        private Panel pnlTest;
-        private Button btnTest;
-        private RichTextBox rtbTest;
-        private Button btnClear;
         private CheckBox cboShortBattles;
         private Label lblOptions;
         private Panel pnlOptions;
         private CheckBox cboRealistic;
         private CheckBox cboCombatLevel;
         private Button btnBack;
+        private CheckBox cboSponsor;
     }
 }

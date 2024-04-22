@@ -14,6 +14,7 @@ namespace Carnage
     {
         RNG rng = new RNG();
         List<character> battleList = new List<character>();
+        Loot loot = new Loot();
 
         public int getNumber(string type)
         {
@@ -48,6 +49,8 @@ namespace Carnage
             eventText = eventText.Replace("{PosAdjPro}", (character.getPronounPosAdj()).ToLower());
             eventText = eventText.Replace("{PosPro}", (character.getPronounPos()).ToLower());
             eventText = eventText.Replace("{RefPro}", (character.getPronounRefl()).ToLower());
+            eventText = eventText.Replace("{BodyPart}", (rng.randomBodyPart()));
+            eventText = eventText.Replace("{WasProper}", (this.ProperTense(character)));
 
             return eventText;
         }
@@ -65,6 +68,8 @@ namespace Carnage
             eventText = eventText.Replace("{PosAdjPro}", (char1.getPronounPosAdj()).ToLower());
             eventText = eventText.Replace("{PosPro}", (char1.getPronounPos()).ToLower());
             eventText = eventText.Replace("{RefPro}", (char1.getPronounRefl()).ToLower());
+            eventText = eventText.Replace("{BodyPart}", (rng.randomBodyPart()));
+            eventText = eventText.Replace("{WasProper}", (this.ProperTense(char1)));
 
             eventText = eventText.Replace("{2}", char2.getName());
             eventText = eventText.Replace("{CapSubPro2}", char2.getPronounSub());
@@ -81,13 +86,35 @@ namespace Carnage
             return eventText;
         }
 
-        public string regularEvent(character character)
+        public string randomReplace(string eventText, character char1, character char2, string type)
+        {
+            List<character> list = new List<character> { char1, char2 };
+            list = rng.shuffleList(list);
+            eventText = eventText.Replace("{1/2}", list[0].getName());
+            eventText = eventText.Replace("{2/1}", list[1].getName());
+
+            if (type=="Death")
+            {
+                list[0].hurt(100);
+            }
+
+            return eventText;
+
+        }
+
+        public string ProperTense(character char1)
+        {
+            if (char1.getPronounSub() == "They") return "were";
+            else return "was";
+        }
+
+        public string regularEvent(character character, Game game)
         {
             string sql = "Server=sql5.freesqldatabase.com;Database=sql5693000;Uid=sql5693000;Pwd=yD7AbEqn2I;";
             MySqlConnection con = new MySqlConnection(sql);
 
 
-            string strSQL = "SELECT Text FROM Events WHERE Type = 'Regular' AND ID = 'Regular" + rng.randomInt(1,this.getNumber("Regular")) + "';";
+            string strSQL = "SELECT * FROM Events WHERE Type = 'Regular' AND ID = 'Regular" + rng.randomInt(1,this.getNumber("Regular")) + "';";
 
             MySqlCommand sqlComd = new MySqlCommand(strSQL, con);
             DataSet dsSQLDataSet = new DataSet();
@@ -96,16 +123,38 @@ namespace Carnage
             con.Open();
             daAdapter.Fill(dsSQLDataSet);
 
-            string eventText = (dsSQLDataSet.Tables[0].Rows[0][0].ToString());
+            string eventText = (dsSQLDataSet.Tables[0].Rows[0][1].ToString() + "\n");
+            string type = (dsSQLDataSet.Tables[0].Rows[0][6].ToString());
+
+            if (type=="Damage")
+            {
+                character.hurt(Math.Round(Double.Parse(dsSQLDataSet.Tables[0].Rows[0][5].ToString()), 2));
+                
+                if (character.IsAlive==false)
+                {
+                    eventText = this.replaceText(eventText, character) + character.Name + " succumbed to " + character.getPronounPosAdj().ToLower() + " injuries.";
+                    return eventText;
+                }
+            }
+
             con.Close();
+
+            if (type=="Morality" && game.Mode=="Realistic")
+            {
+                character.Morality -= 2;
+                eventText = this.replaceText(eventText, character) + character.Name + "'s morality level dropped by 2.\n";
+                return eventText;
+            }
 
             eventText = this.replaceText(eventText, character);
 
             return eventText;
         }
 
-        public string gainEvent(character character)
+        public string gainEvent(character character, Game game)
         {
+            StringBuilder sb = new StringBuilder();
+
             string sql = "Server=sql5.freesqldatabase.com;Database=sql5693000;Uid=sql5693000;Pwd=yD7AbEqn2I;";
             MySqlConnection con = new MySqlConnection(sql);
 
@@ -120,8 +169,6 @@ namespace Carnage
 
             string type = dsSQLDataSet.Tables[0].Rows[0][6].ToString();
 
-            StringBuilder sb = new StringBuilder();
-
             string eventText = dsSQLDataSet.Tables[0].Rows[0][1].ToString();
             eventText = this.replaceText(eventText, character);
 
@@ -129,12 +176,34 @@ namespace Carnage
             {
                 if (character.getHealth() < 20)
                 {
-                    character.heal(Double.Parse(dsSQLDataSet.Tables[0].Rows[0][5].ToString()));
+                    character.heal(Math.Round(Double.Parse(dsSQLDataSet.Tables[0].Rows[0][5].ToString()),2));
                 }
                 else if (character.getHealth() == 20 && character.isHealSlotFilled() == false)
                 {
-                    character.setHealingAmount(Double.Parse(dsSQLDataSet.Tables[0].Rows[0][5].ToString()));
+                    character.setHealingAmount(Math.Round(Double.Parse(dsSQLDataSet.Tables[0].Rows[0][5].ToString()),2));
                 }
+            }
+            else if (type =="Food")
+            {
+                sb.AppendLine(eventText);
+                character.Hunger += Math.Round(Double.Parse(dsSQLDataSet.Tables[0].Rows[0][5].ToString()),2);
+            }
+            else if (type == "IfHungry")
+            {
+                if (character.Hunger > 2 && game.Mode == "Realistic")
+                {
+                    sb.Append(gainEvent(character, game));
+                    return sb.ToString();
+                }
+                else
+                {
+                    sb.AppendLine(eventText);
+                    character.Hunger += Math.Round(Double.Parse(dsSQLDataSet.Tables[0].Rows[0][5].ToString()), 2);
+                }
+            }
+            else if (type=="Loot")
+            {
+                sb.Append(eventText + " " + loot.lootEvent(character, "Common"));
             }
             else
             {
@@ -170,8 +239,42 @@ namespace Carnage
                 }
                 else sb.AppendLine(eventText);
             }
-
             return sb.ToString();
+        }
+
+        public string deathEvent(character character, Game game)
+        {
+            string sql = "Server=sql5.freesqldatabase.com;Database=sql5693000;Uid=sql5693000;Pwd=yD7AbEqn2I;";
+            MySqlConnection con = new MySqlConnection(sql);
+
+
+            string strSQL = "SELECT * FROM Events WHERE Type = 'Death' AND ID = 'Death" + rng.randomInt(1, this.getNumber("Death")) + "';";
+
+            MySqlCommand sqlComd = new MySqlCommand(strSQL, con);
+            DataSet dsSQLDataSet = new DataSet();
+            MySqlDataAdapter daAdapter = new MySqlDataAdapter(strSQL, con);
+
+            con.Open();
+            daAdapter.Fill(dsSQLDataSet);
+
+            string eventText = (dsSQLDataSet.Tables[0].Rows[0][1].ToString() + "\n");
+            string type = (dsSQLDataSet.Tables[0].Rows[0][6].ToString());
+
+            con.Close();
+
+            if (type=="IfHungry" && character.Hunger>2 && game.Mode=="Realistic")
+            {
+                eventText = deathEvent(character, game);
+                return eventText;
+            }
+            else
+            {
+                eventText = this.replaceText(eventText, character);
+
+                character.hurt(100);              
+            }
+
+            return eventText;
         }
 
     }

@@ -50,27 +50,30 @@ namespace Carnage
 
         public string randomEventType(Game game)
         {
-            int random = this.randomInt(0, 10);
+            int random = this.randomInt(0, 20);
 
             if (game.ActivePlayers >= game.Players / 4) //If there are more than a quarter of the total starting players left, chance of battle is lower
             {
-                if (random >= 0 && random < 4) return "Regular";
-                else if (random >= 4 && random < 7) return "Gain";
-                if (random >= 7 && random < 9) return "Explore";
+                if (random >= 0 && random < 7) return "Regular";
+                else if (random >= 7 && random < 14) return "Gain";
+                else if (random >= 14 && random < 17) return "Explore";
+                else if (random == 17) return "Death";
                 else return "Battle";
             }
             else if (game.ActivePlayers == 2) //If there are only 2 players left, the odds of a battle are really high
             {
-                if (random >= 0 && random < 2) return "Regular";
-                else if (random >= 2 && random < 4) return "Gain";
-                else if (random == 4) return "Explore";
+                if (random >= 0 && random < 3) return "Regular";
+                else if (random >= 3 && random < 7) return "Gain";
+                else if (random >= 7 && random < 9) return "Explore";
+                else if (random == 9) return "Death";
                 else return "Battle";
             }
             else //If there is a quarter of the total starting players left, the odds of a battle are increased
             {
-                if (random >= 0 && random < 2) return "Regular";
-                else if (random >= 2 && random < 5) return "Gain";
-                else if (random == 5 || random == 6) return "Explore";
+                if (random >= 0 && random < 4) return "Regular";
+                else if (random >= 4 && random < 8) return "Gain";
+                else if (random >= 8 && random < 11) return "Explore";
+                else if (random == 12) return "Death";
                 else return "Battle";
             }
         }
@@ -216,7 +219,7 @@ namespace Carnage
 
             while (i < listSize) 
             {
-                rand = this.randomInt(0, upperBound);
+                rand = this.randomInt(0, upperBound-1);
 
                 if (list.Contains(rand))
                 {

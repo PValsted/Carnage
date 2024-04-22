@@ -52,5 +52,5 @@ whip,special,3.5,Common,No,None
 grenade,explosive,0,Uncommon,No,None
 landmine,explosive,0,Uncommon,No,None
 c-4,explosive,0,Uncommon,No,None
-sticky bomb,0,Uncommon,No,None
-stick of dynamite,0,Uncommon,No,None
+sticky bomb,explosive,0,Uncommon,No,None
+stick of dynamite,explosive,0,Uncommon,No,None

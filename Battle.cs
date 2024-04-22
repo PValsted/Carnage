@@ -280,7 +280,6 @@ namespace Carnage
                     ", " + battleList.ElementAt(2).getName() + ", and " + battleList.ElementAt(3).getName() + ".");
             }
 
-
             while (battleList.Count > 1)
             {
                 battleList = rng.shuffleList(battleList);
@@ -463,13 +462,17 @@ namespace Carnage
                                 }
                                 else if (crit == false) //Player is armed and attacks based on their weapon type
                                 {
-                                    battleList.ElementAt(1).hurt((battleList.ElementAt(0).getWeaponAttack()));
+                                    if (game.Mode=="Classic") battleList.ElementAt(1).hurt((battleList.ElementAt(0).getWeaponAttack())); //Classic mode attack
+                                    else battleList.ElementAt(1).hurt((battleList.ElementAt(0).getWeaponAttack())+battleList[0].Strength/4); //Realistic mode attack, weapon attack + some strength
+
                                     battleList.ElementAt(1).Health = Math.Round(battleList.ElementAt(1).Health, 2);
                                     if (game.DoFullBattles == true) sb.AppendLine("--- " + this.getBattleText(battleList.ElementAt(0), battleList.ElementAt(1), battleList.ElementAt(0).getWeaponType()) + " " + battleList.ElementAt(1).getName() + " is at " + battleList.ElementAt(1).getHealth() + " health.");
                                 }
                                 else //Player is armed and does critical attack based on their weapon type
                                 {
-                                    battleList.ElementAt(1).hurt(1.5 * (battleList.ElementAt(0).getWeaponAttack()));
+                                    if (game.Mode == "Classic") battleList.ElementAt(1).hurt(1.5*(battleList.ElementAt(0).getWeaponAttack())); //Classic mode attack
+                                    else battleList.ElementAt(1).hurt(1.5*((battleList.ElementAt(0).getWeaponAttack()) + battleList[0].Strength / 4)); //Realistic mode attack, weapon attack + some strength
+
                                     battleList.ElementAt(1).Health = Math.Round(battleList.ElementAt(1).Health, 2);
                                     if (game.DoFullBattles == true) sb.AppendLine("-- " + this.getBattleText(battleList.ElementAt(0), battleList.ElementAt(1), battleList.ElementAt(0).getWeaponType()) + " Critical hit! " + battleList.ElementAt(1).getName() + " is at " + battleList.ElementAt(1).getHealth() + " health.");
                                 }
@@ -514,13 +517,17 @@ namespace Carnage
                                 }
                                 else if (crit == false) //Player is armed and attacks based on their weapon type
                                 {
-                                    battleList.ElementAt(0).hurt((battleList.ElementAt(1).getWeaponAttack()));
+                                    if (game.Mode == "Classic") battleList.ElementAt(0).hurt((battleList.ElementAt(1).getWeaponAttack())); //Classic mode attack
+                                    else battleList.ElementAt(0).hurt((battleList.ElementAt(1).getWeaponAttack()) + battleList[1].Strength / 4); //Realistic mode attack, weapon attack + some strength
+
                                     battleList.ElementAt(0).Health = Math.Round(battleList.ElementAt(0).Health, 2);
                                     if (game.DoFullBattles == true) sb.AppendLine("--- " + this.getBattleText(battleList.ElementAt(1), battleList.ElementAt(0), battleList.ElementAt(1).getWeaponType()) + " " + battleList.ElementAt(0).getName() + " is at " + battleList.ElementAt(0).getHealth() + " health.");
                                 }
                                 else //Player is armed and does critical attack based on their weapon type
                                 {
-                                    battleList.ElementAt(0).hurt(1.5 * (battleList.ElementAt(1).getWeaponAttack()));
+                                    if (game.Mode == "Classic") battleList.ElementAt(0).hurt((1.5*battleList.ElementAt(1).getWeaponAttack())); //Classic mode attack
+                                    else battleList.ElementAt(0).hurt(1.5 * ((battleList.ElementAt(1).getWeaponAttack()) + battleList[1].Strength / 4)); //Realistic mode attack, weapon attack + some strength
+
                                     battleList.ElementAt(0).Health = Math.Round(battleList.ElementAt(0).Health, 2);
                                     if (game.DoFullBattles == true) sb.AppendLine("-- " + this.getBattleText(battleList.ElementAt(1), battleList.ElementAt(0), battleList.ElementAt(1).getWeaponType()) + " Critical hit! " + battleList.ElementAt(0).getName() + " is at " + battleList.ElementAt(0).getHealth() + " health.");
                                 }

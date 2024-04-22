@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Org.BouncyCastle.Pqc.Crypto.Lms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,14 +18,22 @@ namespace Carnage
         List<character> dayCharList = new();
         List<character> deathCharList = new();
         List<character> tempDeathCharList = new();
+        List<int> intList = new List<int>();
         RNG rng = new();
         Day day = new Day();
         Bloodbath bb = new();
         Feast feast = new();
         ArenaEvent ae = new();
         int i = 0, unassignedPlayers, deathCount = 0;
+        bool isSponsor = false;
         Game game;
         StatUpdater su = new StatUpdater();
+        Loot loot = new Loot();
+        string type1, type2, type3;
+        double rand1, rand2, rand3;
+        string[] lootArray1 = new string[4];
+        string[] lootArray2 = new string[4];
+        string[] lootArray3 = new string[4];
 
         public Sim1(List<character> charList, Game game)
         {
@@ -210,24 +219,9 @@ namespace Carnage
             rtbText.AppendText(game.ActivePlayers + " remain.\n");
             deathCount = 0;
 
-            int eventChance = rng.randomInt(1, 6);
-            if (game.Events == 1) eventChance = rng.randomInt(1, 10);
-
-            if (game.ActivePlayers <= game.Players / 4 && game.HadFeast == false)
-            {
-                game.IsDeath = false;
-                game.IsFeast = true;
-            }
-            else if (eventChance == 1 && game.Events < 2 && game.Day > 1 && game.ActivePlayers > 2)
-            {
-                game.IsDeath = false;
-                game.IsEvent = true;
-            }
-            else
-            {
-                game.IsDeath = false;
-                game.IsDay = true;
-            }
+            game.IsDeath = false;
+            if (tempCharList.Count() >= 3 && game.DoSponsor == true) isSponsor = true;
+            else game.IsDay = true;
         }
 
         private void winnerScreen()
@@ -245,6 +239,176 @@ namespace Carnage
             rtbKills.AppendText(su.Kills(deathCharList, tempCharList[0], game));
             rtbGeneralStats.AppendText(su.GeneralStats(deathCharList, tempCharList[0], game));
 
+        }
+
+        private void sponsorScreen()
+        {
+            pnlMain.Hide();
+            pnlSponsor.Show();
+
+            intList.Clear();
+
+            intList = rng.RandomIntList(tempCharList.Count, 3);
+
+            //Random Alive Player 1
+            if (game.Mode == "Classic")
+            {
+                rboPlayer1Sponsor.Text = tempCharList[intList[0]].Name + ": " + tempCharList[intList[0]].Health + " health";
+            }
+            else
+            {
+                rboPlayer1Sponsor.Text = tempCharList[intList[0]].Name + ": " + tempCharList[intList[0]].Health + " health, " + tempCharList[intList[0]].Hunger + " hunger";
+            }
+            //Random Alive Player 2
+            if (game.Mode == "Classic")
+            {
+                rboPlayer2Sponsor.Text = tempCharList[intList[1]].Name + ": " + tempCharList[intList[1]].Health + " health";
+            }
+            else
+            {
+                rboPlayer2Sponsor.Text = tempCharList[intList[1]].Name + ": " + tempCharList[intList[1]].Health + " health, " + tempCharList[intList[1]].Hunger + " hunger";
+            }
+            //Random Alive Player 3
+            if (game.Mode == "Classic")
+            {
+                rboPlayer3Sponsor.Text = tempCharList[intList[2]].Name + ": " + tempCharList[intList[2]].Health + " health";
+            }
+            else
+            {
+                rboPlayer3Sponsor.Text = tempCharList[intList[2]].Name + ": " + tempCharList[intList[2]].Health + " health, " + tempCharList[intList[2]].Hunger + " hunger";
+            }
+
+            type1 = loot.SponsorItemType(tempCharList[intList[0]], game);
+            type2 = loot.SponsorItemType(tempCharList[intList[1]], game);
+            type3 = loot.SponsorItemType(tempCharList[intList[2]], game);
+
+            //Decides item for Player 1
+            if (type1 == "Healing")
+            {
+                rand1 = Double.Parse(rng.randomInt(3, 8).ToString());
+
+                txtPlayer1Item.Text = "Sponsor Medkit: Heals " + rand1 + " health";
+            }
+            else if (type1 == "Any Weapon")
+            {
+                int randomRarity = rng.randomInt(1, 10);
+
+                if (randomRarity == 1) lootArray1 = loot.getLoot("Rare", "Weapon");
+                else if (randomRarity == 2 || randomRarity == 3) lootArray1 = loot.getLoot("Uncommon", "Weapon");
+                else lootArray1 = loot.getLoot("Common", "Weapon");
+
+                if (lootArray1[1] != "explosive") txtPlayer1Item.Text = "Weapon: " + lootArray1[0] + ", " + Double.Parse(lootArray1[2]) + " damage";
+                else
+                {
+                    txtPlayer1Item.Text = "Explosive";
+                }
+            }
+            else if (type1 == "Hunger")
+            {
+                rand1 = Double.Parse(rng.randomInt(3, 8).ToString());
+
+                txtPlayer1Item.Text = "Sponsor Food: Refills " + rand1 + " hunger";
+            }
+            else if (type1 == "Explosive")
+            {
+                txtPlayer1Item.Text = "Explosive";
+            }
+            else
+            {
+                txtPlayer1Item.Text = "Permanent boost of 2 attack to player's weapon";
+            }
+
+            //Decides item for Player 2
+            if (type2 == "Healing")
+            {
+                rand2 = Double.Parse(rng.randomInt(3, 8).ToString());
+
+                txtPlayer2Item.Text = "Sponsor Medkit: Heals " + rand2 + " health";
+            }
+            else if (type2 == "Any Weapon")
+            {
+                int randomRarity = rng.randomInt(1, 10);
+
+                if (randomRarity == 1) lootArray2 = loot.getLoot("Rare", "Weapon");
+                else if (randomRarity == 2 || randomRarity == 3) lootArray2 = loot.getLoot("Uncommon", "Weapon");
+                else lootArray2 = loot.getLoot("Common", "Weapon");
+
+                if (lootArray2[1] != "explosive") txtPlayer2Item.Text = "Weapon: " + lootArray2[0] + ", " + Double.Parse(lootArray2[2]) + " damage";
+                else
+                {
+                    txtPlayer2Item.Text = "Explosive";
+                }
+            }
+            else if (type2 == "Hunger")
+            {
+                rand2 = Double.Parse(rng.randomInt(3, 8).ToString());
+
+                txtPlayer2Item.Text = "Sponsor Food: Refills " + rand2 + " hunger";
+            }
+            else if (type2 == "Explosive")
+            {
+                txtPlayer2Item.Text = "Explosive";
+            }
+            else
+            {
+                txtPlayer2Item.Text = "Permanent boost of 2 attack to player's weapon";
+            }
+
+            //Decides item for Player 3
+            if (type3 == "Healing")
+            {
+                rand3 = Double.Parse(rng.randomInt(3, 8).ToString());
+
+                txtPlayer3Item.Text = "Sponsor Medkit: Heals " + rand3 + " health";
+            }
+            else if (type3 == "Any Weapon")
+            {
+                int randomRarity = rng.randomInt(1, 10);
+
+                if (randomRarity == 1) lootArray3 = loot.getLoot("Rare", "Weapon");
+                else if (randomRarity == 2 || randomRarity == 3) lootArray3 = loot.getLoot("Uncommon", "Weapon");
+                else lootArray3 = loot.getLoot("Common", "Weapon");
+
+                if (lootArray3[1] != "explosive") txtPlayer3Item.Text = "Weapon: " + lootArray3[0] + ", " + Double.Parse(lootArray3[2]) + " damage";
+                else
+                {
+                    txtPlayer3Item.Text = "Explosive";
+                }
+
+            }
+            else if (type3 == "Hunger")
+            {
+                rand3 = Double.Parse(rng.randomInt(3, 8).ToString());
+
+                txtPlayer3Item.Text = "Sponsor Food: Refills " + rand3 + " hunger";
+            }
+            else if (type3 == "Explosive")
+            {
+                txtPlayer3Item.Text = "Explosive";
+            }
+            else
+            {
+                txtPlayer3Item.Text = "Permanent boost of 2 attack to player's weapon";
+            }
+
+            isSponsor = false;
+            btnStats.Visible = false;
+
+            int eventChance = rng.randomInt(1, 6);
+            if (game.Events == 1) eventChance = rng.randomInt(1, 10);
+
+            if (game.ActivePlayers <= game.Players / 4 && game.HadFeast == false)
+            {
+                game.IsFeast = true;
+            }
+            else if (eventChance == 1 && game.Events < 2 && game.Day > 1 && game.ActivePlayers > 2)
+            {
+                game.IsEvent = true;
+            }
+            else
+            {
+                game.IsDay = true;
+            }
         }
 
         private void updateStats()
@@ -400,6 +564,7 @@ namespace Carnage
                 this.dayEvents();
             }
             else if (game.IsDeath == true) this.deathsScreen();
+            else if (isSponsor == true) this.sponsorScreen();
             else if (game.IsFeast == true && game.HadFeast == false)
             {
                 btnStats.Visible = false;
@@ -450,6 +615,137 @@ namespace Carnage
         {
             pnlStats48.Hide();
             pnlMain.Show();
+        }
+        private void btnSponsorContinue_Click(object sender, EventArgs e)
+        {
+            if (rboPlayer1Sponsor.Checked == true || rboPlayer2Sponsor.Checked == true || rboPlayer3Sponsor.Checked == true) //If no player is selected, nobody will be sponsored
+            {
+                //If Player 1 is sponsored
+                if (rboPlayer1Sponsor.Checked == true)
+                {
+                    if (type1 == "Healing")
+                    {
+                        tempCharList[intList[0]].heal(rand1);
+                    }
+                    else if (type1 == "Any Weapon")
+                    {
+                        if (lootArray1[1] != "explosive")
+                        {
+                            tempCharList[intList[0]].setWeaponName(lootArray1[0]);
+                            tempCharList[intList[0]].setWeaponAttack(Double.Parse(lootArray1[2]));
+                            tempCharList[intList[0]].setWeaponType(lootArray1[1]);
+                        }
+                        else
+                        {
+                            tempCharList[intList[0]].HasExplosive = true;
+                        }
+                    }
+                    else if (type1 == "Hunger")
+                    {
+                        tempCharList[intList[0]].Hunger += rand1;
+                    }
+                    else if (type1 == "Explosive")
+                    {
+                        tempCharList[intList[0]].HasExplosive = true;
+                    }
+                    else
+                    {
+                        tempCharList[intList[0]].setWeaponAttack(tempCharList[intList[0]].getWeaponAttack() + 2);
+                    }
+                }
+
+                //If Player 2 is sponsored
+                if (rboPlayer2Sponsor.Checked == true)
+                {
+                    if (type2 == "Healing")
+                    {
+                        tempCharList[intList[1]].heal(rand2);
+                    }
+                    else if (type2 == "Any Weapon")
+                    {
+                        if (lootArray2[1] != "explosive")
+                        {
+                            tempCharList[intList[1]].setWeaponName(lootArray2[0]);
+                            tempCharList[intList[1]].setWeaponAttack(Double.Parse(lootArray2[2]));
+                            tempCharList[intList[1]].setWeaponType(lootArray2[1]);
+                        }
+                        else
+                        {
+                            tempCharList[intList[1]].HasExplosive = true;
+                        }
+                    }
+                    else if (type2 == "Hunger")
+                    {
+                        tempCharList[intList[1]].Hunger += rand2;
+                    }
+                    else if (type2 == "Explosive")
+                    {
+                        tempCharList[intList[1]].HasExplosive = true;
+                    }
+                    else
+                    {
+                        tempCharList[intList[1]].setWeaponAttack(tempCharList[intList[1]].getWeaponAttack() + 2);
+                    }
+                }
+
+                //If Player 3 is sponsored
+                if (rboPlayer3Sponsor.Checked == true)
+                {
+                    if (type3 == "Healing")
+                    {
+                        tempCharList[intList[2]].heal(rand3);
+                    }
+                    else if (type3 == "Any Weapon")
+                    {
+                        if (lootArray3[1] != "explosive")
+                        {
+                            tempCharList[intList[2]].setWeaponName(lootArray3[0]);
+                            tempCharList[intList[2]].setWeaponAttack(Double.Parse(lootArray3[2]));
+                            tempCharList[intList[2]].setWeaponType(lootArray3[1]);
+                        }
+                        else
+                        {
+                            tempCharList[intList[2]].HasExplosive = true;
+                        }
+                    }
+                    else if (type3 == "Hunger")
+                    {
+                        tempCharList[intList[2]].Hunger += rand3;
+                    }
+                    else if (type3 == "Explosive")
+                    {
+                        tempCharList[intList[2]].HasExplosive = true;
+                    }
+                    else
+                    {
+                        tempCharList[intList[2]].setWeaponAttack(tempCharList[intList[2]].getWeaponAttack() + 2);
+                    }
+                }
+            }
+
+            pnlSponsor.Hide();
+            if (game.IsDay == true)
+            {
+                this.dayEvents();
+            }
+            else if (game.IsFeast == true && game.HadFeast == false)
+            {
+                btnStats.Visible = false;
+                this.doFeast();
+            }
+            else if (game.IsEvent == true)
+            {
+                btnStats.Visible = false;
+                this.doArenaEvent();
+            }
+            pnlMain.Show();
+        }
+
+        private void btnDeselect_Click(object sender, EventArgs e)
+        {
+            rboPlayer1Sponsor.Checked = false;
+            rboPlayer2Sponsor.Checked = false;
+            rboPlayer3Sponsor.Checked = false;
         }
     }
 }

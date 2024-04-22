@@ -31,7 +31,7 @@ namespace Carnage
                 {
                     if (unassignedPlayers!=1)
                     {
-                        rand = rng.randomDouble(2);
+                        rand = rng.randomDouble(2.5);
                         list[i].Hunger = Math.Round(list[i].Hunger-rand,2);
                         if (list[i].Hunger <= 0)
                         {
@@ -56,13 +56,13 @@ namespace Carnage
 
                     if (eventType == "Regular")
                     {
-                        sb.AppendLine(ei.regularEvent(list.ElementAt(i)) + "\n");
+                        sb.AppendLine(ei.regularEvent(list.ElementAt(i), game));
                         unassignedPlayers--;
                         i++;
                     }
                     else if (eventType == "Gain")
                     {
-                        sb.AppendLine(ei.gainEvent(list.ElementAt(i)));
+                        sb.AppendLine(ei.gainEvent(list.ElementAt(i), game));
                         unassignedPlayers--;
                         i++;
                     }
@@ -72,33 +72,39 @@ namespace Carnage
                         unassignedPlayers--;
                         i++;
                     }
+                    else if (eventType == "Death" && game.ActivePlayers > 3)
+                    {
+                        sb.AppendLine(ei.deathEvent(list.ElementAt(i), game));
+                        unassignedPlayers--;
+                        i++;
+                    }
                     else if (eventType == "Battle")
                     {
                         playerCount = rng.randomPlayerCount();
                         battle.setNumPlayers(playerCount);
 
-                    if (unassignedPlayers >= 4 && playerCount == 4)
-                    {
-                        sb.AppendLine(battle.BattleEvent(list.ElementAt(i), list.ElementAt(i + 1), list.ElementAt(i + 2), list.ElementAt(i + 3), game));
+                        if (unassignedPlayers >= 4 && playerCount == 4)
+                        {
+                            sb.AppendLine(battle.BattleEvent(list.ElementAt(i), list.ElementAt(i + 1), list.ElementAt(i + 2), list.ElementAt(i + 3), game));
 
-                        i += playerCount;
-                        unassignedPlayers -= 4;
-                    }
-                    else if (unassignedPlayers >= 3 && playerCount == 3)
-                    {
-                        sb.AppendLine(battle.BattleEvent(list.ElementAt(i), list.ElementAt(i + 1), list.ElementAt(i + 2), list.ElementAt(i + 2), game));
+                            i += playerCount;
+                            unassignedPlayers -= 4;
+                        }
+                        else if (unassignedPlayers >= 3 && playerCount == 3)
+                        {
+                            sb.AppendLine(battle.BattleEvent(list.ElementAt(i), list.ElementAt(i + 1), list.ElementAt(i + 2), list.ElementAt(i + 2), game));
 
-                        i += playerCount;
-                        unassignedPlayers -= 3;
-                    }
-                    else if (unassignedPlayers >= 2 && playerCount == 2)
-                    {
-                        sb.AppendLine(battle.BattleEvent(list.ElementAt(i), list.ElementAt(i + 1), list.ElementAt(i + 1), list.ElementAt(i + 1), game));
+                            i += playerCount;
+                            unassignedPlayers -= 3;
+                        }
+                        else if (unassignedPlayers >= 2 && playerCount == 2)
+                        {
+                            sb.AppendLine(battle.BattleEvent(list.ElementAt(i), list.ElementAt(i + 1), list.ElementAt(i + 1), list.ElementAt(i + 1), game));
 
-                        i += playerCount;
-                        unassignedPlayers -= 2;
-                    }
-                    else continue;
+                            i += playerCount;
+                            unassignedPlayers -= 2;
+                        }
+                        else continue;
                     }
                     else continue;
             }

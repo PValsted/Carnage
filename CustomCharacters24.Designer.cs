@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomCharacters24));
             panelCharacterSelect = new Panel();
-            btnFillIn = new Button();
+            btnBack = new Button();
             btnEnterCharacters = new Button();
             gboD12C2 = new GroupBox();
             rdoTheyD12C2 = new RadioButton();
@@ -211,7 +212,6 @@
             txtD1C2 = new TextBox();
             lblD1 = new Label();
             txtD1C1 = new TextBox();
-            btnBack = new Button();
             panelCharacterSelect.SuspendLayout();
             gboD12C2.SuspendLayout();
             gboD12C1.SuspendLayout();
@@ -256,7 +256,6 @@
             panelCharacterSelect.AutoScroll = true;
             panelCharacterSelect.BackColor = SystemColors.Control;
             panelCharacterSelect.Controls.Add(btnBack);
-            panelCharacterSelect.Controls.Add(btnFillIn);
             panelCharacterSelect.Controls.Add(btnEnterCharacters);
             panelCharacterSelect.Controls.Add(gboD12C2);
             panelCharacterSelect.Controls.Add(gboD12C1);
@@ -323,15 +322,15 @@
             panelCharacterSelect.Size = new Size(1352, 817);
             panelCharacterSelect.TabIndex = 0;
             // 
-            // btnFillIn
+            // btnBack
             // 
-            btnFillIn.Location = new Point(130, 13);
-            btnFillIn.Name = "btnFillIn";
-            btnFillIn.Size = new Size(75, 23);
-            btnFillIn.TabIndex = 66;
-            btnFillIn.Text = "Fill In";
-            btnFillIn.UseVisualStyleBackColor = true;
-            btnFillIn.Click += btnFillIn_Click;
+            btnBack.Location = new Point(865, 723);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(151, 62);
+            btnBack.TabIndex = 67;
+            btnBack.Text = "Back";
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
             // 
             // btnEnterCharacters
             // 
@@ -2215,22 +2214,13 @@
             txtD1C1.Size = new Size(208, 23);
             txtD1C1.TabIndex = 1;
             // 
-            // btnBack
-            // 
-            btnBack.Location = new Point(865, 723);
-            btnBack.Name = "btnBack";
-            btnBack.Size = new Size(151, 62);
-            btnBack.TabIndex = 67;
-            btnBack.Text = "Back";
-            btnBack.UseVisualStyleBackColor = true;
-            btnBack.Click += btnBack_Click;
-            // 
             // CustomCharacters24
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1395, 866);
             Controls.Add(panelCharacterSelect);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "CustomCharacters24";
             Text = "Enter Custom Characters";
             WindowState = FormWindowState.Maximized;
@@ -2542,7 +2532,6 @@
         private RadioButton rdoFemaleD9C1;
         private RadioButton rdoMaleD9C1;
         private Button btnEnterCharacters;
-        private Button btnFillIn;
         private Button btnBack;
     }
 }

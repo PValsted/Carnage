@@ -30,11 +30,13 @@ namespace Carnage
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Sim1));
             rtbText = new RichTextBox();
             pnlMain = new Panel();
             btnStats = new Button();
             btnMainContinue = new Button();
             pnlWinner = new Panel();
+            rtbGeneralStats = new RichTextBox();
             rtbKills = new RichTextBox();
             btnBack = new Button();
             rtbPlaces = new RichTextBox();
@@ -556,7 +558,19 @@ namespace Carnage
             label268 = new Label();
             label269 = new Label();
             btnBack48 = new Button();
-            rtbGeneralStats = new RichTextBox();
+            pnlSponsor = new Panel();
+            btnDeselect = new Button();
+            label30 = new Label();
+            label33 = new Label();
+            btnSponsorContinue = new Button();
+            tableLayoutPanel58 = new TableLayoutPanel();
+            rboPlayer3Sponsor = new RadioButton();
+            rboPlayer2Sponsor = new RadioButton();
+            txtPlayer3Item = new Label();
+            txtPlayer2Item = new Label();
+            txtPlayer1Item = new Label();
+            rboPlayer1Sponsor = new RadioButton();
+            lblSponsorTxt = new Label();
             pnlMain.SuspendLayout();
             pnlWinner.SuspendLayout();
             pnl24.SuspendLayout();
@@ -736,6 +750,8 @@ namespace Carnage
             splConD1.SuspendLayout();
             tableLayoutPanel56.SuspendLayout();
             tableLayoutPanel57.SuspendLayout();
+            pnlSponsor.SuspendLayout();
+            tableLayoutPanel58.SuspendLayout();
             SuspendLayout();
             // 
             // rtbText
@@ -795,6 +811,19 @@ namespace Carnage
             pnlWinner.TabIndex = 3;
             pnlWinner.Visible = false;
             // 
+            // rtbGeneralStats
+            // 
+            rtbGeneralStats.BackColor = Color.LightGoldenrodYellow;
+            rtbGeneralStats.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            rtbGeneralStats.Location = new Point(1275, 78);
+            rtbGeneralStats.Margin = new Padding(6);
+            rtbGeneralStats.Name = "rtbGeneralStats";
+            rtbGeneralStats.ReadOnly = true;
+            rtbGeneralStats.ShowSelectionMargin = true;
+            rtbGeneralStats.Size = new Size(496, 790);
+            rtbGeneralStats.TabIndex = 9;
+            rtbGeneralStats.Text = "";
+            // 
             // rtbKills
             // 
             rtbKills.BackColor = Color.LightGoldenrodYellow;
@@ -807,7 +836,6 @@ namespace Carnage
             rtbKills.Size = new Size(496, 790);
             rtbKills.TabIndex = 8;
             rtbKills.Text = "";
-            rtbKills.SelectionAlignment = HorizontalAlignment.Center;
             // 
             // btnBack
             // 
@@ -831,7 +859,6 @@ namespace Carnage
             rtbPlaces.Size = new Size(496, 790);
             rtbPlaces.TabIndex = 6;
             rtbPlaces.Text = "";
-            rtbPlaces.SelectionAlignment = HorizontalAlignment.Center;
             // 
             // lblWinner
             // 
@@ -7050,29 +7077,176 @@ namespace Carnage
             btnBack48.UseVisualStyleBackColor = true;
             btnBack48.Click += btnBack48_Click;
             // 
-            // rtbGeneralStats
+            // pnlSponsor
             // 
-            rtbGeneralStats.BackColor = Color.LightGoldenrodYellow;
-            rtbGeneralStats.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            rtbGeneralStats.Location = new Point(1275, 78);
-            rtbGeneralStats.Margin = new Padding(6);
-            rtbGeneralStats.Name = "rtbGeneralStats";
-            rtbGeneralStats.ReadOnly = true;
-            rtbGeneralStats.ShowSelectionMargin = true;
-            rtbGeneralStats.Size = new Size(496, 790);
-            rtbGeneralStats.TabIndex = 9;
-            rtbGeneralStats.Text = "";
-            rtbGeneralStats.SelectionAlignment = HorizontalAlignment.Center;
+            pnlSponsor.Controls.Add(btnDeselect);
+            pnlSponsor.Controls.Add(label30);
+            pnlSponsor.Controls.Add(label33);
+            pnlSponsor.Controls.Add(btnSponsorContinue);
+            pnlSponsor.Controls.Add(tableLayoutPanel58);
+            pnlSponsor.Controls.Add(lblSponsorTxt);
+            pnlSponsor.Location = new Point(12, 10);
+            pnlSponsor.Name = "pnlSponsor";
+            pnlSponsor.Size = new Size(1191, 691);
+            pnlSponsor.TabIndex = 17;
+            pnlSponsor.Visible = false;
+            // 
+            // btnDeselect
+            // 
+            btnDeselect.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnDeselect.Location = new Point(168, 629);
+            btnDeselect.Name = "btnDeselect";
+            btnDeselect.Size = new Size(122, 34);
+            btnDeselect.TabIndex = 6;
+            btnDeselect.Text = "Deselect";
+            btnDeselect.UseVisualStyleBackColor = true;
+            btnDeselect.Click += btnDeselect_Click;
+            // 
+            // label30
+            // 
+            label30.AutoSize = true;
+            label30.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label30.Location = new Point(36, 87);
+            label30.Name = "label30";
+            label30.Size = new Size(337, 15);
+            label30.TabIndex = 5;
+            label30.Text = "If you'd like to skip, just hit continue without selecting anyone.";
+            // 
+            // label33
+            // 
+            label33.AutoSize = true;
+            label33.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label33.Location = new Point(36, 66);
+            label33.Name = "label33";
+            label33.Size = new Size(691, 15);
+            label33.TabIndex = 4;
+            label33.Text = "If you'd like, select a player to sponsor below. They will get the item on the right, which is something random they can use for sure.";
+            // 
+            // btnSponsorContinue
+            // 
+            btnSponsorContinue.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSponsorContinue.Location = new Point(28, 629);
+            btnSponsorContinue.Name = "btnSponsorContinue";
+            btnSponsorContinue.Size = new Size(122, 34);
+            btnSponsorContinue.TabIndex = 3;
+            btnSponsorContinue.Text = "Continue";
+            btnSponsorContinue.UseVisualStyleBackColor = true;
+            btnSponsorContinue.Click += btnSponsorContinue_Click;
+            // 
+            // tableLayoutPanel58
+            // 
+            tableLayoutPanel58.BackColor = SystemColors.GradientActiveCaption;
+            tableLayoutPanel58.ColumnCount = 2;
+            tableLayoutPanel58.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel58.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel58.Controls.Add(rboPlayer3Sponsor, 0, 2);
+            tableLayoutPanel58.Controls.Add(rboPlayer2Sponsor, 0, 1);
+            tableLayoutPanel58.Controls.Add(txtPlayer3Item, 1, 2);
+            tableLayoutPanel58.Controls.Add(txtPlayer2Item, 1, 1);
+            tableLayoutPanel58.Controls.Add(txtPlayer1Item, 1, 0);
+            tableLayoutPanel58.Controls.Add(rboPlayer1Sponsor, 0, 0);
+            tableLayoutPanel58.Location = new Point(28, 109);
+            tableLayoutPanel58.Name = "tableLayoutPanel58";
+            tableLayoutPanel58.RowCount = 3;
+            tableLayoutPanel58.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel58.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel58.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel58.Size = new Size(1134, 500);
+            tableLayoutPanel58.TabIndex = 1;
+            // 
+            // rboPlayer3Sponsor
+            // 
+            rboPlayer3Sponsor.Anchor = AnchorStyles.Left;
+            rboPlayer3Sponsor.AutoSize = true;
+            rboPlayer3Sponsor.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            rboPlayer3Sponsor.Location = new Point(3, 401);
+            rboPlayer3Sponsor.Name = "rboPlayer3Sponsor";
+            rboPlayer3Sponsor.Size = new Size(92, 29);
+            rboPlayer3Sponsor.TabIndex = 11;
+            rboPlayer3Sponsor.TabStop = true;
+            rboPlayer3Sponsor.Text = "Player3";
+            rboPlayer3Sponsor.UseVisualStyleBackColor = true;
+            // 
+            // rboPlayer2Sponsor
+            // 
+            rboPlayer2Sponsor.Anchor = AnchorStyles.Left;
+            rboPlayer2Sponsor.AutoSize = true;
+            rboPlayer2Sponsor.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            rboPlayer2Sponsor.Location = new Point(3, 234);
+            rboPlayer2Sponsor.Name = "rboPlayer2Sponsor";
+            rboPlayer2Sponsor.Size = new Size(92, 29);
+            rboPlayer2Sponsor.TabIndex = 10;
+            rboPlayer2Sponsor.TabStop = true;
+            rboPlayer2Sponsor.Text = "Player2";
+            rboPlayer2Sponsor.UseVisualStyleBackColor = true;
+            // 
+            // txtPlayer3Item
+            // 
+            txtPlayer3Item.Anchor = AnchorStyles.Left;
+            txtPlayer3Item.AutoSize = true;
+            txtPlayer3Item.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            txtPlayer3Item.Location = new Point(570, 403);
+            txtPlayer3Item.Name = "txtPlayer3Item";
+            txtPlayer3Item.Size = new Size(116, 25);
+            txtPlayer3Item.TabIndex = 5;
+            txtPlayer3Item.Text = "Player3 Item";
+            // 
+            // txtPlayer2Item
+            // 
+            txtPlayer2Item.Anchor = AnchorStyles.Left;
+            txtPlayer2Item.AutoSize = true;
+            txtPlayer2Item.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            txtPlayer2Item.Location = new Point(570, 236);
+            txtPlayer2Item.Name = "txtPlayer2Item";
+            txtPlayer2Item.Size = new Size(116, 25);
+            txtPlayer2Item.TabIndex = 4;
+            txtPlayer2Item.Text = "Player2 Item";
+            // 
+            // txtPlayer1Item
+            // 
+            txtPlayer1Item.Anchor = AnchorStyles.Left;
+            txtPlayer1Item.AutoSize = true;
+            txtPlayer1Item.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            txtPlayer1Item.Location = new Point(570, 70);
+            txtPlayer1Item.Name = "txtPlayer1Item";
+            txtPlayer1Item.Size = new Size(116, 25);
+            txtPlayer1Item.TabIndex = 3;
+            txtPlayer1Item.Text = "Player1 Item";
+            // 
+            // rboPlayer1Sponsor
+            // 
+            rboPlayer1Sponsor.Anchor = AnchorStyles.Left;
+            rboPlayer1Sponsor.AutoSize = true;
+            rboPlayer1Sponsor.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            rboPlayer1Sponsor.Location = new Point(3, 68);
+            rboPlayer1Sponsor.Name = "rboPlayer1Sponsor";
+            rboPlayer1Sponsor.Size = new Size(92, 29);
+            rboPlayer1Sponsor.TabIndex = 9;
+            rboPlayer1Sponsor.TabStop = true;
+            rboPlayer1Sponsor.Text = "Player1";
+            rboPlayer1Sponsor.UseVisualStyleBackColor = true;
+            // 
+            // lblSponsorTxt
+            // 
+            lblSponsorTxt.AutoSize = true;
+            lblSponsorTxt.Font = new Font("Yu Gothic UI", 24F, FontStyle.Bold, GraphicsUnit.Point);
+            lblSponsorTxt.Location = new Point(36, 9);
+            lblSponsorTxt.Name = "lblSponsorTxt";
+            lblSponsorTxt.Size = new Size(263, 45);
+            lblSponsorTxt.TabIndex = 0;
+            lblSponsorTxt.Text = "Sponsor a Player";
             // 
             // Sim1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1886, 997);
+            Controls.Add(pnlSponsor);
             Controls.Add(pnlWinner);
             Controls.Add(pnlMain);
             Controls.Add(pnlStats48);
             Controls.Add(pnl24);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Sim1";
             Text = "Carnage";
             WindowState = FormWindowState.Maximized;
@@ -7344,6 +7518,10 @@ namespace Carnage
             tableLayoutPanel56.PerformLayout();
             tableLayoutPanel57.ResumeLayout(false);
             tableLayoutPanel57.PerformLayout();
+            pnlSponsor.ResumeLayout(false);
+            pnlSponsor.PerformLayout();
+            tableLayoutPanel58.ResumeLayout(false);
+            tableLayoutPanel58.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -7876,5 +8054,18 @@ namespace Carnage
         private RichTextBox rtbPlaces;
         private RichTextBox rtbKills;
         private RichTextBox rtbGeneralStats;
+        private Panel pnlSponsor;
+        private Label lblSponsorTxt;
+        private Button btnSponsorContinue;
+        private TableLayoutPanel tableLayoutPanel58;
+        private Label label33;
+        private Label txtPlayer3Item;
+        private Label txtPlayer2Item;
+        private Label txtPlayer1Item;
+        private RadioButton rboPlayer3Sponsor;
+        private RadioButton rboPlayer2Sponsor;
+        private RadioButton rboPlayer1Sponsor;
+        private Label label30;
+        private Button btnDeselect;
     }
 }

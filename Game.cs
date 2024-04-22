@@ -10,7 +10,7 @@ namespace Carnage
     {
         int day = 1, players = 24, funValue, activePlayers = 24, events=0, bloodbathDeaths=0, arenaEventDeaths=0, feastDeaths=0;
         string mode="Classic";
-        bool isBloodbath = true, isEvent = false, isFeast= false, isActive= true, isDay= true, isDeath= false, hadFeast= false, doFullBattles= true, showCombatLevel=false;
+        bool isBloodbath = true, isEvent = false, isFeast= false, isActive= true, isDay= true, isDeath= false, hadFeast= false, doFullBattles= true, showCombatLevel=false, doSponsor=true;
         RNG rng = new();
 
         public Game() 
@@ -58,5 +58,6 @@ namespace Carnage
         public int BloodbathDeaths { get => bloodbathDeaths; set => bloodbathDeaths = value; }
         public int ArenaEventDeaths { get => arenaEventDeaths; set => arenaEventDeaths = value; }
         public int FeastDeaths { get => feastDeaths; set => feastDeaths = value; }
+        public bool DoSponsor { get => doSponsor; set => doSponsor = value; }
     }
 }

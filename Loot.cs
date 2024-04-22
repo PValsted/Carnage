@@ -10,21 +10,26 @@ namespace Carnage
     {
         RNG rng = new RNG();        
 
-        public string[] getLoot(string rarity)
+        public string[] getLoot(string rarity, string type)
         {
             string[] csvLines = new string[4];
             string[] lootArray = new string[4];
             bool doBreak = false;
             int length, rand;
-            int randomType = rng.randomInt(0, 3);
+            
+            if (type=="Weapon") csvLines = System.IO.File.ReadAllLines(@"..\..\..\loot.csv");
+            else
+            {
+                int randomType = rng.randomInt(0, 3);
 
-            if (randomType == 0) //Read healing loot table csv file
-            {
-                csvLines = System.IO.File.ReadAllLines(@"..\..\..\healloot.csv");
-            }
-            else //Read weapon loot table csv file
-            {
-                csvLines = System.IO.File.ReadAllLines(@"..\..\..\loot.csv");
+                if (randomType == 0) //Read healing loot table csv file
+                {
+                    csvLines = System.IO.File.ReadAllLines(@"..\..\..\healloot.csv");
+                }
+                else //Read weapon loot table csv file
+                {
+                    csvLines = System.IO.File.ReadAllLines(@"..\..\..\loot.csv");
+                }
             }
 
             length = csvLines.Length - 1;
@@ -122,7 +127,7 @@ namespace Carnage
         public string lootEvent(character character, string rarity)
         {
             string[] lootArray;
-            lootArray = this.getLoot(rarity);
+            lootArray = this.getLoot(rarity,"Both");
             StringBuilder sb = new StringBuilder();
 
             if (lootArray[1]=="healing")
@@ -250,6 +255,30 @@ namespace Carnage
             }
 
             return sb2.ToString();
+        }
+
+        public string SponsorItemType(character character, Game game)
+        {
+            if (character.Health <= 8)
+            {
+                return "Healing";
+            }
+            else if (character.getWeaponName() == "")
+            {
+                return "Any Weapon";
+            }
+            else if (game.Mode=="Realistic" && character.Hunger <= 3) 
+            {
+                return "Hunger";
+            }
+            else if (character.HasExplosive==false)
+            {
+                return "Explosive";
+            }
+            else
+            {
+                return "Boost";
+            }
         }
 
     }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PresetCharacters24));
             lblD1 = new Label();
             btnRandom = new Button();
             btnEnterCharacters = new Button();
@@ -68,6 +69,7 @@
             txtD1C2 = new TextBox();
             txtD1C1 = new TextBox();
             panelCharacterSelect = new Panel();
+            btnBack = new Button();
             lblWarning = new Label();
             btnAll = new Button();
             btnCharSearch = new Button();
@@ -77,7 +79,6 @@
             rtbSearch = new RichTextBox();
             toolTip1 = new ToolTip(components);
             toolTip2 = new ToolTip(components);
-            btnBack = new Button();
             panelCharacterSelect.SuspendLayout();
             SuspendLayout();
             // 
@@ -432,6 +433,16 @@
             panelCharacterSelect.Size = new Size(1451, 589);
             panelCharacterSelect.TabIndex = 1;
             // 
+            // btnBack
+            // 
+            btnBack.Location = new Point(705, 495);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(151, 62);
+            btnBack.TabIndex = 97;
+            btnBack.Text = "Back";
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
+            // 
             // lblWarning
             // 
             lblWarning.AutoSize = true;
@@ -502,22 +513,13 @@
             // 
             toolTip2.AutomaticDelay = 3000;
             // 
-            // btnBack
-            // 
-            btnBack.Location = new Point(705, 495);
-            btnBack.Name = "btnBack";
-            btnBack.Size = new Size(151, 62);
-            btnBack.TabIndex = 97;
-            btnBack.Text = "Back";
-            btnBack.UseVisualStyleBackColor = true;
-            btnBack.Click += btnBack_Click;
-            // 
             // PresetCharacters24
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1484, 610);
             Controls.Add(panelCharacterSelect);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "PresetCharacters24";
             Text = "Enter Preset Characters";
             WindowState = FormWindowState.Maximized;

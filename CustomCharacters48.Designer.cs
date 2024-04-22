@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomCharacters48));
             panelCharacterSelect = new Panel();
+            btnBack = new Button();
             gboD12C4 = new GroupBox();
             rdoTheyD12C4 = new RadioButton();
             rdoFemaleD12C4 = new RadioButton();
@@ -249,7 +251,6 @@
             txtD11C1 = new TextBox();
             txtD3C4 = new TextBox();
             txtD8C2 = new TextBox();
-            btnFillIn = new Button();
             lblD8 = new Label();
             txtD3C3 = new TextBox();
             txtD8C1 = new TextBox();
@@ -379,7 +380,6 @@
             txtD1C2 = new TextBox();
             lblD1 = new Label();
             txtD1C1 = new TextBox();
-            btnBack = new Button();
             panelCharacterSelect.SuspendLayout();
             gboD12C4.SuspendLayout();
             gboD10C4.SuspendLayout();
@@ -520,7 +520,6 @@
             panelCharacterSelect.Controls.Add(txtD11C1);
             panelCharacterSelect.Controls.Add(txtD3C4);
             panelCharacterSelect.Controls.Add(txtD8C2);
-            panelCharacterSelect.Controls.Add(btnFillIn);
             panelCharacterSelect.Controls.Add(lblD8);
             panelCharacterSelect.Controls.Add(txtD3C3);
             panelCharacterSelect.Controls.Add(txtD8C1);
@@ -574,6 +573,16 @@
             panelCharacterSelect.Name = "panelCharacterSelect";
             panelCharacterSelect.Size = new Size(1584, 923);
             panelCharacterSelect.TabIndex = 1;
+            // 
+            // btnBack
+            // 
+            btnBack.Location = new Point(1376, 843);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(151, 62);
+            btnBack.TabIndex = 96;
+            btnBack.Text = "Back";
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
             // 
             // gboD12C4
             // 
@@ -2903,16 +2912,6 @@
             txtD8C2.Size = new Size(208, 23);
             txtD8C2.TabIndex = 65;
             // 
-            // btnFillIn
-            // 
-            btnFillIn.Location = new Point(129, 13);
-            btnFillIn.Name = "btnFillIn";
-            btnFillIn.Size = new Size(75, 23);
-            btnFillIn.TabIndex = 66;
-            btnFillIn.Text = "Fill In";
-            btnFillIn.UseVisualStyleBackColor = true;
-            btnFillIn.Click += btnFillIn_Click;
-            // 
             // lblD8
             // 
             lblD8.AutoSize = true;
@@ -4231,22 +4230,13 @@
             txtD1C1.Size = new Size(208, 23);
             txtD1C1.TabIndex = 1;
             // 
-            // btnBack
-            // 
-            btnBack.Location = new Point(1376, 843);
-            btnBack.Name = "btnBack";
-            btnBack.Size = new Size(151, 62);
-            btnBack.TabIndex = 96;
-            btnBack.Text = "Back";
-            btnBack.UseVisualStyleBackColor = true;
-            btnBack.Click += btnBack_Click;
-            // 
             // CustomCharacters48
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1628, 949);
             Controls.Add(panelCharacterSelect);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "CustomCharacters48";
             Text = "Enter Custom Characters";
             WindowState = FormWindowState.Maximized;
@@ -4402,7 +4392,6 @@
         #endregion
 
         private Panel panelCharacterSelect;
-        private Button btnFillIn;
         private Button btnEnterCharacters;
         private GroupBox gboD6C2;
         private RadioButton rdoTheyD6C2;
