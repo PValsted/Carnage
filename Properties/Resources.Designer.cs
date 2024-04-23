@@ -63,9 +63,9 @@ namespace Carnage.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap text_gradient {
+        internal static System.Drawing.Bitmap button_gradient {
             get {
-                object obj = ResourceManager.GetObject("text_gradient", resourceCulture);
+                object obj = ResourceManager.GetObject("button_gradient", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

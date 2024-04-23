@@ -756,33 +756,38 @@ namespace Carnage
             // 
             // rtbText
             // 
-            rtbText.BackgroundImage = Properties.Resources.text_gradient;
+            rtbText.BackColor = SystemColors.Window;
+            rtbText.BorderStyle = BorderStyle.None;
             rtbText.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            rtbText.Location = new Point(6, 0);
+            rtbText.Location = new Point(18, 17);
             rtbText.Margin = new Padding(6);
             rtbText.Name = "rtbText";
             rtbText.ReadOnly = true;
             rtbText.ShowSelectionMargin = true;
-            rtbText.Size = new Size(1813, 866);
+            rtbText.Size = new Size(1821, 849);
             rtbText.TabIndex = 0;
             rtbText.Text = "";
             // 
             // pnlMain
             // 
+            pnlMain.BackColor = SystemColors.Window;
+            pnlMain.BorderStyle = BorderStyle.FixedSingle;
             pnlMain.Controls.Add(btnStats);
             pnlMain.Controls.Add(btnMainContinue);
             pnlMain.Controls.Add(rtbText);
             pnlMain.Location = new Point(12, 12);
             pnlMain.Name = "pnlMain";
-            pnlMain.Size = new Size(1857, 951);
+            pnlMain.Size = new Size(1857, 973);
             pnlMain.TabIndex = 2;
             // 
             // btnStats
             // 
-            btnStats.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnStats.Location = new Point(176, 875);
+            btnStats.BackgroundImage = Properties.Resources.button_gradient;
+            btnStats.Font = new Font("Constantia", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnStats.ForeColor = SystemColors.Window;
+            btnStats.Location = new Point(168, 890);
             btnStats.Name = "btnStats";
-            btnStats.Size = new Size(134, 48);
+            btnStats.Size = new Size(158, 48);
             btnStats.TabIndex = 2;
             btnStats.Text = "See Character Stats";
             btnStats.UseVisualStyleBackColor = true;
@@ -791,8 +796,10 @@ namespace Carnage
             // 
             // btnMainContinue
             // 
-            btnMainContinue.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnMainContinue.Location = new Point(24, 875);
+            btnMainContinue.BackgroundImage = Properties.Resources.button_gradient;
+            btnMainContinue.Font = new Font("Constantia", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnMainContinue.ForeColor = SystemColors.Window;
+            btnMainContinue.Location = new Point(18, 890);
             btnMainContinue.Name = "btnMainContinue";
             btnMainContinue.Size = new Size(134, 48);
             btnMainContinue.TabIndex = 0;
@@ -802,7 +809,8 @@ namespace Carnage
             // 
             // pnlWinner
             // 
-            pnlWinner.BackgroundImage = Properties.Resources.text_gradient;
+            pnlWinner.BackColor = SystemColors.Window;
+            pnlWinner.BorderStyle = BorderStyle.FixedSingle;
             pnlWinner.Controls.Add(rtbGeneralStats);
             pnlWinner.Controls.Add(rtbKills);
             pnlWinner.Controls.Add(btnBack);
@@ -816,7 +824,8 @@ namespace Carnage
             // 
             // rtbGeneralStats
             // 
-            rtbGeneralStats.BackgroundImage = Properties.Resources.text_gradient;
+            rtbGeneralStats.BackColor = Color.FromArgb(253, 253, 253);
+            rtbGeneralStats.BorderStyle = BorderStyle.None;
             rtbGeneralStats.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             rtbGeneralStats.Location = new Point(1275, 78);
             rtbGeneralStats.Margin = new Padding(6);
@@ -826,10 +835,12 @@ namespace Carnage
             rtbGeneralStats.Size = new Size(496, 790);
             rtbGeneralStats.TabIndex = 9;
             rtbGeneralStats.Text = "";
+            rtbGeneralStats.SelectionAlignment = HorizontalAlignment.Center;
             // 
             // rtbKills
             // 
-            rtbKills.BackColor = Color.LightGoldenrodYellow;
+            rtbKills.BackColor = Color.FromArgb(253, 253, 253);
+            rtbKills.BorderStyle = BorderStyle.None;
             rtbKills.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             rtbKills.Location = new Point(674, 78);
             rtbKills.Margin = new Padding(6);
@@ -839,22 +850,28 @@ namespace Carnage
             rtbKills.Size = new Size(496, 790);
             rtbKills.TabIndex = 8;
             rtbKills.Text = "";
+            rtbKills.SelectionAlignment = HorizontalAlignment.Center;
             // 
             // btnBack
             // 
-            btnBack.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnBack.BackColor = Color.Transparent;
+            btnBack.BackgroundImage = (Image)resources.GetObject("btnBack.BackgroundImage");
+            btnBack.Font = new Font("Constantia", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnBack.ForeColor = Color.Transparent;
             btnBack.Location = new Point(73, 892);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(134, 48);
             btnBack.TabIndex = 7;
             btnBack.Text = "Back to Main";
-            btnBack.UseVisualStyleBackColor = true;
+            btnBack.UseVisualStyleBackColor = false;
             btnBack.Click += btnBack_Click;
             // 
             // rtbPlaces
             // 
-            rtbPlaces.BackColor = Color.LightGoldenrodYellow;
+            rtbPlaces.BackColor = Color.FromArgb(253, 253, 253);
+            rtbPlaces.BorderStyle = BorderStyle.None;
             rtbPlaces.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            rtbPlaces.ForeColor = Color.Black;
             rtbPlaces.Location = new Point(73, 78);
             rtbPlaces.Margin = new Padding(6);
             rtbPlaces.Name = "rtbPlaces";
@@ -863,11 +880,13 @@ namespace Carnage
             rtbPlaces.Size = new Size(496, 790);
             rtbPlaces.TabIndex = 6;
             rtbPlaces.Text = "";
+            rtbPlaces.SelectionAlignment = HorizontalAlignment.Center;
             // 
             // lblWinner
             // 
             lblWinner.AutoSize = true;
-            lblWinner.BorderStyle = BorderStyle.Fixed3D;
+            lblWinner.BackColor = Color.Transparent;
+            lblWinner.BorderStyle = BorderStyle.FixedSingle;
             lblWinner.Font = new Font("Yu Gothic UI Semibold", 24F, FontStyle.Bold, GraphicsUnit.Point);
             lblWinner.Location = new Point(73, 19);
             lblWinner.Name = "lblWinner";
@@ -878,6 +897,8 @@ namespace Carnage
             // pnl24
             // 
             pnl24.AutoScroll = true;
+            pnl24.BackColor = SystemColors.Window;
+            pnl24.BorderStyle = BorderStyle.FixedSingle;
             pnl24.Controls.Add(spcoD12);
             pnl24.Controls.Add(spcoD11);
             pnl24.Controls.Add(spcoD10);
@@ -906,10 +927,12 @@ namespace Carnage
             // 
             // spcoD12.Panel1
             // 
+            spcoD12.Panel1.BackColor = SystemColors.GradientInactiveCaption;
             spcoD12.Panel1.Controls.Add(lblD12);
             // 
             // spcoD12.Panel2
             // 
+            spcoD12.Panel2.BackColor = SystemColors.InactiveBorder;
             spcoD12.Panel2.Controls.Add(tableLayoutPanel26);
             spcoD12.Panel2.Controls.Add(tableLayoutPanel27);
             spcoD12.Size = new Size(713, 137);
@@ -919,7 +942,7 @@ namespace Carnage
             // lblD12
             // 
             lblD12.AutoSize = true;
-            lblD12.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblD12.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblD12.Location = new Point(315, 7);
             lblD12.Name = "lblD12";
             lblD12.Size = new Size(81, 21);
@@ -971,10 +994,10 @@ namespace Carnage
             // 
             lblD12C2Name.Anchor = AnchorStyles.None;
             lblD12C2Name.AutoSize = true;
-            lblD12C2Name.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblD12C2Name.Location = new Point(490, 5);
+            lblD12C2Name.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblD12C2Name.Location = new Point(494, 7);
             lblD12C2Name.Name = "lblD12C2Name";
-            lblD12C2Name.Size = new Size(77, 20);
+            lblD12C2Name.Size = new Size(69, 17);
             lblD12C2Name.TabIndex = 3;
             lblD12C2Name.Text = "name/kills";
             // 
@@ -992,10 +1015,10 @@ namespace Carnage
             // 
             lblD12C1Name.Anchor = AnchorStyles.None;
             lblD12C1Name.AutoSize = true;
-            lblD12C1Name.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblD12C1Name.Location = new Point(137, 5);
+            lblD12C1Name.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblD12C1Name.Location = new Point(141, 7);
             lblD12C1Name.Name = "lblD12C1Name";
-            lblD12C1Name.Size = new Size(77, 20);
+            lblD12C1Name.Size = new Size(69, 17);
             lblD12C1Name.TabIndex = 0;
             lblD12C1Name.Text = "name/kills";
             // 
@@ -1099,10 +1122,12 @@ namespace Carnage
             // 
             // spcoD11.Panel1
             // 
+            spcoD11.Panel1.BackColor = SystemColors.GradientInactiveCaption;
             spcoD11.Panel1.Controls.Add(lblD11);
             // 
             // spcoD11.Panel2
             // 
+            spcoD11.Panel2.BackColor = SystemColors.InactiveBorder;
             spcoD11.Panel2.Controls.Add(tableLayoutPanel28);
             spcoD11.Panel2.Controls.Add(tableLayoutPanel29);
             spcoD11.Size = new Size(713, 137);
@@ -1112,10 +1137,10 @@ namespace Carnage
             // lblD11
             // 
             lblD11.AutoSize = true;
-            lblD11.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblD11.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblD11.Location = new Point(315, 7);
             lblD11.Name = "lblD11";
-            lblD11.Size = new Size(81, 21);
+            lblD11.Size = new Size(78, 21);
             lblD11.TabIndex = 0;
             lblD11.Text = "District 11";
             // 
@@ -1164,10 +1189,10 @@ namespace Carnage
             // 
             lblD11C2Name.Anchor = AnchorStyles.None;
             lblD11C2Name.AutoSize = true;
-            lblD11C2Name.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblD11C2Name.Location = new Point(490, 5);
+            lblD11C2Name.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblD11C2Name.Location = new Point(494, 7);
             lblD11C2Name.Name = "lblD11C2Name";
-            lblD11C2Name.Size = new Size(77, 20);
+            lblD11C2Name.Size = new Size(69, 17);
             lblD11C2Name.TabIndex = 3;
             lblD11C2Name.Text = "name/kills";
             // 
@@ -1185,11 +1210,11 @@ namespace Carnage
             // 
             lblD11C1Name.Anchor = AnchorStyles.None;
             lblD11C1Name.AutoSize = true;
-            lblD11C1Name.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            lblD11C1Name.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             lblD11C1Name.ForeColor = SystemColors.ControlText;
-            lblD11C1Name.Location = new Point(137, 5);
+            lblD11C1Name.Location = new Point(141, 7);
             lblD11C1Name.Name = "lblD11C1Name";
-            lblD11C1Name.Size = new Size(77, 20);
+            lblD11C1Name.Size = new Size(69, 17);
             lblD11C1Name.TabIndex = 0;
             lblD11C1Name.Text = "name/kills";
             // 
@@ -1293,10 +1318,12 @@ namespace Carnage
             // 
             // spcoD10.Panel1
             // 
+            spcoD10.Panel1.BackColor = SystemColors.GradientInactiveCaption;
             spcoD10.Panel1.Controls.Add(lblD10);
             // 
             // spcoD10.Panel2
             // 
+            spcoD10.Panel2.BackColor = SystemColors.InactiveBorder;
             spcoD10.Panel2.Controls.Add(tableLayoutPanel30);
             spcoD10.Panel2.Controls.Add(tableLayoutPanel31);
             spcoD10.Size = new Size(713, 137);
@@ -1306,7 +1333,7 @@ namespace Carnage
             // lblD10
             // 
             lblD10.AutoSize = true;
-            lblD10.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblD10.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblD10.Location = new Point(315, 7);
             lblD10.Name = "lblD10";
             lblD10.Size = new Size(81, 21);
@@ -1358,10 +1385,10 @@ namespace Carnage
             // 
             lblD10C2Name.Anchor = AnchorStyles.None;
             lblD10C2Name.AutoSize = true;
-            lblD10C2Name.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblD10C2Name.Location = new Point(490, 5);
+            lblD10C2Name.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblD10C2Name.Location = new Point(494, 7);
             lblD10C2Name.Name = "lblD10C2Name";
-            lblD10C2Name.Size = new Size(77, 20);
+            lblD10C2Name.Size = new Size(69, 17);
             lblD10C2Name.TabIndex = 3;
             lblD10C2Name.Text = "name/kills";
             // 
@@ -1379,10 +1406,10 @@ namespace Carnage
             // 
             lblD10C1Name.Anchor = AnchorStyles.None;
             lblD10C1Name.AutoSize = true;
-            lblD10C1Name.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblD10C1Name.Location = new Point(137, 5);
+            lblD10C1Name.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblD10C1Name.Location = new Point(141, 7);
             lblD10C1Name.Name = "lblD10C1Name";
-            lblD10C1Name.Size = new Size(77, 20);
+            lblD10C1Name.Size = new Size(69, 17);
             lblD10C1Name.TabIndex = 0;
             lblD10C1Name.Text = "name/kills";
             // 
@@ -1486,10 +1513,12 @@ namespace Carnage
             // 
             // spcoD9.Panel1
             // 
+            spcoD9.Panel1.BackColor = SystemColors.GradientInactiveCaption;
             spcoD9.Panel1.Controls.Add(lblD9);
             // 
             // spcoD9.Panel2
             // 
+            spcoD9.Panel2.BackColor = SystemColors.InactiveBorder;
             spcoD9.Panel2.Controls.Add(tableLayoutPanel32);
             spcoD9.Panel2.Controls.Add(tableLayoutPanel33);
             spcoD9.Size = new Size(713, 137);
@@ -1499,10 +1528,10 @@ namespace Carnage
             // lblD9
             // 
             lblD9.AutoSize = true;
-            lblD9.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblD9.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblD9.Location = new Point(319, 7);
             lblD9.Name = "lblD9";
-            lblD9.Size = new Size(72, 21);
+            lblD9.Size = new Size(75, 21);
             lblD9.TabIndex = 0;
             lblD9.Text = "District 9";
             // 
@@ -1551,10 +1580,10 @@ namespace Carnage
             // 
             lblD9C2Name.Anchor = AnchorStyles.None;
             lblD9C2Name.AutoSize = true;
-            lblD9C2Name.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblD9C2Name.Location = new Point(490, 5);
+            lblD9C2Name.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblD9C2Name.Location = new Point(494, 7);
             lblD9C2Name.Name = "lblD9C2Name";
-            lblD9C2Name.Size = new Size(77, 20);
+            lblD9C2Name.Size = new Size(69, 17);
             lblD9C2Name.TabIndex = 3;
             lblD9C2Name.Text = "name/kills";
             // 
@@ -1572,10 +1601,10 @@ namespace Carnage
             // 
             lblD9C1Name.Anchor = AnchorStyles.None;
             lblD9C1Name.AutoSize = true;
-            lblD9C1Name.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblD9C1Name.Location = new Point(137, 5);
+            lblD9C1Name.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblD9C1Name.Location = new Point(141, 7);
             lblD9C1Name.Name = "lblD9C1Name";
-            lblD9C1Name.Size = new Size(77, 20);
+            lblD9C1Name.Size = new Size(69, 17);
             lblD9C1Name.TabIndex = 0;
             lblD9C1Name.Text = "name/kills";
             // 
@@ -1679,10 +1708,12 @@ namespace Carnage
             // 
             // spcoD8.Panel1
             // 
+            spcoD8.Panel1.BackColor = SystemColors.GradientInactiveCaption;
             spcoD8.Panel1.Controls.Add(lblD8);
             // 
             // spcoD8.Panel2
             // 
+            spcoD8.Panel2.BackColor = SystemColors.InactiveBorder;
             spcoD8.Panel2.Controls.Add(tableLayoutPanel18);
             spcoD8.Panel2.Controls.Add(tableLayoutPanel19);
             spcoD8.Size = new Size(713, 137);
@@ -1692,10 +1723,10 @@ namespace Carnage
             // lblD8
             // 
             lblD8.AutoSize = true;
-            lblD8.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblD8.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblD8.Location = new Point(319, 7);
             lblD8.Name = "lblD8";
-            lblD8.Size = new Size(72, 21);
+            lblD8.Size = new Size(75, 21);
             lblD8.TabIndex = 0;
             lblD8.Text = "District 8";
             // 
@@ -1744,10 +1775,10 @@ namespace Carnage
             // 
             lblD8C2Name.Anchor = AnchorStyles.None;
             lblD8C2Name.AutoSize = true;
-            lblD8C2Name.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblD8C2Name.Location = new Point(490, 5);
+            lblD8C2Name.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblD8C2Name.Location = new Point(494, 7);
             lblD8C2Name.Name = "lblD8C2Name";
-            lblD8C2Name.Size = new Size(77, 20);
+            lblD8C2Name.Size = new Size(69, 17);
             lblD8C2Name.TabIndex = 3;
             lblD8C2Name.Text = "name/kills";
             // 
@@ -1765,10 +1796,10 @@ namespace Carnage
             // 
             lblD8C1Name.Anchor = AnchorStyles.None;
             lblD8C1Name.AutoSize = true;
-            lblD8C1Name.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblD8C1Name.Location = new Point(137, 5);
+            lblD8C1Name.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblD8C1Name.Location = new Point(141, 7);
             lblD8C1Name.Name = "lblD8C1Name";
-            lblD8C1Name.Size = new Size(77, 20);
+            lblD8C1Name.Size = new Size(69, 17);
             lblD8C1Name.TabIndex = 0;
             lblD8C1Name.Text = "name/kills";
             // 
@@ -1872,10 +1903,12 @@ namespace Carnage
             // 
             // spcoD7.Panel1
             // 
+            spcoD7.Panel1.BackColor = SystemColors.GradientInactiveCaption;
             spcoD7.Panel1.Controls.Add(lblD7);
             // 
             // spcoD7.Panel2
             // 
+            spcoD7.Panel2.BackColor = SystemColors.InactiveBorder;
             spcoD7.Panel2.Controls.Add(tableLayoutPanel20);
             spcoD7.Panel2.Controls.Add(tableLayoutPanel21);
             spcoD7.Size = new Size(713, 137);
@@ -1885,10 +1918,10 @@ namespace Carnage
             // lblD7
             // 
             lblD7.AutoSize = true;
-            lblD7.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblD7.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblD7.Location = new Point(319, 7);
             lblD7.Name = "lblD7";
-            lblD7.Size = new Size(72, 21);
+            lblD7.Size = new Size(75, 21);
             lblD7.TabIndex = 0;
             lblD7.Text = "District 7";
             // 
@@ -1937,10 +1970,10 @@ namespace Carnage
             // 
             lblD7C2Name.Anchor = AnchorStyles.None;
             lblD7C2Name.AutoSize = true;
-            lblD7C2Name.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblD7C2Name.Location = new Point(490, 5);
+            lblD7C2Name.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblD7C2Name.Location = new Point(494, 7);
             lblD7C2Name.Name = "lblD7C2Name";
-            lblD7C2Name.Size = new Size(77, 20);
+            lblD7C2Name.Size = new Size(69, 17);
             lblD7C2Name.TabIndex = 3;
             lblD7C2Name.Text = "name/kills";
             // 
@@ -1958,10 +1991,10 @@ namespace Carnage
             // 
             lblD7C1Name.Anchor = AnchorStyles.None;
             lblD7C1Name.AutoSize = true;
-            lblD7C1Name.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblD7C1Name.Location = new Point(137, 5);
+            lblD7C1Name.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblD7C1Name.Location = new Point(141, 7);
             lblD7C1Name.Name = "lblD7C1Name";
-            lblD7C1Name.Size = new Size(77, 20);
+            lblD7C1Name.Size = new Size(69, 17);
             lblD7C1Name.TabIndex = 0;
             lblD7C1Name.Text = "name/kills";
             // 
@@ -2065,10 +2098,12 @@ namespace Carnage
             // 
             // spcoD6.Panel1
             // 
+            spcoD6.Panel1.BackColor = SystemColors.GradientInactiveCaption;
             spcoD6.Panel1.Controls.Add(lblD6);
             // 
             // spcoD6.Panel2
             // 
+            spcoD6.Panel2.BackColor = SystemColors.InactiveBorder;
             spcoD6.Panel2.Controls.Add(tableLayoutPanel22);
             spcoD6.Panel2.Controls.Add(tableLayoutPanel23);
             spcoD6.Size = new Size(713, 137);
@@ -2078,10 +2113,10 @@ namespace Carnage
             // lblD6
             // 
             lblD6.AutoSize = true;
-            lblD6.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblD6.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblD6.Location = new Point(319, 7);
             lblD6.Name = "lblD6";
-            lblD6.Size = new Size(72, 21);
+            lblD6.Size = new Size(75, 21);
             lblD6.TabIndex = 0;
             lblD6.Text = "District 6";
             // 
@@ -2130,10 +2165,10 @@ namespace Carnage
             // 
             lblD6C2Name.Anchor = AnchorStyles.None;
             lblD6C2Name.AutoSize = true;
-            lblD6C2Name.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblD6C2Name.Location = new Point(490, 5);
+            lblD6C2Name.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblD6C2Name.Location = new Point(494, 7);
             lblD6C2Name.Name = "lblD6C2Name";
-            lblD6C2Name.Size = new Size(77, 20);
+            lblD6C2Name.Size = new Size(69, 17);
             lblD6C2Name.TabIndex = 3;
             lblD6C2Name.Text = "name/kills";
             // 
@@ -2151,10 +2186,10 @@ namespace Carnage
             // 
             lblD6C1Name.Anchor = AnchorStyles.None;
             lblD6C1Name.AutoSize = true;
-            lblD6C1Name.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblD6C1Name.Location = new Point(137, 5);
+            lblD6C1Name.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblD6C1Name.Location = new Point(141, 7);
             lblD6C1Name.Name = "lblD6C1Name";
-            lblD6C1Name.Size = new Size(77, 20);
+            lblD6C1Name.Size = new Size(69, 17);
             lblD6C1Name.TabIndex = 0;
             lblD6C1Name.Text = "name/kills";
             // 
@@ -2258,10 +2293,12 @@ namespace Carnage
             // 
             // spcoD5.Panel1
             // 
+            spcoD5.Panel1.BackColor = SystemColors.GradientInactiveCaption;
             spcoD5.Panel1.Controls.Add(lblD5);
             // 
             // spcoD5.Panel2
             // 
+            spcoD5.Panel2.BackColor = SystemColors.InactiveBorder;
             spcoD5.Panel2.Controls.Add(tableLayoutPanel24);
             spcoD5.Panel2.Controls.Add(tableLayoutPanel25);
             spcoD5.Size = new Size(713, 137);
@@ -2271,10 +2308,10 @@ namespace Carnage
             // lblD5
             // 
             lblD5.AutoSize = true;
-            lblD5.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblD5.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblD5.Location = new Point(319, 7);
             lblD5.Name = "lblD5";
-            lblD5.Size = new Size(72, 21);
+            lblD5.Size = new Size(75, 21);
             lblD5.TabIndex = 0;
             lblD5.Text = "District 5";
             // 
@@ -2323,10 +2360,10 @@ namespace Carnage
             // 
             lblD5C2Name.Anchor = AnchorStyles.None;
             lblD5C2Name.AutoSize = true;
-            lblD5C2Name.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblD5C2Name.Location = new Point(490, 5);
+            lblD5C2Name.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblD5C2Name.Location = new Point(494, 7);
             lblD5C2Name.Name = "lblD5C2Name";
-            lblD5C2Name.Size = new Size(77, 20);
+            lblD5C2Name.Size = new Size(69, 17);
             lblD5C2Name.TabIndex = 3;
             lblD5C2Name.Text = "name/kills";
             // 
@@ -2344,10 +2381,10 @@ namespace Carnage
             // 
             lblD5C1Name.Anchor = AnchorStyles.None;
             lblD5C1Name.AutoSize = true;
-            lblD5C1Name.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblD5C1Name.Location = new Point(137, 5);
+            lblD5C1Name.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblD5C1Name.Location = new Point(141, 7);
             lblD5C1Name.Name = "lblD5C1Name";
-            lblD5C1Name.Size = new Size(77, 20);
+            lblD5C1Name.Size = new Size(69, 17);
             lblD5C1Name.TabIndex = 0;
             lblD5C1Name.Text = "name/kills";
             // 
@@ -2451,10 +2488,12 @@ namespace Carnage
             // 
             // spcoD4.Panel1
             // 
+            spcoD4.Panel1.BackColor = SystemColors.GradientInactiveCaption;
             spcoD4.Panel1.Controls.Add(lblD4);
             // 
             // spcoD4.Panel2
             // 
+            spcoD4.Panel2.BackColor = SystemColors.InactiveBorder;
             spcoD4.Panel2.Controls.Add(tableLayoutPanel14);
             spcoD4.Panel2.Controls.Add(tableLayoutPanel15);
             spcoD4.Size = new Size(713, 137);
@@ -2464,10 +2503,10 @@ namespace Carnage
             // lblD4
             // 
             lblD4.AutoSize = true;
-            lblD4.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblD4.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblD4.Location = new Point(319, 7);
             lblD4.Name = "lblD4";
-            lblD4.Size = new Size(72, 21);
+            lblD4.Size = new Size(75, 21);
             lblD4.TabIndex = 0;
             lblD4.Text = "District 4";
             // 
@@ -2516,10 +2555,10 @@ namespace Carnage
             // 
             lblD4C2Name.Anchor = AnchorStyles.None;
             lblD4C2Name.AutoSize = true;
-            lblD4C2Name.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblD4C2Name.Location = new Point(490, 5);
+            lblD4C2Name.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblD4C2Name.Location = new Point(494, 7);
             lblD4C2Name.Name = "lblD4C2Name";
-            lblD4C2Name.Size = new Size(77, 20);
+            lblD4C2Name.Size = new Size(69, 17);
             lblD4C2Name.TabIndex = 3;
             lblD4C2Name.Text = "name/kills";
             // 
@@ -2537,10 +2576,10 @@ namespace Carnage
             // 
             lblD4C1Name.Anchor = AnchorStyles.None;
             lblD4C1Name.AutoSize = true;
-            lblD4C1Name.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblD4C1Name.Location = new Point(137, 5);
+            lblD4C1Name.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblD4C1Name.Location = new Point(141, 7);
             lblD4C1Name.Name = "lblD4C1Name";
-            lblD4C1Name.Size = new Size(77, 20);
+            lblD4C1Name.Size = new Size(69, 17);
             lblD4C1Name.TabIndex = 0;
             lblD4C1Name.Text = "name/kills";
             // 
@@ -2644,10 +2683,12 @@ namespace Carnage
             // 
             // spcoD3.Panel1
             // 
+            spcoD3.Panel1.BackColor = SystemColors.GradientInactiveCaption;
             spcoD3.Panel1.Controls.Add(lblD3);
             // 
             // spcoD3.Panel2
             // 
+            spcoD3.Panel2.BackColor = SystemColors.InactiveBorder;
             spcoD3.Panel2.Controls.Add(tableLayoutPanel16);
             spcoD3.Panel2.Controls.Add(tableLayoutPanel17);
             spcoD3.Size = new Size(713, 137);
@@ -2657,10 +2698,10 @@ namespace Carnage
             // lblD3
             // 
             lblD3.AutoSize = true;
-            lblD3.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblD3.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblD3.Location = new Point(319, 7);
             lblD3.Name = "lblD3";
-            lblD3.Size = new Size(72, 21);
+            lblD3.Size = new Size(75, 21);
             lblD3.TabIndex = 0;
             lblD3.Text = "District 3";
             // 
@@ -2709,10 +2750,10 @@ namespace Carnage
             // 
             lblD3C2Name.Anchor = AnchorStyles.None;
             lblD3C2Name.AutoSize = true;
-            lblD3C2Name.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblD3C2Name.Location = new Point(490, 5);
+            lblD3C2Name.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblD3C2Name.Location = new Point(494, 7);
             lblD3C2Name.Name = "lblD3C2Name";
-            lblD3C2Name.Size = new Size(77, 20);
+            lblD3C2Name.Size = new Size(69, 17);
             lblD3C2Name.TabIndex = 3;
             lblD3C2Name.Text = "name/kills";
             // 
@@ -2730,10 +2771,10 @@ namespace Carnage
             // 
             lblD3C1Name.Anchor = AnchorStyles.None;
             lblD3C1Name.AutoSize = true;
-            lblD3C1Name.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblD3C1Name.Location = new Point(137, 5);
+            lblD3C1Name.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblD3C1Name.Location = new Point(141, 7);
             lblD3C1Name.Name = "lblD3C1Name";
-            lblD3C1Name.Size = new Size(77, 20);
+            lblD3C1Name.Size = new Size(69, 17);
             lblD3C1Name.TabIndex = 0;
             lblD3C1Name.Text = "name/kills";
             // 
@@ -2837,10 +2878,12 @@ namespace Carnage
             // 
             // spcoD2.Panel1
             // 
+            spcoD2.Panel1.BackColor = SystemColors.GradientInactiveCaption;
             spcoD2.Panel1.Controls.Add(lblD2);
             // 
             // spcoD2.Panel2
             // 
+            spcoD2.Panel2.BackColor = SystemColors.InactiveBorder;
             spcoD2.Panel2.Controls.Add(tableLayoutPanel8);
             spcoD2.Panel2.Controls.Add(tableLayoutPanel9);
             spcoD2.Size = new Size(713, 137);
@@ -2850,10 +2893,10 @@ namespace Carnage
             // lblD2
             // 
             lblD2.AutoSize = true;
-            lblD2.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblD2.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblD2.Location = new Point(319, 7);
             lblD2.Name = "lblD2";
-            lblD2.Size = new Size(72, 21);
+            lblD2.Size = new Size(75, 21);
             lblD2.TabIndex = 0;
             lblD2.Text = "District 2";
             // 
@@ -2902,10 +2945,10 @@ namespace Carnage
             // 
             lblD2C2Name.Anchor = AnchorStyles.None;
             lblD2C2Name.AutoSize = true;
-            lblD2C2Name.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblD2C2Name.Location = new Point(490, 5);
+            lblD2C2Name.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblD2C2Name.Location = new Point(494, 7);
             lblD2C2Name.Name = "lblD2C2Name";
-            lblD2C2Name.Size = new Size(77, 20);
+            lblD2C2Name.Size = new Size(69, 17);
             lblD2C2Name.TabIndex = 3;
             lblD2C2Name.Text = "name/kills";
             // 
@@ -2923,10 +2966,10 @@ namespace Carnage
             // 
             lblD2C1Name.Anchor = AnchorStyles.None;
             lblD2C1Name.AutoSize = true;
-            lblD2C1Name.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblD2C1Name.Location = new Point(137, 5);
+            lblD2C1Name.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblD2C1Name.Location = new Point(141, 7);
             lblD2C1Name.Name = "lblD2C1Name";
-            lblD2C1Name.Size = new Size(77, 20);
+            lblD2C1Name.Size = new Size(69, 17);
             lblD2C1Name.TabIndex = 0;
             lblD2C1Name.Text = "name/kills";
             // 
@@ -3030,10 +3073,12 @@ namespace Carnage
             // 
             // spcoD1.Panel1
             // 
+            spcoD1.Panel1.BackColor = SystemColors.GradientInactiveCaption;
             spcoD1.Panel1.Controls.Add(lblD1);
             // 
             // spcoD1.Panel2
             // 
+            spcoD1.Panel2.BackColor = SystemColors.InactiveBorder;
             spcoD1.Panel2.Controls.Add(tableLayoutPanel3);
             spcoD1.Panel2.Controls.Add(tableLayoutPanel5);
             spcoD1.Size = new Size(713, 137);
@@ -3043,7 +3088,7 @@ namespace Carnage
             // lblD1
             // 
             lblD1.AutoSize = true;
-            lblD1.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblD1.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblD1.Location = new Point(319, 7);
             lblD1.Name = "lblD1";
             lblD1.Size = new Size(72, 21);
@@ -3095,10 +3140,10 @@ namespace Carnage
             // 
             lblD1C2Name.Anchor = AnchorStyles.None;
             lblD1C2Name.AutoSize = true;
-            lblD1C2Name.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblD1C2Name.Location = new Point(490, 5);
+            lblD1C2Name.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblD1C2Name.Location = new Point(494, 7);
             lblD1C2Name.Name = "lblD1C2Name";
-            lblD1C2Name.Size = new Size(77, 20);
+            lblD1C2Name.Size = new Size(69, 17);
             lblD1C2Name.TabIndex = 3;
             lblD1C2Name.Text = "name/kills";
             // 
@@ -3116,10 +3161,10 @@ namespace Carnage
             // 
             lblD1C1Name.Anchor = AnchorStyles.None;
             lblD1C1Name.AutoSize = true;
-            lblD1C1Name.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblD1C1Name.Location = new Point(137, 5);
+            lblD1C1Name.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblD1C1Name.Location = new Point(141, 7);
             lblD1C1Name.Name = "lblD1C1Name";
-            lblD1C1Name.Size = new Size(77, 20);
+            lblD1C1Name.Size = new Size(69, 17);
             lblD1C1Name.TabIndex = 0;
             lblD1C1Name.Text = "name/kills";
             // 
@@ -3194,7 +3239,9 @@ namespace Carnage
             // 
             // btnStatBack
             // 
-            btnStatBack.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnStatBack.BackgroundImage = Properties.Resources.button_gradient;
+            btnStatBack.Font = new Font("Constantia", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnStatBack.ForeColor = SystemColors.Window;
             btnStatBack.Location = new Point(48, 4);
             btnStatBack.Name = "btnStatBack";
             btnStatBack.Size = new Size(134, 25);
@@ -3907,6 +3954,8 @@ namespace Carnage
             // pnlStats48
             // 
             pnlStats48.AutoScroll = true;
+            pnlStats48.BackColor = SystemColors.Window;
+            pnlStats48.BorderStyle = BorderStyle.FixedSingle;
             pnlStats48.Controls.Add(lblInvisible);
             pnlStats48.Controls.Add(splConD12);
             pnlStats48.Controls.Add(splConD11);
@@ -3930,12 +3979,12 @@ namespace Carnage
             // lblInvisible
             // 
             lblInvisible.AutoSize = true;
+            lblInvisible.ForeColor = SystemColors.Window;
             lblInvisible.Location = new Point(2645, 466);
             lblInvisible.Name = "lblInvisible";
-            lblInvisible.Size = new Size(44, 15);
+            lblInvisible.Size = new Size(61, 15);
             lblInvisible.TabIndex = 16;
-            lblInvisible.Text = "label30";
-            lblInvisible.Visible = false;
+            lblInvisible.Text = "secret text";
             // 
             // splConD12
             // 
@@ -3946,10 +3995,12 @@ namespace Carnage
             // 
             // splConD12.Panel1
             // 
+            splConD12.Panel1.BackColor = SystemColors.GradientInactiveCaption;
             splConD12.Panel1.Controls.Add(lblDis12);
             // 
             // splConD12.Panel2
             // 
+            splConD12.Panel2.BackColor = SystemColors.InactiveBorder;
             splConD12.Panel2.Controls.Add(tableLayoutPanel34);
             splConD12.Panel2.Controls.Add(tableLayoutPanel35);
             splConD12.Size = new Size(1280, 137);
@@ -3959,7 +4010,7 @@ namespace Carnage
             // lblDis12
             // 
             lblDis12.AutoSize = true;
-            lblDis12.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblDis12.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblDis12.Location = new Point(604, 7);
             lblDis12.Name = "lblDis12";
             lblDis12.Size = new Size(81, 21);
@@ -4009,10 +4060,10 @@ namespace Carnage
             // 
             lblNameD12C2.Anchor = AnchorStyles.None;
             lblNameD12C2.AutoSize = true;
-            lblNameD12C2.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD12C2.Location = new Point(438, 5);
+            lblNameD12C2.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD12C2.Location = new Point(442, 7);
             lblNameD12C2.Name = "lblNameD12C2";
-            lblNameD12C2.Size = new Size(77, 20);
+            lblNameD12C2.Size = new Size(69, 17);
             lblNameD12C2.TabIndex = 3;
             lblNameD12C2.Text = "name/kills";
             // 
@@ -4030,10 +4081,10 @@ namespace Carnage
             // 
             lblNameD12C1.Anchor = AnchorStyles.None;
             lblNameD12C1.AutoSize = true;
-            lblNameD12C1.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD12C1.Location = new Point(120, 5);
+            lblNameD12C1.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD12C1.Location = new Point(124, 7);
             lblNameD12C1.Name = "lblNameD12C1";
-            lblNameD12C1.Size = new Size(77, 20);
+            lblNameD12C1.Size = new Size(69, 17);
             lblNameD12C1.TabIndex = 0;
             lblNameD12C1.Text = "name/kills";
             // 
@@ -4041,10 +4092,10 @@ namespace Carnage
             // 
             lblNameD12C3.Anchor = AnchorStyles.None;
             lblNameD12C3.AutoSize = true;
-            lblNameD12C3.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD12C3.Location = new Point(756, 5);
+            lblNameD12C3.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD12C3.Location = new Point(760, 7);
             lblNameD12C3.Name = "lblNameD12C3";
-            lblNameD12C3.Size = new Size(77, 20);
+            lblNameD12C3.Size = new Size(69, 17);
             lblNameD12C3.TabIndex = 6;
             lblNameD12C3.Text = "name/kills";
             // 
@@ -4052,10 +4103,10 @@ namespace Carnage
             // 
             lblNameD12C4.Anchor = AnchorStyles.None;
             lblNameD12C4.AutoSize = true;
-            lblNameD12C4.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD12C4.Location = new Point(1074, 5);
+            lblNameD12C4.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD12C4.Location = new Point(1078, 7);
             lblNameD12C4.Name = "lblNameD12C4";
-            lblNameD12C4.Size = new Size(77, 20);
+            lblNameD12C4.Size = new Size(69, 17);
             lblNameD12C4.TabIndex = 7;
             lblNameD12C4.Text = "name/kills";
             // 
@@ -4209,10 +4260,12 @@ namespace Carnage
             // 
             // splConD11.Panel1
             // 
+            splConD11.Panel1.BackColor = SystemColors.GradientInactiveCaption;
             splConD11.Panel1.Controls.Add(lblDis11);
             // 
             // splConD11.Panel2
             // 
+            splConD11.Panel2.BackColor = SystemColors.InactiveBorder;
             splConD11.Panel2.Controls.Add(tableLayoutPanel36);
             splConD11.Panel2.Controls.Add(tableLayoutPanel37);
             splConD11.Size = new Size(1280, 137);
@@ -4222,10 +4275,10 @@ namespace Carnage
             // lblDis11
             // 
             lblDis11.AutoSize = true;
-            lblDis11.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblDis11.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblDis11.Location = new Point(599, 7);
             lblDis11.Name = "lblDis11";
-            lblDis11.Size = new Size(81, 21);
+            lblDis11.Size = new Size(78, 21);
             lblDis11.TabIndex = 0;
             lblDis11.Text = "District 11";
             // 
@@ -4272,10 +4325,10 @@ namespace Carnage
             // 
             lblNameD11C2.Anchor = AnchorStyles.None;
             lblNameD11C2.AutoSize = true;
-            lblNameD11C2.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD11C2.Location = new Point(438, 5);
+            lblNameD11C2.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD11C2.Location = new Point(442, 7);
             lblNameD11C2.Name = "lblNameD11C2";
-            lblNameD11C2.Size = new Size(77, 20);
+            lblNameD11C2.Size = new Size(69, 17);
             lblNameD11C2.TabIndex = 3;
             lblNameD11C2.Text = "name/kills";
             // 
@@ -4293,11 +4346,11 @@ namespace Carnage
             // 
             lblNameD11C1.Anchor = AnchorStyles.None;
             lblNameD11C1.AutoSize = true;
-            lblNameD11C1.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            lblNameD11C1.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             lblNameD11C1.ForeColor = SystemColors.ControlText;
-            lblNameD11C1.Location = new Point(120, 5);
+            lblNameD11C1.Location = new Point(124, 7);
             lblNameD11C1.Name = "lblNameD11C1";
-            lblNameD11C1.Size = new Size(77, 20);
+            lblNameD11C1.Size = new Size(69, 17);
             lblNameD11C1.TabIndex = 0;
             lblNameD11C1.Text = "name/kills";
             // 
@@ -4305,10 +4358,10 @@ namespace Carnage
             // 
             lblNameD11C3.Anchor = AnchorStyles.None;
             lblNameD11C3.AutoSize = true;
-            lblNameD11C3.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD11C3.Location = new Point(756, 5);
+            lblNameD11C3.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD11C3.Location = new Point(760, 7);
             lblNameD11C3.Name = "lblNameD11C3";
-            lblNameD11C3.Size = new Size(77, 20);
+            lblNameD11C3.Size = new Size(69, 17);
             lblNameD11C3.TabIndex = 6;
             lblNameD11C3.Text = "name/kills";
             // 
@@ -4316,10 +4369,10 @@ namespace Carnage
             // 
             lblNameD11C4.Anchor = AnchorStyles.None;
             lblNameD11C4.AutoSize = true;
-            lblNameD11C4.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD11C4.Location = new Point(1074, 5);
+            lblNameD11C4.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD11C4.Location = new Point(1078, 7);
             lblNameD11C4.Name = "lblNameD11C4";
-            lblNameD11C4.Size = new Size(77, 20);
+            lblNameD11C4.Size = new Size(69, 17);
             lblNameD11C4.TabIndex = 7;
             lblNameD11C4.Text = "name/kills";
             // 
@@ -4473,10 +4526,12 @@ namespace Carnage
             // 
             // splConD10.Panel1
             // 
+            splConD10.Panel1.BackColor = SystemColors.GradientInactiveCaption;
             splConD10.Panel1.Controls.Add(lblDis10);
             // 
             // splConD10.Panel2
             // 
+            splConD10.Panel2.BackColor = SystemColors.InactiveBorder;
             splConD10.Panel2.Controls.Add(tableLayoutPanel38);
             splConD10.Panel2.Controls.Add(tableLayoutPanel39);
             splConD10.Size = new Size(1280, 137);
@@ -4486,7 +4541,7 @@ namespace Carnage
             // lblDis10
             // 
             lblDis10.AutoSize = true;
-            lblDis10.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblDis10.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblDis10.Location = new Point(604, 7);
             lblDis10.Name = "lblDis10";
             lblDis10.Size = new Size(81, 21);
@@ -4536,10 +4591,10 @@ namespace Carnage
             // 
             lblNameD10C2.Anchor = AnchorStyles.None;
             lblNameD10C2.AutoSize = true;
-            lblNameD10C2.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD10C2.Location = new Point(438, 5);
+            lblNameD10C2.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD10C2.Location = new Point(442, 7);
             lblNameD10C2.Name = "lblNameD10C2";
-            lblNameD10C2.Size = new Size(77, 20);
+            lblNameD10C2.Size = new Size(69, 17);
             lblNameD10C2.TabIndex = 3;
             lblNameD10C2.Text = "name/kills";
             // 
@@ -4557,10 +4612,10 @@ namespace Carnage
             // 
             lblNameD10C1.Anchor = AnchorStyles.None;
             lblNameD10C1.AutoSize = true;
-            lblNameD10C1.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD10C1.Location = new Point(120, 5);
+            lblNameD10C1.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD10C1.Location = new Point(124, 7);
             lblNameD10C1.Name = "lblNameD10C1";
-            lblNameD10C1.Size = new Size(77, 20);
+            lblNameD10C1.Size = new Size(69, 17);
             lblNameD10C1.TabIndex = 0;
             lblNameD10C1.Text = "name/kills";
             // 
@@ -4568,10 +4623,10 @@ namespace Carnage
             // 
             lblNameD10C3.Anchor = AnchorStyles.None;
             lblNameD10C3.AutoSize = true;
-            lblNameD10C3.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD10C3.Location = new Point(756, 5);
+            lblNameD10C3.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD10C3.Location = new Point(760, 7);
             lblNameD10C3.Name = "lblNameD10C3";
-            lblNameD10C3.Size = new Size(77, 20);
+            lblNameD10C3.Size = new Size(69, 17);
             lblNameD10C3.TabIndex = 6;
             lblNameD10C3.Text = "name/kills";
             // 
@@ -4579,10 +4634,10 @@ namespace Carnage
             // 
             lblNameD10C4.Anchor = AnchorStyles.None;
             lblNameD10C4.AutoSize = true;
-            lblNameD10C4.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD10C4.Location = new Point(1074, 5);
+            lblNameD10C4.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD10C4.Location = new Point(1078, 7);
             lblNameD10C4.Name = "lblNameD10C4";
-            lblNameD10C4.Size = new Size(77, 20);
+            lblNameD10C4.Size = new Size(69, 17);
             lblNameD10C4.TabIndex = 7;
             lblNameD10C4.Text = "name/kills";
             // 
@@ -4736,10 +4791,12 @@ namespace Carnage
             // 
             // splConD9.Panel1
             // 
+            splConD9.Panel1.BackColor = SystemColors.GradientInactiveCaption;
             splConD9.Panel1.Controls.Add(lblDis9);
             // 
             // splConD9.Panel2
             // 
+            splConD9.Panel2.BackColor = SystemColors.InactiveBorder;
             splConD9.Panel2.Controls.Add(tableLayoutPanel40);
             splConD9.Panel2.Controls.Add(tableLayoutPanel41);
             splConD9.Size = new Size(1280, 137);
@@ -4749,10 +4806,10 @@ namespace Carnage
             // lblDis9
             // 
             lblDis9.AutoSize = true;
-            lblDis9.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblDis9.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblDis9.Location = new Point(603, 7);
             lblDis9.Name = "lblDis9";
-            lblDis9.Size = new Size(72, 21);
+            lblDis9.Size = new Size(75, 21);
             lblDis9.TabIndex = 0;
             lblDis9.Text = "District 9";
             // 
@@ -4799,10 +4856,10 @@ namespace Carnage
             // 
             lblNameD9C2.Anchor = AnchorStyles.None;
             lblNameD9C2.AutoSize = true;
-            lblNameD9C2.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD9C2.Location = new Point(438, 5);
+            lblNameD9C2.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD9C2.Location = new Point(442, 7);
             lblNameD9C2.Name = "lblNameD9C2";
-            lblNameD9C2.Size = new Size(77, 20);
+            lblNameD9C2.Size = new Size(69, 17);
             lblNameD9C2.TabIndex = 3;
             lblNameD9C2.Text = "name/kills";
             // 
@@ -4820,10 +4877,10 @@ namespace Carnage
             // 
             lblNameD9C1.Anchor = AnchorStyles.None;
             lblNameD9C1.AutoSize = true;
-            lblNameD9C1.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD9C1.Location = new Point(120, 5);
+            lblNameD9C1.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD9C1.Location = new Point(124, 7);
             lblNameD9C1.Name = "lblNameD9C1";
-            lblNameD9C1.Size = new Size(77, 20);
+            lblNameD9C1.Size = new Size(69, 17);
             lblNameD9C1.TabIndex = 0;
             lblNameD9C1.Text = "name/kills";
             // 
@@ -4831,10 +4888,10 @@ namespace Carnage
             // 
             lblNameD9C3.Anchor = AnchorStyles.None;
             lblNameD9C3.AutoSize = true;
-            lblNameD9C3.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD9C3.Location = new Point(756, 5);
+            lblNameD9C3.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD9C3.Location = new Point(760, 7);
             lblNameD9C3.Name = "lblNameD9C3";
-            lblNameD9C3.Size = new Size(77, 20);
+            lblNameD9C3.Size = new Size(69, 17);
             lblNameD9C3.TabIndex = 6;
             lblNameD9C3.Text = "name/kills";
             // 
@@ -4842,10 +4899,10 @@ namespace Carnage
             // 
             lblNameD9C4.Anchor = AnchorStyles.None;
             lblNameD9C4.AutoSize = true;
-            lblNameD9C4.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD9C4.Location = new Point(1074, 5);
+            lblNameD9C4.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD9C4.Location = new Point(1078, 7);
             lblNameD9C4.Name = "lblNameD9C4";
-            lblNameD9C4.Size = new Size(77, 20);
+            lblNameD9C4.Size = new Size(69, 17);
             lblNameD9C4.TabIndex = 7;
             lblNameD9C4.Text = "name/kills";
             // 
@@ -4999,10 +5056,12 @@ namespace Carnage
             // 
             // splConD8.Panel1
             // 
+            splConD8.Panel1.BackColor = SystemColors.GradientInactiveCaption;
             splConD8.Panel1.Controls.Add(lblDis8);
             // 
             // splConD8.Panel2
             // 
+            splConD8.Panel2.BackColor = SystemColors.InactiveBorder;
             splConD8.Panel2.Controls.Add(tableLayoutPanel42);
             splConD8.Panel2.Controls.Add(tableLayoutPanel43);
             splConD8.Size = new Size(1280, 137);
@@ -5012,10 +5071,10 @@ namespace Carnage
             // lblDis8
             // 
             lblDis8.AutoSize = true;
-            lblDis8.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblDis8.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblDis8.Location = new Point(608, 7);
             lblDis8.Name = "lblDis8";
-            lblDis8.Size = new Size(72, 21);
+            lblDis8.Size = new Size(75, 21);
             lblDis8.TabIndex = 0;
             lblDis8.Text = "District 8";
             // 
@@ -5062,10 +5121,10 @@ namespace Carnage
             // 
             lblNameD8C2.Anchor = AnchorStyles.None;
             lblNameD8C2.AutoSize = true;
-            lblNameD8C2.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD8C2.Location = new Point(438, 5);
+            lblNameD8C2.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD8C2.Location = new Point(442, 7);
             lblNameD8C2.Name = "lblNameD8C2";
-            lblNameD8C2.Size = new Size(77, 20);
+            lblNameD8C2.Size = new Size(69, 17);
             lblNameD8C2.TabIndex = 3;
             lblNameD8C2.Text = "name/kills";
             // 
@@ -5083,10 +5142,10 @@ namespace Carnage
             // 
             lblNameD8C1.Anchor = AnchorStyles.None;
             lblNameD8C1.AutoSize = true;
-            lblNameD8C1.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD8C1.Location = new Point(120, 5);
+            lblNameD8C1.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD8C1.Location = new Point(124, 7);
             lblNameD8C1.Name = "lblNameD8C1";
-            lblNameD8C1.Size = new Size(77, 20);
+            lblNameD8C1.Size = new Size(69, 17);
             lblNameD8C1.TabIndex = 0;
             lblNameD8C1.Text = "name/kills";
             // 
@@ -5094,10 +5153,10 @@ namespace Carnage
             // 
             lblNameD8C3.Anchor = AnchorStyles.None;
             lblNameD8C3.AutoSize = true;
-            lblNameD8C3.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD8C3.Location = new Point(756, 5);
+            lblNameD8C3.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD8C3.Location = new Point(760, 7);
             lblNameD8C3.Name = "lblNameD8C3";
-            lblNameD8C3.Size = new Size(77, 20);
+            lblNameD8C3.Size = new Size(69, 17);
             lblNameD8C3.TabIndex = 6;
             lblNameD8C3.Text = "name/kills";
             // 
@@ -5105,10 +5164,10 @@ namespace Carnage
             // 
             lblNameD8C4.Anchor = AnchorStyles.None;
             lblNameD8C4.AutoSize = true;
-            lblNameD8C4.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD8C4.Location = new Point(1074, 5);
+            lblNameD8C4.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD8C4.Location = new Point(1078, 7);
             lblNameD8C4.Name = "lblNameD8C4";
-            lblNameD8C4.Size = new Size(77, 20);
+            lblNameD8C4.Size = new Size(69, 17);
             lblNameD8C4.TabIndex = 7;
             lblNameD8C4.Text = "name/kills";
             // 
@@ -5262,10 +5321,12 @@ namespace Carnage
             // 
             // splConD7.Panel1
             // 
+            splConD7.Panel1.BackColor = SystemColors.GradientInactiveCaption;
             splConD7.Panel1.Controls.Add(lblDis7);
             // 
             // splConD7.Panel2
             // 
+            splConD7.Panel2.BackColor = SystemColors.InactiveBorder;
             splConD7.Panel2.Controls.Add(tableLayoutPanel44);
             splConD7.Panel2.Controls.Add(tableLayoutPanel45);
             splConD7.Size = new Size(1280, 137);
@@ -5275,10 +5336,10 @@ namespace Carnage
             // lblDis7
             // 
             lblDis7.AutoSize = true;
-            lblDis7.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblDis7.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblDis7.Location = new Point(603, 7);
             lblDis7.Name = "lblDis7";
-            lblDis7.Size = new Size(72, 21);
+            lblDis7.Size = new Size(75, 21);
             lblDis7.TabIndex = 0;
             lblDis7.Text = "District 7";
             // 
@@ -5325,10 +5386,10 @@ namespace Carnage
             // 
             lblNameD7C2.Anchor = AnchorStyles.None;
             lblNameD7C2.AutoSize = true;
-            lblNameD7C2.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD7C2.Location = new Point(438, 5);
+            lblNameD7C2.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD7C2.Location = new Point(442, 7);
             lblNameD7C2.Name = "lblNameD7C2";
-            lblNameD7C2.Size = new Size(77, 20);
+            lblNameD7C2.Size = new Size(69, 17);
             lblNameD7C2.TabIndex = 3;
             lblNameD7C2.Text = "name/kills";
             // 
@@ -5346,10 +5407,10 @@ namespace Carnage
             // 
             lblNameD7C1.Anchor = AnchorStyles.None;
             lblNameD7C1.AutoSize = true;
-            lblNameD7C1.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD7C1.Location = new Point(120, 5);
+            lblNameD7C1.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD7C1.Location = new Point(124, 7);
             lblNameD7C1.Name = "lblNameD7C1";
-            lblNameD7C1.Size = new Size(77, 20);
+            lblNameD7C1.Size = new Size(69, 17);
             lblNameD7C1.TabIndex = 0;
             lblNameD7C1.Text = "name/kills";
             // 
@@ -5357,10 +5418,10 @@ namespace Carnage
             // 
             lblNameD7C3.Anchor = AnchorStyles.None;
             lblNameD7C3.AutoSize = true;
-            lblNameD7C3.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD7C3.Location = new Point(756, 5);
+            lblNameD7C3.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD7C3.Location = new Point(760, 7);
             lblNameD7C3.Name = "lblNameD7C3";
-            lblNameD7C3.Size = new Size(77, 20);
+            lblNameD7C3.Size = new Size(69, 17);
             lblNameD7C3.TabIndex = 6;
             lblNameD7C3.Text = "name/kills";
             // 
@@ -5368,10 +5429,10 @@ namespace Carnage
             // 
             lblNameD7C4.Anchor = AnchorStyles.None;
             lblNameD7C4.AutoSize = true;
-            lblNameD7C4.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD7C4.Location = new Point(1074, 5);
+            lblNameD7C4.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD7C4.Location = new Point(1078, 7);
             lblNameD7C4.Name = "lblNameD7C4";
-            lblNameD7C4.Size = new Size(77, 20);
+            lblNameD7C4.Size = new Size(69, 17);
             lblNameD7C4.TabIndex = 7;
             lblNameD7C4.Text = "name/kills";
             // 
@@ -5525,10 +5586,12 @@ namespace Carnage
             // 
             // splConD6.Panel1
             // 
+            splConD6.Panel1.BackColor = SystemColors.GradientInactiveCaption;
             splConD6.Panel1.Controls.Add(lblDis6);
             // 
             // splConD6.Panel2
             // 
+            splConD6.Panel2.BackColor = SystemColors.InactiveBorder;
             splConD6.Panel2.Controls.Add(tableLayoutPanel46);
             splConD6.Panel2.Controls.Add(tableLayoutPanel47);
             splConD6.Size = new Size(1280, 137);
@@ -5538,10 +5601,10 @@ namespace Carnage
             // lblDis6
             // 
             lblDis6.AutoSize = true;
-            lblDis6.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblDis6.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblDis6.Location = new Point(608, 7);
             lblDis6.Name = "lblDis6";
-            lblDis6.Size = new Size(72, 21);
+            lblDis6.Size = new Size(75, 21);
             lblDis6.TabIndex = 0;
             lblDis6.Text = "District 6";
             // 
@@ -5588,10 +5651,10 @@ namespace Carnage
             // 
             lblNameD6C2.Anchor = AnchorStyles.None;
             lblNameD6C2.AutoSize = true;
-            lblNameD6C2.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD6C2.Location = new Point(438, 5);
+            lblNameD6C2.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD6C2.Location = new Point(442, 7);
             lblNameD6C2.Name = "lblNameD6C2";
-            lblNameD6C2.Size = new Size(77, 20);
+            lblNameD6C2.Size = new Size(69, 17);
             lblNameD6C2.TabIndex = 3;
             lblNameD6C2.Text = "name/kills";
             // 
@@ -5609,10 +5672,10 @@ namespace Carnage
             // 
             lblNameD6C1.Anchor = AnchorStyles.None;
             lblNameD6C1.AutoSize = true;
-            lblNameD6C1.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD6C1.Location = new Point(120, 5);
+            lblNameD6C1.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD6C1.Location = new Point(124, 7);
             lblNameD6C1.Name = "lblNameD6C1";
-            lblNameD6C1.Size = new Size(77, 20);
+            lblNameD6C1.Size = new Size(69, 17);
             lblNameD6C1.TabIndex = 0;
             lblNameD6C1.Text = "name/kills";
             // 
@@ -5620,10 +5683,10 @@ namespace Carnage
             // 
             lblNameD6C3.Anchor = AnchorStyles.None;
             lblNameD6C3.AutoSize = true;
-            lblNameD6C3.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD6C3.Location = new Point(756, 5);
+            lblNameD6C3.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD6C3.Location = new Point(760, 7);
             lblNameD6C3.Name = "lblNameD6C3";
-            lblNameD6C3.Size = new Size(77, 20);
+            lblNameD6C3.Size = new Size(69, 17);
             lblNameD6C3.TabIndex = 6;
             lblNameD6C3.Text = "name/kills";
             // 
@@ -5631,10 +5694,10 @@ namespace Carnage
             // 
             lblNameD6C4.Anchor = AnchorStyles.None;
             lblNameD6C4.AutoSize = true;
-            lblNameD6C4.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD6C4.Location = new Point(1074, 5);
+            lblNameD6C4.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD6C4.Location = new Point(1078, 7);
             lblNameD6C4.Name = "lblNameD6C4";
-            lblNameD6C4.Size = new Size(77, 20);
+            lblNameD6C4.Size = new Size(69, 17);
             lblNameD6C4.TabIndex = 7;
             lblNameD6C4.Text = "name/kills";
             // 
@@ -5788,10 +5851,12 @@ namespace Carnage
             // 
             // splConD5.Panel1
             // 
+            splConD5.Panel1.BackColor = SystemColors.GradientInactiveCaption;
             splConD5.Panel1.Controls.Add(lblDis5);
             // 
             // splConD5.Panel2
             // 
+            splConD5.Panel2.BackColor = SystemColors.InactiveBorder;
             splConD5.Panel2.Controls.Add(tableLayoutPanel48);
             splConD5.Panel2.Controls.Add(tableLayoutPanel49);
             splConD5.Size = new Size(1280, 137);
@@ -5801,10 +5866,10 @@ namespace Carnage
             // lblDis5
             // 
             lblDis5.AutoSize = true;
-            lblDis5.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblDis5.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblDis5.Location = new Point(603, 7);
             lblDis5.Name = "lblDis5";
-            lblDis5.Size = new Size(72, 21);
+            lblDis5.Size = new Size(75, 21);
             lblDis5.TabIndex = 0;
             lblDis5.Text = "District 5";
             // 
@@ -5851,10 +5916,10 @@ namespace Carnage
             // 
             lblNameD5C2.Anchor = AnchorStyles.None;
             lblNameD5C2.AutoSize = true;
-            lblNameD5C2.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD5C2.Location = new Point(438, 5);
+            lblNameD5C2.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD5C2.Location = new Point(442, 7);
             lblNameD5C2.Name = "lblNameD5C2";
-            lblNameD5C2.Size = new Size(77, 20);
+            lblNameD5C2.Size = new Size(69, 17);
             lblNameD5C2.TabIndex = 3;
             lblNameD5C2.Text = "name/kills";
             // 
@@ -5872,10 +5937,10 @@ namespace Carnage
             // 
             lblNameD5C1.Anchor = AnchorStyles.None;
             lblNameD5C1.AutoSize = true;
-            lblNameD5C1.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD5C1.Location = new Point(120, 5);
+            lblNameD5C1.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD5C1.Location = new Point(124, 7);
             lblNameD5C1.Name = "lblNameD5C1";
-            lblNameD5C1.Size = new Size(77, 20);
+            lblNameD5C1.Size = new Size(69, 17);
             lblNameD5C1.TabIndex = 0;
             lblNameD5C1.Text = "name/kills";
             // 
@@ -5883,10 +5948,10 @@ namespace Carnage
             // 
             lblNameD5C3.Anchor = AnchorStyles.None;
             lblNameD5C3.AutoSize = true;
-            lblNameD5C3.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD5C3.Location = new Point(756, 5);
+            lblNameD5C3.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD5C3.Location = new Point(760, 7);
             lblNameD5C3.Name = "lblNameD5C3";
-            lblNameD5C3.Size = new Size(77, 20);
+            lblNameD5C3.Size = new Size(69, 17);
             lblNameD5C3.TabIndex = 6;
             lblNameD5C3.Text = "name/kills";
             // 
@@ -5894,10 +5959,10 @@ namespace Carnage
             // 
             lblNameD5C4.Anchor = AnchorStyles.None;
             lblNameD5C4.AutoSize = true;
-            lblNameD5C4.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD5C4.Location = new Point(1074, 5);
+            lblNameD5C4.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD5C4.Location = new Point(1078, 7);
             lblNameD5C4.Name = "lblNameD5C4";
-            lblNameD5C4.Size = new Size(77, 20);
+            lblNameD5C4.Size = new Size(69, 17);
             lblNameD5C4.TabIndex = 7;
             lblNameD5C4.Text = "name/kills";
             // 
@@ -6051,10 +6116,12 @@ namespace Carnage
             // 
             // splConD4.Panel1
             // 
+            splConD4.Panel1.BackColor = SystemColors.GradientInactiveCaption;
             splConD4.Panel1.Controls.Add(lblDis4);
             // 
             // splConD4.Panel2
             // 
+            splConD4.Panel2.BackColor = SystemColors.InactiveBorder;
             splConD4.Panel2.Controls.Add(tableLayoutPanel50);
             splConD4.Panel2.Controls.Add(tableLayoutPanel51);
             splConD4.Size = new Size(1280, 137);
@@ -6064,10 +6131,10 @@ namespace Carnage
             // lblDis4
             // 
             lblDis4.AutoSize = true;
-            lblDis4.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblDis4.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblDis4.Location = new Point(608, 7);
             lblDis4.Name = "lblDis4";
-            lblDis4.Size = new Size(72, 21);
+            lblDis4.Size = new Size(75, 21);
             lblDis4.TabIndex = 0;
             lblDis4.Text = "District 4";
             // 
@@ -6114,10 +6181,10 @@ namespace Carnage
             // 
             lblNameD4C2.Anchor = AnchorStyles.None;
             lblNameD4C2.AutoSize = true;
-            lblNameD4C2.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD4C2.Location = new Point(438, 5);
+            lblNameD4C2.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD4C2.Location = new Point(442, 7);
             lblNameD4C2.Name = "lblNameD4C2";
-            lblNameD4C2.Size = new Size(77, 20);
+            lblNameD4C2.Size = new Size(69, 17);
             lblNameD4C2.TabIndex = 3;
             lblNameD4C2.Text = "name/kills";
             // 
@@ -6135,10 +6202,10 @@ namespace Carnage
             // 
             lblNameD4C1.Anchor = AnchorStyles.None;
             lblNameD4C1.AutoSize = true;
-            lblNameD4C1.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD4C1.Location = new Point(120, 5);
+            lblNameD4C1.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD4C1.Location = new Point(124, 7);
             lblNameD4C1.Name = "lblNameD4C1";
-            lblNameD4C1.Size = new Size(77, 20);
+            lblNameD4C1.Size = new Size(69, 17);
             lblNameD4C1.TabIndex = 0;
             lblNameD4C1.Text = "name/kills";
             // 
@@ -6146,10 +6213,10 @@ namespace Carnage
             // 
             lblNameD4C3.Anchor = AnchorStyles.None;
             lblNameD4C3.AutoSize = true;
-            lblNameD4C3.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD4C3.Location = new Point(756, 5);
+            lblNameD4C3.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD4C3.Location = new Point(760, 7);
             lblNameD4C3.Name = "lblNameD4C3";
-            lblNameD4C3.Size = new Size(77, 20);
+            lblNameD4C3.Size = new Size(69, 17);
             lblNameD4C3.TabIndex = 6;
             lblNameD4C3.Text = "name/kills";
             // 
@@ -6157,10 +6224,10 @@ namespace Carnage
             // 
             lblNameD4C4.Anchor = AnchorStyles.None;
             lblNameD4C4.AutoSize = true;
-            lblNameD4C4.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD4C4.Location = new Point(1074, 5);
+            lblNameD4C4.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD4C4.Location = new Point(1078, 7);
             lblNameD4C4.Name = "lblNameD4C4";
-            lblNameD4C4.Size = new Size(77, 20);
+            lblNameD4C4.Size = new Size(69, 17);
             lblNameD4C4.TabIndex = 7;
             lblNameD4C4.Text = "name/kills";
             // 
@@ -6314,10 +6381,12 @@ namespace Carnage
             // 
             // splConD3.Panel1
             // 
+            splConD3.Panel1.BackColor = SystemColors.GradientInactiveCaption;
             splConD3.Panel1.Controls.Add(lblDis3);
             // 
             // splConD3.Panel2
             // 
+            splConD3.Panel2.BackColor = SystemColors.InactiveBorder;
             splConD3.Panel2.Controls.Add(tableLayoutPanel52);
             splConD3.Panel2.Controls.Add(tableLayoutPanel53);
             splConD3.Size = new Size(1280, 137);
@@ -6327,10 +6396,10 @@ namespace Carnage
             // lblDis3
             // 
             lblDis3.AutoSize = true;
-            lblDis3.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblDis3.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblDis3.Location = new Point(603, 7);
             lblDis3.Name = "lblDis3";
-            lblDis3.Size = new Size(72, 21);
+            lblDis3.Size = new Size(75, 21);
             lblDis3.TabIndex = 0;
             lblDis3.Text = "District 3";
             // 
@@ -6377,10 +6446,10 @@ namespace Carnage
             // 
             lblNameD3C2.Anchor = AnchorStyles.None;
             lblNameD3C2.AutoSize = true;
-            lblNameD3C2.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD3C2.Location = new Point(438, 5);
+            lblNameD3C2.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD3C2.Location = new Point(442, 7);
             lblNameD3C2.Name = "lblNameD3C2";
-            lblNameD3C2.Size = new Size(77, 20);
+            lblNameD3C2.Size = new Size(69, 17);
             lblNameD3C2.TabIndex = 3;
             lblNameD3C2.Text = "name/kills";
             // 
@@ -6398,10 +6467,10 @@ namespace Carnage
             // 
             lblNameD3C1.Anchor = AnchorStyles.None;
             lblNameD3C1.AutoSize = true;
-            lblNameD3C1.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD3C1.Location = new Point(120, 5);
+            lblNameD3C1.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD3C1.Location = new Point(124, 7);
             lblNameD3C1.Name = "lblNameD3C1";
-            lblNameD3C1.Size = new Size(77, 20);
+            lblNameD3C1.Size = new Size(69, 17);
             lblNameD3C1.TabIndex = 0;
             lblNameD3C1.Text = "name/kills";
             // 
@@ -6409,10 +6478,10 @@ namespace Carnage
             // 
             lblNameD3C3.Anchor = AnchorStyles.None;
             lblNameD3C3.AutoSize = true;
-            lblNameD3C3.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD3C3.Location = new Point(756, 5);
+            lblNameD3C3.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD3C3.Location = new Point(760, 7);
             lblNameD3C3.Name = "lblNameD3C3";
-            lblNameD3C3.Size = new Size(77, 20);
+            lblNameD3C3.Size = new Size(69, 17);
             lblNameD3C3.TabIndex = 6;
             lblNameD3C3.Text = "name/kills";
             // 
@@ -6420,10 +6489,10 @@ namespace Carnage
             // 
             lblNameD3C4.Anchor = AnchorStyles.None;
             lblNameD3C4.AutoSize = true;
-            lblNameD3C4.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD3C4.Location = new Point(1074, 5);
+            lblNameD3C4.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD3C4.Location = new Point(1078, 7);
             lblNameD3C4.Name = "lblNameD3C4";
-            lblNameD3C4.Size = new Size(77, 20);
+            lblNameD3C4.Size = new Size(69, 17);
             lblNameD3C4.TabIndex = 7;
             lblNameD3C4.Text = "name/kills";
             // 
@@ -6577,10 +6646,12 @@ namespace Carnage
             // 
             // splConD2.Panel1
             // 
+            splConD2.Panel1.BackColor = SystemColors.GradientInactiveCaption;
             splConD2.Panel1.Controls.Add(lblDis2);
             // 
             // splConD2.Panel2
             // 
+            splConD2.Panel2.BackColor = SystemColors.InactiveBorder;
             splConD2.Panel2.Controls.Add(tableLayoutPanel54);
             splConD2.Panel2.Controls.Add(tableLayoutPanel55);
             splConD2.Size = new Size(1280, 137);
@@ -6590,10 +6661,10 @@ namespace Carnage
             // lblDis2
             // 
             lblDis2.AutoSize = true;
-            lblDis2.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblDis2.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblDis2.Location = new Point(608, 7);
             lblDis2.Name = "lblDis2";
-            lblDis2.Size = new Size(72, 21);
+            lblDis2.Size = new Size(75, 21);
             lblDis2.TabIndex = 0;
             lblDis2.Text = "District 2";
             // 
@@ -6640,10 +6711,10 @@ namespace Carnage
             // 
             lblNameD2C2.Anchor = AnchorStyles.None;
             lblNameD2C2.AutoSize = true;
-            lblNameD2C2.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD2C2.Location = new Point(438, 5);
+            lblNameD2C2.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD2C2.Location = new Point(442, 7);
             lblNameD2C2.Name = "lblNameD2C2";
-            lblNameD2C2.Size = new Size(77, 20);
+            lblNameD2C2.Size = new Size(69, 17);
             lblNameD2C2.TabIndex = 3;
             lblNameD2C2.Text = "name/kills";
             // 
@@ -6661,10 +6732,10 @@ namespace Carnage
             // 
             lblNameD2C1.Anchor = AnchorStyles.None;
             lblNameD2C1.AutoSize = true;
-            lblNameD2C1.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD2C1.Location = new Point(120, 5);
+            lblNameD2C1.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD2C1.Location = new Point(124, 7);
             lblNameD2C1.Name = "lblNameD2C1";
-            lblNameD2C1.Size = new Size(77, 20);
+            lblNameD2C1.Size = new Size(69, 17);
             lblNameD2C1.TabIndex = 0;
             lblNameD2C1.Text = "name/kills";
             // 
@@ -6672,10 +6743,10 @@ namespace Carnage
             // 
             lblNameD2C3.Anchor = AnchorStyles.None;
             lblNameD2C3.AutoSize = true;
-            lblNameD2C3.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD2C3.Location = new Point(756, 5);
+            lblNameD2C3.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD2C3.Location = new Point(760, 7);
             lblNameD2C3.Name = "lblNameD2C3";
-            lblNameD2C3.Size = new Size(77, 20);
+            lblNameD2C3.Size = new Size(69, 17);
             lblNameD2C3.TabIndex = 6;
             lblNameD2C3.Text = "name/kills";
             // 
@@ -6683,10 +6754,10 @@ namespace Carnage
             // 
             lblNameD2C4.Anchor = AnchorStyles.None;
             lblNameD2C4.AutoSize = true;
-            lblNameD2C4.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD2C4.Location = new Point(1074, 5);
+            lblNameD2C4.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD2C4.Location = new Point(1078, 7);
             lblNameD2C4.Name = "lblNameD2C4";
-            lblNameD2C4.Size = new Size(77, 20);
+            lblNameD2C4.Size = new Size(69, 17);
             lblNameD2C4.TabIndex = 7;
             lblNameD2C4.Text = "name/kills";
             // 
@@ -6840,10 +6911,12 @@ namespace Carnage
             // 
             // splConD1.Panel1
             // 
+            splConD1.Panel1.BackColor = SystemColors.GradientInactiveCaption;
             splConD1.Panel1.Controls.Add(lblDis1);
             // 
             // splConD1.Panel2
             // 
+            splConD1.Panel2.BackColor = SystemColors.InactiveBorder;
             splConD1.Panel2.Controls.Add(tableLayoutPanel56);
             splConD1.Panel2.Controls.Add(tableLayoutPanel57);
             splConD1.Size = new Size(1280, 137);
@@ -6853,7 +6926,7 @@ namespace Carnage
             // lblDis1
             // 
             lblDis1.AutoSize = true;
-            lblDis1.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblDis1.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblDis1.Location = new Point(603, 7);
             lblDis1.Name = "lblDis1";
             lblDis1.Size = new Size(72, 21);
@@ -6903,10 +6976,10 @@ namespace Carnage
             // 
             lblNameD1C2.Anchor = AnchorStyles.None;
             lblNameD1C2.AutoSize = true;
-            lblNameD1C2.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD1C2.Location = new Point(438, 5);
+            lblNameD1C2.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD1C2.Location = new Point(442, 7);
             lblNameD1C2.Name = "lblNameD1C2";
-            lblNameD1C2.Size = new Size(77, 20);
+            lblNameD1C2.Size = new Size(69, 17);
             lblNameD1C2.TabIndex = 3;
             lblNameD1C2.Text = "name/kills";
             // 
@@ -6924,10 +6997,10 @@ namespace Carnage
             // 
             lblNameD1C1.Anchor = AnchorStyles.None;
             lblNameD1C1.AutoSize = true;
-            lblNameD1C1.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD1C1.Location = new Point(120, 5);
+            lblNameD1C1.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD1C1.Location = new Point(124, 7);
             lblNameD1C1.Name = "lblNameD1C1";
-            lblNameD1C1.Size = new Size(77, 20);
+            lblNameD1C1.Size = new Size(69, 17);
             lblNameD1C1.TabIndex = 0;
             lblNameD1C1.Text = "name/kills";
             // 
@@ -6935,10 +7008,10 @@ namespace Carnage
             // 
             lblNameD1C3.Anchor = AnchorStyles.None;
             lblNameD1C3.AutoSize = true;
-            lblNameD1C3.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD1C3.Location = new Point(756, 5);
+            lblNameD1C3.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD1C3.Location = new Point(760, 7);
             lblNameD1C3.Name = "lblNameD1C3";
-            lblNameD1C3.Size = new Size(77, 20);
+            lblNameD1C3.Size = new Size(69, 17);
             lblNameD1C3.TabIndex = 6;
             lblNameD1C3.Text = "name/kills";
             // 
@@ -6946,10 +7019,10 @@ namespace Carnage
             // 
             lblNameD1C4.Anchor = AnchorStyles.None;
             lblNameD1C4.AutoSize = true;
-            lblNameD1C4.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNameD1C4.Location = new Point(1074, 5);
+            lblNameD1C4.Font = new Font("Yu Gothic UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameD1C4.Location = new Point(1078, 7);
             lblNameD1C4.Name = "lblNameD1C4";
-            lblNameD1C4.Size = new Size(77, 20);
+            lblNameD1C4.Size = new Size(69, 17);
             lblNameD1C4.TabIndex = 7;
             lblNameD1C4.Text = "name/kills";
             // 
@@ -7074,7 +7147,9 @@ namespace Carnage
             // 
             // btnBack48
             // 
-            btnBack48.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnBack48.BackgroundImage = Properties.Resources.button_gradient;
+            btnBack48.Font = new Font("Constantia", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            btnBack48.ForeColor = SystemColors.Window;
             btnBack48.Location = new Point(36, 4);
             btnBack48.Name = "btnBack48";
             btnBack48.Size = new Size(134, 25);
@@ -7085,6 +7160,9 @@ namespace Carnage
             // 
             // pnlSponsor
             // 
+            pnlSponsor.BackColor = SystemColors.Window;
+            pnlSponsor.BackgroundImage = (Image)resources.GetObject("pnlSponsor.BackgroundImage");
+            pnlSponsor.BorderStyle = BorderStyle.FixedSingle;
             pnlSponsor.Controls.Add(btnDeselect);
             pnlSponsor.Controls.Add(label30);
             pnlSponsor.Controls.Add(label33);
@@ -7099,7 +7177,9 @@ namespace Carnage
             // 
             // btnDeselect
             // 
-            btnDeselect.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnDeselect.BackgroundImage = Properties.Resources.button_gradient;
+            btnDeselect.Font = new Font("Constantia", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnDeselect.ForeColor = SystemColors.Window;
             btnDeselect.Location = new Point(168, 629);
             btnDeselect.Name = "btnDeselect";
             btnDeselect.Size = new Size(122, 34);
@@ -7111,6 +7191,7 @@ namespace Carnage
             // label30
             // 
             label30.AutoSize = true;
+            label30.BackColor = Color.Transparent;
             label30.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label30.Location = new Point(36, 87);
             label30.Name = "label30";
@@ -7121,6 +7202,7 @@ namespace Carnage
             // label33
             // 
             label33.AutoSize = true;
+            label33.BackColor = Color.Transparent;
             label33.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             label33.Location = new Point(36, 66);
             label33.Name = "label33";
@@ -7130,7 +7212,9 @@ namespace Carnage
             // 
             // btnSponsorContinue
             // 
-            btnSponsorContinue.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSponsorContinue.BackgroundImage = Properties.Resources.button_gradient;
+            btnSponsorContinue.Font = new Font("Constantia", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnSponsorContinue.ForeColor = SystemColors.Window;
             btnSponsorContinue.Location = new Point(28, 629);
             btnSponsorContinue.Name = "btnSponsorContinue";
             btnSponsorContinue.Size = new Size(122, 34);
@@ -7141,7 +7225,7 @@ namespace Carnage
             // 
             // tableLayoutPanel58
             // 
-            tableLayoutPanel58.BackColor = SystemColors.GradientActiveCaption;
+            tableLayoutPanel58.BackColor = Color.Transparent;
             tableLayoutPanel58.ColumnCount = 2;
             tableLayoutPanel58.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel58.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
@@ -7164,6 +7248,7 @@ namespace Carnage
             // 
             rboPlayer3Sponsor.Anchor = AnchorStyles.Left;
             rboPlayer3Sponsor.AutoSize = true;
+            rboPlayer3Sponsor.BackColor = Color.Transparent;
             rboPlayer3Sponsor.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             rboPlayer3Sponsor.Location = new Point(3, 401);
             rboPlayer3Sponsor.Name = "rboPlayer3Sponsor";
@@ -7171,12 +7256,13 @@ namespace Carnage
             rboPlayer3Sponsor.TabIndex = 11;
             rboPlayer3Sponsor.TabStop = true;
             rboPlayer3Sponsor.Text = "Player3";
-            rboPlayer3Sponsor.UseVisualStyleBackColor = true;
+            rboPlayer3Sponsor.UseVisualStyleBackColor = false;
             // 
             // rboPlayer2Sponsor
             // 
             rboPlayer2Sponsor.Anchor = AnchorStyles.Left;
             rboPlayer2Sponsor.AutoSize = true;
+            rboPlayer2Sponsor.BackColor = Color.Transparent;
             rboPlayer2Sponsor.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             rboPlayer2Sponsor.Location = new Point(3, 234);
             rboPlayer2Sponsor.Name = "rboPlayer2Sponsor";
@@ -7184,12 +7270,13 @@ namespace Carnage
             rboPlayer2Sponsor.TabIndex = 10;
             rboPlayer2Sponsor.TabStop = true;
             rboPlayer2Sponsor.Text = "Player2";
-            rboPlayer2Sponsor.UseVisualStyleBackColor = true;
+            rboPlayer2Sponsor.UseVisualStyleBackColor = false;
             // 
             // txtPlayer3Item
             // 
             txtPlayer3Item.Anchor = AnchorStyles.Left;
             txtPlayer3Item.AutoSize = true;
+            txtPlayer3Item.BackColor = Color.Transparent;
             txtPlayer3Item.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             txtPlayer3Item.Location = new Point(570, 403);
             txtPlayer3Item.Name = "txtPlayer3Item";
@@ -7201,6 +7288,7 @@ namespace Carnage
             // 
             txtPlayer2Item.Anchor = AnchorStyles.Left;
             txtPlayer2Item.AutoSize = true;
+            txtPlayer2Item.BackColor = Color.Transparent;
             txtPlayer2Item.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             txtPlayer2Item.Location = new Point(570, 236);
             txtPlayer2Item.Name = "txtPlayer2Item";
@@ -7212,6 +7300,7 @@ namespace Carnage
             // 
             txtPlayer1Item.Anchor = AnchorStyles.Left;
             txtPlayer1Item.AutoSize = true;
+            txtPlayer1Item.BackColor = Color.Transparent;
             txtPlayer1Item.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             txtPlayer1Item.Location = new Point(570, 70);
             txtPlayer1Item.Name = "txtPlayer1Item";
@@ -7223,6 +7312,7 @@ namespace Carnage
             // 
             rboPlayer1Sponsor.Anchor = AnchorStyles.Left;
             rboPlayer1Sponsor.AutoSize = true;
+            rboPlayer1Sponsor.BackColor = Color.Transparent;
             rboPlayer1Sponsor.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             rboPlayer1Sponsor.Location = new Point(3, 68);
             rboPlayer1Sponsor.Name = "rboPlayer1Sponsor";
@@ -7230,11 +7320,12 @@ namespace Carnage
             rboPlayer1Sponsor.TabIndex = 9;
             rboPlayer1Sponsor.TabStop = true;
             rboPlayer1Sponsor.Text = "Player1";
-            rboPlayer1Sponsor.UseVisualStyleBackColor = true;
+            rboPlayer1Sponsor.UseVisualStyleBackColor = false;
             // 
             // lblSponsorTxt
             // 
             lblSponsorTxt.AutoSize = true;
+            lblSponsorTxt.BackColor = Color.Transparent;
             lblSponsorTxt.Font = new Font("Yu Gothic UI", 24F, FontStyle.Bold, GraphicsUnit.Point);
             lblSponsorTxt.Location = new Point(36, 9);
             lblSponsorTxt.Name = "lblSponsorTxt";
@@ -7242,18 +7333,19 @@ namespace Carnage
             lblSponsorTxt.TabIndex = 0;
             lblSponsorTxt.Text = "Sponsor a Player";
             // 
-            // Sim1
+            // Simulation
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(1886, 997);
-            Controls.Add(pnlWinner);
-            Controls.Add(pnlSponsor);
             Controls.Add(pnlMain);
             Controls.Add(pnlStats48);
             Controls.Add(pnl24);
+            Controls.Add(pnlWinner);
+            Controls.Add(pnlSponsor);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "Sim1";
+            Name = "Simulation";
             Text = "Carnage";
             WindowState = FormWindowState.Maximized;
             pnlMain.ResumeLayout(false);

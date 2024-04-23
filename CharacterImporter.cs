@@ -813,5 +813,34 @@ namespace Carnage
             return charList;
         }
 
+        /// <summary>
+        /// Takes the the user-inputed values that make up the attributes of an entry into the MySQL Database
+        /// and inserts the character into the database after converting it to a SQL command.
+        /// </summary>
+        public void insert(string charID, string pronoun, string moral, string strength, string speed, string tag1, string tag2, string tag3)
+        {
+            string sql = "Server=sql5.freesqldatabase.com;Database=sql5693000;Uid=sql5693000;Pwd=yD7AbEqn2I;";
+            MySqlConnection con = new MySqlConnection(sql);
+
+            string strSQL = "";
+
+            if (tag2 == "") //Accounts for the fact that tags 2 and 3 can be empty
+            {
+                strSQL = "insert into Characters values ('" + charID + "', '" + pronoun + "', " + moral + ", " + strength + ", " + speed + ", '" + tag1 + "', NULL, NULL);";
+            }
+            else if (tag2 != "" && tag3 == "")
+            {
+                strSQL = "insert into Characters values ('" + charID + "', '" + pronoun + "', " + moral + ", " + strength + ", " + speed + ", '" + tag1 + "', '" + tag2 + "', NULL);";
+            }
+            else strSQL = "insert into Characters values ('" + charID + "', '" + pronoun + "', " + moral + ", " + strength + ", " + speed + ", '" + tag1 + "', '" + tag2 + "', '" + tag3 + "');";
+
+            MySqlCommand sqlComd = new MySqlCommand(strSQL, con);
+
+            sqlComd.Connection.Open();
+            sqlComd.ExecuteNonQuery();
+
+            con.Close();
+        }
+
     }
 }

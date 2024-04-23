@@ -84,8 +84,6 @@ namespace Carnage
                     else return killerMonkeys(game, list);
                 }
             }
-
-
         }
 
         /// <summary>

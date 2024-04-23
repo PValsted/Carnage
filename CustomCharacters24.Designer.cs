@@ -254,7 +254,9 @@
             // panelCharacterSelect
             // 
             panelCharacterSelect.AutoScroll = true;
-            panelCharacterSelect.BackColor = SystemColors.Control;
+            panelCharacterSelect.AutoSize = true;
+            panelCharacterSelect.BackColor = SystemColors.Window;
+            panelCharacterSelect.BorderStyle = BorderStyle.FixedSingle;
             panelCharacterSelect.Controls.Add(btnBack);
             panelCharacterSelect.Controls.Add(btnEnterCharacters);
             panelCharacterSelect.Controls.Add(gboD12C2);
@@ -317,14 +319,17 @@
             panelCharacterSelect.Controls.Add(txtD1C2);
             panelCharacterSelect.Controls.Add(lblD1);
             panelCharacterSelect.Controls.Add(txtD1C1);
-            panelCharacterSelect.Location = new Point(31, 26);
+            panelCharacterSelect.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            panelCharacterSelect.Location = new Point(31, 25);
             panelCharacterSelect.Name = "panelCharacterSelect";
-            panelCharacterSelect.Size = new Size(1352, 817);
+            panelCharacterSelect.Size = new Size(1068, 817);
             panelCharacterSelect.TabIndex = 0;
             // 
             // btnBack
             // 
-            btnBack.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnBack.BackgroundImage = (Image)resources.GetObject("btnBack.BackgroundImage");
+            btnBack.Font = new Font("Constantia", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnBack.ForeColor = SystemColors.ButtonFace;
             btnBack.Location = new Point(865, 723);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(151, 62);
@@ -335,7 +340,9 @@
             // 
             // btnEnterCharacters
             // 
-            btnEnterCharacters.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnEnterCharacters.BackgroundImage = (Image)resources.GetObject("btnEnterCharacters.BackgroundImage");
+            btnEnterCharacters.Font = new Font("Constantia", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnEnterCharacters.ForeColor = SystemColors.ButtonFace;
             btnEnterCharacters.Location = new Point(51, 723);
             btnEnterCharacters.Name = "btnEnterCharacters";
             btnEnterCharacters.Size = new Size(151, 62);
@@ -346,6 +353,7 @@
             // 
             // gboD12C2
             // 
+            gboD12C2.BackColor = Color.Transparent;
             gboD12C2.Controls.Add(rdoTheyD12C2);
             gboD12C2.Controls.Add(rdoFemaleD12C2);
             gboD12C2.Controls.Add(rdoMaleD12C2);
@@ -358,9 +366,10 @@
             // rdoTheyD12C2
             // 
             rdoTheyD12C2.AutoSize = true;
+            rdoTheyD12C2.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoTheyD12C2.Location = new Point(152, 16);
             rdoTheyD12C2.Name = "rdoTheyD12C2";
-            rdoTheyD12C2.Size = new Size(83, 19);
+            rdoTheyD12C2.Size = new Size(84, 19);
             rdoTheyD12C2.TabIndex = 2;
             rdoTheyD12C2.TabStop = true;
             rdoTheyD12C2.Text = "They/them";
@@ -369,9 +378,10 @@
             // rdoFemaleD12C2
             // 
             rdoFemaleD12C2.AutoSize = true;
+            rdoFemaleD12C2.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoFemaleD12C2.Location = new Point(80, 16);
             rdoFemaleD12C2.Name = "rdoFemaleD12C2";
-            rdoFemaleD12C2.Size = new Size(66, 19);
+            rdoFemaleD12C2.Size = new Size(67, 19);
             rdoFemaleD12C2.TabIndex = 1;
             rdoFemaleD12C2.TabStop = true;
             rdoFemaleD12C2.Text = "She/her";
@@ -380,6 +390,7 @@
             // rdoMaleD12C2
             // 
             rdoMaleD12C2.AutoSize = true;
+            rdoMaleD12C2.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoMaleD12C2.Location = new Point(6, 16);
             rdoMaleD12C2.Name = "rdoMaleD12C2";
             rdoMaleD12C2.Size = new Size(68, 19);
@@ -390,6 +401,7 @@
             // 
             // gboD12C1
             // 
+            gboD12C1.BackColor = Color.Transparent;
             gboD12C1.Controls.Add(groupBox39);
             gboD12C1.Controls.Add(rdoTheyD12C1);
             gboD12C1.Controls.Add(rdoFemaleD12C1);
@@ -416,7 +428,7 @@
             radioButton112.AutoSize = true;
             radioButton112.Location = new Point(152, 16);
             radioButton112.Name = "radioButton112";
-            radioButton112.Size = new Size(83, 19);
+            radioButton112.Size = new Size(82, 19);
             radioButton112.TabIndex = 2;
             radioButton112.TabStop = true;
             radioButton112.Text = "They/them";
@@ -438,7 +450,7 @@
             radioButton114.AutoSize = true;
             radioButton114.Location = new Point(6, 16);
             radioButton114.Name = "radioButton114";
-            radioButton114.Size = new Size(68, 19);
+            radioButton114.Size = new Size(67, 19);
             radioButton114.TabIndex = 0;
             radioButton114.TabStop = true;
             radioButton114.Text = "He/Him";
@@ -447,9 +459,10 @@
             // rdoTheyD12C1
             // 
             rdoTheyD12C1.AutoSize = true;
+            rdoTheyD12C1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoTheyD12C1.Location = new Point(152, 16);
             rdoTheyD12C1.Name = "rdoTheyD12C1";
-            rdoTheyD12C1.Size = new Size(83, 19);
+            rdoTheyD12C1.Size = new Size(84, 19);
             rdoTheyD12C1.TabIndex = 2;
             rdoTheyD12C1.TabStop = true;
             rdoTheyD12C1.Text = "They/them";
@@ -458,9 +471,10 @@
             // rdoFemaleD12C1
             // 
             rdoFemaleD12C1.AutoSize = true;
+            rdoFemaleD12C1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoFemaleD12C1.Location = new Point(80, 16);
             rdoFemaleD12C1.Name = "rdoFemaleD12C1";
-            rdoFemaleD12C1.Size = new Size(66, 19);
+            rdoFemaleD12C1.Size = new Size(67, 19);
             rdoFemaleD12C1.TabIndex = 1;
             rdoFemaleD12C1.TabStop = true;
             rdoFemaleD12C1.Text = "She/her";
@@ -469,6 +483,7 @@
             // rdoMaleD12C1
             // 
             rdoMaleD12C1.AutoSize = true;
+            rdoMaleD12C1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoMaleD12C1.Location = new Point(6, 16);
             rdoMaleD12C1.Name = "rdoMaleD12C1";
             rdoMaleD12C1.Size = new Size(68, 19);
@@ -479,6 +494,7 @@
             // 
             // gboD11C2
             // 
+            gboD11C2.BackColor = Color.Transparent;
             gboD11C2.Controls.Add(rdoTheyD11C2);
             gboD11C2.Controls.Add(rdoFemaleD11C2);
             gboD11C2.Controls.Add(rdoMaleD11C2);
@@ -491,9 +507,10 @@
             // rdoTheyD11C2
             // 
             rdoTheyD11C2.AutoSize = true;
+            rdoTheyD11C2.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoTheyD11C2.Location = new Point(152, 16);
             rdoTheyD11C2.Name = "rdoTheyD11C2";
-            rdoTheyD11C2.Size = new Size(83, 19);
+            rdoTheyD11C2.Size = new Size(84, 19);
             rdoTheyD11C2.TabIndex = 2;
             rdoTheyD11C2.TabStop = true;
             rdoTheyD11C2.Text = "They/them";
@@ -502,9 +519,10 @@
             // rdoFemaleD11C2
             // 
             rdoFemaleD11C2.AutoSize = true;
+            rdoFemaleD11C2.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoFemaleD11C2.Location = new Point(80, 16);
             rdoFemaleD11C2.Name = "rdoFemaleD11C2";
-            rdoFemaleD11C2.Size = new Size(66, 19);
+            rdoFemaleD11C2.Size = new Size(67, 19);
             rdoFemaleD11C2.TabIndex = 1;
             rdoFemaleD11C2.TabStop = true;
             rdoFemaleD11C2.Text = "She/her";
@@ -513,6 +531,7 @@
             // rdoMaleD11C2
             // 
             rdoMaleD11C2.AutoSize = true;
+            rdoMaleD11C2.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoMaleD11C2.Location = new Point(6, 16);
             rdoMaleD11C2.Name = "rdoMaleD11C2";
             rdoMaleD11C2.Size = new Size(68, 19);
@@ -523,6 +542,7 @@
             // 
             // gboD11C1
             // 
+            gboD11C1.BackColor = Color.Transparent;
             gboD11C1.Controls.Add(groupBox42);
             gboD11C1.Controls.Add(rdoTheyD11C1);
             gboD11C1.Controls.Add(rdoFemaleD11C1);
@@ -549,7 +569,7 @@
             radioButton121.AutoSize = true;
             radioButton121.Location = new Point(152, 16);
             radioButton121.Name = "radioButton121";
-            radioButton121.Size = new Size(83, 19);
+            radioButton121.Size = new Size(82, 19);
             radioButton121.TabIndex = 2;
             radioButton121.TabStop = true;
             radioButton121.Text = "They/them";
@@ -571,7 +591,7 @@
             radioButton123.AutoSize = true;
             radioButton123.Location = new Point(6, 16);
             radioButton123.Name = "radioButton123";
-            radioButton123.Size = new Size(68, 19);
+            radioButton123.Size = new Size(67, 19);
             radioButton123.TabIndex = 0;
             radioButton123.TabStop = true;
             radioButton123.Text = "He/Him";
@@ -580,9 +600,10 @@
             // rdoTheyD11C1
             // 
             rdoTheyD11C1.AutoSize = true;
+            rdoTheyD11C1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoTheyD11C1.Location = new Point(152, 16);
             rdoTheyD11C1.Name = "rdoTheyD11C1";
-            rdoTheyD11C1.Size = new Size(83, 19);
+            rdoTheyD11C1.Size = new Size(84, 19);
             rdoTheyD11C1.TabIndex = 2;
             rdoTheyD11C1.TabStop = true;
             rdoTheyD11C1.Text = "They/them";
@@ -591,9 +612,10 @@
             // rdoFemaleD11C1
             // 
             rdoFemaleD11C1.AutoSize = true;
+            rdoFemaleD11C1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoFemaleD11C1.Location = new Point(80, 16);
             rdoFemaleD11C1.Name = "rdoFemaleD11C1";
-            rdoFemaleD11C1.Size = new Size(66, 19);
+            rdoFemaleD11C1.Size = new Size(67, 19);
             rdoFemaleD11C1.TabIndex = 1;
             rdoFemaleD11C1.TabStop = true;
             rdoFemaleD11C1.Text = "She/her";
@@ -602,6 +624,7 @@
             // rdoMaleD11C1
             // 
             rdoMaleD11C1.AutoSize = true;
+            rdoMaleD11C1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoMaleD11C1.Location = new Point(6, 16);
             rdoMaleD11C1.Name = "rdoMaleD11C1";
             rdoMaleD11C1.Size = new Size(68, 19);
@@ -612,6 +635,7 @@
             // 
             // gboD10C2
             // 
+            gboD10C2.BackColor = Color.Transparent;
             gboD10C2.Controls.Add(rdoTheyD10C2);
             gboD10C2.Controls.Add(rdoFemaleD10C2);
             gboD10C2.Controls.Add(rdoMaleD10C2);
@@ -624,9 +648,10 @@
             // rdoTheyD10C2
             // 
             rdoTheyD10C2.AutoSize = true;
+            rdoTheyD10C2.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoTheyD10C2.Location = new Point(152, 16);
             rdoTheyD10C2.Name = "rdoTheyD10C2";
-            rdoTheyD10C2.Size = new Size(83, 19);
+            rdoTheyD10C2.Size = new Size(84, 19);
             rdoTheyD10C2.TabIndex = 2;
             rdoTheyD10C2.TabStop = true;
             rdoTheyD10C2.Text = "They/them";
@@ -635,9 +660,10 @@
             // rdoFemaleD10C2
             // 
             rdoFemaleD10C2.AutoSize = true;
+            rdoFemaleD10C2.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoFemaleD10C2.Location = new Point(80, 16);
             rdoFemaleD10C2.Name = "rdoFemaleD10C2";
-            rdoFemaleD10C2.Size = new Size(66, 19);
+            rdoFemaleD10C2.Size = new Size(67, 19);
             rdoFemaleD10C2.TabIndex = 1;
             rdoFemaleD10C2.TabStop = true;
             rdoFemaleD10C2.Text = "She/her";
@@ -646,6 +672,7 @@
             // rdoMaleD10C2
             // 
             rdoMaleD10C2.AutoSize = true;
+            rdoMaleD10C2.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoMaleD10C2.Location = new Point(6, 16);
             rdoMaleD10C2.Name = "rdoMaleD10C2";
             rdoMaleD10C2.Size = new Size(68, 19);
@@ -656,6 +683,7 @@
             // 
             // gboD10C1
             // 
+            gboD10C1.BackColor = Color.Transparent;
             gboD10C1.Controls.Add(groupBox45);
             gboD10C1.Controls.Add(rdoTheyD10C1);
             gboD10C1.Controls.Add(rdoFemaleD10C1);
@@ -682,7 +710,7 @@
             radioButton130.AutoSize = true;
             radioButton130.Location = new Point(152, 16);
             radioButton130.Name = "radioButton130";
-            radioButton130.Size = new Size(83, 19);
+            radioButton130.Size = new Size(82, 19);
             radioButton130.TabIndex = 2;
             radioButton130.TabStop = true;
             radioButton130.Text = "They/them";
@@ -704,7 +732,7 @@
             radioButton132.AutoSize = true;
             radioButton132.Location = new Point(6, 16);
             radioButton132.Name = "radioButton132";
-            radioButton132.Size = new Size(68, 19);
+            radioButton132.Size = new Size(67, 19);
             radioButton132.TabIndex = 0;
             radioButton132.TabStop = true;
             radioButton132.Text = "He/Him";
@@ -713,9 +741,10 @@
             // rdoTheyD10C1
             // 
             rdoTheyD10C1.AutoSize = true;
+            rdoTheyD10C1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoTheyD10C1.Location = new Point(152, 16);
             rdoTheyD10C1.Name = "rdoTheyD10C1";
-            rdoTheyD10C1.Size = new Size(83, 19);
+            rdoTheyD10C1.Size = new Size(84, 19);
             rdoTheyD10C1.TabIndex = 2;
             rdoTheyD10C1.TabStop = true;
             rdoTheyD10C1.Text = "They/them";
@@ -724,9 +753,10 @@
             // rdoFemaleD10C1
             // 
             rdoFemaleD10C1.AutoSize = true;
+            rdoFemaleD10C1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoFemaleD10C1.Location = new Point(80, 16);
             rdoFemaleD10C1.Name = "rdoFemaleD10C1";
-            rdoFemaleD10C1.Size = new Size(66, 19);
+            rdoFemaleD10C1.Size = new Size(67, 19);
             rdoFemaleD10C1.TabIndex = 1;
             rdoFemaleD10C1.TabStop = true;
             rdoFemaleD10C1.Text = "She/her";
@@ -735,6 +765,7 @@
             // rdoMaleD10C1
             // 
             rdoMaleD10C1.AutoSize = true;
+            rdoMaleD10C1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoMaleD10C1.Location = new Point(6, 16);
             rdoMaleD10C1.Name = "rdoMaleD10C1";
             rdoMaleD10C1.Size = new Size(68, 19);
@@ -745,6 +776,7 @@
             // 
             // gboD9C2
             // 
+            gboD9C2.BackColor = Color.Transparent;
             gboD9C2.Controls.Add(rdoTheyD9C2);
             gboD9C2.Controls.Add(rdoFemaleD9C2);
             gboD9C2.Controls.Add(rdoMaleD9C2);
@@ -757,9 +789,10 @@
             // rdoTheyD9C2
             // 
             rdoTheyD9C2.AutoSize = true;
+            rdoTheyD9C2.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoTheyD9C2.Location = new Point(152, 16);
             rdoTheyD9C2.Name = "rdoTheyD9C2";
-            rdoTheyD9C2.Size = new Size(83, 19);
+            rdoTheyD9C2.Size = new Size(84, 19);
             rdoTheyD9C2.TabIndex = 2;
             rdoTheyD9C2.TabStop = true;
             rdoTheyD9C2.Text = "They/them";
@@ -768,9 +801,10 @@
             // rdoFemaleD9C2
             // 
             rdoFemaleD9C2.AutoSize = true;
+            rdoFemaleD9C2.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoFemaleD9C2.Location = new Point(80, 16);
             rdoFemaleD9C2.Name = "rdoFemaleD9C2";
-            rdoFemaleD9C2.Size = new Size(66, 19);
+            rdoFemaleD9C2.Size = new Size(67, 19);
             rdoFemaleD9C2.TabIndex = 1;
             rdoFemaleD9C2.TabStop = true;
             rdoFemaleD9C2.Text = "She/her";
@@ -779,6 +813,7 @@
             // rdoMaleD9C2
             // 
             rdoMaleD9C2.AutoSize = true;
+            rdoMaleD9C2.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoMaleD9C2.Location = new Point(6, 16);
             rdoMaleD9C2.Name = "rdoMaleD9C2";
             rdoMaleD9C2.Size = new Size(68, 19);
@@ -789,6 +824,7 @@
             // 
             // gboD9C1
             // 
+            gboD9C1.BackColor = Color.Transparent;
             gboD9C1.Controls.Add(groupBox48);
             gboD9C1.Controls.Add(rdoTheyD9C1);
             gboD9C1.Controls.Add(rdoFemaleD9C1);
@@ -815,7 +851,7 @@
             radioButton139.AutoSize = true;
             radioButton139.Location = new Point(152, 16);
             radioButton139.Name = "radioButton139";
-            radioButton139.Size = new Size(83, 19);
+            radioButton139.Size = new Size(82, 19);
             radioButton139.TabIndex = 2;
             radioButton139.TabStop = true;
             radioButton139.Text = "They/them";
@@ -837,7 +873,7 @@
             radioButton141.AutoSize = true;
             radioButton141.Location = new Point(6, 16);
             radioButton141.Name = "radioButton141";
-            radioButton141.Size = new Size(68, 19);
+            radioButton141.Size = new Size(67, 19);
             radioButton141.TabIndex = 0;
             radioButton141.TabStop = true;
             radioButton141.Text = "He/Him";
@@ -846,9 +882,10 @@
             // rdoTheyD9C1
             // 
             rdoTheyD9C1.AutoSize = true;
+            rdoTheyD9C1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoTheyD9C1.Location = new Point(152, 16);
             rdoTheyD9C1.Name = "rdoTheyD9C1";
-            rdoTheyD9C1.Size = new Size(83, 19);
+            rdoTheyD9C1.Size = new Size(84, 19);
             rdoTheyD9C1.TabIndex = 2;
             rdoTheyD9C1.TabStop = true;
             rdoTheyD9C1.Text = "They/them";
@@ -857,9 +894,10 @@
             // rdoFemaleD9C1
             // 
             rdoFemaleD9C1.AutoSize = true;
+            rdoFemaleD9C1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoFemaleD9C1.Location = new Point(80, 16);
             rdoFemaleD9C1.Name = "rdoFemaleD9C1";
-            rdoFemaleD9C1.Size = new Size(66, 19);
+            rdoFemaleD9C1.Size = new Size(67, 19);
             rdoFemaleD9C1.TabIndex = 1;
             rdoFemaleD9C1.TabStop = true;
             rdoFemaleD9C1.Text = "She/her";
@@ -868,6 +906,7 @@
             // rdoMaleD9C1
             // 
             rdoMaleD9C1.AutoSize = true;
+            rdoMaleD9C1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoMaleD9C1.Location = new Point(6, 16);
             rdoMaleD9C1.Name = "rdoMaleD9C1";
             rdoMaleD9C1.Size = new Size(68, 19);
@@ -878,6 +917,7 @@
             // 
             // gboD8C2
             // 
+            gboD8C2.BackColor = Color.Transparent;
             gboD8C2.Controls.Add(rdoTheyD8C2);
             gboD8C2.Controls.Add(rdoFemaleD8C2);
             gboD8C2.Controls.Add(rdoMaleD8C2);
@@ -890,9 +930,10 @@
             // rdoTheyD8C2
             // 
             rdoTheyD8C2.AutoSize = true;
+            rdoTheyD8C2.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoTheyD8C2.Location = new Point(152, 16);
             rdoTheyD8C2.Name = "rdoTheyD8C2";
-            rdoTheyD8C2.Size = new Size(83, 19);
+            rdoTheyD8C2.Size = new Size(84, 19);
             rdoTheyD8C2.TabIndex = 2;
             rdoTheyD8C2.TabStop = true;
             rdoTheyD8C2.Text = "They/them";
@@ -901,9 +942,10 @@
             // rdoFemaleD8C2
             // 
             rdoFemaleD8C2.AutoSize = true;
+            rdoFemaleD8C2.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoFemaleD8C2.Location = new Point(80, 16);
             rdoFemaleD8C2.Name = "rdoFemaleD8C2";
-            rdoFemaleD8C2.Size = new Size(66, 19);
+            rdoFemaleD8C2.Size = new Size(67, 19);
             rdoFemaleD8C2.TabIndex = 1;
             rdoFemaleD8C2.TabStop = true;
             rdoFemaleD8C2.Text = "She/her";
@@ -912,6 +954,7 @@
             // rdoMaleD8C2
             // 
             rdoMaleD8C2.AutoSize = true;
+            rdoMaleD8C2.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoMaleD8C2.Location = new Point(6, 16);
             rdoMaleD8C2.Name = "rdoMaleD8C2";
             rdoMaleD8C2.Size = new Size(68, 19);
@@ -922,6 +965,7 @@
             // 
             // gboD8C1
             // 
+            gboD8C1.BackColor = Color.Transparent;
             gboD8C1.Controls.Add(groupBox15);
             gboD8C1.Controls.Add(rdoTheyD8C1);
             gboD8C1.Controls.Add(rdoFemaleD8C1);
@@ -948,7 +992,7 @@
             radioButton40.AutoSize = true;
             radioButton40.Location = new Point(152, 16);
             radioButton40.Name = "radioButton40";
-            radioButton40.Size = new Size(83, 19);
+            radioButton40.Size = new Size(82, 19);
             radioButton40.TabIndex = 2;
             radioButton40.TabStop = true;
             radioButton40.Text = "They/them";
@@ -970,7 +1014,7 @@
             radioButton42.AutoSize = true;
             radioButton42.Location = new Point(6, 16);
             radioButton42.Name = "radioButton42";
-            radioButton42.Size = new Size(68, 19);
+            radioButton42.Size = new Size(67, 19);
             radioButton42.TabIndex = 0;
             radioButton42.TabStop = true;
             radioButton42.Text = "He/Him";
@@ -979,9 +1023,10 @@
             // rdoTheyD8C1
             // 
             rdoTheyD8C1.AutoSize = true;
+            rdoTheyD8C1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoTheyD8C1.Location = new Point(152, 16);
             rdoTheyD8C1.Name = "rdoTheyD8C1";
-            rdoTheyD8C1.Size = new Size(83, 19);
+            rdoTheyD8C1.Size = new Size(84, 19);
             rdoTheyD8C1.TabIndex = 2;
             rdoTheyD8C1.TabStop = true;
             rdoTheyD8C1.Text = "They/them";
@@ -990,9 +1035,10 @@
             // rdoFemaleD8C1
             // 
             rdoFemaleD8C1.AutoSize = true;
+            rdoFemaleD8C1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoFemaleD8C1.Location = new Point(80, 16);
             rdoFemaleD8C1.Name = "rdoFemaleD8C1";
-            rdoFemaleD8C1.Size = new Size(66, 19);
+            rdoFemaleD8C1.Size = new Size(67, 19);
             rdoFemaleD8C1.TabIndex = 1;
             rdoFemaleD8C1.TabStop = true;
             rdoFemaleD8C1.Text = "She/her";
@@ -1001,6 +1047,7 @@
             // rdoMaleD8C1
             // 
             rdoMaleD8C1.AutoSize = true;
+            rdoMaleD8C1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoMaleD8C1.Location = new Point(6, 16);
             rdoMaleD8C1.Name = "rdoMaleD8C1";
             rdoMaleD8C1.Size = new Size(68, 19);
@@ -1011,6 +1058,7 @@
             // 
             // gboD7C2
             // 
+            gboD7C2.BackColor = Color.Transparent;
             gboD7C2.Controls.Add(rdoTheyD7C2);
             gboD7C2.Controls.Add(rdoFemaleD7C2);
             gboD7C2.Controls.Add(rdoMaleD7C2);
@@ -1023,9 +1071,10 @@
             // rdoTheyD7C2
             // 
             rdoTheyD7C2.AutoSize = true;
+            rdoTheyD7C2.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoTheyD7C2.Location = new Point(152, 16);
             rdoTheyD7C2.Name = "rdoTheyD7C2";
-            rdoTheyD7C2.Size = new Size(83, 19);
+            rdoTheyD7C2.Size = new Size(84, 19);
             rdoTheyD7C2.TabIndex = 2;
             rdoTheyD7C2.TabStop = true;
             rdoTheyD7C2.Text = "They/them";
@@ -1034,9 +1083,10 @@
             // rdoFemaleD7C2
             // 
             rdoFemaleD7C2.AutoSize = true;
+            rdoFemaleD7C2.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoFemaleD7C2.Location = new Point(80, 16);
             rdoFemaleD7C2.Name = "rdoFemaleD7C2";
-            rdoFemaleD7C2.Size = new Size(66, 19);
+            rdoFemaleD7C2.Size = new Size(67, 19);
             rdoFemaleD7C2.TabIndex = 1;
             rdoFemaleD7C2.TabStop = true;
             rdoFemaleD7C2.Text = "She/her";
@@ -1045,6 +1095,7 @@
             // rdoMaleD7C2
             // 
             rdoMaleD7C2.AutoSize = true;
+            rdoMaleD7C2.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoMaleD7C2.Location = new Point(6, 16);
             rdoMaleD7C2.Name = "rdoMaleD7C2";
             rdoMaleD7C2.Size = new Size(68, 19);
@@ -1055,6 +1106,7 @@
             // 
             // gboD7C1
             // 
+            gboD7C1.BackColor = Color.Transparent;
             gboD7C1.Controls.Add(groupBox18);
             gboD7C1.Controls.Add(rdoTheyD7C1);
             gboD7C1.Controls.Add(rdoFemaleD7C1);
@@ -1081,7 +1133,7 @@
             radioButton49.AutoSize = true;
             radioButton49.Location = new Point(152, 16);
             radioButton49.Name = "radioButton49";
-            radioButton49.Size = new Size(83, 19);
+            radioButton49.Size = new Size(82, 19);
             radioButton49.TabIndex = 2;
             radioButton49.TabStop = true;
             radioButton49.Text = "They/them";
@@ -1103,7 +1155,7 @@
             radioButton51.AutoSize = true;
             radioButton51.Location = new Point(6, 16);
             radioButton51.Name = "radioButton51";
-            radioButton51.Size = new Size(68, 19);
+            radioButton51.Size = new Size(67, 19);
             radioButton51.TabIndex = 0;
             radioButton51.TabStop = true;
             radioButton51.Text = "He/Him";
@@ -1112,9 +1164,10 @@
             // rdoTheyD7C1
             // 
             rdoTheyD7C1.AutoSize = true;
+            rdoTheyD7C1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoTheyD7C1.Location = new Point(152, 16);
             rdoTheyD7C1.Name = "rdoTheyD7C1";
-            rdoTheyD7C1.Size = new Size(83, 19);
+            rdoTheyD7C1.Size = new Size(84, 19);
             rdoTheyD7C1.TabIndex = 2;
             rdoTheyD7C1.TabStop = true;
             rdoTheyD7C1.Text = "They/them";
@@ -1123,9 +1176,10 @@
             // rdoFemaleD7C1
             // 
             rdoFemaleD7C1.AutoSize = true;
+            rdoFemaleD7C1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoFemaleD7C1.Location = new Point(80, 16);
             rdoFemaleD7C1.Name = "rdoFemaleD7C1";
-            rdoFemaleD7C1.Size = new Size(66, 19);
+            rdoFemaleD7C1.Size = new Size(67, 19);
             rdoFemaleD7C1.TabIndex = 1;
             rdoFemaleD7C1.TabStop = true;
             rdoFemaleD7C1.Text = "She/her";
@@ -1134,6 +1188,7 @@
             // rdoMaleD7C1
             // 
             rdoMaleD7C1.AutoSize = true;
+            rdoMaleD7C1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoMaleD7C1.Location = new Point(6, 16);
             rdoMaleD7C1.Name = "rdoMaleD7C1";
             rdoMaleD7C1.Size = new Size(68, 19);
@@ -1144,6 +1199,7 @@
             // 
             // gboD6C2
             // 
+            gboD6C2.BackColor = Color.Transparent;
             gboD6C2.Controls.Add(rdoTheyD6C2);
             gboD6C2.Controls.Add(rdoFemaleD6C2);
             gboD6C2.Controls.Add(rdoMaleD6C2);
@@ -1156,9 +1212,10 @@
             // rdoTheyD6C2
             // 
             rdoTheyD6C2.AutoSize = true;
+            rdoTheyD6C2.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoTheyD6C2.Location = new Point(152, 16);
             rdoTheyD6C2.Name = "rdoTheyD6C2";
-            rdoTheyD6C2.Size = new Size(83, 19);
+            rdoTheyD6C2.Size = new Size(84, 19);
             rdoTheyD6C2.TabIndex = 2;
             rdoTheyD6C2.TabStop = true;
             rdoTheyD6C2.Text = "They/them";
@@ -1167,9 +1224,10 @@
             // rdoFemaleD6C2
             // 
             rdoFemaleD6C2.AutoSize = true;
+            rdoFemaleD6C2.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoFemaleD6C2.Location = new Point(80, 16);
             rdoFemaleD6C2.Name = "rdoFemaleD6C2";
-            rdoFemaleD6C2.Size = new Size(66, 19);
+            rdoFemaleD6C2.Size = new Size(67, 19);
             rdoFemaleD6C2.TabIndex = 1;
             rdoFemaleD6C2.TabStop = true;
             rdoFemaleD6C2.Text = "She/her";
@@ -1178,6 +1236,7 @@
             // rdoMaleD6C2
             // 
             rdoMaleD6C2.AutoSize = true;
+            rdoMaleD6C2.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoMaleD6C2.Location = new Point(6, 16);
             rdoMaleD6C2.Name = "rdoMaleD6C2";
             rdoMaleD6C2.Size = new Size(68, 19);
@@ -1188,6 +1247,7 @@
             // 
             // gboD6C1
             // 
+            gboD6C1.BackColor = Color.Transparent;
             gboD6C1.Controls.Add(groupBox21);
             gboD6C1.Controls.Add(rdoTheyD6C1);
             gboD6C1.Controls.Add(rdoFemaleD6C1);
@@ -1214,7 +1274,7 @@
             radioButton58.AutoSize = true;
             radioButton58.Location = new Point(152, 16);
             radioButton58.Name = "radioButton58";
-            radioButton58.Size = new Size(83, 19);
+            radioButton58.Size = new Size(82, 19);
             radioButton58.TabIndex = 2;
             radioButton58.TabStop = true;
             radioButton58.Text = "They/them";
@@ -1236,7 +1296,7 @@
             radioButton60.AutoSize = true;
             radioButton60.Location = new Point(6, 16);
             radioButton60.Name = "radioButton60";
-            radioButton60.Size = new Size(68, 19);
+            radioButton60.Size = new Size(67, 19);
             radioButton60.TabIndex = 0;
             radioButton60.TabStop = true;
             radioButton60.Text = "He/Him";
@@ -1245,9 +1305,10 @@
             // rdoTheyD6C1
             // 
             rdoTheyD6C1.AutoSize = true;
+            rdoTheyD6C1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoTheyD6C1.Location = new Point(152, 16);
             rdoTheyD6C1.Name = "rdoTheyD6C1";
-            rdoTheyD6C1.Size = new Size(83, 19);
+            rdoTheyD6C1.Size = new Size(84, 19);
             rdoTheyD6C1.TabIndex = 2;
             rdoTheyD6C1.TabStop = true;
             rdoTheyD6C1.Text = "They/them";
@@ -1256,9 +1317,10 @@
             // rdoFemaleD6C1
             // 
             rdoFemaleD6C1.AutoSize = true;
+            rdoFemaleD6C1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoFemaleD6C1.Location = new Point(80, 16);
             rdoFemaleD6C1.Name = "rdoFemaleD6C1";
-            rdoFemaleD6C1.Size = new Size(66, 19);
+            rdoFemaleD6C1.Size = new Size(67, 19);
             rdoFemaleD6C1.TabIndex = 1;
             rdoFemaleD6C1.TabStop = true;
             rdoFemaleD6C1.Text = "She/her";
@@ -1267,6 +1329,7 @@
             // rdoMaleD6C1
             // 
             rdoMaleD6C1.AutoSize = true;
+            rdoMaleD6C1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoMaleD6C1.Location = new Point(6, 16);
             rdoMaleD6C1.Name = "rdoMaleD6C1";
             rdoMaleD6C1.Size = new Size(68, 19);
@@ -1277,6 +1340,7 @@
             // 
             // gboD5C2
             // 
+            gboD5C2.BackColor = Color.Transparent;
             gboD5C2.Controls.Add(rdoTheyD5C2);
             gboD5C2.Controls.Add(rdoFemaleD5C2);
             gboD5C2.Controls.Add(rdoMaleD5C2);
@@ -1289,9 +1353,10 @@
             // rdoTheyD5C2
             // 
             rdoTheyD5C2.AutoSize = true;
+            rdoTheyD5C2.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoTheyD5C2.Location = new Point(152, 16);
             rdoTheyD5C2.Name = "rdoTheyD5C2";
-            rdoTheyD5C2.Size = new Size(83, 19);
+            rdoTheyD5C2.Size = new Size(84, 19);
             rdoTheyD5C2.TabIndex = 2;
             rdoTheyD5C2.TabStop = true;
             rdoTheyD5C2.Text = "They/them";
@@ -1300,9 +1365,10 @@
             // rdoFemaleD5C2
             // 
             rdoFemaleD5C2.AutoSize = true;
+            rdoFemaleD5C2.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoFemaleD5C2.Location = new Point(80, 16);
             rdoFemaleD5C2.Name = "rdoFemaleD5C2";
-            rdoFemaleD5C2.Size = new Size(66, 19);
+            rdoFemaleD5C2.Size = new Size(67, 19);
             rdoFemaleD5C2.TabIndex = 1;
             rdoFemaleD5C2.TabStop = true;
             rdoFemaleD5C2.Text = "She/her";
@@ -1311,6 +1377,7 @@
             // rdoMaleD5C2
             // 
             rdoMaleD5C2.AutoSize = true;
+            rdoMaleD5C2.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoMaleD5C2.Location = new Point(6, 16);
             rdoMaleD5C2.Name = "rdoMaleD5C2";
             rdoMaleD5C2.Size = new Size(68, 19);
@@ -1321,6 +1388,7 @@
             // 
             // gboD5C1
             // 
+            gboD5C1.BackColor = Color.Transparent;
             gboD5C1.Controls.Add(groupBox24);
             gboD5C1.Controls.Add(rdoTheyD5C1);
             gboD5C1.Controls.Add(rdoFemaleD5C1);
@@ -1347,7 +1415,7 @@
             radioButton67.AutoSize = true;
             radioButton67.Location = new Point(152, 16);
             radioButton67.Name = "radioButton67";
-            radioButton67.Size = new Size(83, 19);
+            radioButton67.Size = new Size(82, 19);
             radioButton67.TabIndex = 2;
             radioButton67.TabStop = true;
             radioButton67.Text = "They/them";
@@ -1369,7 +1437,7 @@
             radioButton69.AutoSize = true;
             radioButton69.Location = new Point(6, 16);
             radioButton69.Name = "radioButton69";
-            radioButton69.Size = new Size(68, 19);
+            radioButton69.Size = new Size(67, 19);
             radioButton69.TabIndex = 0;
             radioButton69.TabStop = true;
             radioButton69.Text = "He/Him";
@@ -1378,9 +1446,10 @@
             // rdoTheyD5C1
             // 
             rdoTheyD5C1.AutoSize = true;
+            rdoTheyD5C1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoTheyD5C1.Location = new Point(152, 16);
             rdoTheyD5C1.Name = "rdoTheyD5C1";
-            rdoTheyD5C1.Size = new Size(83, 19);
+            rdoTheyD5C1.Size = new Size(84, 19);
             rdoTheyD5C1.TabIndex = 2;
             rdoTheyD5C1.TabStop = true;
             rdoTheyD5C1.Text = "They/them";
@@ -1389,9 +1458,10 @@
             // rdoFemaleD5C1
             // 
             rdoFemaleD5C1.AutoSize = true;
+            rdoFemaleD5C1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoFemaleD5C1.Location = new Point(80, 16);
             rdoFemaleD5C1.Name = "rdoFemaleD5C1";
-            rdoFemaleD5C1.Size = new Size(66, 19);
+            rdoFemaleD5C1.Size = new Size(67, 19);
             rdoFemaleD5C1.TabIndex = 1;
             rdoFemaleD5C1.TabStop = true;
             rdoFemaleD5C1.Text = "She/her";
@@ -1400,6 +1470,7 @@
             // rdoMaleD5C1
             // 
             rdoMaleD5C1.AutoSize = true;
+            rdoMaleD5C1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoMaleD5C1.Location = new Point(6, 16);
             rdoMaleD5C1.Name = "rdoMaleD5C1";
             rdoMaleD5C1.Size = new Size(68, 19);
@@ -1410,6 +1481,7 @@
             // 
             // gboD4C2
             // 
+            gboD4C2.BackColor = Color.Transparent;
             gboD4C2.Controls.Add(rdoTheyD4C2);
             gboD4C2.Controls.Add(rdoFemaleD4C2);
             gboD4C2.Controls.Add(rdoMaleD4C2);
@@ -1422,9 +1494,10 @@
             // rdoTheyD4C2
             // 
             rdoTheyD4C2.AutoSize = true;
+            rdoTheyD4C2.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoTheyD4C2.Location = new Point(152, 16);
             rdoTheyD4C2.Name = "rdoTheyD4C2";
-            rdoTheyD4C2.Size = new Size(83, 19);
+            rdoTheyD4C2.Size = new Size(84, 19);
             rdoTheyD4C2.TabIndex = 2;
             rdoTheyD4C2.TabStop = true;
             rdoTheyD4C2.Text = "They/them";
@@ -1433,9 +1506,10 @@
             // rdoFemaleD4C2
             // 
             rdoFemaleD4C2.AutoSize = true;
+            rdoFemaleD4C2.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoFemaleD4C2.Location = new Point(80, 16);
             rdoFemaleD4C2.Name = "rdoFemaleD4C2";
-            rdoFemaleD4C2.Size = new Size(66, 19);
+            rdoFemaleD4C2.Size = new Size(67, 19);
             rdoFemaleD4C2.TabIndex = 1;
             rdoFemaleD4C2.TabStop = true;
             rdoFemaleD4C2.Text = "She/her";
@@ -1444,6 +1518,7 @@
             // rdoMaleD4C2
             // 
             rdoMaleD4C2.AutoSize = true;
+            rdoMaleD4C2.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoMaleD4C2.Location = new Point(6, 16);
             rdoMaleD4C2.Name = "rdoMaleD4C2";
             rdoMaleD4C2.Size = new Size(68, 19);
@@ -1454,6 +1529,7 @@
             // 
             // gboD4C1
             // 
+            gboD4C1.BackColor = Color.Transparent;
             gboD4C1.Controls.Add(groupBox9);
             gboD4C1.Controls.Add(rdoTheyD4C1);
             gboD4C1.Controls.Add(rdoFemaleD4C1);
@@ -1480,7 +1556,7 @@
             radioButton22.AutoSize = true;
             radioButton22.Location = new Point(152, 16);
             radioButton22.Name = "radioButton22";
-            radioButton22.Size = new Size(83, 19);
+            radioButton22.Size = new Size(82, 19);
             radioButton22.TabIndex = 2;
             radioButton22.TabStop = true;
             radioButton22.Text = "They/them";
@@ -1502,7 +1578,7 @@
             radioButton24.AutoSize = true;
             radioButton24.Location = new Point(6, 16);
             radioButton24.Name = "radioButton24";
-            radioButton24.Size = new Size(68, 19);
+            radioButton24.Size = new Size(67, 19);
             radioButton24.TabIndex = 0;
             radioButton24.TabStop = true;
             radioButton24.Text = "He/Him";
@@ -1511,9 +1587,10 @@
             // rdoTheyD4C1
             // 
             rdoTheyD4C1.AutoSize = true;
+            rdoTheyD4C1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoTheyD4C1.Location = new Point(152, 16);
             rdoTheyD4C1.Name = "rdoTheyD4C1";
-            rdoTheyD4C1.Size = new Size(83, 19);
+            rdoTheyD4C1.Size = new Size(84, 19);
             rdoTheyD4C1.TabIndex = 2;
             rdoTheyD4C1.TabStop = true;
             rdoTheyD4C1.Text = "They/them";
@@ -1522,9 +1599,10 @@
             // rdoFemaleD4C1
             // 
             rdoFemaleD4C1.AutoSize = true;
+            rdoFemaleD4C1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoFemaleD4C1.Location = new Point(80, 16);
             rdoFemaleD4C1.Name = "rdoFemaleD4C1";
-            rdoFemaleD4C1.Size = new Size(66, 19);
+            rdoFemaleD4C1.Size = new Size(67, 19);
             rdoFemaleD4C1.TabIndex = 1;
             rdoFemaleD4C1.TabStop = true;
             rdoFemaleD4C1.Text = "She/her";
@@ -1533,6 +1611,7 @@
             // rdoMaleD4C1
             // 
             rdoMaleD4C1.AutoSize = true;
+            rdoMaleD4C1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoMaleD4C1.Location = new Point(6, 16);
             rdoMaleD4C1.Name = "rdoMaleD4C1";
             rdoMaleD4C1.Size = new Size(68, 19);
@@ -1543,6 +1622,7 @@
             // 
             // gboD3C2
             // 
+            gboD3C2.BackColor = Color.Transparent;
             gboD3C2.Controls.Add(rdoTheyD3C2);
             gboD3C2.Controls.Add(rdoFemaleD3C2);
             gboD3C2.Controls.Add(rdoMaleD3C2);
@@ -1555,9 +1635,10 @@
             // rdoTheyD3C2
             // 
             rdoTheyD3C2.AutoSize = true;
+            rdoTheyD3C2.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoTheyD3C2.Location = new Point(152, 16);
             rdoTheyD3C2.Name = "rdoTheyD3C2";
-            rdoTheyD3C2.Size = new Size(83, 19);
+            rdoTheyD3C2.Size = new Size(84, 19);
             rdoTheyD3C2.TabIndex = 2;
             rdoTheyD3C2.TabStop = true;
             rdoTheyD3C2.Text = "They/them";
@@ -1566,9 +1647,10 @@
             // rdoFemaleD3C2
             // 
             rdoFemaleD3C2.AutoSize = true;
+            rdoFemaleD3C2.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoFemaleD3C2.Location = new Point(80, 16);
             rdoFemaleD3C2.Name = "rdoFemaleD3C2";
-            rdoFemaleD3C2.Size = new Size(66, 19);
+            rdoFemaleD3C2.Size = new Size(67, 19);
             rdoFemaleD3C2.TabIndex = 1;
             rdoFemaleD3C2.TabStop = true;
             rdoFemaleD3C2.Text = "She/her";
@@ -1577,6 +1659,7 @@
             // rdoMaleD3C2
             // 
             rdoMaleD3C2.AutoSize = true;
+            rdoMaleD3C2.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoMaleD3C2.Location = new Point(6, 16);
             rdoMaleD3C2.Name = "rdoMaleD3C2";
             rdoMaleD3C2.Size = new Size(68, 19);
@@ -1587,6 +1670,7 @@
             // 
             // gboD3C1
             // 
+            gboD3C1.BackColor = Color.Transparent;
             gboD3C1.Controls.Add(groupBox12);
             gboD3C1.Controls.Add(rdoTheyD3C1);
             gboD3C1.Controls.Add(rdoFemaleD3C1);
@@ -1613,7 +1697,7 @@
             radioButton31.AutoSize = true;
             radioButton31.Location = new Point(152, 16);
             radioButton31.Name = "radioButton31";
-            radioButton31.Size = new Size(83, 19);
+            radioButton31.Size = new Size(82, 19);
             radioButton31.TabIndex = 2;
             radioButton31.TabStop = true;
             radioButton31.Text = "They/them";
@@ -1635,7 +1719,7 @@
             radioButton33.AutoSize = true;
             radioButton33.Location = new Point(6, 16);
             radioButton33.Name = "radioButton33";
-            radioButton33.Size = new Size(68, 19);
+            radioButton33.Size = new Size(67, 19);
             radioButton33.TabIndex = 0;
             radioButton33.TabStop = true;
             radioButton33.Text = "He/Him";
@@ -1644,9 +1728,10 @@
             // rdoTheyD3C1
             // 
             rdoTheyD3C1.AutoSize = true;
+            rdoTheyD3C1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoTheyD3C1.Location = new Point(152, 16);
             rdoTheyD3C1.Name = "rdoTheyD3C1";
-            rdoTheyD3C1.Size = new Size(83, 19);
+            rdoTheyD3C1.Size = new Size(84, 19);
             rdoTheyD3C1.TabIndex = 2;
             rdoTheyD3C1.TabStop = true;
             rdoTheyD3C1.Text = "They/them";
@@ -1655,9 +1740,10 @@
             // rdoFemaleD3C1
             // 
             rdoFemaleD3C1.AutoSize = true;
+            rdoFemaleD3C1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoFemaleD3C1.Location = new Point(80, 16);
             rdoFemaleD3C1.Name = "rdoFemaleD3C1";
-            rdoFemaleD3C1.Size = new Size(66, 19);
+            rdoFemaleD3C1.Size = new Size(67, 19);
             rdoFemaleD3C1.TabIndex = 1;
             rdoFemaleD3C1.TabStop = true;
             rdoFemaleD3C1.Text = "She/her";
@@ -1666,6 +1752,7 @@
             // rdoMaleD3C1
             // 
             rdoMaleD3C1.AutoSize = true;
+            rdoMaleD3C1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoMaleD3C1.Location = new Point(6, 16);
             rdoMaleD3C1.Name = "rdoMaleD3C1";
             rdoMaleD3C1.Size = new Size(68, 19);
@@ -1676,6 +1763,7 @@
             // 
             // gboD2C2
             // 
+            gboD2C2.BackColor = Color.Transparent;
             gboD2C2.Controls.Add(rdoTheyD2C2);
             gboD2C2.Controls.Add(rdoFemaleD2C2);
             gboD2C2.Controls.Add(rdoMaleD2C2);
@@ -1688,9 +1776,10 @@
             // rdoTheyD2C2
             // 
             rdoTheyD2C2.AutoSize = true;
+            rdoTheyD2C2.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoTheyD2C2.Location = new Point(152, 16);
             rdoTheyD2C2.Name = "rdoTheyD2C2";
-            rdoTheyD2C2.Size = new Size(83, 19);
+            rdoTheyD2C2.Size = new Size(84, 19);
             rdoTheyD2C2.TabIndex = 2;
             rdoTheyD2C2.TabStop = true;
             rdoTheyD2C2.Text = "They/them";
@@ -1699,9 +1788,10 @@
             // rdoFemaleD2C2
             // 
             rdoFemaleD2C2.AutoSize = true;
+            rdoFemaleD2C2.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoFemaleD2C2.Location = new Point(80, 16);
             rdoFemaleD2C2.Name = "rdoFemaleD2C2";
-            rdoFemaleD2C2.Size = new Size(66, 19);
+            rdoFemaleD2C2.Size = new Size(67, 19);
             rdoFemaleD2C2.TabIndex = 1;
             rdoFemaleD2C2.TabStop = true;
             rdoFemaleD2C2.Text = "She/her";
@@ -1710,6 +1800,7 @@
             // rdoMaleD2C2
             // 
             rdoMaleD2C2.AutoSize = true;
+            rdoMaleD2C2.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoMaleD2C2.Location = new Point(6, 16);
             rdoMaleD2C2.Name = "rdoMaleD2C2";
             rdoMaleD2C2.Size = new Size(68, 19);
@@ -1720,6 +1811,7 @@
             // 
             // gboD2C1
             // 
+            gboD2C1.BackColor = Color.Transparent;
             gboD2C1.Controls.Add(groupBox6);
             gboD2C1.Controls.Add(rdoTheyD2C1);
             gboD2C1.Controls.Add(rdoFemaleD2C1);
@@ -1746,7 +1838,7 @@
             radioButton13.AutoSize = true;
             radioButton13.Location = new Point(152, 16);
             radioButton13.Name = "radioButton13";
-            radioButton13.Size = new Size(83, 19);
+            radioButton13.Size = new Size(82, 19);
             radioButton13.TabIndex = 2;
             radioButton13.TabStop = true;
             radioButton13.Text = "They/them";
@@ -1768,7 +1860,7 @@
             radioButton15.AutoSize = true;
             radioButton15.Location = new Point(6, 16);
             radioButton15.Name = "radioButton15";
-            radioButton15.Size = new Size(68, 19);
+            radioButton15.Size = new Size(67, 19);
             radioButton15.TabIndex = 0;
             radioButton15.TabStop = true;
             radioButton15.Text = "He/Him";
@@ -1777,9 +1869,10 @@
             // rdoTheyD2C1
             // 
             rdoTheyD2C1.AutoSize = true;
+            rdoTheyD2C1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoTheyD2C1.Location = new Point(152, 16);
             rdoTheyD2C1.Name = "rdoTheyD2C1";
-            rdoTheyD2C1.Size = new Size(83, 19);
+            rdoTheyD2C1.Size = new Size(84, 19);
             rdoTheyD2C1.TabIndex = 2;
             rdoTheyD2C1.TabStop = true;
             rdoTheyD2C1.Text = "They/them";
@@ -1788,9 +1881,10 @@
             // rdoFemaleD2C1
             // 
             rdoFemaleD2C1.AutoSize = true;
+            rdoFemaleD2C1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoFemaleD2C1.Location = new Point(80, 16);
             rdoFemaleD2C1.Name = "rdoFemaleD2C1";
-            rdoFemaleD2C1.Size = new Size(66, 19);
+            rdoFemaleD2C1.Size = new Size(67, 19);
             rdoFemaleD2C1.TabIndex = 1;
             rdoFemaleD2C1.TabStop = true;
             rdoFemaleD2C1.Text = "She/her";
@@ -1799,6 +1893,7 @@
             // rdoMaleD2C1
             // 
             rdoMaleD2C1.AutoSize = true;
+            rdoMaleD2C1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoMaleD2C1.Location = new Point(6, 16);
             rdoMaleD2C1.Name = "rdoMaleD2C1";
             rdoMaleD2C1.Size = new Size(68, 19);
@@ -1809,6 +1904,7 @@
             // 
             // gboD1C2
             // 
+            gboD1C2.BackColor = Color.Transparent;
             gboD1C2.Controls.Add(rdoTheyD1C2);
             gboD1C2.Controls.Add(rdoFemaleD1C2);
             gboD1C2.Controls.Add(rdoMaleD1C2);
@@ -1821,9 +1917,10 @@
             // rdoTheyD1C2
             // 
             rdoTheyD1C2.AutoSize = true;
+            rdoTheyD1C2.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoTheyD1C2.Location = new Point(152, 16);
             rdoTheyD1C2.Name = "rdoTheyD1C2";
-            rdoTheyD1C2.Size = new Size(83, 19);
+            rdoTheyD1C2.Size = new Size(84, 19);
             rdoTheyD1C2.TabIndex = 2;
             rdoTheyD1C2.TabStop = true;
             rdoTheyD1C2.Text = "They/them";
@@ -1832,9 +1929,10 @@
             // rdoFemaleD1C2
             // 
             rdoFemaleD1C2.AutoSize = true;
+            rdoFemaleD1C2.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoFemaleD1C2.Location = new Point(80, 16);
             rdoFemaleD1C2.Name = "rdoFemaleD1C2";
-            rdoFemaleD1C2.Size = new Size(66, 19);
+            rdoFemaleD1C2.Size = new Size(67, 19);
             rdoFemaleD1C2.TabIndex = 1;
             rdoFemaleD1C2.TabStop = true;
             rdoFemaleD1C2.Text = "She/her";
@@ -1843,6 +1941,7 @@
             // rdoMaleD1C2
             // 
             rdoMaleD1C2.AutoSize = true;
+            rdoMaleD1C2.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoMaleD1C2.Location = new Point(6, 16);
             rdoMaleD1C2.Name = "rdoMaleD1C2";
             rdoMaleD1C2.Size = new Size(68, 19);
@@ -1853,6 +1952,7 @@
             // 
             // gboD1C1
             // 
+            gboD1C1.BackColor = Color.Transparent;
             gboD1C1.Controls.Add(groupBox1);
             gboD1C1.Controls.Add(rdoTheyD1C1);
             gboD1C1.Controls.Add(rdoFemaleD1C1);
@@ -1879,7 +1979,7 @@
             radioButton1.AutoSize = true;
             radioButton1.Location = new Point(152, 16);
             radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(83, 19);
+            radioButton1.Size = new Size(82, 19);
             radioButton1.TabIndex = 2;
             radioButton1.TabStop = true;
             radioButton1.Text = "They/them";
@@ -1901,7 +2001,7 @@
             radioButton3.AutoSize = true;
             radioButton3.Location = new Point(6, 16);
             radioButton3.Name = "radioButton3";
-            radioButton3.Size = new Size(68, 19);
+            radioButton3.Size = new Size(67, 19);
             radioButton3.TabIndex = 0;
             radioButton3.TabStop = true;
             radioButton3.Text = "He/Him";
@@ -1910,9 +2010,10 @@
             // rdoTheyD1C1
             // 
             rdoTheyD1C1.AutoSize = true;
+            rdoTheyD1C1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoTheyD1C1.Location = new Point(152, 16);
             rdoTheyD1C1.Name = "rdoTheyD1C1";
-            rdoTheyD1C1.Size = new Size(83, 19);
+            rdoTheyD1C1.Size = new Size(84, 19);
             rdoTheyD1C1.TabIndex = 2;
             rdoTheyD1C1.TabStop = true;
             rdoTheyD1C1.Text = "They/them";
@@ -1921,9 +2022,10 @@
             // rdoFemaleD1C1
             // 
             rdoFemaleD1C1.AutoSize = true;
+            rdoFemaleD1C1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoFemaleD1C1.Location = new Point(80, 16);
             rdoFemaleD1C1.Name = "rdoFemaleD1C1";
-            rdoFemaleD1C1.Size = new Size(66, 19);
+            rdoFemaleD1C1.Size = new Size(67, 19);
             rdoFemaleD1C1.TabIndex = 1;
             rdoFemaleD1C1.TabStop = true;
             rdoFemaleD1C1.Text = "She/her";
@@ -1932,6 +2034,7 @@
             // rdoMaleD1C1
             // 
             rdoMaleD1C1.AutoSize = true;
+            rdoMaleD1C1.Font = new Font("Yu Gothic UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             rdoMaleD1C1.Location = new Point(6, 16);
             rdoMaleD1C1.Name = "rdoMaleD1C1";
             rdoMaleD1C1.Size = new Size(68, 19);
@@ -1942,6 +2045,7 @@
             // 
             // txtD12C2
             // 
+            txtD12C2.BorderStyle = BorderStyle.FixedSingle;
             txtD12C2.Location = new Point(563, 677);
             txtD12C2.Name = "txtD12C2";
             txtD12C2.Size = new Size(208, 23);
@@ -1950,14 +2054,17 @@
             // lblD12
             // 
             lblD12.AutoSize = true;
+            lblD12.BackColor = Color.Transparent;
+            lblD12.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblD12.Location = new Point(563, 611);
             lblD12.Name = "lblD12";
-            lblD12.Size = new Size(59, 15);
+            lblD12.Size = new Size(81, 21);
             lblD12.TabIndex = 35;
             lblD12.Text = "District 12";
             // 
             // txtD12C1
             // 
+            txtD12C1.BorderStyle = BorderStyle.FixedSingle;
             txtD12C1.Location = new Point(563, 638);
             txtD12C1.Name = "txtD12C1";
             txtD12C1.Size = new Size(208, 23);
@@ -1965,6 +2072,7 @@
             // 
             // txtD11C2
             // 
+            txtD11C2.BorderStyle = BorderStyle.FixedSingle;
             txtD11C2.Location = new Point(563, 559);
             txtD11C2.Name = "txtD11C2";
             txtD11C2.Size = new Size(208, 23);
@@ -1973,14 +2081,17 @@
             // lblD11
             // 
             lblD11.AutoSize = true;
+            lblD11.BackColor = Color.Transparent;
+            lblD11.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblD11.Location = new Point(563, 493);
             lblD11.Name = "lblD11";
-            lblD11.Size = new Size(59, 15);
+            lblD11.Size = new Size(78, 21);
             lblD11.TabIndex = 32;
             lblD11.Text = "District 11";
             // 
             // txtD11C1
             // 
+            txtD11C1.BorderStyle = BorderStyle.FixedSingle;
             txtD11C1.Location = new Point(563, 520);
             txtD11C1.Name = "txtD11C1";
             txtD11C1.Size = new Size(208, 23);
@@ -1988,6 +2099,7 @@
             // 
             // txtD10C2
             // 
+            txtD10C2.BorderStyle = BorderStyle.FixedSingle;
             txtD10C2.Location = new Point(563, 441);
             txtD10C2.Name = "txtD10C2";
             txtD10C2.Size = new Size(208, 23);
@@ -1996,14 +2108,17 @@
             // lblD10
             // 
             lblD10.AutoSize = true;
+            lblD10.BackColor = Color.Transparent;
+            lblD10.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblD10.Location = new Point(563, 375);
             lblD10.Name = "lblD10";
-            lblD10.Size = new Size(59, 15);
+            lblD10.Size = new Size(81, 21);
             lblD10.TabIndex = 29;
             lblD10.Text = "District 10";
             // 
             // txtD10C1
             // 
+            txtD10C1.BorderStyle = BorderStyle.FixedSingle;
             txtD10C1.Location = new Point(563, 402);
             txtD10C1.Name = "txtD10C1";
             txtD10C1.Size = new Size(208, 23);
@@ -2011,6 +2126,7 @@
             // 
             // txtD9C2
             // 
+            txtD9C2.BorderStyle = BorderStyle.FixedSingle;
             txtD9C2.Location = new Point(563, 323);
             txtD9C2.Name = "txtD9C2";
             txtD9C2.Size = new Size(208, 23);
@@ -2019,14 +2135,17 @@
             // lblD9
             // 
             lblD9.AutoSize = true;
+            lblD9.BackColor = Color.Transparent;
+            lblD9.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblD9.Location = new Point(563, 257);
             lblD9.Name = "lblD9";
-            lblD9.Size = new Size(53, 15);
+            lblD9.Size = new Size(75, 21);
             lblD9.TabIndex = 26;
             lblD9.Text = "District 9";
             // 
             // txtD9C1
             // 
+            txtD9C1.BorderStyle = BorderStyle.FixedSingle;
             txtD9C1.Location = new Point(563, 284);
             txtD9C1.Name = "txtD9C1";
             txtD9C1.Size = new Size(208, 23);
@@ -2034,6 +2153,7 @@
             // 
             // txtD8C2
             // 
+            txtD8C2.BorderStyle = BorderStyle.FixedSingle;
             txtD8C2.Location = new Point(563, 205);
             txtD8C2.Name = "txtD8C2";
             txtD8C2.Size = new Size(208, 23);
@@ -2042,14 +2162,17 @@
             // lblD8
             // 
             lblD8.AutoSize = true;
+            lblD8.BackColor = Color.Transparent;
+            lblD8.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblD8.Location = new Point(563, 139);
             lblD8.Name = "lblD8";
-            lblD8.Size = new Size(53, 15);
+            lblD8.Size = new Size(75, 21);
             lblD8.TabIndex = 23;
             lblD8.Text = "District 8";
             // 
             // txtD8C1
             // 
+            txtD8C1.BorderStyle = BorderStyle.FixedSingle;
             txtD8C1.Location = new Point(563, 166);
             txtD8C1.Name = "txtD8C1";
             txtD8C1.Size = new Size(208, 23);
@@ -2057,6 +2180,7 @@
             // 
             // txtD7C2
             // 
+            txtD7C2.BorderStyle = BorderStyle.FixedSingle;
             txtD7C2.Location = new Point(563, 87);
             txtD7C2.Name = "txtD7C2";
             txtD7C2.Size = new Size(208, 23);
@@ -2065,14 +2189,17 @@
             // lblD7
             // 
             lblD7.AutoSize = true;
+            lblD7.BackColor = Color.Transparent;
+            lblD7.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblD7.Location = new Point(563, 21);
             lblD7.Name = "lblD7";
-            lblD7.Size = new Size(53, 15);
+            lblD7.Size = new Size(75, 21);
             lblD7.TabIndex = 20;
             lblD7.Text = "District 7";
             // 
             // txtD7C1
             // 
+            txtD7C1.BorderStyle = BorderStyle.FixedSingle;
             txtD7C1.Location = new Point(563, 48);
             txtD7C1.Name = "txtD7C1";
             txtD7C1.Size = new Size(208, 23);
@@ -2080,6 +2207,7 @@
             // 
             // txtD6C2
             // 
+            txtD6C2.BorderStyle = BorderStyle.FixedSingle;
             txtD6C2.Location = new Point(51, 677);
             txtD6C2.Name = "txtD6C2";
             txtD6C2.Size = new Size(208, 23);
@@ -2088,14 +2216,17 @@
             // lblD6
             // 
             lblD6.AutoSize = true;
+            lblD6.BackColor = Color.Transparent;
+            lblD6.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblD6.Location = new Point(51, 611);
             lblD6.Name = "lblD6";
-            lblD6.Size = new Size(53, 15);
+            lblD6.Size = new Size(75, 21);
             lblD6.TabIndex = 17;
             lblD6.Text = "District 6";
             // 
             // txtD6C1
             // 
+            txtD6C1.BorderStyle = BorderStyle.FixedSingle;
             txtD6C1.Location = new Point(51, 638);
             txtD6C1.Name = "txtD6C1";
             txtD6C1.Size = new Size(208, 23);
@@ -2103,6 +2234,7 @@
             // 
             // txtD5C2
             // 
+            txtD5C2.BorderStyle = BorderStyle.FixedSingle;
             txtD5C2.Location = new Point(51, 559);
             txtD5C2.Name = "txtD5C2";
             txtD5C2.Size = new Size(208, 23);
@@ -2111,14 +2243,17 @@
             // lblD5
             // 
             lblD5.AutoSize = true;
+            lblD5.BackColor = Color.Transparent;
+            lblD5.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblD5.Location = new Point(51, 493);
             lblD5.Name = "lblD5";
-            lblD5.Size = new Size(53, 15);
+            lblD5.Size = new Size(75, 21);
             lblD5.TabIndex = 14;
             lblD5.Text = "District 5";
             // 
             // txtD5C1
             // 
+            txtD5C1.BorderStyle = BorderStyle.FixedSingle;
             txtD5C1.Location = new Point(51, 520);
             txtD5C1.Name = "txtD5C1";
             txtD5C1.Size = new Size(208, 23);
@@ -2126,6 +2261,7 @@
             // 
             // txtD4C2
             // 
+            txtD4C2.BorderStyle = BorderStyle.FixedSingle;
             txtD4C2.Location = new Point(51, 441);
             txtD4C2.Name = "txtD4C2";
             txtD4C2.Size = new Size(208, 23);
@@ -2134,14 +2270,17 @@
             // lblD4
             // 
             lblD4.AutoSize = true;
+            lblD4.BackColor = Color.Transparent;
+            lblD4.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblD4.Location = new Point(51, 375);
             lblD4.Name = "lblD4";
-            lblD4.Size = new Size(53, 15);
+            lblD4.Size = new Size(75, 21);
             lblD4.TabIndex = 11;
             lblD4.Text = "District 4";
             // 
             // txtD4C1
             // 
+            txtD4C1.BorderStyle = BorderStyle.FixedSingle;
             txtD4C1.Location = new Point(51, 402);
             txtD4C1.Name = "txtD4C1";
             txtD4C1.Size = new Size(208, 23);
@@ -2149,6 +2288,7 @@
             // 
             // txtD3C2
             // 
+            txtD3C2.BorderStyle = BorderStyle.FixedSingle;
             txtD3C2.Location = new Point(51, 323);
             txtD3C2.Name = "txtD3C2";
             txtD3C2.Size = new Size(208, 23);
@@ -2157,14 +2297,17 @@
             // lblD3
             // 
             lblD3.AutoSize = true;
+            lblD3.BackColor = Color.Transparent;
+            lblD3.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblD3.Location = new Point(51, 257);
             lblD3.Name = "lblD3";
-            lblD3.Size = new Size(53, 15);
+            lblD3.Size = new Size(75, 21);
             lblD3.TabIndex = 8;
             lblD3.Text = "District 3";
             // 
             // txtD3C1
             // 
+            txtD3C1.BorderStyle = BorderStyle.FixedSingle;
             txtD3C1.Location = new Point(51, 284);
             txtD3C1.Name = "txtD3C1";
             txtD3C1.Size = new Size(208, 23);
@@ -2172,6 +2315,7 @@
             // 
             // txtD2C2
             // 
+            txtD2C2.BorderStyle = BorderStyle.FixedSingle;
             txtD2C2.Location = new Point(51, 205);
             txtD2C2.Name = "txtD2C2";
             txtD2C2.Size = new Size(208, 23);
@@ -2180,14 +2324,17 @@
             // lblD2
             // 
             lblD2.AutoSize = true;
+            lblD2.BackColor = Color.Transparent;
+            lblD2.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblD2.Location = new Point(51, 139);
             lblD2.Name = "lblD2";
-            lblD2.Size = new Size(53, 15);
+            lblD2.Size = new Size(75, 21);
             lblD2.TabIndex = 5;
             lblD2.Text = "District 2";
             // 
             // txtD2C1
             // 
+            txtD2C1.BorderStyle = BorderStyle.FixedSingle;
             txtD2C1.Location = new Point(51, 166);
             txtD2C1.Name = "txtD2C1";
             txtD2C1.Size = new Size(208, 23);
@@ -2195,6 +2342,7 @@
             // 
             // txtD1C2
             // 
+            txtD1C2.BorderStyle = BorderStyle.FixedSingle;
             txtD1C2.Location = new Point(51, 87);
             txtD1C2.Name = "txtD1C2";
             txtD1C2.Size = new Size(208, 23);
@@ -2203,14 +2351,17 @@
             // lblD1
             // 
             lblD1.AutoSize = true;
+            lblD1.BackColor = Color.Transparent;
+            lblD1.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblD1.Location = new Point(51, 21);
             lblD1.Name = "lblD1";
-            lblD1.Size = new Size(53, 15);
+            lblD1.Size = new Size(72, 21);
             lblD1.TabIndex = 2;
             lblD1.Text = "District 1";
             // 
             // txtD1C1
             // 
+            txtD1C1.BorderStyle = BorderStyle.FixedSingle;
             txtD1C1.Location = new Point(51, 48);
             txtD1C1.Name = "txtD1C1";
             txtD1C1.Size = new Size(208, 23);
@@ -2220,7 +2371,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1395, 866);
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            ClientSize = new Size(1130, 866);
             Controls.Add(panelCharacterSelect);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "CustomCharacters24";
@@ -2301,6 +2453,7 @@
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

@@ -138,7 +138,7 @@ namespace Carnage
         /// </summary>
         private void btnRandom_Click(object sender, EventArgs e)
         {
-             stringList.Clear();
+            stringList.Clear();
             this.clearText();
 
             stringList = ci.Randomize(24);

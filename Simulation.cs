@@ -356,7 +356,7 @@ namespace Carnage
             }
 
             //Item types determined
-            type1 = loot.SponsorItemType(tempCharList[intList[0]], game); 
+            type1 = loot.SponsorItemType(tempCharList[intList[0]], game);
             type2 = loot.SponsorItemType(tempCharList[intList[1]], game);
             type3 = loot.SponsorItemType(tempCharList[intList[2]], game);
 
