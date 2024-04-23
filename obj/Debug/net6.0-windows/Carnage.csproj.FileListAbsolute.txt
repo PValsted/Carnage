@@ -35,7 +35,7 @@ C:\Users\Patrick\source\repos\Carnage\bin\Debug\net6.0-windows\runtimes\win-x64\
 C:\Users\Patrick\source\repos\Carnage\bin\Debug\net6.0-windows\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
 C:\Users\Patrick\source\repos\Carnage\obj\Debug\net6.0-windows\Carnage.csproj.AssemblyReference.cache
 C:\Users\Patrick\source\repos\Carnage\obj\Debug\net6.0-windows\Carnage.csproj.CopyComplete
-C:\Users\Patrick\source\repos\Carnage\obj\Debug\net6.0-windows\Carnage.Sim1.resources
 C:\Users\Patrick\source\repos\Carnage\obj\Debug\net6.0-windows\Carnage.Properties.Resources.resources
 C:\Users\Patrick\source\repos\Carnage\obj\Debug\net6.0-windows\Carnage.PresetCharacters24.resources
 C:\Users\Patrick\source\repos\Carnage\obj\Debug\net6.0-windows\Carnage.PresetCharacters48.resources
+C:\Users\Patrick\source\repos\Carnage\obj\Debug\net6.0-windows\Carnage.Simulation.resources

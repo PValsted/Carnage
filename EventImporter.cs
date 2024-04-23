@@ -10,14 +10,27 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Carnage
 {
+
+    /// <summary>
+    /// This class is designed to import event lines from a MySQL Database and convert them
+    /// into strings. This functions by converting values recorded alongside the event text
+    /// into actions that affect character variables and outcomes.
+    /// </summary>
     public class EventImporter
     {
         RNG rng = new RNG();
         List<character> battleList = new List<character>();
         Loot loot = new Loot();
 
+        /// <summary>
+        /// Retrieves the number of entries contained in the MySQL Database for the 
+        /// event type pased in in order to be used to randomly select an entry for that type.
+        /// </summary>
         public int getNumber(string type)
         {
+            //The below set of MySQL objects use the connection string to connect to the server and pass in the
+            //generated MySQL command. This result is passed back in array form, and each method extracts
+            //the necessary values. This happens in just about all of this class's methods.
             string sql = "Server=sql5.freesqldatabase.com;Database=sql5693000;Uid=sql5693000;Pwd=yD7AbEqn2I;";
             MySqlConnection con = new MySqlConnection(sql);
 
@@ -36,9 +49,14 @@ namespace Carnage
             return num;
         }
 
+        /// <summary>
+        /// Takes the line passed in that was extracted from the MySQL Database and
+        /// replaces placeholder values in the sentence with the appropriate values
+        /// based on the character who the event applies to.
+        /// </summary>
         public string replaceText(string eventText, character character)
         {
-            eventText = eventText.Replace("{1}", character.getName());
+            eventText = eventText.Replace("{1}", character.getName()); //For example, any instance of {1} in a sentence is replaced with the character's name
             eventText = eventText.Replace("{CapSubPro}", character.getPronounSub());
             eventText = eventText.Replace("{CapObjPro}", character.getPronounObj());
             eventText = eventText.Replace("{CapPosAdjPro}", character.getPronounPosAdj());
@@ -55,6 +73,11 @@ namespace Carnage
             return eventText;
         }
 
+        /// <summary>
+        /// Takes the line passed in that was extracted from the MySQL Database and
+        /// replaces placeholder values in the sentence with the appropriate values
+        /// based on the two characters who the event applies to.
+        /// </summary>
         public string replaceText(string eventText, character char1, character char2)
         {
             eventText = eventText.Replace("{1}", char1.getName());
@@ -86,28 +109,22 @@ namespace Carnage
             return eventText;
         }
 
-        public string randomReplace(string eventText, character char1, character char2, string type)
-        {
-            List<character> list = new List<character> { char1, char2 };
-            list = rng.shuffleList(list);
-            eventText = eventText.Replace("{1/2}", list[0].getName());
-            eventText = eventText.Replace("{2/1}", list[1].getName());
-
-            if (type=="Death")
-            {
-                list[0].hurt(100);
-            }
-
-            return eventText;
-
-        }
-
+        /// <summary>
+        /// Takes the line passed in that was extracted from the MySQL Database and
+        /// replaces the placeholder value with the proper form of "was" based on the
+        /// character's pronouns.
+        /// </summary>
         public string ProperTense(character char1)
         {
-            if (char1.getPronounSub() == "They") return "were";
-            else return "was";
+            if (char1.getPronounSub() == "They") return "were"; //They were
+            else return "was"; // He/she was
         }
 
+        /// <summary>
+        /// Selects a random regular event to apply to the character passed in. Takes the
+        /// appropriate values associated with the text in the MySQL Database and applies
+        /// any consequences to the character, and the event is returned as a string.
+        /// </summary>
         public string regularEvent(character character, Game game)
         {
             string sql = "Server=sql5.freesqldatabase.com;Database=sql5693000;Uid=sql5693000;Pwd=yD7AbEqn2I;";
@@ -126,11 +143,11 @@ namespace Carnage
             string eventText = (dsSQLDataSet.Tables[0].Rows[0][1].ToString() + "\n");
             string type = (dsSQLDataSet.Tables[0].Rows[0][6].ToString());
 
-            if (type=="Damage")
+            if (type=="Damage") //If the regular event results in the character taking damage, that is taken into effect here
             {
                 character.hurt(Math.Round(Double.Parse(dsSQLDataSet.Tables[0].Rows[0][5].ToString()), 2));
                 
-                if (character.IsAlive==false)
+                if (character.IsAlive==false) //If the character is dead after this damage, this is tacked on after the event message to indicate that the character died
                 {
                     eventText = this.replaceText(eventText, character) + character.Name + " succumbed to " + character.getPronounPosAdj().ToLower() + " injuries.";
                     return eventText;
@@ -139,7 +156,7 @@ namespace Carnage
 
             con.Close();
 
-            if (type=="Morality" && game.Mode=="Realistic")
+            if (type=="Morality" && game.Mode=="Realistic") //If the regular event results in the character's morality changing (if realistic mode), that is taken into effect here
             {
                 character.Morality -= 2;
                 eventText = this.replaceText(eventText, character) + character.Name + "'s morality level dropped by 2.\n";
@@ -151,6 +168,11 @@ namespace Carnage
             return eventText;
         }
 
+        /// <summary>
+        /// Selects a random gain event to apply to the character passed in. Takes the
+        /// appropriate values associated with the text in the MySQL Database and applies
+        /// any consequences to the character, and the event is returned as a string.
+        /// </summary>
         public string gainEvent(character character, Game game)
         {
             StringBuilder sb = new StringBuilder();
@@ -172,7 +194,7 @@ namespace Carnage
             string eventText = dsSQLDataSet.Tables[0].Rows[0][1].ToString();
             eventText = this.replaceText(eventText, character);
 
-            if (type == "Healing")
+            if (type == "Healing") //If the event results in a character gaining a healing item, character is either healed, or if at full health the item is saved for later use
             {
                 if (character.getHealth() < 20)
                 {
@@ -183,14 +205,14 @@ namespace Carnage
                     character.setHealingAmount(Math.Round(Double.Parse(dsSQLDataSet.Tables[0].Rows[0][5].ToString()),2));
                 }
             }
-            else if (type =="Food")
+            else if (type =="Food") //If the event results in a character getting food, character increases hunger
             {
                 sb.AppendLine(eventText);
                 character.Hunger += Math.Round(Double.Parse(dsSQLDataSet.Tables[0].Rows[0][5].ToString()),2);
             }
-            else if (type == "IfHungry")
+            else if (type == "IfHungry") //Character only performs action if hunger is at a certain level
             {
-                if (character.Hunger > 2 && game.Mode == "Realistic")
+                if (character.Hunger > 2 && game.Mode == "Realistic") //If character hunger is above 2, another event is recursively selected
                 {
                     sb.Append(gainEvent(character, game));
                     return sb.ToString();
@@ -198,30 +220,30 @@ namespace Carnage
                 else
                 {
                     sb.AppendLine(eventText);
-                    character.Hunger += Math.Round(Double.Parse(dsSQLDataSet.Tables[0].Rows[0][5].ToString()), 2);
+                    if (game.Mode=="Realistic") character.Hunger += Math.Round(Double.Parse(dsSQLDataSet.Tables[0].Rows[0][5].ToString()), 2);
                 }
             }
-            else if (type=="Loot")
+            else if (type=="Loot") //If the event results in loot, the character goes through a common loot event
             {
                 sb.Append(eventText + " " + loot.lootEvent(character, "Common"));
             }
-            else
+            else //If the event results in gaining a weapon, the appropriate values pertaining to this weapon are changed to reflect the new values
             {
-                if (character.getWeaponName() == "")
+                if (character.getWeaponName() == "") //If character has no weapon this weapon is equipped
                 {
                     character.setWeaponName(dsSQLDataSet.Tables[0].Rows[0][4].ToString());
                     character.setWeaponAttack(Double.Parse(dsSQLDataSet.Tables[0].Rows[0][5].ToString()));
                     character.setWeaponType(dsSQLDataSet.Tables[0].Rows[0][6].ToString());
                     sb.AppendLine(eventText + " " + character.getName() + " gained a " + character.getWeaponName() + ".");
                 }
-                else if (character.getWeaponAttack() < Double.Parse(dsSQLDataSet.Tables[0].Rows[0][5].ToString()) && character.getWeaponName() != "")
+                else if (character.getWeaponAttack() < Double.Parse(dsSQLDataSet.Tables[0].Rows[0][5].ToString()) && character.getWeaponName() != "") //If new weapon does more damage than current weapon, this weapon is equipped
                 {
                     sb.AppendLine(eventText + " " + character.getName() + " replaced " + character.getPronounPosAdj().ToLower() + " " + character.getWeaponName() + ".");
                     character.setWeaponName(dsSQLDataSet.Tables[0].Rows[0][4].ToString());
                     character.setWeaponAttack(Double.Parse(dsSQLDataSet.Tables[0].Rows[0][5].ToString()));
                     character.setWeaponType(dsSQLDataSet.Tables[0].Rows[0][6].ToString());
                 }
-                else
+                else //If new weapon is worse than current, the weapon is not equipped
                 {
                     sb.AppendLine(eventText);
                 }
@@ -229,7 +251,7 @@ namespace Carnage
 
             con.Close();
 
-            if (type == "Healing")
+            if (type == "Healing") 
             {
                 if (character.getHealth() < 20) sb.AppendLine(eventText + " " + character.getName() + " healed to " + character.getHealth() + " health.");
                 else if (character.getHealth() == 20 && character.isHealSlotFilled() == false)
@@ -242,6 +264,11 @@ namespace Carnage
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Selects a random death event to apply to the character passed in. Takes the
+        /// appropriate values associated with the text in the MySQL Database and applies
+        /// any consequences to the character, and the event is returned as a string.
+        /// </summary>
         public string deathEvent(character character, Game game)
         {
             string sql = "Server=sql5.freesqldatabase.com;Database=sql5693000;Uid=sql5693000;Pwd=yD7AbEqn2I;";
@@ -262,12 +289,12 @@ namespace Carnage
 
             con.Close();
 
-            if (type=="IfHungry" && character.Hunger>2 && game.Mode=="Realistic")
+            if (type=="IfHungry" && character.Hunger>2 && game.Mode=="Realistic") //The IfHungry death event is only performed if a character's hunger is below 2, otherwise another death event is selected recursively
             {
                 eventText = deathEvent(character, game);
                 return eventText;
             }
-            else
+            else //Death event selected, character is killed
             {
                 eventText = this.replaceText(eventText, character);
 

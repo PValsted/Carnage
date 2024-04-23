@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Start));
-            btnClassic = new Button();
+            btnStart = new Button();
             btnCustom = new Button();
             btnPreset = new Button();
             grbNumberOptions = new GroupBox();
@@ -42,23 +42,29 @@
             cboCombatLevel = new CheckBox();
             cboRealistic = new CheckBox();
             btnBack = new Button();
+            pnlMenu2 = new Panel();
+            panel1 = new Panel();
             grbNumberOptions.SuspendLayout();
             pnlOptions.SuspendLayout();
+            pnlMenu2.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
-            // btnClassic
+            // btnStart
             // 
-            btnClassic.Location = new Point(48, 47);
-            btnClassic.Name = "btnClassic";
-            btnClassic.Size = new Size(152, 23);
-            btnClassic.TabIndex = 0;
-            btnClassic.Text = "Classic Mode";
-            btnClassic.UseVisualStyleBackColor = true;
-            btnClassic.Click += btnClassic_Click;
+            btnStart.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnStart.Location = new Point(91, 55);
+            btnStart.Name = "btnStart";
+            btnStart.Size = new Size(152, 23);
+            btnStart.TabIndex = 0;
+            btnStart.Text = "Start";
+            btnStart.UseVisualStyleBackColor = true;
+            btnStart.Click += btnClassic_Click;
             // 
             // btnCustom
             // 
-            btnCustom.Location = new Point(48, 47);
+            btnCustom.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCustom.Location = new Point(15, 22);
             btnCustom.Name = "btnCustom";
             btnCustom.Size = new Size(152, 23);
             btnCustom.TabIndex = 1;
@@ -69,7 +75,8 @@
             // 
             // btnPreset
             // 
-            btnPreset.Location = new Point(48, 89);
+            btnPreset.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnPreset.Location = new Point(15, 64);
             btnPreset.Name = "btnPreset";
             btnPreset.Size = new Size(152, 23);
             btnPreset.TabIndex = 2;
@@ -82,7 +89,7 @@
             // 
             grbNumberOptions.Controls.Add(rdo48);
             grbNumberOptions.Controls.Add(rdo24);
-            grbNumberOptions.Location = new Point(220, 37);
+            grbNumberOptions.Location = new Point(187, 12);
             grbNumberOptions.Name = "grbNumberOptions";
             grbNumberOptions.Size = new Size(126, 84);
             grbNumberOptions.TabIndex = 3;
@@ -137,7 +144,7 @@
             pnlOptions.Controls.Add(cboRealistic);
             pnlOptions.Controls.Add(lblOptions);
             pnlOptions.Controls.Add(cboShortBattles);
-            pnlOptions.Location = new Point(361, 47);
+            pnlOptions.Location = new Point(328, 22);
             pnlOptions.Name = "pnlOptions";
             pnlOptions.Size = new Size(264, 88);
             pnlOptions.TabIndex = 7;
@@ -177,7 +184,8 @@
             // 
             // btnBack
             // 
-            btnBack.Location = new Point(48, 130);
+            btnBack.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnBack.Location = new Point(15, 105);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(75, 23);
             btnBack.TabIndex = 8;
@@ -186,17 +194,33 @@
             btnBack.Visible = false;
             btnBack.Click += btnBack_Click;
             // 
+            // pnlMenu2
+            // 
+            pnlMenu2.Controls.Add(btnCustom);
+            pnlMenu2.Controls.Add(btnBack);
+            pnlMenu2.Controls.Add(pnlOptions);
+            pnlMenu2.Controls.Add(btnPreset);
+            pnlMenu2.Controls.Add(grbNumberOptions);
+            pnlMenu2.Location = new Point(27, 31);
+            pnlMenu2.Name = "pnlMenu2";
+            pnlMenu2.Size = new Size(620, 210);
+            pnlMenu2.TabIndex = 9;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(btnStart);
+            panel1.Location = new Point(27, 282);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(620, 271);
+            panel1.TabIndex = 10;
+            // 
             // Start
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(btnBack);
-            Controls.Add(pnlOptions);
-            Controls.Add(grbNumberOptions);
-            Controls.Add(btnPreset);
-            Controls.Add(btnCustom);
-            Controls.Add(btnClassic);
+            ClientSize = new Size(800, 579);
+            Controls.Add(panel1);
+            Controls.Add(pnlMenu2);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Start";
             Text = "Carnage";
@@ -205,12 +229,14 @@
             grbNumberOptions.PerformLayout();
             pnlOptions.ResumeLayout(false);
             pnlOptions.PerformLayout();
+            pnlMenu2.ResumeLayout(false);
+            panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Button btnClassic;
+        private Button btnStart;
         private Button btnCustom;
         private Button btnPreset;
         private GroupBox grbNumberOptions;
@@ -223,5 +249,7 @@
         private CheckBox cboCombatLevel;
         private Button btnBack;
         private CheckBox cboSponsor;
+        private Panel pnlMenu2;
+        private Panel panel1;
     }
 }

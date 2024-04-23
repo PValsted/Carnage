@@ -10,6 +10,16 @@ using System.Windows.Forms;
 
 namespace Carnage
 {
+
+    /// <summary>
+    /// This form provides the necessary code to make the preset character
+    /// screen for 48 characters functional. It allows for user-defined names
+    /// that correctly match the names of characters in the MySQL Database to be
+    /// imported and then to be passed into corresponding character objects
+    /// that will then make up the simulation. It includes code to check to make
+    /// sure the names are valid and a way to randomly select 24 characters that
+    /// are in the database.
+    /// </summary>
     public partial class PresetCharacters48 : Form
     {
         CharacterImporter ci = new CharacterImporter();
@@ -24,6 +34,10 @@ namespace Carnage
             this.game = game;
         }
 
+        /// <summary>
+        /// Clears the text out of all 48 text boxes so that
+        /// it can be replaced with other text.
+        /// </summary>
         private void clearText()
         {
             txtD1C1.Clear(); txtD1C2.Clear(); txtD1C3.Clear(); txtD1C4.Clear();
@@ -40,28 +54,42 @@ namespace Carnage
             txtD12C1.Clear(); txtD12C2.Clear(); txtD12C3.Clear(); txtD12C4.Clear();
         }
 
+        /// <summary>
+        /// Clears the rich text box and fills it with a list of characters
+        /// matching a user-entered tag.
+        /// </summary>
         private void btnTagSearch_Click(object sender, EventArgs e)
         {
             rtbSearch.Clear();
             rtbSearch.AppendText(ci.searchTag(txtSearch.Text));
         }
 
+        /// <summary>
+        /// Clears the rich text box and inputs text confirming if a user-entered character
+        /// is in the MySQL Database or not.
+        /// </summary>
         private void btnCharSearch_Click(object sender, EventArgs e)
         {
             int count = ci.characterCount(txtCharSearch.Text);
 
-            if (count == 0)
+            if (count == 0) //Character is not in database
             {
                 rtbSearch.Clear();
                 rtbSearch.AppendText("Character " + txtCharSearch.Text + " not found. Please choose someone else or search by tag to get a list.");
             }
-            else
+            else //Character is in database
             {
                 rtbSearch.Clear();
                 rtbSearch.AppendText("Character " + txtCharSearch.Text + " found. Enter this name exactly as entered here in any text box to the left to include them in the simulation.");
             }
         }
 
+        /// <summary>
+        /// Takes each of the user-entered character names, confirms they all exist in the MySQL Database
+        /// (specifies which ones are not if necessary), and puts them into a list of strings. This list of strings
+        /// is passed on to the CharacterImporter to pull any other associated character attributes and turn all
+        /// of it into a list of characters, which is then sent to the simulator form to begin the simulation.
+        /// </summary>
         private void btnEnterCharacters_Click(object sender, EventArgs e)
         {
             stringList.Clear();
@@ -78,15 +106,15 @@ namespace Carnage
             stringList.Add(txtD11C1.Text); stringList.Add(txtD11C2.Text); stringList.Add(txtD11C3.Text); stringList.Add(txtD11C4.Text);
             stringList.Add(txtD12C1.Text); stringList.Add(txtD12C2.Text); stringList.Add(txtD12C3.Text); stringList.Add(txtD12C4.Text);
 
-            if (ci.CheckList(stringList, 48) == "")
+            if (ci.CheckList(stringList, 48) == "") //If no results are returned when inquiring about which characters are not in the database, every character name entered is valid
             {
                 rtbSearch.Clear();
-                if (game.Mode == "Classic") charList = ci.ConvertToCharacters(stringList, "Classic", 48);
-                else if (game.Mode == "Realistic") charList = ci.ConvertToCharacters(stringList, "Realistic", 48);
+                if (game.Mode == "Classic") charList = ci.ConvertToCharacters(stringList, "Classic", 48); //If classic: pronouns are paired with the names to create 24 characters
+                else if (game.Mode == "Realistic") charList = ci.ConvertToCharacters(stringList, "Realistic", 48); //If realistic: pronouns, speed, strength, and morality are paired with the names to create 48 characters
 
                 charList = rng.shuffleList(charList);
 
-                if (game.ShowCombatLevel == true)
+                if (game.ShowCombatLevel == true) //If the show combat level option is checked on the start menu, each character's combat level is added after their name
                 {
                     for (int i = 0; i < charList.Count; i++)
                     {
@@ -94,18 +122,25 @@ namespace Carnage
                     }
                 }
 
-                Sim1 game1 = new Sim1(charList, game);
+                //Passes list of characters and game settings into the simulator to begin
+                Simulation game1 = new Simulation(charList, game);
 
                 this.Hide();
                 game1.Show();
             }
-            else
+            else //If any characters are not found, these specific names are displayed in the rich text box so that they can be identified and changed
             {
                 rtbSearch.Clear();
                 rtbSearch.AppendText(ci.CheckList(stringList, 24));
             }
         }
 
+        /// <summary>
+        /// Using data from the MySQL Database and random int generation, a list of
+        /// 48 random valid database characters is returned and each name fills in
+        /// a different text box. This allows the game to start much quicker with
+        /// valid characters ready to go.
+        /// </summary>
         private void btnRandom_Click(object sender, EventArgs e)
         {
             stringList.Clear();
@@ -127,12 +162,19 @@ namespace Carnage
             txtD12C1.Text = stringList[44]; txtD12C2.Text = stringList[45]; txtD12C3.Text = stringList[46]; txtD12C4.Text = stringList[47];
         }
 
+        /// <summary>
+        /// Pulls a list of every character currently entered into the database
+        /// and displays it in the rich text box.
+        /// </summary>
         private void btnAll_Click(object sender, EventArgs e)
         {
             rtbSearch.Clear();
             rtbSearch.AppendText(ci.ShowAll());
         }
 
+        /// <summary>
+        /// Returns the user to the start menu form
+        /// </summary>
         private void btnBack_Click(object sender, EventArgs e)
         {
             Start start = new Start();

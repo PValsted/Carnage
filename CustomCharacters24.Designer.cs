@@ -324,6 +324,7 @@
             // 
             // btnBack
             // 
+            btnBack.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btnBack.Location = new Point(865, 723);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(151, 62);
@@ -334,6 +335,7 @@
             // 
             // btnEnterCharacters
             // 
+            btnEnterCharacters.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btnEnterCharacters.Location = new Point(51, 723);
             btnEnterCharacters.Name = "btnEnterCharacters";
             btnEnterCharacters.Size = new Size(151, 62);

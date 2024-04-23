@@ -7,9 +7,44 @@ using System.Threading.Tasks;
 
 namespace Carnage
 {
+
+    /// <summary>
+    /// This class is designed to update character stats for the simulation's character stat screens. It
+    /// uses each character's unique ID to correctly return the values that correspond to the character in the
+    /// correct spot on the stat screen. It also provides the string lists that correspond to each set of
+    /// stats on the winner's screen.
+    /// </summary>
     public class StatUpdater
     {
+        List<string> list24 = new List<string>
+            {
+                "2nd Place", "3rd Place", "4th Place",
+                "5th Place", "6th Place", "7th Place", "8th Place",
+                "9th Place", "10th Place", "11th Place", "12th Place",
+                "13th Place", "14th Place", "15th Place", "16th Place",
+                "17th Place", "18th Place", "19th Place", "20th Place",
+                "21st Place", "22nd Place", "23rd Place", "24th Place"
+            };
+        List<string> list48 = new List<string>
+            {
+                "2nd Place", "3rd Place", "4th Place",
+                "5th Place", "6th Place", "7th Place", "8th Place",
+                "9th Place", "10th Place", "11th Place", "12th Place",
+                "13th Place", "14th Place", "15th Place", "16th Place",
+                "17th Place", "18th Place", "19th Place", "20th Place",
+                "21st Place", "22nd Place", "23rd Place", "24th Place",
+                "25th Place", "26th Place", "27th Place", "28th Place",
+                "29th Place", "30th Place", "31st Place", "32nd Place",
+                "33rd Place", "34th Place", "35th Place", "36th Place",
+                "37th Place", "38th Place", "39th Place", "40th Place",
+                "41st Place", "42nd Place", "43rd Place", "44th Place",
+                "45th Place", "46th Place", "47th Place", "48th Place"
+            };
 
+        /// <summary>
+        /// Searches the active characters list to get the given character's name and kills,
+        /// or the death list if the character is dead
+        /// </summary>
         public string UpdateName(string id, List<character> list, List<character> deathList)
         {
             StringBuilder sb = new StringBuilder();
@@ -37,10 +72,13 @@ namespace Carnage
                 }
             }
 
-
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Searches the active characters list to get the given character's health and
+        /// hunger (if realistic mode), or returns "Deceased" if character is not alive
+        /// </summary>
         public string UpdateHealth(string id, List<character> list, Game game)
         {
             StringBuilder sb = new StringBuilder();
@@ -56,7 +94,7 @@ namespace Carnage
                     sb.Append(list.Find(x => x.Id == id).Health.ToString() + " health, " + list.Find(x => x.Id == id).Hunger.ToString() + " hunger");
                 }
             }
-            else
+            else //If character not found, they must be dead
             {
                 sb.Append("Deceased");
             }
@@ -64,6 +102,10 @@ namespace Carnage
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Searches the active characters list to get the given character's weapon information
+        /// and strength (if realistic mode), or returns an empty string if character is dead
+        /// </summary>
         public string UpdateWeapon(string id, List<character> list, Game game)
         {
             StringBuilder sb = new StringBuilder();
@@ -96,15 +138,19 @@ namespace Carnage
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Iterates through the death list backwards to list the characters in reverse order and
+        /// what place they got starting with the winner. Returns as a string to the winner's screen
+        /// </summary>
         public string Places(List<character> list, character winner, Game game) 
         { 
             List<string> placeList = new List<string>();
             StringBuilder sb = new StringBuilder();
 
-            if (game.Players == 24) placeList = this.PlacesList(24);
-            else placeList = this.PlacesList(48);
+            if (game.Players == 24) placeList = list24;
+            else placeList = list48;
 
-            list.Reverse();
+            list.Reverse(); //Reverses list
 
             sb.AppendLine("======== How Did Each Player Do? ========");
             sb.AppendLine("---1st Place---");
@@ -126,6 +172,10 @@ namespace Carnage
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Sorts the given list by number of kills and lists them in order, starting a new mini-header
+        /// every time there's a different number of kills. Returns as a string to the winner's screen
+        /// </summary>
         public string Kills(List<character> list, character winner, Game game)
         {
             StringBuilder sb = new StringBuilder();
@@ -139,7 +189,7 @@ namespace Carnage
 
             for (int i = 1;i < list.Count-1;i++)
             {
-                if (list[i].Kills < list[i-1].Kills)
+                if (list[i].Kills < list[i-1].Kills) //If character has fewer kills than the one before it, enters a new header
                 {
                     if (list[i].Kills!=1)
                     {
@@ -148,8 +198,7 @@ namespace Carnage
                     else
                     {
                         sb.AppendLine("---" + list[i].Kills + " kill---");
-                    }
-                    
+                    }        
                 }
                 if (list[i].Kills != 1)
                 {
@@ -158,13 +207,15 @@ namespace Carnage
                 else
                 {
                     sb.AppendLine(list[i].Name + ": " + list[i].Kills + " kill");
-                }
-                    
+                }      
             }
 
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Collects general stats from throughout the game and lists them. Returns as a string to the winner's screen
+        /// </summary>
         public string GeneralStats(List<character> list, character winner, Game game)
         {
             StringBuilder sb = new StringBuilder();
@@ -172,8 +223,8 @@ namespace Carnage
             int totalKills = 0;
 
             sb.AppendLine("========== General Stats ==========");
-            sb.AppendLine(game.Day + " total days");
-            if (game.BloodbathDeaths!=1)
+            sb.AppendLine(game.Day + " total days"); //Total days
+            if (game.BloodbathDeaths!=1) //Bloodbath deaths
             {
                 sb.AppendLine(game.BloodbathDeaths + " deaths in the Bloodbath");
             }
@@ -182,7 +233,7 @@ namespace Carnage
                 sb.AppendLine(game.BloodbathDeaths + " death in the Bloodbath");
             }
             
-            if (game.Events !=1 )
+            if (game.Events !=1 ) //Number of Arena Events
             {
                 sb.AppendLine(game.Events + " Arena Events");
             }
@@ -191,7 +242,7 @@ namespace Carnage
                 sb.AppendLine(game.Events + " Arena Event");
             }
             
-            if (game.ArenaEventDeaths != 1 && game.Events != 0)
+            if (game.ArenaEventDeaths != 1 && game.Events != 0) //Number of Arena Event deaths (if there was one)
             {
                 sb.AppendLine(game.ArenaEventDeaths + " Arena Event deaths");
             }
@@ -200,7 +251,7 @@ namespace Carnage
                 sb.AppendLine(game.ArenaEventDeaths + " Arena Event death");
             }
 
-            if (game.FeastDeaths != 1)
+            if (game.FeastDeaths != 1) //Number of Feast deaths
             {
                 sb.AppendLine(game.FeastDeaths + " Feast deaths");
             }
@@ -209,49 +260,16 @@ namespace Carnage
                 sb.AppendLine(game.FeastDeaths + " Feast death");
             }
             
-            
-
             list.Add(winner);
 
-            for (int i = 0; i < list.Count; i++)
+            for (int i = 0; i < list.Count; i++) //Calculates total number of kills
             {
                 totalKills += list[i].Kills;
             }
 
-            sb.AppendLine(totalKills + " total player kills");
+            sb.AppendLine(totalKills + " total player kills"); //Total number of kills
 
             return sb.ToString();
-        }
-
-        private List<string> PlacesList(int numPlayers)
-        {
-            List<string> list24 = new List<string>
-            {
-                "2nd Place", "3rd Place", "4th Place",
-                "5th Place", "6th Place", "7th Place", "8th Place",
-                "9th Place", "10th Place", "11th Place", "12th Place",
-                "13th Place", "14th Place", "15th Place", "16th Place",
-                "17th Place", "18th Place", "19th Place", "20th Place",
-                "21st Place", "22nd Place", "23rd Place", "24th Place"
-            };
-            List<string> list48 = new List<string>
-            {
-                "2nd Place", "3rd Place", "4th Place",
-                "5th Place", "6th Place", "7th Place", "8th Place",
-                "9th Place", "10th Place", "11th Place", "12th Place",
-                "13th Place", "14th Place", "15th Place", "16th Place",
-                "17th Place", "18th Place", "19th Place", "20th Place",
-                "21st Place", "22nd Place", "23rd Place", "24th Place",
-                "25th Place", "26th Place", "27th Place", "28th Place",
-                "29th Place", "30th Place", "31st Place", "32nd Place",
-                "33rd Place", "34th Place", "35th Place", "36th Place",
-                "37th Place", "38th Place", "39th Place", "40th Place",
-                "41st Place", "42nd Place", "43rd Place", "44th Place",
-                "45th Place", "46th Place", "47th Place", "48th Place"
-            };
-
-            if (numPlayers == 24) return list24;
-            else return list48;
         }
     }
 }

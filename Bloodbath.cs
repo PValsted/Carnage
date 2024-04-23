@@ -12,6 +12,12 @@ using static Org.BouncyCastle.Asn1.Cmp.Challenge;
 
 namespace Carnage
 {
+
+    /// <summary>
+    /// Simulates through the events of a Bloodbath, which happens at the start of every simulation. Based on
+    /// a randomly generated event type, every character has an action and the events are recorded by a string
+    /// builder and returned as a string. The effects of the events modify the character's attributes along the way.
+    /// </summary>
     public class Bloodbath
     {
         RNG rng = new RNG();
@@ -19,32 +25,37 @@ namespace Carnage
         Battle battle = new Battle();
         Loot loot = new Loot();
 
+        /// <summary>
+        /// Uses a while loop and a randomly-generated event type to cycle through the passed-in
+        /// list of characters and return the events and their consequences as a string.
+        /// </summary>
         public string doBloodbath(Game game, List<character> list)
         {
             StringBuilder sb = new StringBuilder();
-            int i=0, unassignedPlayers=game.Players;
+            int i=0, unassignedPlayers=game.Players; //Unassigned players variable keeps track of how many players have not been selected for an event to ensure the index doesn't go out of range
             string eventType;
 
-            if (game.FunValue >= 10)
+            if (game.FunValue >= 10) //If game's fun value is 0-10, all loot generated is rare
             {
                 sb.AppendLine(game.Players + " contestants stand on their platforms in a circle. In the middle lies a large metal cornucopia, full of loot available to those bold enough to approach it. The countdown begins...and the game starts.\n");
             }
-            else
+            else //The default, common loot is what generates
             {
                 sb.AppendLine(game.Players + " contestants stand on their platforms in a circle. In the middle lies a large metal cornucopia, full of loot available to those bold enough to approach it. The loot appears to be more valuable than usual. The countdown begins...and the game starts.\n");
             }
 
             rng.shuffleList(list);
 
-            while (i < list.Count)
+            //While loop simulates the events for every character
+            while (i < list.Count) //While list hasn't been exhausted
             {
-                eventType = rng.randomBBEventType();
+                eventType = rng.randomBBEventType(); //Random type of event selected
 
-                if (eventType == "Regular")
+                if (eventType == "Regular") //Events with no consequences
                 {
                    int random = rng.randomInt(1, 3);
 
-                    if (unassignedPlayers >= 2 && random == 3)
+                    if (unassignedPlayers >= 2 && random == 3) //Regular event with 2 characters involved
                     {
                         random = rng.randomInt(1, 3);
 
@@ -69,7 +80,7 @@ namespace Carnage
                         i=i+2;
                         unassignedPlayers = unassignedPlayers - 2;
                     }
-                    else
+                    else //Regular event with 1 player involved
                     {
                         random = rng.randomInt(1, 6);
 
@@ -100,9 +111,8 @@ namespace Carnage
                         unassignedPlayers--;
                         i++;
                     }
-
                 }
-                else if (eventType == "Gain")
+                else if (eventType == "Gain") //Event where character gains an item--a weapon or healing item
                 {
                     int random = rng.randomInt(1, 7);
                     if (game.FunValue >= 10 && random > 2)
@@ -125,7 +135,7 @@ namespace Carnage
                     unassignedPlayers--;
                     i++;
                 }
-                else if (eventType == "Battle")
+                else if (eventType == "Battle") //2 characters battle with one of them getting a weapon beforehand
                 {
                     if (unassignedPlayers >= 2)
                     {
@@ -143,7 +153,7 @@ namespace Carnage
                     }
                     else continue;
                 }
-                else if (eventType == "Death")
+                else if (eventType == "Death") //1 character dies outside of combat
                 {
                     sb.AppendLine(list[i].getName() + " stepped off the platform too early and blew up.\n");
                     list[i].IsAlive = false;

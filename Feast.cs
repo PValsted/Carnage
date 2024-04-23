@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace Carnage
 {
+
+    /// <summary>
+    /// Simulates through the events of The Feast, which happens once close to the end of every simulation. Based on
+    /// a randomly generated event type, every character has an action and the events are recorded by a string
+    /// builder and returned as a string. The effects of the events modify the character's attributes along the way.
+    /// </summary>
     public class Feast
     {
         RNG rng = new RNG();
@@ -13,10 +19,14 @@ namespace Carnage
         Battle battle = new Battle();
         Loot loot = new Loot();
 
+        /// <summary>
+        /// Uses a while loop and a randomly-generated event type to cycle through the passed-in
+        /// list of characters and return the events and their consequences as a string
+        /// </summary>
         public string doFeast(Game game, List<character> list)
         {
             StringBuilder sb = new StringBuilder();
-            int i = 0, unassignedPlayers = game.ActivePlayers;
+            int i = 0, unassignedPlayers = game.ActivePlayers; //Unassigned players variable keeps track of how many players have not been selected for an event to ensure the index doesn't go out of range
             string eventType;
 
             sb.AppendLine("The Feast\n");
@@ -24,11 +34,12 @@ namespace Carnage
 
             rng.shuffleList(list);
 
-            while (i < list.Count)
+            //While loop simulates the events for every character
+            while (i < list.Count) //While list hasn't been exhausted
             {
                 eventType = rng.randomFeastEventType();
 
-                if (eventType == "None")
+                if (eventType == "None") //Character does not participate and nothing happens to them
                 {
                     int random = rng.randomInt(1, 3);
 
@@ -48,7 +59,7 @@ namespace Carnage
                     i++;
                     unassignedPlayers--;
                 }               
-                else if (eventType == "Gain")
+                else if (eventType == "Gain") //Character gains loot or is fed
                 {
                     int random = rng.randomInt(1, 5);
                     double rand = Math.Round(rng.randomDouble(4), 2);
@@ -74,7 +85,7 @@ namespace Carnage
                     else if (random == 4)
                     {
                         sb.AppendLine(list[i].getName() + " found some food in the Cornucopia and ate it.\n");
-                        list[i].Hunger += rand;
+                        if (game.Mode=="Realistic") list[i].Hunger += rand;
                         unassignedPlayers--;
                         i++;
                     }
@@ -91,7 +102,7 @@ namespace Carnage
                         i++;
                     }
                 }
-                else if (eventType == "Battle")
+                else if (eventType == "Battle") //Character gets into a battle with another character
                 {
                     int random = rng.randomInt(1, 3);
                     if (unassignedPlayers >= 2)
@@ -112,7 +123,7 @@ namespace Carnage
                         i = i + 2;
                         unassignedPlayers = unassignedPlayers - 2;
                     }
-                    else continue;
+                    else continue; //If there are fewer unnassigned players than the chosen player count, a different event type is selected for the character
                 }
             }
 

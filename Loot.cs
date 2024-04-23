@@ -6,10 +6,21 @@ using System.Threading.Tasks;
 
 namespace Carnage
 {
+
+    /// <summary>
+    /// This class is designed to select a random item from a loot table based on
+    /// rarity values and item types and apply it to a character, documenting the
+    /// actions with a string builder which is returned as a string.
+    /// </summary>
     public class Loot
     {
-        RNG rng = new RNG();        
+        RNG rng = new RNG();
 
+        /// <summary>
+        /// Based on the rarity level passed in, a loot table contained on a local csv file is
+        /// randomly selected and converted into an array which is returned to be used
+        /// to apply it to the character.
+        /// </summary>
         public string[] getLoot(string rarity, string type)
         {
             string[] csvLines = new string[4];
@@ -17,7 +28,7 @@ namespace Carnage
             bool doBreak = false;
             int length, rand;
             
-            if (type=="Weapon") csvLines = System.IO.File.ReadAllLines(@"..\..\..\loot.csv");
+            if (type=="Weapon") csvLines = System.IO.File.ReadAllLines(@"..\..\..\loot.csv"); //If the method calls specifically for a weapon
             else
             {
                 int randomType = rng.randomInt(0, 3);
@@ -40,7 +51,7 @@ namespace Carnage
 
                 if (randomRarity == 0) //Uncommon item (1 in 6 chance)
                 {
-                    while (doBreak == false)
+                    while (doBreak == false) //Cycles through items in loot table until an Uncommon one is selected
                     {
                         rand = rng.randomInt(0, length);
 
@@ -52,7 +63,7 @@ namespace Carnage
                 }
                 else //Common item (5 in 6 chance)
                 {
-                    while (doBreak == false)
+                    while (doBreak == false) //Cycles through items in loot table until a Common one is selected
                     {
                         rand = rng.randomInt(0, length);
 
@@ -69,7 +80,7 @@ namespace Carnage
 
                 if (randomRarity == 0) //Rare item (1 in 6 chance)
                 {
-                    while (doBreak == false)
+                    while (doBreak == false) //Cycles through items in loot table until a Rare one is selected
                     {
                         rand = rng.randomInt(0, length);
 
@@ -81,7 +92,7 @@ namespace Carnage
                 }
                 else //Uncommon item (5 in 6 chance)
                 {
-                    while (doBreak == false)
+                    while (doBreak == false) //Cycles through items in loot table until an Uncommon one is selected
                     {
                         rand = rng.randomInt(0, length);
 
@@ -98,7 +109,7 @@ namespace Carnage
 
                 if (randomRarity >= 0 && randomRarity < 2) //Uncommon item (1 in 3 chance)
                 {
-                    while (doBreak == false)
+                    while (doBreak == false) //Cycles through items in loot table until an Uncommon one is selected
                     {
                         rand = rng.randomInt(0, length);
 
@@ -110,7 +121,7 @@ namespace Carnage
                 }
                 else //Rare item (2 in 3 chance)
                 {
-                    while (doBreak == false)
+                    while (doBreak == false)//Cycles through items in loot table until a Rare one is selected
                     {
                         rand = rng.randomInt(0, length);
 
@@ -124,13 +135,19 @@ namespace Carnage
             return lootArray;
 
         }
+
+        /// <summary>
+        /// Based on the rarity level passed in, a loot table is retrieved in array form and
+        /// applied to the character based on the values contained in the array. This text is
+        /// recorded using a string builder and returned as a string to be displayed.
+        /// </summary>
         public string lootEvent(character character, string rarity)
         {
             string[] lootArray;
             lootArray = this.getLoot(rarity,"Both");
             StringBuilder sb = new StringBuilder();
 
-            if (lootArray[1]=="healing")
+            if (lootArray[1]=="healing") //If the loot item is a healing item, character is healed or the item is saved for later
             {
                 if (character.getHealth() < 20)
                 {
@@ -147,7 +164,7 @@ namespace Carnage
                     }
                     else
                     {
-                        sb.AppendLine(character.getName() + " found a " + lootArray[0] + ". " + character.getName() + " is at full health so " + character.getPronounSub().ToLower() + " save it for later.");
+                        sb.AppendLine(character.getName() + " found a " + lootArray[0] + ". " + character.getName() + " is at full health so " + character.getPronounSub().ToLower() + " saves it for later.");
                     }
                     
                 }
@@ -161,7 +178,7 @@ namespace Carnage
                     sb.AppendLine(character.getName() + " found a " + lootArray[0] + ".");
                 }
             }
-            else if (lootArray[1] == "explosive")
+            else if (lootArray[1] == "explosive") //If loot item is an explosive, the character's explosive slot is filled assuming they don't already have one
             {
                 if (character.HasExplosive==false)
                 {
@@ -173,7 +190,7 @@ namespace Carnage
                     sb.AppendLine(character.getName() + " found a " + lootArray[0] + ".");
                 }
             }
-            else
+            else //If loot item is a weapon, the character's appropriate values are changed to equip it, assuming they don't already have a better weapon
             {
                 if (character.getWeaponName() == "")
                 {
@@ -198,14 +215,20 @@ namespace Carnage
             return sb.ToString();
         }
 
+
+        /// <summary>
+        /// 1 of 3 (if Classic) or 1 of 6 (if Realistic) effects is selected to be applied to
+        /// a character to represent a potion effect. This takes care of any negative or positive
+        /// changes the potion effect has and returns the result in string form.
+        /// </summary>
         public string potionEvent(character character, Game game)
         {
             StringBuilder sb2 = new StringBuilder();
             int rand=0;
-            if (game.Mode=="Realistic") rand = rng.randomInt(0, 5);
-            else rand = rng.randomInt(0, 2);
+            if (game.Mode=="Realistic") rand = rng.randomInt(0, 5); //6 options if realistic
+            else rand = rng.randomInt(0, 2); //3 options if classic
 
-            if (rand == 0) //Health boost
+            if (rand == 0) //Health boost of 5 extra health
             {
                 character.Health = 25;
                 sb2.Append(character.getName() + " felt all injuries heal, and even felt healthier than ever before. " + character.getName() + " is now at 25 health.");               
@@ -257,25 +280,30 @@ namespace Carnage
             return sb2.ToString();
         }
 
+        /// <summary>
+        /// For the sponsor screen, the type of item a character needs most is decided
+        /// in order of most to least dire and returned as a string so the main form
+        /// can make decisions based on the returned type.
+        /// </summary>
         public string SponsorItemType(character character, Game game)
         {
-            if (character.Health <= 8)
+            if (character.Health <= 8) //If character health is 8 or lower, they need to be healed
             {
                 return "Healing";
             }
-            else if (character.getWeaponName() == "")
+            else if (character.getWeaponName() == "") //If character has no weapon, they need one
             {
                 return "Any Weapon";
             }
-            else if (game.Mode=="Realistic" && character.Hunger <= 3) 
+            else if (game.Mode=="Realistic" && character.Hunger <= 3) //If it's realistic mode and the character hunger is 3 or lower, they need to be fed
             {
                 return "Hunger";
             }
-            else if (character.HasExplosive==false)
+            else if (character.HasExplosive==false) //If the character has no explosive, they could use one
             {
                 return "Explosive";
             }
-            else
+            else //If character needs none of the above, they get a weapon damage boost of 2
             {
                 return "Boost";
             }

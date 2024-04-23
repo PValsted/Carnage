@@ -10,6 +10,12 @@ using System.Windows.Forms;
 
 namespace Carnage
 {
+    /// <summary>
+    /// This form provides the necessary code to make the custom character
+    /// screen for 48 characters functional. It allows for the user-defined names
+    /// and corresponding pronouns to be passed into corresponding character objects
+    /// that will then make up the simulation.
+    /// </summary>
     public partial class CustomCharacters48 : Form
     {
         List<character> charList = new List<character>();
@@ -23,6 +29,10 @@ namespace Carnage
             this.game = game;
         }
 
+        /// <summary>
+        /// Creates all 48 characters using the passed-in values
+        /// and puts them in a list which is passed into the simulation.
+        /// </summary>
         private void btnEnterCharacters_Click(object sender, EventArgs e)
         {
             //instantiates all 24 characters
@@ -550,17 +560,21 @@ namespace Carnage
 
                     charList = rng.shuffleList(charList);
 
-                    Sim1 game1 = new Sim1(charList, game);
+                    //The instance of the simulator form is created with the newly-generated character list and game passed in
+                    Simulation game1 = new Simulation(charList, game);
 
                     this.Hide();
                     game1.Show();
 
                 }
-                else MessageBox.Show("You must select pronouns for all characters.");
+                else MessageBox.Show("You must select pronouns for all characters."); //Message box shows if a pronoun isn't selected for every character
             }
-            else { MessageBox.Show("You must enter a name for all characters."); }
+            else MessageBox.Show("You must enter a name for all characters."); //Message box shows if a name isn't entered for every character
         }
 
+        /// <summary>
+        /// Returns the user to the start menu form
+        /// </summary>
         private void btnBack_Click(object sender, EventArgs e)
         {
             Start start = new Start();

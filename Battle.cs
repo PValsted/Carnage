@@ -8,25 +8,46 @@ using System.Threading.Tasks;
 
 namespace Carnage
 {
+
+    /// <summary>
+    /// Takes multiple characters and simulates a battle between them, with dodging,
+    /// fleeing, sparing, and healing as variables that can happen every turn. Different
+    /// battle mechanics are dependent on which gamemode is being played. The sentences that
+    /// reflect what happens each turn are generated in part randomly and based on the
+    /// attacker's weapon type. A battle continues until only 1 character is alive or
+    /// 1 or more characterss have been spared or have fled.
+    /// </summary>
     public class Battle
     {
         int numPlayers = 0;
         RNG rng = new RNG();
         List<character> battleList = new List<character>();
 
+        /// <summary>
+        /// Creates a battle instance with a default of 2 players
+        /// </summary>
         public Battle()
         {
           this.numPlayers = 2;
         }
 
+        /// <summary>
+        /// Creates a battle instance with a field for number of players
+        /// </summary>
         public Battle(int numPlayers) { 
             this.numPlayers = numPlayers;
         }
 
+        /// <summary>
+        /// Returns number of players
+        /// </summary>
         public int getNumPlayers() { 
             return numPlayers;
         }
 
+        /// <summary>
+        /// Changes number of players to a number 2 through 4
+        /// </summary>
         public void setNumPlayers(int numPlayers)
         {
             if (numPlayers == 2 || numPlayers == 3 || numPlayers==4)
@@ -34,12 +55,16 @@ namespace Carnage
             else this.numPlayers = 2;
         }
 
+        /// <summary>
+        /// Returns a sentence reflecting a character's turn in a battle. The string
+        /// is generated as usually one of three options for that character's weapon type.
+        /// </summary>
         public string getBattleText(character char1, character char2, string type)
         {
             StringBuilder sb2 = new StringBuilder();
             int random=0;
 
-            if (type == "Unarmed")
+            if (type == "Unarmed") //If attacker is unarmed
             {
                 random = rng.randomInt(1, 3);
 
@@ -55,8 +80,8 @@ namespace Carnage
                 {
                     sb2.Append(char1.getName() + " kicked " + char2.getName() + " in the " + rng.randomBodyPart() + ".");
                 }
-            }//end unarmed if
-            else if (type == "slash")
+            }
+            else if (type == "slash") //If attacker weapon type is slash
             {
                 random = rng.randomInt(1, 3);
 
@@ -72,8 +97,8 @@ namespace Carnage
                 {
                     sb2.Append(char1.getName() + " caught " + char2.getName() + " off guard and sliced across " + char2.getPronounPosAdj().ToLower() + " " + rng.randomBodyPart() + ".");
                 }
-            }//end slash if
-            else if (type == "stab")
+            }
+            else if (type == "stab") //If attacker weapon type is stab
             {
                 random = rng.randomInt(1, 3);
 
@@ -89,8 +114,8 @@ namespace Carnage
                 {
                     sb2.Append(char1.getName() + " started furiously trying to stab " + char2.getName() + " with " + char1.getPronounPosAdj().ToLower() + " " + char1.getWeaponName() + " and lands a hit.");
                 }
-            }//end stab if
-            else if (type == "slash/stab")
+            }
+            else if (type == "slash/stab") //If attacker weapon type is slash/stab
             {
                 random = rng.randomInt(1, 6);
 
@@ -118,8 +143,8 @@ namespace Carnage
                 {
                     sb2.Append(char1.getName() + " caught " + char2.getName() + " off guard and sliced across " + char2.getPronounPosAdj().ToLower() + " " + rng.randomBodyPart() + ".");
                 }
-            }//end slash/stab if
-            else if (type == "crush")
+            }
+            else if (type == "crush") //If attacker weapon type is crush
             {
                 random = rng.randomInt(1, 3);
 
@@ -133,10 +158,10 @@ namespace Carnage
                 }
                 else if (random == 3)
                 {
-                    sb2.Append(char1.getName() + " violently smashed " +  char2.getName() + "'s " + rng.randomBodyPart() + " with " + char1.getPronounPosAdj().ToLower() + " " + char1.getWeaponName() + ".");
+                    sb2.Append(char1.getName() + " violently smashed " + char2.getName() + "'s " + rng.randomBodyPart() + " with " + char1.getPronounPosAdj().ToLower() + " " + char1.getWeaponName() + ".");
                 }
-            }//end crush if
-            else if (type == "hand")
+            }
+            else if (type == "hand") //If attacker weapon type is hand
             {
                 random = rng.randomInt(1, 3);
 
@@ -152,8 +177,8 @@ namespace Carnage
                 {
                     sb2.Append(char1.getName() + " hit " + char2.getName() + " with a volley of punches and pounded " + char2.getPronounObj().ToLower() + " with " + char1.getPronounPosAdj().ToLower() + " " + char1.getWeaponName() + ".");
                 }
-            }//end hand if
-            else if (type == "bow")
+            }
+            else if (type == "bow") //If attacker weapon type is bow
             {
                 random = rng.randomInt(1, 3);
 
@@ -169,8 +194,8 @@ namespace Carnage
                 {
                     sb2.Append(char1.getName() + " aimed at " + char2.getName() + "'s " + rng.randomBodyPart() + " and landed a bullseye.");
                 }
-            }//end bow if
-            else if (type == "throwing")
+            }
+            else if (type == "throwing") //If attacker weapon type is throwing
             {
                 random = rng.randomInt(1, 3);
 
@@ -186,8 +211,8 @@ namespace Carnage
                 {
                     sb2.Append(char1.getName() + " took out a " + char1.getWeaponName() + " and launched it at " + char2.getName() + ".");
                 }
-            }//end throwing if
-            else if (type == "gun")
+            }
+            else if (type == "gun") //If attacker weapon type is gun
             {
                 random = rng.randomInt(1, 3);
 
@@ -203,8 +228,8 @@ namespace Carnage
                 {
                     sb2.Append(char1.getName() + " took cover and shot " + char2.getName() + " with " + char1.getPronounPosAdj().ToLower() + " " + char1.getWeaponName() + ".");
                 }
-            }// end gun if
-            else if (type == "special")
+            }
+            else if (type == "special") //If attacker weapon type is special (different results for specific weapons that fit into no category)
             {
                 if (char1.getWeaponName() == "flamethrower")
                 {
@@ -226,8 +251,8 @@ namespace Carnage
                 {
                     sb2.Append(char1.getName() + " pierced " + char2.getName() + " in the " + rng.randomBodyPart() + " with its fangs.");
                 }
-            }//end special if
-            else if (type == "Explosive")
+            }
+            else if (type == "Explosive") //If attacker weapon type is explosive
             {
                 random = rng.randomInt(1, 3);
 
@@ -243,24 +268,32 @@ namespace Carnage
                 {
                     sb2.Append(char1.getName() + " successfully hit " + char2.getName() + " with an explosive, causing lots of damage.");
                 }
-            }//end explosive if
+            }
 
             return sb2.ToString();
         }
 
+        /// <summary>
+        /// Simulates a battle between 2, 3, or 4 characters based on the number of players. Depending on the gamemode
+        /// being played, it is decided what action a character will take on their turn and what order they take
+        /// turns in. Health is modified based on how much damage an opposing character's weapon can cause, and unless
+        /// the player flees or is spared, the battle ends when only 1 character is left standing. The events of the battle
+        /// are returned as a string.
+        /// </summary>
         public string BattleEvent(character char1, character char2, character char3, character char4, Game game) 
         {
             StringBuilder sb = new StringBuilder();
             bool crit = false, dodge = false, flee = false, doesFlee = false, useExplosive = false, spare = false, doesSpare = false, spot0Attack = true;
 
-            if (this.getNumPlayers() == 2) {
+            if (this.getNumPlayers() == 2) //If battle is between 2 players, only first 2 passed in are added to the battle list
+            {
                 battleList.Add(char1);
                 battleList.Add(char2);
 
                 sb.AppendLine("A battle has broken out between " + battleList.ElementAt(0).getName() + " and " + battleList.ElementAt(1).getName() + ".");
             }
 
-            if (this.getNumPlayers() == 3)
+            if (this.getNumPlayers() == 3) //If battle is between 3 players, only first 3 passed in are added to the battle list
             {
                 battleList.Add(char1);
                 battleList.Add(char2);
@@ -269,7 +302,7 @@ namespace Carnage
                 sb.AppendLine("A battle has broken out between " + battleList.ElementAt(0).getName() + ", " + battleList.ElementAt(1).getName() + ", and " + battleList.ElementAt(2).getName() + ".");
             }
 
-            if (this.getNumPlayers() == 4)
+            if (this.getNumPlayers() == 4) //If battle is between 4 players, all 4 passed in are added to the battle list
             {
                 battleList.Add(char1);
                 battleList.Add(char2);
@@ -280,9 +313,9 @@ namespace Carnage
                     ", " + battleList.ElementAt(2).getName() + ", and " + battleList.ElementAt(3).getName() + ".");
             }
 
-            while (battleList.Count > 1)
+            while (battleList.Count > 1) //When a character is out of the battle, they are removed, and until there is only 1 left, the loop cycles turns
             {
-                battleList = rng.shuffleList(battleList);
+                battleList = rng.shuffleList(battleList); //list is shuffled every turn to randomize who is taking a turn 
 
                 crit = rng.critAttack();
                 dodge = rng.dodge();
@@ -290,12 +323,11 @@ namespace Carnage
                 useExplosive = rng.useExplosive();
                 spare = rng.spare();
 
-                if (game.Mode == "Realistic") spot0Attack = rng.player1Attack(battleList[0], battleList[1]);
-                else spot0Attack = true;
+                if (game.Mode == "Realistic") spot0Attack = rng.player1Attack(battleList[0], battleList[1]); //If the gamemode is Realistic, the decision on which character attacks this turn is skewed by combat level
+                else spot0Attack = true; //Otherwise, the character in the first spot on the shuffled list attacks every time (pure randomness)
 
-                if (battleList.ElementAt(1).aliveCheck() == true)
+                if (battleList.ElementAt(1).aliveCheck() == true) //If there is more than 1 character alive in the battle
                 {
-
                     //Decides if player will flee
                     if (battleList.ElementAt(0).getHealth() <= battleList.ElementAt(1).getHealth() / 2 && flee == true )
                     {
@@ -534,8 +566,9 @@ namespace Carnage
                             }
                         }
                     }
-                }
+                } //End character's turn
 
+                //Happens after the character's turn if the character they are facing has been defeated, has fled, or has been spared
                 if (battleList.ElementAt(1).aliveCheck() == false) //If player 1 is defeated
                 {
                     battleList.ElementAt(0).Kills++;
@@ -558,7 +591,7 @@ namespace Carnage
                             battleList.ElementAt(0).setWeaponType(battleList.ElementAt(1).getWeaponType());
                         }
                     }
-                    battleList.Remove(battleList.ElementAt(1));
+                    battleList.Remove(battleList.ElementAt(1)); //Character is removed from the list
                 }
                 else if (battleList.ElementAt(0).aliveCheck() == false) //If character 0 is defeated
                 {
@@ -582,9 +615,8 @@ namespace Carnage
                             battleList.ElementAt(1).setWeaponType(battleList.ElementAt(0).getWeaponType());
                         }
                     }
-                    battleList.Remove(battleList.ElementAt(0));
+                    battleList.Remove(battleList.ElementAt(0)); //Character is removed from the list
                 }
-
             }
 
             if (battleList.Count == 1) //If only one player remains, battle is over
@@ -607,12 +639,16 @@ namespace Carnage
                                  " health. ***");
             }
             
-
             battleList.Clear();
 
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Simulates a battle between a character and an NPC. This is the same as a normal
+        /// battle event, except characters can't flee or be spared. The winner cannot pick up
+        /// the loser's weapon and a kill is not given to them.
+        /// </summary>
         public string NPCBattleEvent(character char1, character char2, Game game)
         {
 
@@ -624,7 +660,7 @@ namespace Carnage
 
             sb3.AppendLine("A battle has broken out between " + battleList.ElementAt(0).getName() + " and " + battleList.ElementAt(1).getName() + ".");
 
-            while (battleList.Count > 1)
+            while (battleList.Count > 1) //When a character is out of the battle, they are removed, and until there is only 1 left, the loop cycles turns
             {
                 battleList = rng.shuffleList(battleList);
 
@@ -632,7 +668,7 @@ namespace Carnage
                 dodge = rng.dodge();
                 useExplosive = rng.useExplosive();
 
-                if (battleList.ElementAt(1).aliveCheck() == true)
+                if (battleList.ElementAt(1).aliveCheck() == true) //If both characters are alive at the beginning of the turn
                 {
                     //Player uses healing item if they have one stored and their health is 8 or lower
                     if (battleList.ElementAt(0).getHealth() <= 8 && battleList.ElementAt(0).isHealSlotFilled() == true)

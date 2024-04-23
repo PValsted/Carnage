@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace Carnage
 {
+
+    /// <summary>
+    /// Simulates through the events of an Arena Event by randomly picking one of four unique scenarios. Uses 
+    /// .csv files to import an action for each character by category and make changes based on that category.
+    /// The events are documented by a string builder and returned as a string.
+    /// </summary>
     public class ArenaEvent
     {
         RNG rng = new();
@@ -13,17 +19,22 @@ namespace Carnage
         Battle battle = new();
         bool doneMonkey = false, doneEggs = false, doneFrost = false, doneBombs = false;
 
+        /// <summary>
+        /// Generates a random int to decide which of the four Arena Events are picked and then retrieves the text.
+        /// The bool that records that the event happened is set to true so that the same Arena Event can't happen twice
+        /// in one match.
+        /// </summary>
         public string doArenaEvent(Game game, List<character> list) 
         {
             int rand = rng.randomInt(1,4);
 
-            if (rand == 1)
+            if (rand == 1)//Killer MonkeysMonkeys
             {
-                if (doneMonkey==false)
+                if (doneMonkey==false) //If the Killer Monkey Event has not been done yet
                 {
                     return killerMonkeys(game, list);
                 }
-                else
+                else //If so, pick another Event
                 {
                     rand = rng.randomInt(1, 3);
                     if (rand==1) return Eggs(game, list);
@@ -31,13 +42,13 @@ namespace Carnage
                     else return bombTrees(game, list);
                 }
             }
-            else if (rand == 2)
+            else if (rand == 2)//Eggs
             {
-                if (doneEggs == false)
+                if (doneEggs == false) //If the Eggs Event has not been done yet
                 {
                     return Eggs(game, list);
                 }
-                else
+                else //If so, pick another Event
                 {
                     rand = rng.randomInt(1, 3);
                     if (rand == 1) return killerMonkeys(game, list);
@@ -45,13 +56,13 @@ namespace Carnage
                     else return bombTrees(game, list);
                 }
             }
-            else if (rand == 3)
+            else if (rand == 3)//Killer Frost
             {
-                if (doneFrost == false)
+                if (doneFrost == false) //If the Killer Frost Event has not been done yet
                 {
                     return frost(game, list);
                 }
-                else
+                else //If so, pick another Event
                 {
                     rand = rng.randomInt(1, 3);
                     if (rand == 1) return Eggs(game, list);
@@ -59,13 +70,13 @@ namespace Carnage
                     else return bombTrees(game, list);
                 }
             }
-            else
+            else//Bomb Trees
             {
-                if (doneBombs == false)
+                if (doneBombs == false)//If the Bomb Trees Event has not been done yet
                 {
                     return bombTrees(game, list);
                 }
-                else
+                else //If so, pick another Event
                 {
                     rand = rng.randomInt(1, 3);
                     if (rand == 1) return Eggs(game, list);
@@ -77,6 +88,11 @@ namespace Carnage
 
         }
 
+        /// <summary>
+        /// Uses the character list and .csv file to simulate the Killer Monkey Event.
+        /// The consequences of the event change the respective character attributes
+        /// and the events are recorded and returned as a string.
+        /// </summary>
         public string killerMonkeys(Game game, List<character> list)
         {
             StringBuilder sb = new();
@@ -93,9 +109,11 @@ namespace Carnage
             csvLines = System.IO.File.ReadAllLines(@"..\..\..\eventmonkeys.csv");
             length = csvLines.Length - 1;
 
+            //Header, appears at the top only once:
             sb.AppendLine("Arena Event - Killer Monkeys\n");
             sb.AppendLine("Alarms blare throughout the arena. It’s announced that killer monkeys have been released all around. Specifically, these apes were trained to consume human flesh and were then starved for several days.\n");
 
+            //While loop simulates the events for every character
             while (i < list.Count) //While list hasn't been exhausted
             {
                 rand = rng.randomInt(0, length);
@@ -107,11 +125,11 @@ namespace Carnage
                 {
                     eventText = ei.replaceText(monkeyArray[0], list[i]);
 
-                    if (monkeyArray[2] == "None")
+                    if (monkeyArray[2] == "None") //Character survives
                     {
                         sb.AppendLine(eventText+"\n");
                     }
-                    else if (monkeyArray[2] == "NPCBattle")
+                    else if (monkeyArray[2] == "NPCBattle") //1 character fights an NPC
                     {
                         sb.AppendLine(eventText + battle.NPCBattleEvent(list[i], monkey, game)+"\n");
                     }
@@ -123,11 +141,11 @@ namespace Carnage
                 {
                     eventText = ei.replaceText(monkeyArray[0], list[i], list[i+1]);
 
-                    if (monkeyArray[2] == "None")
+                    if (monkeyArray[2] == "None") //2 characters survive together
                     {
                         sb.AppendLine(eventText + "\n");
                     }
-                    else if (monkeyArray[2] == "NPCBattle2")
+                    else if (monkeyArray[2] == "NPCBattle2") //Character forces other character into NPC battle
                     {
                         sb.AppendLine(eventText + battle.NPCBattleEvent(list[i + 1], monkey, game) + "\n");
                     }
@@ -136,7 +154,7 @@ namespace Carnage
                     unassignedPlayers -= 2;
 
                 }
-                else continue;
+                else continue; //If one of the above criteria is not met, the loop cycles through again until a valid criterion is met
 
             }
 
@@ -145,6 +163,11 @@ namespace Carnage
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Uses the character list and .csv file to simulate the Eggs Event.
+        /// The consequences of the event change the respective character attributes
+        /// and the events are recorded and returned as a string.
+        /// </summary>
         public string Eggs(Game game, List<character> list)
         {
             StringBuilder sb2 = new();
@@ -174,9 +197,11 @@ namespace Carnage
             csvLines = System.IO.File.ReadAllLines(@"..\..\..\eventegg.csv");
             length = csvLines.Length - 1;
 
+            //Header, appears at the top only once:
             sb2.AppendLine("Arena Event - Eggs\n");
             sb2.AppendLine("Alarms blare throughout the arena. It’s announced that mysterious eggs have been placed all around. No other information is given to the competitors.\n");
 
+            //While loop simulates the events for every character
             while (i < list.Count) //While list hasn't been exhausted
             {
                 rand = rng.randomInt(0, length);
@@ -190,6 +215,7 @@ namespace Carnage
                 basilisk.Health = 10;
                 basilisk.IsAlive = true;
 
+                //One of the 3 enemy NPCs is selected at random for a character to potentially face
                 if (randChar==1)
                 {
                     randomCharacter = raptor;
@@ -207,15 +233,15 @@ namespace Carnage
                 {
                     eventText = ei.replaceText(eggArray[0], list[i]);
 
-                    if (eggArray[2] == "None")
+                    if (eggArray[2] == "None") //Character survives
                     {
                         sb2.AppendLine(eventText + "\n");
                     }
-                    else if (eggArray[2] == "NPCBattle")
+                    else if (eggArray[2] == "NPCBattle") //Character fights random NPC
                     {
                         sb2.AppendLine(eventText + battle.NPCBattleEvent(list[i], randomCharacter, game) + "\n");
                     }
-                    else if (eggArray[2] == "Damage")
+                    else if (eggArray[2] == "Damage") //Character takes damage
                     {
                         list[i].hurt(10);
                         if (list[i].IsAlive==true) //If player survives egg
@@ -242,7 +268,7 @@ namespace Carnage
                     i += 2;
                     unassignedPlayers -= 2;
                 }
-                else continue;
+                else continue; //If one of the above criteria is not met, the loop cycles through again until a valid criterion is met
             }
 
             doneEggs = true;
@@ -250,6 +276,11 @@ namespace Carnage
             return sb2.ToString();
         }
 
+        /// <summary>
+        /// Uses the character list and .csv file to simulate the Killer Frost Event.
+        /// The consequences of the event change the respective character attributes
+        /// and the events are recorded and returned as a string.
+        /// </summary>
         public string frost(Game game, List<character> list)
         {
             StringBuilder sb3 = new();
@@ -261,9 +292,11 @@ namespace Carnage
             csvLines = System.IO.File.ReadAllLines(@"..\..\..\eventfrost.csv");
             length = csvLines.Length - 1;
 
+            //Header, appears at the top only once:
             sb3.AppendLine("Arena Event - Killer Frost\n");
             sb3.AppendLine("Alarms blare throughout the arena. It’s announced that the temperature of the arena will be reduced to 0 degrees Celsius. The warm climate very rapidly becomes frigid, and it starts to snow.\n");
 
+            //While loop simulates the events for every character
             while (i < list.Count) //While list hasn't been exhausted
             {
                 rand = rng.randomInt(0, length);
@@ -274,11 +307,11 @@ namespace Carnage
                 {
                     eventText = ei.replaceText(frostArray[0], list[i]);
 
-                    if (frostArray[2] == "None")
+                    if (frostArray[2] == "None") //Character survives
                     {
                         sb3.AppendLine(eventText + "\n");
                     }
-                    else if (frostArray[2] == "Death")
+                    else if (frostArray[2] == "Death") //1 character dies
                     {
                         sb3.AppendLine(eventText + "\n");
                         list[i].hurt(100);
@@ -296,7 +329,7 @@ namespace Carnage
                     i += 2;
                     unassignedPlayers -= 2;
                 }
-                else continue;
+                else continue; //If one of the above criteria is not met, the loop cycles through again until a valid criterion is met
             }
 
             doneFrost = true;
@@ -304,6 +337,11 @@ namespace Carnage
             return sb3.ToString();
         }
 
+        /// <summary>
+        /// Uses the character list and .csv file to simulate the Bomb Trees Event.
+        /// The consequences of the event change the respective character attributes
+        /// and the events are recorded and returned as a string.
+        /// </summary>
         public string bombTrees(Game game, List<character> list)
         {
             StringBuilder sb4 = new();
@@ -315,9 +353,11 @@ namespace Carnage
             csvLines = System.IO.File.ReadAllLines(@"..\..\..\eventbombtrees.csv");
             length = csvLines.Length - 1;
 
+            //Header, appears at the top only once:
             sb4.AppendLine("Arena Event - Bomb Trees\n");
             sb4.AppendLine("Alarms blare throughout the arena. It’s announced that approximately a fourth of the trees around the arena have been turned into bombs. With very few unforested areas, the arena has become very unstable.\n");
 
+            //While loop simulates the events for every character
             while (i < list.Count) //While list hasn't been exhausted
             {
                 rand = rng.randomInt(0, length);
@@ -328,11 +368,11 @@ namespace Carnage
                 {
                     eventText = ei.replaceText(bombArray[0], list[i]);
 
-                    if (bombArray[2] == "None")
+                    if (bombArray[2] == "None") //Character survives
                     {
                         sb4.AppendLine(eventText + "\n");
                     }
-                    else if (bombArray[2] == "Death")
+                    else if (bombArray[2] == "Death") //1 character dies
                     {
                         sb4.AppendLine(eventText + "\n");
                         list[i].hurt(100);
@@ -345,19 +385,19 @@ namespace Carnage
                 {
                     eventText = ei.replaceText(bombArray[0], list[i], list[i + 1]);
 
-                    if (bombArray[2] == "Death")
+                    if (bombArray[2] == "Death") //1 character kills other
                     {
                         sb4.AppendLine(eventText + "\n");
                         list[i+1].hurt(100);
                         list[i].Kills++;
                     }
-                    else if (bombArray[2] == "Deathx2")
+                    else if (bombArray[2] == "Deathx2") //2 characters die
                     {
                         sb4.AppendLine(eventText + "\n");
                         list[i].hurt(100);
                         list[i + 1].hurt(100);
                     }
-                    else if (bombArray[2] == "Battle")
+                    else if (bombArray[2] == "Battle") //2 characters fight
                     {
                         sb4.AppendLine(eventText + " " + battle.BattleEvent(list[i], list[i+1], list[i + 1], list[i + 1], game));
                     }
@@ -365,7 +405,7 @@ namespace Carnage
                     i += 2;
                     unassignedPlayers -= 2;
                 }
-                else continue;
+                else continue; //If one of the above criteria is not met, the loop cycles through again until a valid criterion is met
             }
 
             doneBombs = true;

@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace Carnage
 {
+
+    /// <summary>
+    /// This class is designed to represent an instance of the simulation and keep track of stats throughout the game and options
+    /// selected before the game, such as the gamemode. This object is passed into many methods to change different things based
+    /// on the attributes of the simulation as a whole.
+    /// </summary>
     public class Game
     {
         int day = 1, players = 24, funValue, activePlayers = 24, events=0, bloodbathDeaths=0, arenaEventDeaths=0, feastDeaths=0;
@@ -13,24 +19,16 @@ namespace Carnage
         bool isBloodbath = true, isEvent = false, isFeast= false, isActive= true, isDay= true, isDeath= false, hadFeast= false, doFullBattles= true, showCombatLevel=false, doSponsor=true;
         RNG rng = new();
 
-        public Game() 
-        {
-            FunValue = rng.funValue();
-        }
-        
+        /// <summary>
+        /// Creates a game instance with a field for players
+        /// </summary>
         public Game(int players) 
         { 
             this.players = players;
-            FunValue = rng.funValue();
+            FunValue = rng.funValue(); //A random value 1-1000 is generated, currently only 1 thing is affected by this variable; designed to cause very rare actions to occur
         }
 
-        public Game(int players, string mode)
-        {
-            this.players = players;
-            this.Mode = mode;
-            FunValue = rng.funValue();
-        }
-
+        //Encapsulated fields
         public int Day { get => day; set => day = value; }
         public int Players { get => players; set => players = value; }
         public bool IsBloodbath { get => isBloodbath; set => isBloodbath = value; }
@@ -40,7 +38,7 @@ namespace Carnage
         public int ActivePlayers 
         { 
             get => activePlayers;
-            set 
+            set //Ensures active players can't drop below 1
             {
                 if (value > 0) activePlayers = value;
                 else activePlayers = 1;

@@ -489,7 +489,7 @@
             btnTagSearch.TabIndex = 69;
             btnTagSearch.Text = "Search By Tag";
             btnTagSearch.UseVisualStyleBackColor = true;
-            btnTagSearch.Click += button1_Click;
+            btnTagSearch.Click += btnTagSearch_Click;
             // 
             // txtSearch
             // 

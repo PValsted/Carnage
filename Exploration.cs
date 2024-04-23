@@ -13,6 +13,12 @@ using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
 
 namespace Carnage
 {
+
+    /// <summary>
+    /// Takes a character and simulates them exploring one of two landmarks in the arena.
+    /// A block of text made up of three randomly selected events is generated, and different consequences
+    /// are associated with each choice. Damage is often taken, loot is found, and NPCs may be battled
+    /// </summary>
     public class Exploration
     {
         RNG rng = new RNG();
@@ -23,31 +29,40 @@ namespace Carnage
         public bool TempleLootFound { get => templeLootFound; set => templeLootFound = value; }
         public bool TowerLootFound { get => towerLootFound; set => towerLootFound = value; }
 
+        /// <summary>
+        /// Retrieves a series of events for the character passed into one of two
+        /// randomly-selected landmarks.
+        /// </summary>
         public string explorationEvent(character character, Game game)
         {
             int rand = rng.randomInt(0, 1);
 
             if (rand == 0)
             {
-                return this.watchtower(character, game);
+                return this.watchtower(character, game); //Watchtower selected
             }
             else
             {
-                return this.temple(character);
+                return this.temple(character); //Abandoned Temple selected
             }
             
         }
 
+        /// <summary>
+        /// Generates events corresponding to the Temple landmark for the character passed in.
+        /// Characters may take damage/die and find loot in this landmark.
+        /// </summary>
         public string temple(character character)
         {
             StringBuilder sb = new StringBuilder();
             bool isDone = false;
 
+            //While loop that never ends naturally is used so that some of the randomly selected events may result in the event ending early with break statements
             while (isDone == false) {
                 int rand = rng.randomInt(1, 4);
                 int damage;
 
-                //Discovery
+                //Discovery: 1st sentence corresponds to character finding the landmark
                 if (rand == 1)
                 {
                     sb.AppendLine(character.getName() + " stumbled upon an abandoned stone temple by a cliffside in the forest.");
@@ -60,13 +75,13 @@ namespace Carnage
                 {
                     sb.AppendLine("Seeing an ancient-looking temple made of stone ahead, " + character.getName() + " approached quietly.");
                 }
-                else if (rand == 4)
+                else if (rand == 4) //character does not investigate further, break from loop
                 {
                     sb.AppendLine("The empty-looking temple that stood in front of " + character.getName() + " scared " + character.getPronounObj().ToLower() + ", so " + character.getPronounSub().ToLower() + " decided not to investigate.");
                     break;
                 }
 
-                //Examining
+                //Examining: 2nd sentence corresponds to character looking at the entrance to the landmark
                 rand = rng.randomInt(1, 5);
                 if (rand == 1)
                 {
@@ -89,9 +104,9 @@ namespace Carnage
                     sb.AppendLine("Putting aside " + character.getPronounPosAdj().ToLower() + " fear, " + character.getName() + " took a deep breath and walked into the temple.");
                 }
 
-                //Outcome
+                //Outcome: 3rd sentence corresponds to the results of the event
                 rand = rng.randomInt(1, 8);
-                if (rand == 1)
+                if (rand == 1) //Activates trap: causes damage
                 {
                     damage = rng.randomInt(4,6);
                     character.hurt(damage);
@@ -106,7 +121,7 @@ namespace Carnage
                                          
                     break;
                 }
-                else if (rand == 2)
+                else if (rand == 2) //Activates trap: causes damage
                 { 
                     damage= rng.randomInt(6,8);
                     character.hurt(damage);
@@ -121,17 +136,17 @@ namespace Carnage
                                            
                     break;
                 }
-                else if (rand == 3)
+                else if (rand == 3) //Nothing happens
                 {
                     sb.AppendLine(character.getName() + " made it through many rooms before carelessly stepping on a pressure plate. Although " + character.getPronounSub().ToLower() + " narrowly dodged the arrow, " + character.getPronounSub().ToLower() + " decided to cut " + character.getPronounPosAdj().ToLower() + " losses and turn back.");
                     break;
                 }
-                else if (rand == 4)
+                else if (rand == 4) //Gets common loot
                 {
                     sb.Append("Reaching a treasure room unscathed, " + character.getName() + " found something in a rusty chest. " + loot.lootEvent(character, "Common"));
                     break;
                 }
-                else if (rand == 5)
+                else if (rand == 5) //Activates trap: causes damage
                 {
                     character.hurt(2);
                     if (character.IsAlive == true) //Character survives trap
@@ -145,18 +160,18 @@ namespace Carnage
                     
                     break;
                 }
-                else if (rand == 6)
+                else if (rand == 6) //Gets common loot
                 {
                     sb.Append(character.getName() + " managed to avoid every trap due to blind luck and found a treasure chest. " + loot.lootEvent(character, "Common"));
                     break;
                 }
-                else if (rand == 7)
+                else if (rand == 7) //Death
                 {
                     sb.AppendLine(character.getName() + " found a secret passage. The door closed behind " + character.getPronounObj().ToLower() + " and the floor dropped from under " + character.getPronounObj().ToLower() + ", causing " + character.getPronounObj().ToLower() + " to fall to " + character.getPronounPosAdj().ToLower() + " death.");
                     character.hurt(100);
                     break;
                 }
-                else if (rand == 8) 
+                else if (rand == 8) //First character to trigger this in each simulation gets rare loot, or common otherwise
                 {
                     if (templeLootFound==false) //If this is the first time this option was triggered
                     {
@@ -172,8 +187,12 @@ namespace Carnage
                 }
             }
             return sb.ToString();
-        }//end temple
+        }
 
+        /// <summary>
+        /// Generates events corresponding to the Watchtower landmark for the character passed in.
+        /// Characters may take damage/die, battle an NPC, and find loot in this landmark.
+        /// </summary>
         public string watchtower(character character, Game game)
         {
             StringBuilder sb2 = new StringBuilder();
@@ -182,9 +201,10 @@ namespace Carnage
 
             bool isDone = false;
 
+            //While loop that never ends naturally is used so that some of the randomly selected events may result in the event ending early with break statements
             while (isDone == false)
             {
-                //Discovery
+                //Discovery: 1st sentence corresponds to character finding the landmark
                 if (rand == 1)
                 {
                     sb2.AppendLine("At the top of the tallest hill, an old watchtower sat. Although " + character.getName() + " was nervous about how much it stuck out, " + character.getPronounSub().ToLower() + " approached.");
@@ -197,7 +217,7 @@ namespace Carnage
                 {
                     sb2.AppendLine("In the distance, an eerie-looking watchtower sat within " + character.getName() + "'s view. " + character.getPronounSub() + " decided to go to it.");
                 }
-                else if (rand == 4)
+                else if (rand == 4) //character does not investigate further, break from loop
                 {
                     sb2.AppendLine(character.getName() + " found a 4-story watchtower near " + character.getPronounPosAdj().ToLower() + " camp. Instead of investigating, " + character.getPronounSub().ToLower() + " decided " + character.getPronounSub().ToLower() + "'d better move " + character.getPronounPosAdj().ToLower() + " spot.");
                     break;
@@ -207,7 +227,7 @@ namespace Carnage
                     sb2.AppendLine(character.getName() + " thought " + character.getPronounSub().ToLower() + " saw something and climbed a hill. On top, " + character.getPronounSub().ToLower() + " saw a watchtower covered in moss and ivy. " + character.getPronounSub() + " went up to examine it.");
                 }
 
-                //Examining
+                //Examining: 2nd sentence corresponds to character looking at the entrance to the landmark
                 rand = rng.randomInt(1, 5);
                 if (rand == 1) 
                 {
@@ -225,16 +245,16 @@ namespace Carnage
                 {
                     sb2.AppendLine(character.getPronounSub() + " got a strange feeling as " + character.getPronounSub().ToLower() + " approached the entrance. Against " + character.getPronounPosAdj().ToLower() + " better judgment, " + character.getPronounSub().ToLower() + " walked through the door and onto the first floor.");
                 }
-                else if (rand == 5)
+                else if (rand == 5) //character does not investigate further, break from loop
                 {
                     sb2.AppendLine("Hearing strange creaking sounds coming from farther up the tower, " + character.getName() + " decided to turn back.");
                     break;
                 }
 
-                //Outcome
+                //Outcome: 3rd sentence corresponds to the results of the event
                 rand = rng.randomInt(1, 5);
 
-                if (rand == 1)
+                if (rand == 1) //Takes damage
                 {
                     damage = rng.randomInt(4, 5);
                     character.hurt(damage);
@@ -249,7 +269,7 @@ namespace Carnage
 
                     break;
                 }
-                else if (rand==2)
+                else if (rand==2) //First character to trigger this in each simulation battles NPC and gets rare loot, gets common loot otherwise
                 {
                     character dummy = new character("The Living Dummy", "They");
                     dummy.Health = 10;
@@ -276,17 +296,17 @@ namespace Carnage
                     }
 
                 }
-                else if (rand == 3)
+                else if (rand == 3) //Gets common loot
                 {
                     sb2.AppendLine("On the second floor, " + character.getPronounSub().ToLower() + " found an item in a hidden compartment. " + loot.lootEvent(character, "Common") + character.getPronounSub() + " heard noise from above and fled the tower quickly.");
                     break;
                 }
-                else if (rand == 4)
+                else if (rand == 4) //Nothing happens
                 {
                     sb2.AppendLine("Seeing that the ladder was broken, " + character.getName() + " took " + character.getPronounObj().ToLower() + " chances and launched " + character.getPronounRefl().ToLower() + " toward the rungs higher up. " + character.getPronounSub() + " missed and decided to turn back.");
                     break;
                 }
-                else if (rand == 5)
+                else if (rand == 5) //Gets a random potion effect applied to them
                 {
                     sb2.AppendLine("In a random cabinet on the first floor, " + character.getName() + " found a strange-looking liquid. Some unseen force compelled " + character.getPronounObj().ToLower() + " to drink it, so " + character.getPronounSub().ToLower() + " took a sip. " + loot.potionEvent(character, game));
                     if (character.IsAlive==true) //If potion doesn't kill character
@@ -300,7 +320,6 @@ namespace Carnage
                         break;
                     }                  
                 }
-
             }
             return sb2.ToString();
         }

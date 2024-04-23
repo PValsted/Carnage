@@ -9,12 +9,24 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Carnage
 {
+    /// <summary>
+    /// This class is designed to import characters from a MySQL Database and convert them
+    /// into Character objects. This includes support for searching the database by a tag
+    /// and generating a random list of characters form the database.
+    /// </summary>
     public class CharacterImporter
     {
         RNG rng = new RNG();
 
+        /// <summary>
+        /// Sends a line of SQL to the database to retrieve and return a number to confirm
+        /// a user-given character name is in the database.
+        /// </summary>
         public int characterCount(string charID)
         {
+            //The below set of MySQL objects use the connection string to connect to the server and pass in the
+            //generated MySQL command. This result is passed back in array form, and each method extracts
+            //the necessary values. This happens in just about all of this class's methods.
             string sql = "Server=sql5.freesqldatabase.com;Database=sql5693000;Uid=sql5693000;Pwd=yD7AbEqn2I;";
             MySqlConnection con = new MySqlConnection(sql);
 
@@ -33,6 +45,10 @@ namespace Carnage
             return num;
         }
 
+        /// <summary>
+        /// Sends a line of SQL to the database to retrieve and return the total number of characters
+        /// entered in the database.
+        /// </summary>
         public int totalCount()
         {
             string sql = "Server=sql5.freesqldatabase.com;Database=sql5693000;Uid=sql5693000;Pwd=yD7AbEqn2I;";
@@ -53,6 +69,11 @@ namespace Carnage
             return num;
         }
 
+        /// <summary>
+        /// Takes a user-given tag and searches the database to return a the number
+        /// of characters that match a given tag, as well as which of the three tag
+        /// attributes it should search by.
+        /// </summary>
         public int searchTagCount(string tag, int number)
         {
             string sql = "Server=sql5.freesqldatabase.com;Database=sql5693000;Uid=sql5693000;Pwd=yD7AbEqn2I;";
@@ -73,6 +94,12 @@ namespace Carnage
             return num;
         }
 
+        /// <summary>
+        /// Takes a user-given tag and searches the database to return a list of characters
+        /// matching that tag. Since there are three tag attributes in the MySQL database,
+        /// this method searches through every combination of tags, as the tag could be in
+        /// any of the three slots.
+        /// </summary>
         public string searchTag(string tag)
         {
             string sql = "Server=sql5.freesqldatabase.com;Database=sql5693000;Uid=sql5693000;Pwd=yD7AbEqn2I;";
@@ -89,7 +116,8 @@ namespace Carnage
 
             StringBuilder sb = new StringBuilder();
 
-            if (intTag1Count > 0 && intTag2Count == 0)
+            //Below are the different combinations of tag attributes
+            if (intTag1Count > 0 && intTag2Count == 0) //If there are only characters matching that tag in the tag1 attribute
             {
                 MySqlCommand sqlComd = new MySqlCommand(strTag1, con);
                 DataSet dsSQLDataSet = new DataSet();
@@ -105,7 +133,7 @@ namespace Carnage
                 con.Close();
                 return sb.ToString();
             }
-            else if (intTag2Count > 0 && intTag1Count == 0 && intTag3Count == 0)
+            else if (intTag2Count > 0 && intTag1Count == 0 && intTag3Count == 0) //If there are only characters matching that tag in the tag2 attribute
             {
                 MySqlCommand sqlComd = new MySqlCommand(strTag2, con);
                 DataSet dsSQLDataSet = new DataSet();
@@ -121,7 +149,7 @@ namespace Carnage
                 con.Close();
                 return sb.ToString();
             }
-            else if (intTag3Count > 0 && intTag2Count == 0 && intTag1Count == 0)
+            else if (intTag3Count > 0 && intTag2Count == 0 && intTag1Count == 0) //If there are only characters matching that tag in the tag3 attribute
             {
                 MySqlCommand sqlComd = new MySqlCommand(strTag3, con);
                 DataSet dsSQLDataSet = new DataSet();
@@ -137,7 +165,7 @@ namespace Carnage
                 con.Close();
                 return sb.ToString();
             }
-            else if (intTag1Count > 0 && intTag2Count > 0)
+            else if (intTag1Count > 0 && intTag2Count > 0) //If there are characters matching that tag in both the tag1 and tag2 attribute
             {
                 MySqlCommand sqlComd = new MySqlCommand(strTag1, con);
                 DataSet dsSQLDataSet = new DataSet();
@@ -166,7 +194,7 @@ namespace Carnage
                 con.Close();
                 return sb.ToString();
             }
-            else if (intTag2Count > 0 && intTag3Count > 0)
+            else if (intTag2Count > 0 && intTag3Count > 0) //If there are characters matching that tag in both the tag2 and tag3 attribute
             {
                 MySqlCommand sqlComd = new MySqlCommand(strTag2, con);
                 DataSet dsSQLDataSet = new DataSet();
@@ -202,6 +230,9 @@ namespace Carnage
             };
         }
 
+        /// <summary>
+        /// Uses the total character count to return a list of every character in the MySql Database.
+        /// </summary>
         public string ShowAll()
         {
             string sql = "Server=sql5.freesqldatabase.com;Database=sql5693000;Uid=sql5693000;Pwd=yD7AbEqn2I;";
@@ -228,6 +259,10 @@ namespace Carnage
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Generates a list of unique random ints totalling the number inputted and returns the 
+        /// name of a character corresponding to that index number, returning them in list form.
+        /// </summary>
         public List<string> Randomize(int number)
         {
             List<string> stringList = new List<string>();
@@ -258,6 +293,10 @@ namespace Carnage
             return stringList;
         }
 
+        /// <summary>
+        /// Given a list of strings matching the names of characters in the MySQL Database, this method
+        /// returns another string list containing the pronouns matching each character in the right order.
+        /// </summary>
         private List<string> pronounList(List<string> list, int number)
         {
             List<string> pronounList = new List<string>();
@@ -283,6 +322,10 @@ namespace Carnage
             return pronounList;
         }
 
+        /// <summary>
+        /// Given a list of strings matching the names of characters in the MySQL Database, this method
+        /// returns another string list containing the speed values matching each character in the right order.
+        /// </summary>
         private List<double> speedList(List<string> list, int number)
         {
             List<double> speedList = new List<double>();
@@ -308,6 +351,10 @@ namespace Carnage
             return speedList;
         }
 
+        /// <summary>
+        /// Given a list of strings matching the names of characters in the MySQL Database, this method
+        /// returns another string list containing the strength values matching each character in the right order.
+        /// </summary>
         private List<double> strengthList(List<string> list, int number)
         {
             List<double> strengthList = new List<double>();
@@ -333,6 +380,10 @@ namespace Carnage
             return strengthList;
         }
 
+        /// <summary>
+        /// Given a list of strings matching the names of characters in the MySQL Database, this method
+        /// returns another string list containing the morality values matching each character in the right order.
+        /// </summary>
         private List<double> moralList(List<string> list, int number)
         {
             List<double> moralList = new List<double>();
@@ -358,6 +409,12 @@ namespace Carnage
             return moralList;
         }
 
+        /// <summary>
+        /// Takes a list of the user-given strings corresponding to character names and
+        /// searches the MySQL Database for each one to see if the name matches the character
+        /// in the database. If a character is not found, a stringbuilder documents the names of
+        /// each specific character with zero entries and returns it to be displayed for the user.
+        /// </summary>
         public string CheckList(List<string> list, int number)
         {
             StringBuilder sb1 = new StringBuilder();
@@ -373,6 +430,12 @@ namespace Carnage
             return sb1.ToString();
         }
 
+        /// <summary>
+        /// Takes the list of names, pronouns, strength values, moral values, and speed values 
+        /// and turns them into Character objects containing the correct corresponding values.
+        /// The Characters will be generated differently based on the gamemode and then returned
+        /// in list form for the simulator to use.
+        /// </summary>
         public List<character> ConvertToCharacters(List<string> list, string gameMode, int numPlayers)
         {
             List<character> charList = new List<character>();
@@ -383,14 +446,14 @@ namespace Carnage
 
             pronounList = this.pronounList(list, numPlayers);
 
-            if (gameMode=="Realistic")
+            if (gameMode=="Realistic") //If gamemode is realistic, the strength, moral, and speed values are saved in list form
             {
                 strengthList = this.strengthList(list, numPlayers);
                 moralList = this.moralList(list, numPlayers);
                 speedList = this.speedList(list, numPlayers);
             }
 
-            if (gameMode == "Classic" && numPlayers == 24)
+            if (gameMode == "Classic" && numPlayers == 24) //If the gamemode is classic each character is instantiated with the correct attributes for all 24
             {
                 //instantiates all 24 characters and adds them to list
                 //
@@ -455,7 +518,7 @@ namespace Carnage
                 character charD12C2 = new character("D12C2", list[23], pronounList[23], 12);
                 charList.Add(charD12C2);
             }
-            else if (gameMode == "Realistic" && numPlayers == 24)
+            else if (gameMode == "Realistic" && numPlayers == 24) //If the gamemode is realistic each character is instantiated with the correct attributes for all 24
             {
                 //instantiates all 24 characters and adds them to list
                 //
@@ -520,7 +583,7 @@ namespace Carnage
                 character charD12C2 = new character("D12C2", list[23], pronounList[23], strengthList[23], moralList[23], speedList[23], 12);
                 charList.Add(charD12C2);
             }
-            else if (gameMode == "Classic" && numPlayers == 48)
+            else if (gameMode == "Classic" && numPlayers == 48) //If the gamemode is classic each character is instantiated with the correct attributes for all 48
             {
                 //instantiates all 48 characters and adds them to list
                 //
@@ -633,7 +696,7 @@ namespace Carnage
                 character charD12C4 = new character("D12C4", list[47], pronounList[47], 12);
                 charList.Add(charD12C4);
             }
-            else if (gameMode == "Realistic" && numPlayers == 48)
+            else if (gameMode == "Realistic" && numPlayers == 48) //If the gamemode is realistic each character is instantiated with the correct attributes for all 48
             {
                 //instantiates all 48 characters and adds them to list
                 //

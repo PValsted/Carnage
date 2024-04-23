@@ -20,7 +20,7 @@ namespace Carnage
 
         private void btnClassic_Click(object sender, EventArgs e)
         {
-            btnClassic.Visible = false;
+            btnStart.Visible = false;
             btnCustom.Visible = true;
             btnPreset.Visible = true;
             grbNumberOptions.Visible = true;
@@ -90,7 +90,7 @@ namespace Carnage
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            btnClassic.Visible = true;
+            btnStart.Visible = true;
             btnCustom.Visible = false;
             btnPreset.Visible = false;
             btnBack.Visible = false;
