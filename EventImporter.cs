@@ -14,7 +14,9 @@ namespace Carnage
     /// <summary>
     /// This class is designed to import event lines from a MySQL Database and convert them
     /// into strings. This functions by converting values recorded alongside the event text
-    /// into actions that affect character variables and outcomes.
+    /// into actions that affect character variables and outcomes. The info for the MySQL server
+    /// is directly listed here. It's understood that in a practical setting, this information should
+    /// never be shown in the source code; this was done out of convenience for this project.
     /// </summary>
     public class EventImporter
     {
@@ -56,17 +58,17 @@ namespace Carnage
         /// </summary>
         public string replaceText(string eventText, character character)
         {
-            eventText = eventText.Replace("{1}", character.getName()); //For example, any instance of {1} in a sentence is replaced with the character's name
-            eventText = eventText.Replace("{CapSubPro}", character.getPronounSub());
-            eventText = eventText.Replace("{CapObjPro}", character.getPronounObj());
-            eventText = eventText.Replace("{CapPosAdjPro}", character.getPronounPosAdj());
-            eventText = eventText.Replace("{CapPosPro}", character.getPronounPos());
-            eventText = eventText.Replace("{CapRefPro}", character.getPronounRefl());
-            eventText = eventText.Replace("{SubPro}", (character.getPronounSub()).ToLower());
-            eventText = eventText.Replace("{ObjPro}", (character.getPronounObj()).ToLower());
-            eventText = eventText.Replace("{PosAdjPro}", (character.getPronounPosAdj()).ToLower());
-            eventText = eventText.Replace("{PosPro}", (character.getPronounPos()).ToLower());
-            eventText = eventText.Replace("{RefPro}", (character.getPronounRefl()).ToLower());
+            eventText = eventText.Replace("{1}", character.Name); //For example, any instance of {1} in a sentence is replaced with the character's name
+            eventText = eventText.Replace("{CapSubPro}", character.PronounSub);
+            eventText = eventText.Replace("{CapObjPro}", character.PronounObj);
+            eventText = eventText.Replace("{CapPosAdjPro}", character.PronounPosAdj);
+            eventText = eventText.Replace("{CapPosPro}", character.PronounPos);
+            eventText = eventText.Replace("{CapRefPro}", character.PronounRefl);
+            eventText = eventText.Replace("{SubPro}", (character.PronounSub).ToLower());
+            eventText = eventText.Replace("{ObjPro}", (character.PronounObj).ToLower());
+            eventText = eventText.Replace("{PosAdjPro}", (character.PronounPosAdj).ToLower());
+            eventText = eventText.Replace("{PosPro}", (character.PronounPos).ToLower());
+            eventText = eventText.Replace("{RefPro}", (character.PronounRefl).ToLower());
             eventText = eventText.Replace("{BodyPart}", (rng.randomBodyPart()));
             eventText = eventText.Replace("{WasProper}", (this.ProperTense(character)));
 
@@ -80,31 +82,31 @@ namespace Carnage
         /// </summary>
         public string replaceText(string eventText, character char1, character char2)
         {
-            eventText = eventText.Replace("{1}", char1.getName());
-            eventText = eventText.Replace("{CapSubPro}", char1.getPronounSub());
-            eventText = eventText.Replace("{CapObjPro}", char1.getPronounObj());
-            eventText = eventText.Replace("{CapPosAdjPro}", char1.getPronounPosAdj());
-            eventText = eventText.Replace("{CapPosPro}", char1.getPronounPos());
-            eventText = eventText.Replace("{CapRefPro}", char1.getPronounRefl());
-            eventText = eventText.Replace("{SubPro}", (char1.getPronounSub()).ToLower());
-            eventText = eventText.Replace("{ObjPro}", (char1.getPronounObj()).ToLower());
-            eventText = eventText.Replace("{PosAdjPro}", (char1.getPronounPosAdj()).ToLower());
-            eventText = eventText.Replace("{PosPro}", (char1.getPronounPos()).ToLower());
-            eventText = eventText.Replace("{RefPro}", (char1.getPronounRefl()).ToLower());
+            eventText = eventText.Replace("{1}", char1.Name);
+            eventText = eventText.Replace("{CapSubPro}", char1.PronounSub);
+            eventText = eventText.Replace("{CapObjPro}", char1.PronounObj);
+            eventText = eventText.Replace("{CapPosAdjPro}", char1.PronounPosAdj);
+            eventText = eventText.Replace("{CapPosPro}", char1.PronounPos);
+            eventText = eventText.Replace("{CapRefPro}", char1.PronounRefl);
+            eventText = eventText.Replace("{SubPro}", (char1.PronounSub).ToLower());
+            eventText = eventText.Replace("{ObjPro}", (char1.PronounObj).ToLower());
+            eventText = eventText.Replace("{PosAdjPro}", (char1.PronounPosAdj).ToLower());
+            eventText = eventText.Replace("{PosPro}", (char1.PronounPos).ToLower());
+            eventText = eventText.Replace("{RefPro}", (char1.PronounRefl).ToLower());
             eventText = eventText.Replace("{BodyPart}", (rng.randomBodyPart()));
             eventText = eventText.Replace("{WasProper}", (this.ProperTense(char1)));
 
-            eventText = eventText.Replace("{2}", char2.getName());
-            eventText = eventText.Replace("{CapSubPro2}", char2.getPronounSub());
-            eventText = eventText.Replace("{CapObjPro2}", char2.getPronounObj());
-            eventText = eventText.Replace("{CapPosAdjPro2}", char2.getPronounPosAdj());
-            eventText = eventText.Replace("{CapPosPro2}", char2.getPronounPos());
-            eventText = eventText.Replace("{CapRefPro2}", char2.getPronounRefl());
-            eventText = eventText.Replace("{SubPro2}", (char2.getPronounSub()).ToLower());
-            eventText = eventText.Replace("{ObjPro2}", (char2.getPronounObj()).ToLower());
-            eventText = eventText.Replace("{PosAdjPro2}", (char2.getPronounPosAdj()).ToLower());
-            eventText = eventText.Replace("{PosPro2}", (char2.getPronounPos()).ToLower());
-            eventText = eventText.Replace("{RefPro2}", (char2.getPronounRefl()).ToLower());
+            eventText = eventText.Replace("{2}", char2.Name);
+            eventText = eventText.Replace("{CapSubPro2}", char2.PronounSub);
+            eventText = eventText.Replace("{CapObjPro2}", char2.PronounObj);
+            eventText = eventText.Replace("{CapPosAdjPro2}", char2.PronounPosAdj);
+            eventText = eventText.Replace("{CapPosPro2}", char2.PronounPos);
+            eventText = eventText.Replace("{CapRefPro2}", char2.PronounRefl);
+            eventText = eventText.Replace("{SubPro2}", (char2.PronounSub).ToLower());
+            eventText = eventText.Replace("{ObjPro2}", (char2.PronounObj).ToLower());
+            eventText = eventText.Replace("{PosAdjPro2}", (char2.PronounPosAdj).ToLower());
+            eventText = eventText.Replace("{PosPro2}", (char2.PronounPos).ToLower());
+            eventText = eventText.Replace("{RefPro2}", (char2.PronounRefl).ToLower());
 
             return eventText;
         }
@@ -116,7 +118,7 @@ namespace Carnage
         /// </summary>
         public string ProperTense(character char1)
         {
-            if (char1.getPronounSub() == "They") return "were"; //They were
+            if (char1.PronounSub == "They") return "were"; //They were
             else return "was"; // He/she was
         }
 
@@ -149,7 +151,7 @@ namespace Carnage
                 
                 if (character.IsAlive==false) //If the character is dead after this damage, this is tacked on after the event message to indicate that the character died
                 {
-                    eventText = this.replaceText(eventText, character) + character.Name + " succumbed to " + character.getPronounPosAdj().ToLower() + " injuries.";
+                    eventText = this.replaceText(eventText, character) + character.Name + " succumbed to " + character.PronounPosAdj.ToLower() + " injuries.\n";
                     return eventText;
                 }
             }
@@ -196,13 +198,13 @@ namespace Carnage
 
             if (type == "Healing") //If the event results in a character gaining a healing item, character is either healed, or if at full health the item is saved for later use
             {
-                if (character.getHealth() < 20)
+                if (character.Health + Math.Round(Double.Parse(dsSQLDataSet.Tables[0].Rows[0][5].ToString()), 2) <= game.StartHealth) //If the healing item would not put the character past full health, they use it
                 {
-                    character.heal(Math.Round(Double.Parse(dsSQLDataSet.Tables[0].Rows[0][5].ToString()),2));
+                    character.heal(Math.Round(Double.Parse(dsSQLDataSet.Tables[0].Rows[0][5].ToString()),2), game, dsSQLDataSet.Tables[0].Rows[0][4].ToString());
                 }
-                else if (character.getHealth() == 20 && character.isHealSlotFilled() == false)
+                else if (character.Health + Math.Round(Double.Parse(dsSQLDataSet.Tables[0].Rows[0][5].ToString()), 2) > game.StartHealth && character.HealSlotFilled == false) //If item would put them over full health, they save it
                 {
-                    character.setHealingAmount(Math.Round(Double.Parse(dsSQLDataSet.Tables[0].Rows[0][5].ToString()),2));
+                    character.HealingAmount = Math.Round(Double.Parse(dsSQLDataSet.Tables[0].Rows[0][5].ToString()),2);
                 }
             }
             else if (type =="Food") //If the event results in a character getting food, character increases hunger
@@ -225,23 +227,39 @@ namespace Carnage
             }
             else if (type=="Loot") //If the event results in loot, the character goes through a common loot event
             {
-                sb.Append(eventText + " " + loot.lootEvent(character, "Common"));
+                sb.Append(eventText + " " + loot.lootEvent(character, "Common", game));
+            }
+            else if (type=="Antidote") //If the event results in finding an antidote
+            {
+                if (character.GetStatus("Poison") == true)
+                {
+                    sb.AppendLine(eventText + " " + character.Name + " uses them to cure " + character.PronounPosAdj.ToLower() + " Poison.");
+                    character.RemoveStatus("Poison");
+                }
+                else if (character.GetStatus("Poison") == false && character.HasAntidote == false)
+                {
+                    sb.AppendLine(eventText + " " + character.Name + " saves them for later.");
+                    character.HasAntidote = true;
+                }
+                else sb.AppendLine(eventText);
             }
             else //If the event results in gaining a weapon, the appropriate values pertaining to this weapon are changed to reflect the new values
             {
-                if (character.getWeaponName() == "") //If character has no weapon this weapon is equipped
+                if (character.WeaponName == "") //If character has no weapon this weapon is equipped
                 {
-                    character.setWeaponName(dsSQLDataSet.Tables[0].Rows[0][4].ToString());
-                    character.setWeaponAttack(Double.Parse(dsSQLDataSet.Tables[0].Rows[0][5].ToString()));
-                    character.setWeaponType(dsSQLDataSet.Tables[0].Rows[0][6].ToString());
-                    sb.AppendLine(eventText + " " + character.getName() + " gained a " + character.getWeaponName() + ".");
+                    character.WeaponName = dsSQLDataSet.Tables[0].Rows[0][4].ToString();
+                    character.OriginalWeaponName = character.WeaponName;
+                    character.WeaponAttack = Double.Parse(dsSQLDataSet.Tables[0].Rows[0][5].ToString());
+                    character.WeaponType = dsSQLDataSet.Tables[0].Rows[0][6].ToString();
+                    sb.AppendLine(eventText + " " + character.Name + " gained a " + character.WeaponName + ".");
                 }
-                else if (character.getWeaponAttack() < Double.Parse(dsSQLDataSet.Tables[0].Rows[0][5].ToString()) && character.getWeaponName() != "") //If new weapon does more damage than current weapon, this weapon is equipped
+                else if (character.WeaponAttack < Double.Parse(dsSQLDataSet.Tables[0].Rows[0][5].ToString()) && character.WeaponName != "") //If new weapon does more damage than current weapon, this weapon is equipped
                 {
-                    sb.AppendLine(eventText + " " + character.getName() + " replaced " + character.getPronounPosAdj().ToLower() + " " + character.getWeaponName() + ".");
-                    character.setWeaponName(dsSQLDataSet.Tables[0].Rows[0][4].ToString());
-                    character.setWeaponAttack(Double.Parse(dsSQLDataSet.Tables[0].Rows[0][5].ToString()));
-                    character.setWeaponType(dsSQLDataSet.Tables[0].Rows[0][6].ToString());
+                    sb.AppendLine(eventText + " " + character.Name + " replaced " + character.PronounPosAdj.ToLower() + " " + character.WeaponName + ".");
+                    character.WeaponName = dsSQLDataSet.Tables[0].Rows[0][4].ToString();
+                    character.OriginalWeaponName = character.WeaponName;
+                    character.WeaponAttack = Double.Parse(dsSQLDataSet.Tables[0].Rows[0][5].ToString());
+                    character.WeaponType = dsSQLDataSet.Tables[0].Rows[0][6].ToString();
                 }
                 else //If new weapon is worse than current, the weapon is not equipped
                 {
@@ -253,11 +271,12 @@ namespace Carnage
 
             if (type == "Healing") 
             {
-                if (character.getHealth() < 20) sb.AppendLine(eventText + " " + character.getName() + " healed to " + character.getHealth() + " health.");
-                else if (character.getHealth() == 20 && character.isHealSlotFilled() == false)
+                if (character.Health + Math.Round(Double.Parse(dsSQLDataSet.Tables[0].Rows[0][5].ToString()), 2) <= game.StartHealth) sb.AppendLine(eventText + " " + character.Name + " healed to " + character.Health + " health.");
+                else if (character.Health + Math.Round(Double.Parse(dsSQLDataSet.Tables[0].Rows[0][5].ToString()), 2) > game.StartHealth && character.HealSlotFilled == false)
                 {
-                    sb.AppendLine(eventText + " " + character.getName() + " is at full health so they save it for later.");
-                    character.fillHealSlot(true);
+                    sb.AppendLine(eventText + " " + character.Name + " does not need it currently, so they save it for later.");
+                    character.HealingName = dsSQLDataSet.Tables[0].Rows[0][4].ToString();
+                    character.HealSlotFilled = true;
                 }
                 else sb.AppendLine(eventText);
             }

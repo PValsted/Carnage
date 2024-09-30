@@ -46,11 +46,12 @@ namespace Carnage
         Game game;
         StatUpdater su = new StatUpdater();
         Loot loot = new Loot();
-        string type1, type2, type3;
+        string type1, type2, type3, status1, status2, status3;
         double rand1, rand2, rand3;
         string[] lootArray1 = new string[4];
         string[] lootArray2 = new string[4];
         string[] lootArray3 = new string[4];
+        VisualSettings vs = new VisualSettings();
 
         /// <summary>
         /// Upon initializaion, the game options and list are imported and
@@ -58,7 +59,7 @@ namespace Carnage
         /// The unassigned players value is calculated at the start and then
         /// the simulation begins with the Bloodbath.
         /// </summary>
-        public Simulation(List<character> charList, Game game)
+        public Simulation(List<character> charList, Game game, VisualSettings vs)
         {
             InitializeComponent();
             this.charList = charList;
@@ -73,6 +74,8 @@ namespace Carnage
             unassignedPlayers = game.Players; //Unassigned players variable keeps track of how many players have not been selected for an event to ensure the index doesn't go out of range
 
             this.bloodbath();
+            this.vs = vs;
+            this.ApplyVisualEffectsToWindow();
         }
 
         /// <summary>
@@ -86,7 +89,7 @@ namespace Carnage
 
             for (int i = 0; i < tempCharList.Count; i++)
             {
-                if (tempCharList[i].aliveCheck() == false)
+                if (tempCharList[i].IsAlive == false)
                 {
                     deathCharList.Add(tempCharList[i]);
                     tempDeathCharList.Add(tempCharList[i]);
@@ -138,7 +141,8 @@ namespace Carnage
                 }
                 game.Day++; //Number of days incremented by 1
             }
-            if (tempCharList.Count == 1) // If only 1 player remains after this Day, the game state is set to being finished
+
+            if (tempCharList.Count <= 1) // If only 1 player remains after this Day, the game state is set to being finished
             {
                 game.IsActive = false;
                 game.IsDeath = false;
@@ -163,7 +167,7 @@ namespace Carnage
 
             for (int i = 0; i < tempCharList.Count; i++)
             {
-                if (tempCharList[i].aliveCheck() == false)
+                if (tempCharList[i].IsAlive == false)
                 {
                     deathCharList.Add(tempCharList[i]);
                     tempDeathCharList.Add(tempCharList[i]);
@@ -203,7 +207,7 @@ namespace Carnage
 
             for (int i = 0; i < tempCharList.Count; i++)
             {
-                if (tempCharList[i].aliveCheck() == false)
+                if (tempCharList[i].IsAlive == false)
                 {
                     deathCharList.Add(tempCharList[i]);
                     tempDeathCharList.Add(tempCharList[i]);
@@ -249,17 +253,24 @@ namespace Carnage
             {
                 if (tempDeathCharList.ElementAt(i).Kills == 1)
                 {
-                    rtbText.AppendText(tempDeathCharList.ElementAt(i).getName() + " from District " + tempDeathCharList[i].District + ": " + tempDeathCharList.ElementAt(i).Kills + " kill\n");
+                    rtbText.AppendText(tempDeathCharList.ElementAt(i).Name + " from District " + tempDeathCharList[i].District + ": " + tempDeathCharList.ElementAt(i).Kills + " kill\n");
                 }
                 else if (tempDeathCharList.ElementAt(i).Kills > 1)
                 {
-                    rtbText.AppendText(tempDeathCharList.ElementAt(i).getName() + " from District " + tempDeathCharList[i].District + ": " + tempDeathCharList.ElementAt(i).Kills + " kills\n");
+                    rtbText.AppendText(tempDeathCharList.ElementAt(i).Name + " from District " + tempDeathCharList[i].District + ": " + tempDeathCharList.ElementAt(i).Kills + " kills\n");
                 }
                 else
                 {
-                    rtbText.AppendText(tempDeathCharList.ElementAt(i).getName() + " from District " + tempDeathCharList[i].District + "\n");
+                    rtbText.AppendText(tempDeathCharList.ElementAt(i).Name + " from District " + tempDeathCharList[i].District + "\n");
                 }
             }
+
+            for (int j = 0; j < tempCharList.Count; j++)
+            {
+                tempCharList[j].Health = Math.Round(tempCharList[j].Health, 2);
+                if (game.Mode == "Realistic" && game.DoHunger == true) tempCharList[j].Hunger = Math.Round(tempCharList[j].Hunger, 2);
+            }
+
             rtbText.AppendText("\n");
             tempDeathCharList.Clear();
             game.ActivePlayers -= deathCount;
@@ -296,13 +307,21 @@ namespace Carnage
         /// </summary>
         private void winnerScreen()
         {
-            if (tempCharList[0].Kills == 1)
+            if (tempCharList.Count == 1) //If there is a winner
             {
-                lblWinner.Text = tempCharList[0].getName() + " from District " + tempCharList[0].District + " is the winner with " + tempCharList[0].Kills + " kill!";
+                if (tempCharList[0].Kills == 1)
+                {
+                    lblWinner.Text = tempCharList[0].Name + " from District " + tempCharList[0].District + " is the winner with " + tempCharList[0].Kills + " kill!";
+                }
+                else
+                {
+                    lblWinner.Text = tempCharList[0].Name + " from District " + tempCharList[0].District + " is the winner with " + tempCharList[0].Kills + " kills!";
+                }
             }
             else
             {
-                lblWinner.Text = tempCharList[0].getName() + " from District " + tempCharList[0].District + " is the winner with " + tempCharList[0].Kills + " kills!";
+                lblWinner.Text = "The match ended with no survivors! What an unexpected outcome!";
+                tempCharList.Add(deathCharList[game.Players-1]);
             }
 
             rtbPlaces.AppendText(su.Places(deathCharList, tempCharList[0], game)); //Displays the order in which every character finished
@@ -328,7 +347,7 @@ namespace Carnage
             intList = rng.RandomIntList(tempCharList.Count, 3); //3 random characters selected
 
             //Random Alive Player 1
-            if (game.Mode == "Classic")
+            if (game.Mode == "Classic" || (game.Mode == "Realistic" && game.DoHunger == false))
             {
                 rboPlayer1Sponsor.Text = tempCharList[intList[0]].Name + ": " + tempCharList[intList[0]].Health + " health";
             }
@@ -337,7 +356,7 @@ namespace Carnage
                 rboPlayer1Sponsor.Text = tempCharList[intList[0]].Name + ": " + tempCharList[intList[0]].Health + " health, " + tempCharList[intList[0]].Hunger + " hunger";
             }
             //Random Alive Player 2
-            if (game.Mode == "Classic")
+            if (game.Mode == "Classic" || (game.Mode == "Realistic" && game.DoHunger == false))
             {
                 rboPlayer2Sponsor.Text = tempCharList[intList[1]].Name + ": " + tempCharList[intList[1]].Health + " health";
             }
@@ -346,7 +365,7 @@ namespace Carnage
                 rboPlayer2Sponsor.Text = tempCharList[intList[1]].Name + ": " + tempCharList[intList[1]].Health + " health, " + tempCharList[intList[1]].Hunger + " hunger";
             }
             //Random Alive Player 3
-            if (game.Mode == "Classic")
+            if (game.Mode == "Classic" || (game.Mode == "Realistic" && game.DoHunger == false))
             {
                 rboPlayer3Sponsor.Text = tempCharList[intList[2]].Name + ": " + tempCharList[intList[2]].Health + " health";
             }
@@ -387,9 +406,19 @@ namespace Carnage
 
                 txtPlayer1Item.Text = "Sponsor Food: Refills " + rand1 + " hunger";
             }
+            else if (type1 == "HealStatuses")
+            {
+                txtPlayer1Item.Text = "Cure Status Effects: " + tempCharList[intList[0]].GetStatusList();
+            }
             else if (type1 == "Explosive") //If type is explosive, character will gain an explosive
             {
                 txtPlayer1Item.Text = "Explosive";
+            }
+            else if (type1 == "Status")
+            {
+                status1 = rng.RandomStatus();
+
+                txtPlayer1Item.Text = "Embue player's weapon with " + status1;
             }
             else //If it's decided character doesn't need any of the above, they will get a weapon attack increase of 2 damage
             {
@@ -423,9 +452,19 @@ namespace Carnage
 
                 txtPlayer2Item.Text = "Sponsor Food: Refills " + rand2 + " hunger";
             }
+            else if (type2 == "HealStatuses")
+            {
+                txtPlayer2Item.Text = "Cure Status Effects: " + tempCharList[intList[1]].GetStatusList();
+            }
             else if (type2 == "Explosive")
             {
                 txtPlayer2Item.Text = "Explosive";
+            }
+            else if (type2 == "Status")
+            {
+                status2 = rng.RandomStatus();
+
+                txtPlayer2Item.Text = "Embue player's weapon with " + status2;
             }
             else
             {
@@ -460,9 +499,19 @@ namespace Carnage
 
                 txtPlayer3Item.Text = "Sponsor Food: Refills " + rand3 + " hunger";
             }
+            else if (type3 == "HealStatuses")
+            {
+                txtPlayer3Item.Text = "Cure Status Effects: " + tempCharList[intList[2]].GetStatusList();
+            }
             else if (type3 == "Explosive")
             {
                 txtPlayer3Item.Text = "Explosive";
+            }
+            else if (type3 == "Status")
+            {
+                status3 = rng.RandomStatus();
+
+                txtPlayer3Item.Text = "Embue player's weapon with " + status3;
             }
             else
             {
@@ -678,7 +727,7 @@ namespace Carnage
         /// </summary>
         private void btnBack_Click(object sender, EventArgs e)
         {
-            Start start = new Start();
+            Start start = new Start(vs);
 
             this.Hide();
             start.Show();
@@ -734,15 +783,16 @@ namespace Carnage
                 {
                     if (type1 == "Healing") //Heals character
                     {
-                        tempCharList[intList[0]].heal(rand1);
+                        tempCharList[intList[0]].heal(rand1, game,"Sponsor Medkit");
                     }
                     else if (type1 == "Any Weapon") //Gives character weapon/explosive
                     {
                         if (lootArray1[1] != "explosive")
                         {
-                            tempCharList[intList[0]].setWeaponName(lootArray1[0]);
-                            tempCharList[intList[0]].setWeaponAttack(Double.Parse(lootArray1[2]));
-                            tempCharList[intList[0]].setWeaponType(lootArray1[1]);
+                            tempCharList[intList[0]].WeaponName = lootArray1[0];
+                            tempCharList[intList[0]].OriginalWeaponName = tempCharList[intList[0]].WeaponName;
+                            tempCharList[intList[0]].WeaponAttack = Double.Parse(lootArray1[2]);
+                            tempCharList[intList[0]].WeaponType = lootArray1[1];
                         }
                         else
                         {
@@ -753,13 +803,21 @@ namespace Carnage
                     {
                         tempCharList[intList[0]].Hunger += rand1;
                     }
+                    else if (type1 == "HealStatuses") //Clears status effects
+                    {
+                        tempCharList[intList[0]].ClearStatuses();
+                    }
                     else if (type1 == "Explosive") //Gives character explosive
                     {
                         tempCharList[intList[0]].HasExplosive = true;
                     }
+                    else if (type1 == "Status") //Gives weapon effect
+                    {
+                        tempCharList[intList[0]].upgradeWeapon(status1);
+                    }
                     else //Boosts character's weapon attack by 2
                     {
-                        tempCharList[intList[0]].setWeaponAttack(tempCharList[intList[0]].getWeaponAttack() + 2);
+                        tempCharList[intList[0]].upgradeWeapon("Strength");
                     }
                 }
 
@@ -768,15 +826,16 @@ namespace Carnage
                 {
                     if (type2 == "Healing")
                     {
-                        tempCharList[intList[1]].heal(rand2);
+                        tempCharList[intList[1]].heal(rand2, game, "Sponsor Medkit");
                     }
                     else if (type2 == "Any Weapon")
                     {
                         if (lootArray2[1] != "explosive")
                         {
-                            tempCharList[intList[1]].setWeaponName(lootArray2[0]);
-                            tempCharList[intList[1]].setWeaponAttack(Double.Parse(lootArray2[2]));
-                            tempCharList[intList[1]].setWeaponType(lootArray2[1]);
+                            tempCharList[intList[1]].WeaponName = lootArray2[0];
+                            tempCharList[intList[1]].OriginalWeaponName = tempCharList[intList[1]].WeaponName;
+                            tempCharList[intList[1]].WeaponAttack = Double.Parse(lootArray2[2]);
+                            tempCharList[intList[1]].WeaponType = lootArray2[1];
                         }
                         else
                         {
@@ -787,13 +846,21 @@ namespace Carnage
                     {
                         tempCharList[intList[1]].Hunger += rand2;
                     }
+                    else if (type2 == "HealStatuses") //Clears status effects
+                    {
+                        tempCharList[intList[1]].ClearStatuses();
+                    }
                     else if (type2 == "Explosive")
                     {
                         tempCharList[intList[1]].HasExplosive = true;
                     }
+                    else if (type2 == "Status") //Gives weapon effect
+                    {
+                        tempCharList[intList[1]].upgradeWeapon(status2);
+                    }
                     else
                     {
-                        tempCharList[intList[1]].setWeaponAttack(tempCharList[intList[1]].getWeaponAttack() + 2);
+                        tempCharList[intList[1]].upgradeWeapon("Strength");
                     }
                 }
 
@@ -802,20 +869,25 @@ namespace Carnage
                 {
                     if (type3 == "Healing")
                     {
-                        tempCharList[intList[2]].heal(rand3);
+                        tempCharList[intList[2]].heal(rand3, game, "Sponsor Medkit");
                     }
                     else if (type3 == "Any Weapon")
                     {
                         if (lootArray3[1] != "explosive")
                         {
-                            tempCharList[intList[2]].setWeaponName(lootArray3[0]);
-                            tempCharList[intList[2]].setWeaponAttack(Double.Parse(lootArray3[2]));
-                            tempCharList[intList[2]].setWeaponType(lootArray3[1]);
+                            tempCharList[intList[2]].WeaponName = lootArray3[0];
+                            tempCharList[intList[2]].OriginalWeaponName = tempCharList[intList[2]].WeaponName;
+                            tempCharList[intList[2]].WeaponAttack = Double.Parse(lootArray3[2]);
+                            tempCharList[intList[2]].WeaponType = lootArray3[1];
                         }
                         else
                         {
                             tempCharList[intList[2]].HasExplosive = true;
                         }
+                    }
+                    else if (type3 == "HealStatuses") //Clears status effects
+                    {
+                        tempCharList[intList[2]].ClearStatuses();
                     }
                     else if (type3 == "Hunger")
                     {
@@ -825,9 +897,13 @@ namespace Carnage
                     {
                         tempCharList[intList[2]].HasExplosive = true;
                     }
+                    else if (type3 == "Status") //Gives weapon effect
+                    {
+                        tempCharList[intList[2]].upgradeWeapon(status3);
+                    }
                     else
                     {
-                        tempCharList[intList[2]].setWeaponAttack(tempCharList[intList[2]].getWeaponAttack() + 2);
+                        tempCharList[intList[2]].upgradeWeapon("Strength");
                     }
                 }
             }
@@ -860,6 +936,58 @@ namespace Carnage
             rboPlayer1Sponsor.Checked = false;
             rboPlayer2Sponsor.Checked = false;
             rboPlayer3Sponsor.Checked = false;
+        }
+
+        private void ApplyVisualEffectsToWindow()
+        {
+            if (vs.Mode == "Light")
+            {
+                this.BackgroundImage = Properties.Resources.yellow_gradient;
+                //Stats 24 Panel
+                pnl24.BackColor = System.Drawing.Color.White;
+                //Stats 48 Panel
+                pnlStats48.BackColor = System.Drawing.Color.White;
+                lblInvisible.ForeColor = System.Drawing.Color.DimGray;
+                //Sponsor Panel
+                pnlSponsor.BackgroundImage = Properties.Resources.white_gradient;
+                pnlSponsor.ForeColor = System.Drawing.Color.Black;
+                //Winner Panel
+                pnlWinner.BackColor = System.Drawing.Color.White;
+                pnlWinner.ForeColor = System.Drawing.Color.Black;
+            }
+            else
+            {
+                this.BackgroundImage = Properties.Resources.super_dark_gradient;
+                //Stats 24 Panel
+                pnl24.BackColor = System.Drawing.Color.DimGray;
+                //Stats 48 Panel
+                pnlStats48.BackColor = System.Drawing.Color.DimGray;
+                lblInvisible.ForeColor = System.Drawing.Color.DimGray;
+                //Sponsor Panel
+                pnlSponsor.BackgroundImage = null;
+                pnlSponsor.BackColor = System.Drawing.Color.DimGray;
+                pnlSponsor.ForeColor = System.Drawing.Color.White;
+                //Winner Panel
+                pnlWinner.BackColor = System.Drawing.Color.DimGray;
+                pnlWinner.ForeColor = System.Drawing.Color.White;
+            }
+        }
+
+        private void btnRandom_Click(object sender, EventArgs e)
+        {
+            int rand;
+            rand = rng.randomInt(1, 4);
+
+            if (rand == 1) rboPlayer1Sponsor.Checked = true;
+            else if (rand == 2) rboPlayer2Sponsor.Checked = true;
+            else if (rand == 3) rboPlayer3Sponsor.Checked = true;
+            else if (rand == 4)
+            {
+                rboPlayer1Sponsor.Checked = false;
+                rboPlayer2Sponsor.Checked = false;
+                rboPlayer3Sponsor.Checked = false;
+            }
+
         }
     }
 }

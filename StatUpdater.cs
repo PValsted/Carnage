@@ -85,13 +85,15 @@ namespace Carnage
 
             if (list.Find(x => x.Id == id) != null)
             {
-                if (game.Mode == "Classic") //If classic mode
+                if (game.Mode == "Classic" || (game.Mode == "Realistic" && game.DoHunger == false)) //If classic mode or hunger disabled in realistic
                 {
-                    sb.Append(list.Find(x => x.Id == id).Health.ToString() + " health");
+                    if (list.Find(x => x.Id == id).HasStatuses() == false) sb.Append(list.Find(x => x.Id == id).Health.ToString() + " health");
+                    else sb.Append(list.Find(x => x.Id == id).Health.ToString() + " health, " + list.Find(x => x.Id == id).GetStatusList());
                 }
                 else //If realistic mode
                 {
-                    sb.Append(list.Find(x => x.Id == id).Health.ToString() + " health, " + list.Find(x => x.Id == id).Hunger.ToString() + " hunger");
+                    if (list.Find(x => x.Id == id).HasStatuses() == false) sb.Append(list.Find(x => x.Id == id).Health.ToString() + " health, " + list.Find(x => x.Id == id).Hunger.ToString() + " hunger");
+                    else sb.Append(list.Find(x => x.Id == id).Health.ToString() + " health, " + list.Find(x => x.Id == id).Hunger.ToString() + " hunger, " + list.Find(x => x.Id == id).GetStatusList());
                 }
             }
             else //If character not found, they must be dead
@@ -112,20 +114,21 @@ namespace Carnage
 
             if (list.Find(x => x.Id == id) != null)
             {
-                if (game.Mode == "Classic" && list.Find(x => x.Id == id).getWeaponName() != "") //If realistic mode and character has weapon
+                if (game.Mode == "Classic" && list.Find(x => x.Id == id).WeaponName != "") //If realistic mode and character has weapon
                 {
-                    sb.Append(list.Find(x => x.Id == id).getWeaponName() + ": " + list.Find(x => x.Id == id).getWeaponAttack().ToString() + " damage");
+                    if (list.Find(x => x.Id == id).WeaponStatus == "None") sb.Append(list.Find(x => x.Id == id).WeaponName + ": " + list.Find(x => x.Id == id).WeaponAttack.ToString() + " dmg");
+                    else sb.Append(list.Find(x => x.Id == id).WeaponName + ": " + list.Find(x => x.Id == id).WeaponAttack.ToString() + " dmg, " + list.Find(x => x.Id == id).WeaponStatus);
                 }
-                else if (game.Mode == "Classic" && list.Find(x => x.Id == id).getWeaponName() == "") //If classic mode and character has no weapon
+                else if (game.Mode == "Classic" && list.Find(x => x.Id == id).WeaponName == "") //If classic mode and character has no weapon
                 {
                     sb.Append("Unarmed");
                 }
-                else if (game.Mode == "Realistic" && list.Find(x => x.Id == id).getWeaponName() != "") //If realistic mode and character has weapon
+                else if (game.Mode == "Realistic" && list.Find(x => x.Id == id).WeaponName != "") //If realistic mode and character has weapon
                 {
-                    sb.Append(list.Find(x => x.Id == id).getWeaponName() + ": " + list.Find(x => x.Id == id).getWeaponAttack().ToString() + " damage, " + list.Find(x => x.Id == id).Strength.ToString() + " strength");
-
+                    if (list.Find(x => x.Id == id).WeaponStatus == "None") sb.Append(list.Find(x => x.Id == id).WeaponName + ": " + list.Find(x => x.Id == id).WeaponAttack.ToString() + " damage, " + list.Find(x => x.Id == id).Strength.ToString() + " strength");
+                    else sb.Append(list.Find(x => x.Id == id).WeaponName + ": " + list.Find(x => x.Id == id).WeaponAttack.ToString() + " dmg, " + list.Find(x => x.Id == id).WeaponStatus + ", " + list.Find(x => x.Id == id).Strength.ToString() + " strength");
                 }
-                else if (game.Mode == "Realistic" && list.Find(x => x.Id == id).getWeaponName() == "") //If realistic mode and character has no weapon
+                else if (game.Mode == "Realistic" && list.Find(x => x.Id == id).WeaponName == "") //If realistic mode and character has no weapon
                 {
                     sb.Append("Unarmed, " + list.Find(x => x.Id == id).Strength.ToString() + " strength");
                 }
@@ -155,6 +158,10 @@ namespace Carnage
             sb.AppendLine("======== How Did Each Player Do? ========");
             sb.AppendLine("---1st Place---");
             sb.AppendLine(winner.Name + " from District " + winner.District + " with " + winner.Kills + " kills");
+            sb.AppendLine(winner.Health.ToString() + " health remaining");
+            //Displays winner's weapon stats
+            if (winner.WeaponStatus!="None") sb.AppendLine("Weapon: " + winner.WeaponName + ": " + winner.WeaponAttack.ToString() + " damage and " + winner.WeaponStatus);
+            else sb.AppendLine("Weapon: " + winner.WeaponName + ": " + winner.WeaponAttack.ToString() + " damage" );
 
             for (int i = 0; i < placeList.Count; i++)
             {
@@ -185,7 +192,7 @@ namespace Carnage
 
             sb.AppendLine("======== Who Had The Most Kills? ========");
             sb.AppendLine("---" + list[0].Kills + " kills---");
-            sb.AppendLine(list[0].Name + ": " + list[0].Kills + " kills");
+            sb.AppendLine(list[0].Name + ": " + list[0].Kills + " kills (" + list[0].GetKillList()+")");
 
             for (int i = 1;i < list.Count-1;i++)
             {
@@ -200,14 +207,22 @@ namespace Carnage
                         sb.AppendLine("---" + list[i].Kills + " kill---");
                     }        
                 }
-                if (list[i].Kills != 1)
+                if (list[i].Kills > 0)
                 {
-                    sb.AppendLine(list[i].Name + ": " + list[i].Kills + " kills");
+                    if (list[i].Kills != 1)
+                    {
+                        sb.AppendLine(list[i].Name + ": " + list[i].Kills + " kills (" + list[i].GetKillList() + ")");
+                    }
+                    else
+                    {
+                        sb.AppendLine(list[i].Name + ": " + list[i].Kills + " kill (" + list[i].GetKillList() + ")");
+                    }
                 }
                 else
                 {
-                    sb.AppendLine(list[i].Name + ": " + list[i].Kills + " kill");
-                }      
+                    sb.AppendLine(list[i].Name + ": 0 kills");
+                }
+
             }
 
             return sb.ToString();

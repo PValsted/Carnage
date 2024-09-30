@@ -31,7 +31,7 @@ namespace Carnage
         public string DoDay(Game game, List<character> list)
         {
             StringBuilder sb = new StringBuilder();
-            int i = 0, unassignedPlayers = game.ActivePlayers, playerCount=2; //Unassigned players variable keeps track of how many players have not been selected for an event to ensure the index doesn't go out of range
+            int i = 0, unassignedPlayers = game.ActivePlayers, playerCount=2, doRain; //Unassigned players variable keeps track of how many players have not been selected for an event to ensure the index doesn't go out of range
             double rand;
             string eventType;
             List<character> tempList = new List<character>();
@@ -39,7 +39,14 @@ namespace Carnage
             sb.AppendLine("Day " + game.Day + " begins.\n");
             rng.shuffleList(list);
 
-            if (game.Mode == "Realistic") //If the gamemode is Realistic, each player loses a random amound of hunger between 0 and 2.5 at the start of every day
+            doRain = rng.randomInt(1, 10); //1 in 10 chance it starts raining on any given day
+            if (doRain == 1) 
+            { 
+                game.IsRaining = true;
+                sb.AppendLine("Rain starts to downpour in the arena.\n");
+            }
+
+            if (game.Mode == "Realistic" && game.DoHunger==true && game.ActivePlayers>3) //If the gamemode is Realistic, each player loses a random amound of hunger between 0 and 2.5 at the start of every day
             {
                 for (i = 0; i < list.Count; i++)
                 {
@@ -129,6 +136,12 @@ namespace Carnage
             {
                 tempList[i].IsAlive = false;
                 list.Add(tempList[i]);
+            }
+
+            if (game.IsRaining == true) //If it's raining it stops at the end of the day
+            {
+                game.IsRaining = false;
+                sb.AppendLine("The rain subsides for now.");
             }
 
             return sb.ToString();

@@ -15,8 +15,9 @@ namespace Carnage
     public class Game
     {
         int day = 1, players = 24, funValue, activePlayers = 24, events=0, bloodbathDeaths=0, arenaEventDeaths=0, feastDeaths=0;
+        double startHealth=20;
         string mode="Classic";
-        bool isBloodbath = true, isEvent = false, isFeast= false, isActive= true, isDay= true, isDeath= false, hadFeast= false, doFullBattles= true, showCombatLevel=false, doSponsor=true;
+        bool isBloodbath = true, isEvent = false, isFeast= false, isActive= true, isDay= true, isDeath= false, hadFeast= false, doFullBattles= true, showCombatLevel=false, doSponsor=true, doHunger=true, isRaining=false;
         RNG rng = new();
 
         /// <summary>
@@ -25,7 +26,7 @@ namespace Carnage
         public Game(int players) 
         { 
             this.players = players;
-            FunValue = rng.funValue(); //A random value 1-1000 is generated, currently only 1 thing is affected by this variable; designed to cause very rare actions to occur
+            FunValue = rng.funValue(); //A random value 1-1000 is generated, currently only 3 things are affected by this variable; designed to cause very rare actions to occur
         }
 
         //Encapsulated fields
@@ -57,5 +58,8 @@ namespace Carnage
         public int ArenaEventDeaths { get => arenaEventDeaths; set => arenaEventDeaths = value; }
         public int FeastDeaths { get => feastDeaths; set => feastDeaths = value; }
         public bool DoSponsor { get => doSponsor; set => doSponsor = value; }
+        public bool DoHunger { get => doHunger; set => doHunger = value; }
+        public double StartHealth { get => startHealth; set => startHealth = value; }
+        public bool IsRaining { get => isRaining; set => isRaining = value; }
     }
 }

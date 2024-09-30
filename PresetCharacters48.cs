@@ -27,11 +27,14 @@ namespace Carnage
         List<string> stringList = new List<string>();
         RNG rng = new RNG();
         Game game;
+        VisualSettings vs = new VisualSettings();
 
-        public PresetCharacters48(Game game)
+        public PresetCharacters48(Game game, VisualSettings vs)
         {
             InitializeComponent();
             this.game = game;
+            this.vs = vs;
+            this.ApplyVisualEffectsToWindow();
         }
 
         /// <summary>
@@ -109,8 +112,8 @@ namespace Carnage
             if (ci.CheckList(stringList, 48) == "") //If no results are returned when inquiring about which characters are not in the database, every character name entered is valid
             {
                 rtbSearch.Clear();
-                if (game.Mode == "Classic") charList = ci.ConvertToCharacters(stringList, "Classic", 48); //If classic: pronouns are paired with the names to create 24 characters
-                else if (game.Mode == "Realistic") charList = ci.ConvertToCharacters(stringList, "Realistic", 48); //If realistic: pronouns, speed, strength, and morality are paired with the names to create 48 characters
+                if (game.Mode == "Classic") charList = ci.ConvertToCharacters(stringList, "Classic", 48, game); //If classic: pronouns are paired with the names to create 24 characters
+                else if (game.Mode == "Realistic") charList = ci.ConvertToCharacters(stringList, "Realistic", 48, game); //If realistic: pronouns, speed, strength, and morality are paired with the names to create 48 characters
 
                 charList = rng.shuffleList(charList);
 
@@ -123,7 +126,7 @@ namespace Carnage
                 }
 
                 //Passes list of characters and game settings into the simulator to begin
-                Simulation game1 = new Simulation(charList, game);
+                Simulation game1 = new Simulation(charList, game, vs);
 
                 this.Hide();
                 game1.Show();
@@ -177,10 +180,26 @@ namespace Carnage
         /// </summary>
         private void btnBack_Click(object sender, EventArgs e)
         {
-            Start start = new Start();
+            Start start = new Start(vs);
 
             start.Show();
             this.Hide();
+        }
+
+        private void ApplyVisualEffectsToWindow()
+        {
+            if (vs.Mode == "Light")
+            {
+                this.BackgroundImage = Properties.Resources.yellow_gradient;
+                panelCharacterSelect.BackColor = System.Drawing.Color.White;
+                panelCharacterSelect.ForeColor = System.Drawing.Color.Black;
+            }
+            else
+            {
+                this.BackgroundImage = Properties.Resources.super_dark_gradient;
+                panelCharacterSelect.BackColor = System.Drawing.Color.DimGray;
+                panelCharacterSelect.ForeColor = System.Drawing.Color.White;
+            }
         }
     }
 }

@@ -4446,7 +4446,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImage = Properties.Resources.yellow_gradient;
             ClientSize = new Size(1647, 973);
             Controls.Add(panelCharacterSelect);
             Icon = (Icon)resources.GetObject("$this.Icon");

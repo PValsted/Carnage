@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,10 +19,19 @@ namespace Carnage
     public partial class Start : Form
     {
         CharacterImporter ci = new CharacterImporter();
+        VisualSettings vs = new VisualSettings();
 
         public Start()
         {
             InitializeComponent();
+            this.ApplyVisualEffectsToWindow();
+        }
+
+        public Start(VisualSettings vs)
+        {
+            InitializeComponent();
+            this.vs = vs;
+            this.ApplyVisualEffectsToWindow();
         }
 
         /// <summary>
@@ -31,6 +41,7 @@ namespace Carnage
         {
             pnlMainMenu.Hide();
             pnlMenu2.Show();
+            cboArenas.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -46,7 +57,8 @@ namespace Carnage
                 if (cboRealistic.Checked) { MessageBox.Show("Custom character selection with Realistic Mode not yet implemented. Proceeding with Classic Mode."); };
                 if (cboShortBattles.Checked) game.DoFullBattles = false;
                 if (cboSponsor.Checked) game.DoSponsor = false;
-                CustomCharacters24 customCharacters24 = new(game);
+                if (cboHealth.Checked) game.StartHealth = Double.Parse(txtHealth.Text);
+                CustomCharacters24 customCharacters24 = new(game, vs);
                 this.Hide();
                 customCharacters24.Show();
             }
@@ -56,7 +68,8 @@ namespace Carnage
                 if (cboRealistic.Checked) { MessageBox.Show("Custom character selection with Realistic Mode not yet implemented. Proceeding with Classic Mode."); };
                 if (cboShortBattles.Checked) game.DoFullBattles = false;
                 if (cboSponsor.Checked) game.DoSponsor = false;
-                CustomCharacters48 customCharacters48 = new(game);
+                if (cboHealth.Checked) game.StartHealth = Double.Parse(txtHealth.Text);
+                CustomCharacters48 customCharacters48 = new(game, vs);
                 this.Hide();
                 customCharacters48.Show();
             }
@@ -76,8 +89,10 @@ namespace Carnage
                 if (cboRealistic.Checked) game.Mode = "Realistic";
                 if (cboShortBattles.Checked) game.DoFullBattles = false;
                 if (cboCombatLevel.Checked && cboRealistic.Checked) game.ShowCombatLevel = true;
+                if (cboHunger.Checked && cboRealistic.Checked) game.DoHunger = false;
                 if (cboSponsor.Checked) game.DoSponsor = false;
-                PresetCharacters24 presetCharacters24 = new PresetCharacters24(game);
+                if (cboHealth.Checked) game.StartHealth = Double.Parse(txtHealth.Text);
+                PresetCharacters24 presetCharacters24 = new PresetCharacters24(game, vs);
                 this.Hide();
                 presetCharacters24.Show();
             }
@@ -87,8 +102,10 @@ namespace Carnage
                 if (cboRealistic.Checked) game.Mode = "Realistic";
                 if (cboShortBattles.Checked) game.DoFullBattles = false;
                 if (cboCombatLevel.Checked && cboRealistic.Checked) game.ShowCombatLevel = true;
+                if (cboHunger.Checked && cboRealistic.Checked) game.DoHunger = false;
                 if (cboSponsor.Checked) game.DoSponsor = false;
-                PresetCharacters48 presetCharacters48 = new PresetCharacters48(game);
+                if (cboHealth.Checked) game.StartHealth = Double.Parse(txtHealth.Text);
+                PresetCharacters48 presetCharacters48 = new PresetCharacters48(game, vs);
                 this.Hide();
                 presetCharacters48.Show();
             }
@@ -102,6 +119,7 @@ namespace Carnage
         private void cboRealistic_CheckedChanged(object sender, EventArgs e)
         {
             cboCombatLevel.Visible = true;
+            cboHunger.Visible = true;
         }
 
         /// <summary>
@@ -222,6 +240,280 @@ namespace Carnage
         {
             pnlMainMenu.Hide();
             pnlChangelog.Show();
+        }
+
+        private void ApplyVisualEffects()
+        {
+            if (rdoLightMode.Checked)
+            {
+                vs.Mode = "Light";
+                using (StreamWriter writetext = new StreamWriter("visualoptions.txt"))
+                {
+                    writetext.WriteLine("Light");
+                }
+            }
+            if (rdoDarkMode.Checked)
+            {
+                vs.Mode = "Dark";
+                using (StreamWriter writetext = new StreamWriter("visualoptions.txt"))
+                {
+                    writetext.WriteLine("Dark");
+                }
+            }
+        }
+
+        private void ApplyVisualEffectsToWindow()
+        {
+            if (vs.Mode == "Light")
+            {
+                this.BackgroundImage = Properties.Resources.white_gradient;
+                //Visual Settings Panel
+                pnlVisualSettings.BackgroundImage = Properties.Resources.white_gradient;
+                txtVisualSettings.ForeColor = System.Drawing.Color.Black;
+                pnlMode.BackgroundImage = Properties.Resources.white_gradient;
+                pnlMode.ForeColor = System.Drawing.Color.Black;
+                cboDefaults.ForeColor = System.Drawing.Color.Black;
+                //Game Settings Panel
+                pnlOptions.BackgroundImage = Properties.Resources.white_gradient;
+                pnlOptions.ForeColor = System.Drawing.Color.Black;
+                pnlGeneralSettings.BackColor = System.Drawing.Color.White;
+                pnlGeneralSettings.ForeColor = System.Drawing.Color.Black;
+                pnlRealisticSettings.BackColor = System.Drawing.Color.White;
+                pnlRealisticSettings.ForeColor = System.Drawing.Color.Black;
+                pnlStats.BackColor = System.Drawing.Color.White;
+                pnlStats.ForeColor = System.Drawing.Color.Black;
+                //Game Start Panel
+                pnlMenu2.BackgroundImage = Properties.Resources.white_gradient;
+                pnlMenu2.ForeColor = System.Drawing.Color.Black;
+                pnlSettings.BackColor = System.Drawing.Color.White;
+                txtSettings.ForeColor = System.Drawing.Color.Black;
+                //Character Creation Panel
+                pnlCharacterEntry.BackgroundImage = Properties.Resources.white_gradient;
+                pnlCharacterEntry.ForeColor = System.Drawing.Color.Black;
+                //Changelog
+                pnlChangelog.BackgroundImage = Properties.Resources.white_gradient;
+                pnlChangelog.ForeColor = System.Drawing.Color.Black;
+            }
+            else
+            {
+                this.BackgroundImage = Properties.Resources.super_dark_gradient;
+                //Visual Settings Panel
+                pnlVisualSettings.BackgroundImage = null;
+                pnlVisualSettings.BackColor = System.Drawing.Color.DimGray;
+                txtVisualSettings.ForeColor = System.Drawing.Color.White;
+                pnlMode.BackgroundImage = null;
+                pnlMode.BackColor = System.Drawing.Color.Transparent;
+                pnlMode.ForeColor = System.Drawing.Color.White;
+                cboDefaults.ForeColor = System.Drawing.Color.White;
+                //Game Settings Panel
+                pnlOptions.BackgroundImage = null;
+                pnlOptions.BackColor = System.Drawing.Color.DimGray;
+                pnlOptions.ForeColor = System.Drawing.Color.White;
+                pnlGeneralSettings.BackColor = System.Drawing.Color.Transparent;
+                pnlGeneralSettings.ForeColor = System.Drawing.Color.White;
+                pnlRealisticSettings.BackColor = System.Drawing.Color.Transparent;
+                pnlRealisticSettings.ForeColor = System.Drawing.Color.White;
+                pnlStats.BackColor = System.Drawing.Color.Transparent;
+                pnlStats.ForeColor = System.Drawing.Color.White;
+                //Game Start Panel
+                pnlMenu2.BackgroundImage = null;
+                pnlMenu2.BackColor = System.Drawing.Color.DimGray;
+                pnlMenu2.ForeColor = System.Drawing.Color.White;
+                pnlSettings.BackColor = System.Drawing.Color.Transparent;
+                txtSettings.ForeColor = System.Drawing.Color.White;
+                txtSereneForest.ForeColor = System.Drawing.Color.Black;
+                //Character Creation Panel
+                pnlCharacterEntry.BackgroundImage = null;
+                pnlCharacterEntry.BackColor = System.Drawing.Color.DimGray;
+                pnlCharacterEntry.ForeColor = System.Drawing.Color.White;
+                //Changelog
+                pnlChangelog.BackgroundImage = null;
+                pnlChangelog.BackColor = System.Drawing.Color.DimGray;
+                pnlChangelog.ForeColor = System.Drawing.Color.White;
+
+            }
+        }
+
+        /// <summary>
+        /// Switches over to the Visual Settings panel
+        /// </summary>
+        private void btnVisualSettings_Click(object sender, EventArgs e)
+        {
+            pnlMenu2.Hide();
+            pnlVisualSettings.Show();
+        }
+
+        /// <summary>
+        /// Switches back to the game start screen with the selected options applied
+        /// </summary>
+        private void btnVisualSettingsBack_Click(object sender, EventArgs e)
+        {
+            pnlVisualSettings.Hide();
+            pnlMenu2.Show();
+        }
+
+        private void btnApply_Click(object sender, EventArgs e)
+        {
+            this.ApplyVisualEffects();
+            this.ApplyVisualEffectsToWindow();
+        }
+
+        private void btnBackGameSettings_Click(object sender, EventArgs e)
+        {
+            if (cboHealth.Checked)
+            {
+                if (txtHealth.Text == "")
+                {
+                    MessageBox.Show("Starting health text box must not be left blank!\n");
+                }
+                else if (Double.Parse(txtHealth.Text) <= 0) //If starting health is less than or equal to 0, the game will never start, so this checks that
+                {
+                    MessageBox.Show("Starting health must be higher than 0!\n");
+                }
+                else
+                {
+                    pnlOptions.Hide();
+                    pnlMenu2.Show();
+                }
+            }
+            else
+            {
+                pnlOptions.Hide();
+                pnlMenu2.Show();
+            }
+
+
+        }
+
+        private void btnGameSettings_Click(object sender, EventArgs e)
+        {
+            pnlMenu2.Hide();
+            pnlOptions.Show();
+        }
+
+        private void cboHealth_CheckedChanged(object sender, EventArgs e)
+        {
+            txtHealth.Show();
+        }
+
+        private void btnTest_Click(object sender, EventArgs e)
+        {
+            pnlMainMenu.Hide();
+            pnlTest.Show();
+        }
+
+        private void btnTestBack_Click(object sender, EventArgs e)
+        {
+            pnlTest.Hide();
+            pnlMainMenu.Show();
+        }
+
+        /// <summary>
+        /// Creates a test battle based on the selected values solely for the developer's purposes. This screen is
+        /// impossible to navigate to normally.
+        /// </summary>
+        private string TestBattle()
+        {
+            Battle battle = new Battle();
+            Game game = new Game(4);
+            Loot loot = new Loot();
+            character char1 = new character();
+            character char2 = new character();
+            character char3 = new character();
+            character char4 = new character();
+            StringBuilder sb = new StringBuilder();
+            RNG rng = new RNG();
+
+            game.Mode = "Realistic";
+            //game.IsRaining = true;
+
+            //Char 1
+            char1.Name = "Frodo";
+            if (txtPlayer1Damage.Text != "") char1.WeaponAttack = Double.Parse(txtPlayer1Damage.Text);
+            else char1.Strength = 2;
+            if (txtPlayer1Speed.Text != "") char1.Speed = Double.Parse(txtPlayer1Speed.Text);
+            else char1.Speed = 3;
+            if (txtPlayer1Moral.Text != "") char1.Morality = Double.Parse(txtPlayer1Moral.Text);
+            else char1.Morality = 5;
+            if (cboPlayer1Explosive.Checked) char1.HasExplosive = true;
+            if (cboPlayer1Heal.Checked)
+            {
+                char1.HealSlotFilled = true;
+                char1.HealingAmount = 5;
+            }
+            sb.AppendLine("After sneaking into the cornucopia, " + loot.lootEvent(char1, "Common", game));
+
+            //Char 2
+            char2.Name = "Darth Vader";
+            if (txtPlayer2Damage.Text != "") char2.WeaponAttack = Double.Parse(txtPlayer2Damage.Text);
+            else char2.Strength = 2;
+            if (txtPlayer2Speed.Text != "") char2.Speed = Double.Parse(txtPlayer2Speed.Text);
+            else char2.Speed = 3;
+            if (txtPlayer2Moral.Text != "") char2.Morality = Double.Parse(txtPlayer2Moral.Text);
+            else char2.Morality = 5;
+            if (cboPlayer2Explosive.Checked) char2.HasExplosive = true;
+            if (cboPlayer2Heal.Checked)
+            {
+                char2.HealSlotFilled = true;
+                char2.HealingAmount = 5;
+            }
+            sb.AppendLine("After sneaking into the cornucopia, " + loot.lootEvent(char2, "Common", game));
+
+            //Char 3
+            char3.Name = "Deadpool";
+            if (txtPlayer3Damage.Text != "") char3.WeaponAttack = Double.Parse(txtPlayer3Damage.Text);
+            else char3.Strength = 2;
+            if (txtPlayer3Speed.Text != "") char3.Speed = Double.Parse(txtPlayer3Speed.Text);
+            else char3.Speed = 3;
+            if (txtPlayer3Moral.Text != "") char3.Morality = Double.Parse(txtPlayer3Moral.Text);
+            else char3.Morality = 5;
+            if (cboPlayer3Explosive.Checked) char3.HasExplosive = true;
+            if (cboPlayer3Heal.Checked)
+            {
+                char3.HealSlotFilled = true;
+                char3.HealingAmount = 5;
+            }
+            sb.AppendLine("After sneaking into the cornucopia, " + loot.lootEvent(char3, "Common", game));
+
+            //Char 4
+            char4.Name = "Ron Swanson";
+            if (txtPlayer4Damage.Text != "") char4.WeaponAttack = Double.Parse(txtPlayer4Damage.Text);
+            else char4.Strength = 2;
+            if (txtPlayer4Speed.Text != "") char4.Speed = Double.Parse(txtPlayer4Speed.Text);
+            else char4.Speed = 3;
+            if (txtPlayer4Moral.Text != "") char4.Morality = Double.Parse(txtPlayer4Moral.Text);
+            else char4.Morality = 5;
+            if (cboPlayer4Explosive.Checked) char4.HasExplosive = true;
+            if (cboPlayer4Heal.Checked)
+            {
+                char4.HealSlotFilled = true;
+                char4.HealingAmount = 5;
+            }
+            sb.AppendLine("After sneaking into the cornucopia, " + loot.lootEvent(char4, "Common", game));
+
+            if (rdoTwo.Checked)
+            {
+                battle.setNumPlayers(2);
+                sb.AppendLine(battle.BattleEvent(char1, char2, char2, char2, game));
+            }
+            else if (rdoThree.Checked)
+            {
+                battle.setNumPlayers(3);
+                sb.AppendLine(battle.BattleEvent(char1, char2, char3, char3, game));
+            }
+            else if (rdoFour.Checked)
+            {
+                battle.setNumPlayers(4);
+                sb.AppendLine(battle.BattleEvent(char1, char2, char3, char4, game));
+            }
+
+            return sb.ToString();
+        }
+
+        private void btnBattle_Click(object sender, EventArgs e)
+        {
+            rtbTest.Clear();
+            rtbTest.AppendText(this.TestBattle());
         }
 
     }

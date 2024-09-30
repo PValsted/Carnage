@@ -32,10 +32,10 @@ namespace Carnage
         public string doBloodbath(Game game, List<character> list)
         {
             StringBuilder sb = new StringBuilder();
-            int i=0, unassignedPlayers=game.Players; //Unassigned players variable keeps track of how many players have not been selected for an event to ensure the index doesn't go out of range
+            int i=0, unassignedPlayers=game.Players, doRain; //Unassigned players variable keeps track of how many players have not been selected for an event to ensure the index doesn't go out of range
             string eventType;
 
-            if (game.FunValue >= 10) //If game's fun value is 0-10, all loot generated is rare
+            if (game.FunValue >= 20) //If game's fun value is 0-20, all loot generated is rare
             {
                 sb.AppendLine(game.Players + " contestants stand on their platforms in a circle. In the middle lies a large metal cornucopia, full of loot available to those bold enough to approach it. The countdown begins...and the game starts.\n");
             }
@@ -45,6 +45,13 @@ namespace Carnage
             }
 
             rng.shuffleList(list);
+
+            doRain = rng.randomInt(1, 10); //1 in 10 chance it starts raining on any given day
+            if (doRain == 1)
+            {
+                game.IsRaining = true;
+                sb.AppendLine("Rain starts to downpour in the arena.\n");
+            }
 
             //While loop simulates the events for every character
             while (i < list.Count) //While list hasn't been exhausted
@@ -61,20 +68,21 @@ namespace Carnage
 
                         if (random == 1)
                         {
-                            sb.AppendLine(list[i].getName() + " broke every one of " + list[i + 1].getName() + "'s fingers for a ham sandwhich.\n");
-                            if (game.Mode == "Realistic")
+                            sb.AppendLine(list[i].Name + " broke every one of " + list[i + 1].Name + "'s fingers for a ham sandwich.\n");
+                            if (game.Mode == "Realistic" && game.DoHunger == true)
                             {
                                 double rand = rng.randomDouble(3);
                                 list[i].Hunger += rand;
                             }
+                            list[i + 1].Health -= 2;
                         }
                         else if (random == 2)
                         {
-                            sb.AppendLine(list[i].getName() + " punched " + list[i + 1].getName() + " in the " + rng.randomBodyPart() + " over a backpack only to find it was empty.\n");
+                            sb.AppendLine(list[i].Name + " punched " + list[i + 1].Name + " in the " + rng.randomBodyPart() + " over a backpack only to find it was empty.\n");
                         }
                         else
                         {
-                            sb.AppendLine(list[i].getName() + " and " + list[i + 1].getName() + " saw each other and decided to run opposite directions.\n");
+                            sb.AppendLine(list[i].Name + " and " + list[i + 1].Name + " saw each other and decided to run opposite directions.\n");
                         }
 
                         i=i+2;
@@ -86,27 +94,27 @@ namespace Carnage
 
                         if (random == 1)
                         {
-                            sb.AppendLine(list[i].getName() + " found clean water just outside the cornucopia.\n");
+                            sb.AppendLine(list[i].Name + " found clean water just outside the cornucopia.\n");
                         }
                         else if (random == 2)
                         {
-                            sb.AppendLine(list[i].getName() + " grabbed firemaking supplies from the cornucopia.\n");
+                            sb.AppendLine(list[i].Name + " grabbed firemaking supplies from the cornucopia.\n");
                         }
                         else if (random == 3)
                         {
-                            sb.AppendLine(list[i].getName() + " decided to run away from the cornucopia.\n");
+                            sb.AppendLine(list[i].Name + " decided to run away from the cornucopia.\n");
                         }
                         else if (random == 4)
                         {
-                            sb.AppendLine(list[i].getName() + " saw a number of fighters in the cornucopia and ran the other way.\n");
+                            sb.AppendLine(list[i].Name + " saw a number of fighters in the cornucopia and ran the other way.\n");
                         }
                         else if (random == 5)
                         {
-                            sb.AppendLine(list[i].getName() + " examined " + list[i].getPronounPosAdj().ToLower() + " surroundings and determined " + list[i].getPronounSub().ToLower() + " could not approach the cornucopia.\n");
+                            sb.AppendLine(list[i].Name + " examined " + list[i].PronounPosAdj.ToLower() + " surroundings and determined " + list[i].PronounSub.ToLower() + " could not approach the cornucopia.\n");
                         }
                         else
                         {
-                            sb.AppendLine(list[i].getName() + " sprained " + list[i].getPronounPosAdj().ToLower() + " ankle running away from the cornucopia.\n");
+                            sb.AppendLine(list[i].Name + " sprained " + list[i].PronounPosAdj.ToLower() + " ankle running away from the cornucopia.\n");
                         }
                         unassignedPlayers--;
                         i++;
@@ -117,16 +125,16 @@ namespace Carnage
                     int random = rng.randomInt(1, 7);
                     if (game.FunValue >= 10 && random > 2)
                     {
-                        sb.AppendLine("After sneaking into the cornucopia, " + loot.lootEvent(list[i], "Common"));
+                        sb.AppendLine("After sneaking into the cornucopia, " + loot.lootEvent(list[i], "Common", game));
                     }
-                    else if (game.FunValue < 10 && random > 2)
+                    else if (game.FunValue <= 20 && random > 2)
                     {
-                        sb.AppendLine("After sneaking into the cornucopia, " + loot.lootEvent(list[i], "Rare"));
+                        sb.AppendLine("After sneaking into the cornucopia, " + loot.lootEvent(list[i], "Rare", game));
                     }
                     else
                     {
                         sb.AppendLine("Just inside the cornucopia, " + list[i].Name + " found some food.\n");
-                        if (game.Mode=="Realistic")
+                        if (game.Mode == "Realistic" && game.DoHunger == true)
                         {
                             double rand = rng.randomDouble(4);
                             list[i].Hunger += rand;
@@ -141,11 +149,11 @@ namespace Carnage
                     {
                         if (game.FunValue >= 10)
                         {
-                            sb.AppendLine(list[i].getName() + " ran into the cornucopia to grab supplies but was ambushed by " + list[i + 1].getName() + ". Just before this, " + loot.lootEvent(list[i + 1], "Common") + battle.BattleEvent(list[i], list[i + 1], list[i + 1], list[i + 1], game));
+                            sb.AppendLine(list[i].Name + " ran into the cornucopia to grab supplies but was ambushed by " + list[i + 1].Name + ". Just before this, " + loot.lootEvent(list[i + 1], "Common", game) + battle.BattleEvent(list[i], list[i + 1], list[i + 1], list[i + 1], game));
                         }
                         else
                         {
-                            sb.AppendLine(list[i].getName() + " ran into the cornucopia to grab supplies but was ambushed by " + list[i + 1].getName() + ". Just before this, " + loot.lootEvent(list[i + 1], "Rare") + battle.BattleEvent(list[i], list[i + 1], list[i + 1], list[i + 1], game));
+                            sb.AppendLine(list[i].Name + " ran into the cornucopia to grab supplies but was ambushed by " + list[i + 1].Name + ". Just before this, " + loot.lootEvent(list[i + 1], "Rare", game) + battle.BattleEvent(list[i], list[i + 1], list[i + 1], list[i + 1], game));
                         }
 
                         i = i + 2;
@@ -155,12 +163,18 @@ namespace Carnage
                 }
                 else if (eventType == "Death") //1 character dies outside of combat
                 {
-                    sb.AppendLine(list[i].getName() + " stepped off the platform too early and blew up.\n");
+                    sb.AppendLine(list[i].Name + " stepped off the platform too early and blew up.\n");
                     list[i].IsAlive = false;
 
                     unassignedPlayers--;
                     i++;
                 }
+            }
+
+            if (game.IsRaining == true) //If it's raining it stops at the end of the day
+            {
+                game.IsRaining = false;
+                sb.AppendLine("The rain subsides for now.");
             }
 
             return sb.ToString();

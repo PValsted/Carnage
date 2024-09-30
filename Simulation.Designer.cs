@@ -571,6 +571,7 @@ namespace Carnage
             txtPlayer1Item = new Label();
             rboPlayer1Sponsor = new RadioButton();
             lblSponsorTxt = new Label();
+            btnRandom = new Button();
             pnlMain.SuspendLayout();
             pnlWinner.SuspendLayout();
             pnl24.SuspendLayout();
@@ -835,7 +836,6 @@ namespace Carnage
             rtbGeneralStats.Size = new Size(496, 790);
             rtbGeneralStats.TabIndex = 9;
             rtbGeneralStats.Text = "";
-            rtbGeneralStats.SelectionAlignment = HorizontalAlignment.Center;
             // 
             // rtbKills
             // 
@@ -850,7 +850,6 @@ namespace Carnage
             rtbKills.Size = new Size(496, 790);
             rtbKills.TabIndex = 8;
             rtbKills.Text = "";
-            rtbKills.SelectionAlignment = HorizontalAlignment.Center;
             // 
             // btnBack
             // 
@@ -880,7 +879,6 @@ namespace Carnage
             rtbPlaces.Size = new Size(496, 790);
             rtbPlaces.TabIndex = 6;
             rtbPlaces.Text = "";
-            rtbPlaces.SelectionAlignment = HorizontalAlignment.Center;
             // 
             // lblWinner
             // 
@@ -7163,6 +7161,7 @@ namespace Carnage
             pnlSponsor.BackColor = SystemColors.Window;
             pnlSponsor.BackgroundImage = (Image)resources.GetObject("pnlSponsor.BackgroundImage");
             pnlSponsor.BorderStyle = BorderStyle.FixedSingle;
+            pnlSponsor.Controls.Add(btnRandom);
             pnlSponsor.Controls.Add(btnDeselect);
             pnlSponsor.Controls.Add(label30);
             pnlSponsor.Controls.Add(label33);
@@ -7333,17 +7332,30 @@ namespace Carnage
             lblSponsorTxt.TabIndex = 0;
             lblSponsorTxt.Text = "Sponsor a Player";
             // 
+            // btnRandom
+            // 
+            btnRandom.BackgroundImage = Properties.Resources.button_gradient;
+            btnRandom.Font = new Font("Constantia", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnRandom.ForeColor = SystemColors.Window;
+            btnRandom.Location = new Point(1040, 55);
+            btnRandom.Name = "btnRandom";
+            btnRandom.Size = new Size(122, 34);
+            btnRandom.TabIndex = 7;
+            btnRandom.Text = "Randomize";
+            btnRandom.UseVisualStyleBackColor = true;
+            btnRandom.Click += btnRandom_Click;
+            // 
             // Simulation
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(1886, 997);
+            Controls.Add(pnlSponsor);
+            Controls.Add(pnlWinner);
             Controls.Add(pnlMain);
             Controls.Add(pnlStats48);
             Controls.Add(pnl24);
-            Controls.Add(pnlWinner);
-            Controls.Add(pnlSponsor);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Simulation";
             Text = "Carnage";
@@ -8165,5 +8177,6 @@ namespace Carnage
         private RadioButton rboPlayer1Sponsor;
         private Label label30;
         private Button btnDeselect;
+        private Button btnRandom;
     }
 }

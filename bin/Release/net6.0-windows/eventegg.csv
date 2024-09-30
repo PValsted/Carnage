@@ -1,0 +1,8 @@
+﻿{1} saw an egg from afar and decided to stay away from it.,1,None
+{1} approached an egg. {1} gets a bad feeling and smashes it. The inside of the egg is acidic and it burns through {PosAdjPro} entire foot. ,1,Damage
+An egg hatched right in front {1} and the fierce-looking hatchling rushed toward {ObjPro}. ,1,NPCBattle
+In the distance {1} saw a strange creature. {CapSubPro} assumed it came from an egg and ran the other way.,1,None
+{1} spotted an egg starting to hatch. Curiosity got the better of {ObjPro} and {SubPro} hid to watch it hatch from a short distance. A creature unlike anything {SubPro} had ever seen before emerged and spotted {ObjPro}. Before {SubPro} could get away it ran to {ObjPro} super quickly. ,1,NPCBattle
+{1} found an egg on the ground while running away from {2}. {CapSubPro} threw the egg at {2}’s head. The acidic insides of the egg melted away {PosAdjPro2} face and killed {ObjPro2} instantly.,2,Death2
+An egg started to hatch right in front of {1} and before {SubPro} could get away a creature was born. It seemed to be peaceful and ignored {ObjPro}. ,1,None
+{1} heard footsteps approaching rapidly behind {ObjPro} and a monster attacked {ObjPro} from behind before {SubPro} could react. ,1,NPCBattle

@@ -142,6 +142,7 @@ namespace Carnage
         {
             int random = this.randomInt(1, 8);
 
+
             if (random != 8) return false;
             else return true;
         }
@@ -155,7 +156,9 @@ namespace Carnage
             bool flee = false;
             double difference, rand;
 
-            if (char1.Speed == 10) flee = true; //Character automatically succeeds if their speed is 10
+            if (char1.GetStatus("Frozen")) flee = false; //Character cannot flee if Frozen
+            else if (char1.Speed == 10) flee = true; //Character automatically succeeds if their speed is 10
+            else if (char2.GetStatus("Frozen")) flee = true; //Character automatically succeeds if the opponent is Frozen
             else if (char2.Speed == 10) flee = false;
             else
             {
@@ -309,6 +312,30 @@ namespace Carnage
             }
 
             return list;
+        }
+
+        /// <summary>
+        /// Chooses a random status effect
+        /// </summary>
+        public string RandomStatus()
+        {
+            int rand = this.randomInt(1, 3);
+
+            if (rand == 1) return "Burning";
+            else if (rand == 2) return "Poison";
+            else return "Freeze";
+        }
+
+        /// <summary>
+        /// Chooses a random loot rarity tier
+        /// </summary>
+        public string RandomRarity()
+        {
+            int rand = this.randomInt(1, 10);
+
+            if (rand == 1) return "Rare";
+            else if (rand >= 8 ) return "Uncommon";
+            else return "Common";
         }
 
     }

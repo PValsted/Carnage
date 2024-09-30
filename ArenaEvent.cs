@@ -98,13 +98,13 @@ namespace Carnage
             string[] monkeyArray = new string[3];
             int i = 0, rand, length, unassignedPlayers = game.ActivePlayers;
             string eventText;
-            character monkey = new("a killer monkey", "They");
+            character monkey = new("a killer monkey", "They", game);
 
             //NPC that can attack players this event
-            monkey.setWeaponAttack(3.5);
+            monkey.WeaponAttack = 3.5;
             monkey.IsNPC = true;
 
-            csvLines = System.IO.File.ReadAllLines(@"..\..\..\eventmonkeys.csv");
+            csvLines = System.IO.File.ReadAllLines(@"eventmonkeys.csv");
             length = csvLines.Length - 1;
 
             //Header, appears at the top only once:
@@ -129,7 +129,7 @@ namespace Carnage
                     }
                     else if (monkeyArray[2] == "NPCBattle") //1 character fights an NPC
                     {
-                        sb.AppendLine(eventText + battle.NPCBattleEvent(list[i], monkey, game)+"\n");
+                        sb.AppendLine(eventText + battle.NPCBattleEvent(list[i], monkey, game, false)+"\n");
                     }
 
                     i++;
@@ -145,7 +145,7 @@ namespace Carnage
                     }
                     else if (monkeyArray[2] == "NPCBattle2") //Character forces other character into NPC battle
                     {
-                        sb.AppendLine(eventText + battle.NPCBattleEvent(list[i + 1], monkey, game) + "\n");
+                        sb.AppendLine(eventText + battle.NPCBattleEvent(list[i + 1], monkey, game, false) + "\n");
                     }
 
                     i += 2;
@@ -173,26 +173,27 @@ namespace Carnage
             string[] eggArray = new string[3];
             int i = 0, rand, length, unassignedPlayers = game.ActivePlayers, randChar;
             string eventText;
-            character raptor = new("a megaraptor", "They");
-            character tracker = new("a tracker jacker", "They");
-            character basilisk = new("a basilisk minor", "They");
+            character raptor = new("a megaraptor", "They", game);
+            character tracker = new("a tracker jacker", "They", game);
+            character basilisk = new("a basilisk minor", "They", game);
             character randomCharacter;
 
             //3 types of NPC enemies can attack players in this event
-            raptor.setWeaponAttack(3.5);
-            raptor.setWeaponName("claws");
-            raptor.setWeaponType("slash");
+            raptor.WeaponAttack = 3.5;
+            raptor.WeaponName = "claws";
+            raptor.WeaponType = "slash";
             raptor.IsNPC = true;
-            tracker.setWeaponAttack(2);
-            tracker.setWeaponName("stinger");
-            tracker.setWeaponType("stab");
+            tracker.WeaponAttack = 1;
+            tracker.WeaponName = "stinger";
+            tracker.WeaponType = "stab";
+            tracker.WeaponStatus = "Poison";
             tracker.IsNPC = true;
-            basilisk.setWeaponAttack(3);
-            basilisk.setWeaponName("fangs");
-            basilisk.setWeaponType("special");
+            basilisk.WeaponAttack = 3;
+            basilisk.WeaponName = "fangs";
+            basilisk.WeaponType = "special";
             basilisk.IsNPC = true;
 
-            csvLines = System.IO.File.ReadAllLines(@"..\..\..\eventegg.csv");
+            csvLines = System.IO.File.ReadAllLines(@"eventegg.csv");
             length = csvLines.Length - 1;
 
             //Header, appears at the top only once:
@@ -237,18 +238,18 @@ namespace Carnage
                     }
                     else if (eggArray[2] == "NPCBattle") //Character fights random NPC
                     {
-                        sb2.AppendLine(eventText + battle.NPCBattleEvent(list[i], randomCharacter, game) + "\n");
+                        sb2.AppendLine(eventText + battle.NPCBattleEvent(list[i], randomCharacter, game, false) + "\n");
                     }
                     else if (eggArray[2] == "Damage") //Character takes damage
                     {
                         list[i].hurt(10);
                         if (list[i].IsAlive==true) //If player survives egg
                         {
-                            sb2.AppendLine(eventText + list[i].getName() + " took 10 damage.\n");
+                            sb2.AppendLine(eventText + list[i].Name + " took 10 damage.\n");
                         }
                         else //If egg kills player
                         {
-                            sb2.AppendLine(eventText + list[i].getName() + " succumbed to " + list[i].getPronounPosAdj().ToLower() + " injuries.\n");
+                            sb2.AppendLine(eventText + list[i].Name + " succumbed to " + list[i].PronounPosAdj.ToLower() + " injuries.\n");
                         }                        
                     }
 
@@ -261,6 +262,7 @@ namespace Carnage
 
                     sb2.AppendLine(eventText + "\n");
                     list[i].Kills++;
+                    list[i].AddKill(list[i + 1].Name);
                     list[i+1].hurt(100);
 
                     i += 2;
@@ -287,12 +289,12 @@ namespace Carnage
             int i = 0, rand, length, unassignedPlayers = game.ActivePlayers;
             string eventText;
 
-            csvLines = System.IO.File.ReadAllLines(@"..\..\..\eventfrost.csv");
+            csvLines = System.IO.File.ReadAllLines(@"eventfrost.csv");
             length = csvLines.Length - 1;
 
             //Header, appears at the top only once:
             sb3.AppendLine("Arena Event - Killer Frost\n");
-            sb3.AppendLine("Alarms blare throughout the arena. It’s announced that the temperature of the arena will be reduced to 0 degrees Celsius. The warm climate very rapidly becomes frigid, and it starts to snow.\n");
+            sb3.AppendLine("Alarms blare throughout the arena. It’s announced that the temperature of the arena will be reduced to -50 degrees Celsius. The warm climate very rapidly becomes frigid, and it starts to snow.\n");
 
             //While loop simulates the events for every character
             while (i < list.Count) //While list hasn't been exhausted
@@ -348,7 +350,7 @@ namespace Carnage
             int i = 0, rand, length, unassignedPlayers = game.ActivePlayers;
             string eventText;
 
-            csvLines = System.IO.File.ReadAllLines(@"..\..\..\eventbombtrees.csv");
+            csvLines = System.IO.File.ReadAllLines(@"eventbombtrees.csv");
             length = csvLines.Length - 1;
 
             //Header, appears at the top only once:
@@ -388,6 +390,7 @@ namespace Carnage
                         sb4.AppendLine(eventText + "\n");
                         list[i+1].hurt(100);
                         list[i].Kills++;
+                        list[i].AddKill(list[i+1].Name);
                     }
                     else if (bombArray[2] == "Deathx2") //2 characters die
                     {

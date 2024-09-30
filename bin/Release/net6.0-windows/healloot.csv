@@ -1,0 +1,7 @@
+medkit,healing,5,Common
+medkit+,healing,7,Uncommon
+medkit++,healing,9,Rare
+healing potion,healing,6,Common
+Estus Flask,healing,8,Uncommon
+Chug Jug,healing,10,Rare
+antidote,antidote,0,Common

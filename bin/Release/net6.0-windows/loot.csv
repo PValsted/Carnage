@@ -1,0 +1,56 @@
+brass knuckles,hand,3,Common,No,None
+tiger claws,hand,3.5,Common,No,None
+machete,slash,4.25,Common,No,None
+scythe,slash,4,Common,No,None
+rapier,slash/stab,4,Common,No,None
+saber,slash,4.25,Common,No,None
+scimitar,slash,4.25,Common,No,None
+cutlass,slash,4.25,Common,No,None
+pitchfork,stab,4.25,Common,No,None
+trident,stab,4.5,Uncommon,No,None
+polearm,stab,4,Common,No,None
+glaive,stab,4.25,Common,No,None
+lance,stab,4.25,Common,No,None
+pike,stab,4.25,Common,No,None
+spear,stab,3.5,Common,No,None
+dagger,slash/stab,3.5,Common,No,None
+falchion,slash/stab,4.25,Common,No,None
+katana,slash/stab,4.5,Uncommon,No,None
+longsword,slash/stab,4.25,Common,No,None
+shortsword,slash/stab,4,Common,No,None
+executioner's sword,slash/stab,4.5,Uncommon,No,None
+Excalibur,slash/stab,6,Rare,Yes,None
+hatchet,crush,3.75,Common,No,None
+axe,crush,4,Common,No,None
+battleaxe,crush,4.5,Uncommon,No,None
+club,crush,3.5,Common,No,None
+spiked club,crush,4,Common,No,None
+war hammer,crush,4.5,Uncommon,No,None
+mace,crush,4.25,Common,No,None
+flail,crush,4.25,Common,No,None
+bludgeon,crush,4,Common,No,None
+morning star,crush,4.25,Common,No,None
+pickaxe,crush,3.5,Common,No,None
+halberd,crush,4.25,Common,No,None
+longbow,bow,4.25,Common,No,None
+short bow,bow,4.25,Common,No,None
+crossbow,bow,4.5,Uncommon,No,None
+throwing knife,throwing,4.25,Common,No,None
+chakram,throwing,3.5,Common,No,None
+shuriken,throwing,4.25,Common,No,None
+tomahawk,throwing,4.5,Uncommon,No,None
+blunderbuss,gun,4.5,Uncommon,No,None
+musket,gun,4.5,Uncommon,No,None
+pistol,gun,5,Rare,No,None
+shotgun,gun,5.5,Rare,No,None
+AK-47,gun,6,Rare,No,None
+minigun,gun,6,Rare,No,None
+slingshot,special,3.5,Common,No,None
+flamethrower,special,2.5,Uncommon,No,Burning
+blowgun,special,2.5,Uncommon,No,Poison
+whip,special,3.5,Common,No,None
+grenade,explosive,0,Uncommon,No,None
+landmine,explosive,0,Uncommon,No,None
+c-4,explosive,0,Uncommon,No,None
+sticky bomb,explosive,0,Uncommon,No,None
+stick of dynamite,explosive,0,Uncommon,No,None

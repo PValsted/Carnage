@@ -22,11 +22,14 @@ namespace Carnage
         Game game;
         String pronoun;
         RNG rng = new RNG();
+        VisualSettings vs = new VisualSettings();
 
-        public CustomCharacters48(Game game)
+        public CustomCharacters48(Game game, VisualSettings vs)
         {
             InitializeComponent();
             this.game = game;
+            this.vs = vs;
+            this.ApplyVisualEffectsToWindow();
         }
 
         /// <summary>
@@ -36,54 +39,54 @@ namespace Carnage
         private void btnEnterCharacters_Click(object sender, EventArgs e)
         {
             //instantiates all 24 characters
-            character charD1C1 = new character("D1C1", 1);
-            character charD1C2 = new character("D1C2", 1);
-            character charD1C3 = new character("D1C3", 1);
-            character charD1C4 = new character("D1C4", 1);
-            character charD2C1 = new character("D2C1", 2);
-            character charD2C2 = new character("D2C2", 2);
-            character charD2C3 = new character("D2C3", 2);
-            character charD2C4 = new character("D2C4", 2);
-            character charD3C1 = new character("D3C1", 3);
-            character charD3C2 = new character("D3C2", 3);
-            character charD3C3 = new character("D3C3", 3);
-            character charD3C4 = new character("D3C4", 3);
-            character charD4C1 = new character("D4C1", 4);
-            character charD4C2 = new character("D4C2", 4);
-            character charD4C3 = new character("D4C3", 4);
-            character charD4C4 = new character("D4C4", 4);
-            character charD5C1 = new character("D5C1", 5);
-            character charD5C2 = new character("D5C2", 5);
-            character charD5C3 = new character("D5C3", 5);
-            character charD5C4 = new character("D5C4", 5);
-            character charD6C1 = new character("D6C1", 6);
-            character charD6C2 = new character("D6C2", 6);
-            character charD6C3 = new character("D6C3", 6);
-            character charD6C4 = new character("D6C4", 6);
-            character charD7C1 = new character("D7C1", 7);
-            character charD7C2 = new character("D7C2", 7);
-            character charD7C3 = new character("D7C3", 7);
-            character charD7C4 = new character("D7C4", 7);
-            character charD8C1 = new character("D8C1", 8);
-            character charD8C2 = new character("D8C2", 8);
-            character charD8C3 = new character("D8C3", 8);
-            character charD8C4 = new character("D8C4", 8);
-            character charD9C1 = new character("D9C1", 9);
-            character charD9C2 = new character("D9C2", 9);
-            character charD9C3 = new character("D9C3", 9);
-            character charD9C4 = new character("D9C4", 9);
-            character charD10C1 = new character("D10C1", 10);
-            character charD10C2 = new character("D10C2", 10);
-            character charD10C3 = new character("D10C3", 10);
-            character charD10C4 = new character("D10C4", 10);
-            character charD11C1 = new character("D11C1", 11);
-            character charD11C2 = new character("D11C2", 11);
-            character charD11C3 = new character("D11C3", 11);
-            character charD11C4 = new character("D11C4", 11);
-            character charD12C1 = new character("D12C1", 12);
-            character charD12C2 = new character("D12C2", 12);
-            character charD12C3 = new character("D12C3", 12);
-            character charD12C4 = new character("D12C4", 12);
+            character charD1C1 = new character("D1C1", 1, game);
+            character charD1C2 = new character("D1C2", 1, game);
+            character charD1C3 = new character("D1C3", 1, game);
+            character charD1C4 = new character("D1C4", 1, game);
+            character charD2C1 = new character("D2C1", 2, game);
+            character charD2C2 = new character("D2C2", 2, game);
+            character charD2C3 = new character("D2C3", 2, game);
+            character charD2C4 = new character("D2C4", 2, game);
+            character charD3C1 = new character("D3C1", 3, game);
+            character charD3C2 = new character("D3C2", 3, game);
+            character charD3C3 = new character("D3C3", 3, game);
+            character charD3C4 = new character("D3C4", 3, game);
+            character charD4C1 = new character("D4C1", 4, game);
+            character charD4C2 = new character("D4C2", 4, game);
+            character charD4C3 = new character("D4C3", 4, game);
+            character charD4C4 = new character("D4C4", 4, game);
+            character charD5C1 = new character("D5C1", 5, game);
+            character charD5C2 = new character("D5C2", 5, game);
+            character charD5C3 = new character("D5C3", 5, game);
+            character charD5C4 = new character("D5C4", 5, game);
+            character charD6C1 = new character("D6C1", 6, game);
+            character charD6C2 = new character("D6C2", 6, game);
+            character charD6C3 = new character("D6C3", 6, game);
+            character charD6C4 = new character("D6C4", 6, game);
+            character charD7C1 = new character("D7C1", 7, game);
+            character charD7C2 = new character("D7C2", 7, game);
+            character charD7C3 = new character("D7C3", 7, game);
+            character charD7C4 = new character("D7C4", 7, game);
+            character charD8C1 = new character("D8C1", 8, game);
+            character charD8C2 = new character("D8C2", 8, game);
+            character charD8C3 = new character("D8C3", 8, game);
+            character charD8C4 = new character("D8C4", 8, game);
+            character charD9C1 = new character("D9C1", 9, game);
+            character charD9C2 = new character("D9C2", 9, game);
+            character charD9C3 = new character("D9C3", 9, game);
+            character charD9C4 = new character("D9C4", 9, game);
+            character charD10C1 = new character("D10C1", 10, game);
+            character charD10C2 = new character("D10C2", 10, game);
+            character charD10C3 = new character("D10C3", 10, game);
+            character charD10C4 = new character("D10C4", 10, game);
+            character charD11C1 = new character("D11C1", 11, game);
+            character charD11C2 = new character("D11C2", 11, game);
+            character charD11C3 = new character("D11C3", 11, game);
+            character charD11C4 = new character("D11C4", 11, game);
+            character charD12C1 = new character("D12C1", 12, game);
+            character charD12C2 = new character("D12C2", 12, game);
+            character charD12C3 = new character("D12C3", 12, game);
+            character charD12C4 = new character("D12C4", 12, game);
 
             //checks to make sure a name is entered on every line or the below code won't execute
             if (txtD1C1.Text.Length != 0 && txtD1C2.Text.Length != 0 && txtD1C3.Text.Length != 0 && txtD1C4.Text.Length != 0 &&
@@ -131,7 +134,7 @@ namespace Carnage
                     else if (rdoFemaleD1C1.Checked) { pronoun = "she"; }
                     else if (rdoTheyD1C1.Checked) { pronoun = "they"; }
 
-                    charD1C1.setName(txtD1C1.Text);
+                    charD1C1.Name = txtD1C1.Text;
                     charD1C1.setPronoun(pronoun);
                     charList.Add(charD1C1);
 
@@ -140,7 +143,7 @@ namespace Carnage
                     else if (rdoFemaleD1C2.Checked) { pronoun = "she"; }
                     else if (rdoTheyD1C2.Checked) { pronoun = "they"; }
 
-                    charD1C2.setName(txtD1C2.Text);
+                    charD1C2.Name = txtD1C2.Text;
                     charD1C2.setPronoun(pronoun);
                     charList.Add(charD1C2);
 
@@ -149,7 +152,7 @@ namespace Carnage
                     else if (rdoFemaleD1C3.Checked) { pronoun = "she"; }
                     else if (rdoTheyD1C3.Checked) { pronoun = "they"; }
 
-                    charD1C3.setName(txtD1C3.Text);
+                    charD1C3.Name = txtD1C3.Text;
                     charD1C3.setPronoun(pronoun);
                     charList.Add(charD1C3);
 
@@ -158,7 +161,7 @@ namespace Carnage
                     else if (rdoFemaleD1C4.Checked) { pronoun = "she"; }
                     else if (rdoTheyD1C4.Checked) { pronoun = "they"; }
 
-                    charD1C4.setName(txtD1C4.Text);
+                    charD1C4.Name = txtD1C4.Text;
                     charD1C4.setPronoun(pronoun);
                     charList.Add(charD1C4);
 
@@ -167,7 +170,7 @@ namespace Carnage
                     else if (rdoFemaleD2C1.Checked) { pronoun = "she"; }
                     else if (rdoTheyD2C1.Checked) { pronoun = "they"; }
 
-                    charD2C1.setName(txtD2C1.Text);
+                    charD2C1.Name = txtD2C1.Text;
                     charD2C1.setPronoun(pronoun);
                     charList.Add(charD2C1);
 
@@ -176,7 +179,7 @@ namespace Carnage
                     else if (rdoFemaleD2C2.Checked) { pronoun = "she"; }
                     else if (rdoTheyD2C2.Checked) { pronoun = "they"; }
 
-                    charD2C2.setName(txtD2C2.Text);
+                    charD2C2.Name = txtD2C2.Text;
                     charD2C2.setPronoun(pronoun);
                     charList.Add(charD2C2);
 
@@ -185,7 +188,7 @@ namespace Carnage
                     else if (rdoFemaleD2C3.Checked) { pronoun = "she"; }
                     else if (rdoTheyD2C3.Checked) { pronoun = "they"; }
 
-                    charD2C3.setName(txtD2C3.Text);
+                    charD2C3.Name = txtD2C3.Text;
                     charD2C3.setPronoun(pronoun);
                     charList.Add(charD2C3);
 
@@ -194,7 +197,7 @@ namespace Carnage
                     else if (rdoFemaleD2C4.Checked) { pronoun = "she"; }
                     else if (rdoTheyD2C4.Checked) { pronoun = "they"; }
 
-                    charD2C4.setName(txtD2C4.Text);
+                    charD2C4.Name = txtD2C4.Text;
                     charD2C4.setPronoun(pronoun);
                     charList.Add(charD2C4);
 
@@ -203,7 +206,7 @@ namespace Carnage
                     else if (rdoFemaleD3C1.Checked) { pronoun = "she"; }
                     else if (rdoTheyD3C1.Checked) { pronoun = "they"; }
 
-                    charD3C1.setName(txtD3C1.Text);
+                    charD3C1.Name = txtD3C1.Text;
                     charD3C1.setPronoun(pronoun);
                     charList.Add(charD3C1);
 
@@ -212,7 +215,7 @@ namespace Carnage
                     else if (rdoFemaleD3C2.Checked) { pronoun = "she"; }
                     else if (rdoTheyD3C2.Checked) { pronoun = "they"; }
 
-                    charD3C2.setName(txtD3C2.Text);
+                    charD3C2.Name = txtD3C2.Text;
                     charD3C2.setPronoun(pronoun);
                     charList.Add(charD3C2);
 
@@ -221,7 +224,7 @@ namespace Carnage
                     else if (rdoFemaleD3C3.Checked) { pronoun = "she"; }
                     else if (rdoTheyD3C3.Checked) { pronoun = "they"; }
 
-                    charD3C3.setName(txtD3C3.Text);
+                    charD3C3.Name = txtD3C3.Text;
                     charD3C3.setPronoun(pronoun);
                     charList.Add(charD3C3);
 
@@ -230,7 +233,7 @@ namespace Carnage
                     else if (rdoFemaleD3C4.Checked) { pronoun = "she"; }
                     else if (rdoTheyD3C4.Checked) { pronoun = "they"; }
 
-                    charD3C4.setName(txtD3C4.Text);
+                    charD3C4.Name = txtD3C4.Text;
                     charD3C4.setPronoun(pronoun);
                     charList.Add(charD3C4);
 
@@ -239,7 +242,7 @@ namespace Carnage
                     else if (rdoFemaleD4C1.Checked) { pronoun = "she"; }
                     else if (rdoTheyD4C1.Checked) { pronoun = "they"; }
 
-                    charD4C1.setName(txtD4C1.Text);
+                    charD4C1.Name = txtD4C1.Text;
                     charD4C1.setPronoun(pronoun);
                     charList.Add(charD4C1);
 
@@ -248,7 +251,7 @@ namespace Carnage
                     else if (rdoFemaleD4C2.Checked) { pronoun = "she"; }
                     else if (rdoTheyD4C2.Checked) { pronoun = "they"; }
 
-                    charD4C2.setName(txtD4C2.Text);
+                    charD4C2.Name = txtD4C2.Text;
                     charD4C2.setPronoun(pronoun);
                     charList.Add(charD4C2);
 
@@ -257,7 +260,7 @@ namespace Carnage
                     else if (rdoFemaleD4C3.Checked) { pronoun = "she"; }
                     else if (rdoTheyD4C3.Checked) { pronoun = "they"; }
 
-                    charD4C3.setName(txtD4C3.Text);
+                    charD4C3.Name = txtD4C3.Text;
                     charD4C3.setPronoun(pronoun);
                     charList.Add(charD4C3);
 
@@ -266,7 +269,7 @@ namespace Carnage
                     else if (rdoFemaleD4C4.Checked) { pronoun = "she"; }
                     else if (rdoTheyD4C4.Checked) { pronoun = "they"; }
 
-                    charD4C4.setName(txtD4C4.Text);
+                    charD4C4.Name = txtD4C4.Text;
                     charD4C4.setPronoun(pronoun);
                     charList.Add(charD4C4);
 
@@ -275,7 +278,7 @@ namespace Carnage
                     else if (rdoFemaleD5C1.Checked) { pronoun = "she"; }
                     else if (rdoTheyD5C1.Checked) { pronoun = "they"; }
 
-                    charD5C1.setName(txtD5C1.Text);
+                    charD5C1.Name = txtD5C1.Text;
                     charD5C1.setPronoun(pronoun);
                     charList.Add(charD5C1);
 
@@ -284,7 +287,7 @@ namespace Carnage
                     else if (rdoFemaleD5C2.Checked) { pronoun = "she"; }
                     else if (rdoTheyD5C2.Checked) { pronoun = "they"; }
 
-                    charD5C2.setName(txtD5C2.Text);
+                    charD5C2.Name = txtD5C2.Text;
                     charD5C2.setPronoun(pronoun);
                     charList.Add(charD5C2);
 
@@ -293,7 +296,7 @@ namespace Carnage
                     else if (rdoFemaleD5C3.Checked) { pronoun = "she"; }
                     else if (rdoTheyD5C3.Checked) { pronoun = "they"; }
 
-                    charD5C3.setName(txtD5C3.Text);
+                    charD5C3.Name = txtD5C3.Text;
                     charD5C3.setPronoun(pronoun);
                     charList.Add(charD5C3);
 
@@ -302,7 +305,7 @@ namespace Carnage
                     else if (rdoFemaleD5C4.Checked) { pronoun = "she"; }
                     else if (rdoTheyD5C4.Checked) { pronoun = "they"; }
 
-                    charD5C4.setName(txtD5C4.Text);
+                    charD5C4.Name = txtD5C4.Text;
                     charD5C4.setPronoun(pronoun);
                     charList.Add(charD5C4);
 
@@ -311,7 +314,7 @@ namespace Carnage
                     else if (rdoFemaleD6C1.Checked) { pronoun = "she"; }
                     else if (rdoTheyD6C1.Checked) { pronoun = "they"; }
 
-                    charD6C1.setName(txtD6C1.Text);
+                    charD6C1.Name = txtD6C1.Text;
                     charD6C1.setPronoun(pronoun);
                     charList.Add(charD6C1);
 
@@ -320,7 +323,7 @@ namespace Carnage
                     else if (rdoFemaleD6C2.Checked) { pronoun = "she"; }
                     else if (rdoTheyD6C2.Checked) { pronoun = "they"; }
 
-                    charD6C2.setName(txtD6C2.Text);
+                    charD6C2.Name = txtD6C2.Text;
                     charD6C2.setPronoun(pronoun);
                     charList.Add(charD6C2);
 
@@ -329,7 +332,7 @@ namespace Carnage
                     else if (rdoFemaleD6C3.Checked) { pronoun = "she"; }
                     else if (rdoTheyD6C3.Checked) { pronoun = "they"; }
 
-                    charD6C3.setName(txtD6C3.Text);
+                    charD6C3.Name = txtD6C3.Text;
                     charD6C3.setPronoun(pronoun);
                     charList.Add(charD6C3);
 
@@ -338,7 +341,7 @@ namespace Carnage
                     else if (rdoFemaleD6C4.Checked) { pronoun = "she"; }
                     else if (rdoTheyD6C4.Checked) { pronoun = "they"; }
 
-                    charD6C4.setName(txtD6C4.Text);
+                    charD6C4.Name = txtD6C4.Text;
                     charD6C4.setPronoun(pronoun);
                     charList.Add(charD6C4);
 
@@ -347,7 +350,7 @@ namespace Carnage
                     else if (rdoFemaleD7C1.Checked) { pronoun = "she"; }
                     else if (rdoTheyD7C1.Checked) { pronoun = "they"; }
 
-                    charD7C1.setName(txtD7C1.Text);
+                    charD7C1.Name = txtD7C1.Text;
                     charD7C1.setPronoun(pronoun);
                     charList.Add(charD7C1);
 
@@ -356,7 +359,7 @@ namespace Carnage
                     else if (rdoFemaleD7C2.Checked) { pronoun = "she"; }
                     else if (rdoTheyD7C2.Checked) { pronoun = "they"; }
 
-                    charD7C2.setName(txtD7C2.Text);
+                    charD7C2.Name = txtD7C2.Text;
                     charD7C2.setPronoun(pronoun);
                     charList.Add(charD7C2);
 
@@ -365,7 +368,7 @@ namespace Carnage
                     else if (rdoFemaleD7C3.Checked) { pronoun = "she"; }
                     else if (rdoTheyD7C3.Checked) { pronoun = "they"; }
 
-                    charD7C3.setName(txtD7C3.Text);
+                    charD7C3.Name = txtD7C3.Text;
                     charD7C3.setPronoun(pronoun);
                     charList.Add(charD7C3);
 
@@ -374,7 +377,7 @@ namespace Carnage
                     else if (rdoFemaleD7C4.Checked) { pronoun = "she"; }
                     else if (rdoTheyD7C4.Checked) { pronoun = "they"; }
 
-                    charD7C4.setName(txtD7C4.Text);
+                    charD7C4.Name = txtD7C4.Text;
                     charD7C4.setPronoun(pronoun);
                     charList.Add(charD7C4);
 
@@ -383,7 +386,7 @@ namespace Carnage
                     else if (rdoFemaleD8C1.Checked) { pronoun = "she"; }
                     else if (rdoTheyD8C1.Checked) { pronoun = "they"; }
 
-                    charD8C1.setName(txtD8C1.Text);
+                    charD8C1.Name = txtD8C1.Text;
                     charD8C1.setPronoun(pronoun);
                     charList.Add(charD8C1);
 
@@ -392,7 +395,7 @@ namespace Carnage
                     else if (rdoFemaleD8C2.Checked) { pronoun = "she"; }
                     else if (rdoTheyD8C2.Checked) { pronoun = "they"; }
 
-                    charD8C2.setName(txtD8C2.Text);
+                    charD8C2.Name = txtD8C2.Text;
                     charD8C2.setPronoun(pronoun);
                     charList.Add(charD8C2);
 
@@ -401,7 +404,7 @@ namespace Carnage
                     else if (rdoFemaleD8C3.Checked) { pronoun = "she"; }
                     else if (rdoTheyD8C3.Checked) { pronoun = "they"; }
 
-                    charD8C3.setName(txtD8C3.Text);
+                    charD8C3.Name = txtD8C3.Text;
                     charD8C3.setPronoun(pronoun);
                     charList.Add(charD8C3);
 
@@ -410,7 +413,7 @@ namespace Carnage
                     else if (rdoFemaleD8C4.Checked) { pronoun = "she"; }
                     else if (rdoTheyD8C4.Checked) { pronoun = "they"; }
 
-                    charD8C4.setName(txtD8C4.Text);
+                    charD8C4.Name = txtD8C4.Text;
                     charD8C4.setPronoun(pronoun);
                     charList.Add(charD8C4);
 
@@ -419,7 +422,7 @@ namespace Carnage
                     else if (rdoFemaleD9C1.Checked) { pronoun = "she"; }
                     else if (rdoTheyD9C1.Checked) { pronoun = "they"; }
 
-                    charD9C1.setName(txtD9C1.Text);
+                    charD9C1.Name = txtD9C1.Text;
                     charD9C1.setPronoun(pronoun);
                     charList.Add(charD9C1);
 
@@ -428,7 +431,7 @@ namespace Carnage
                     else if (rdoFemaleD9C2.Checked) { pronoun = "she"; }
                     else if (rdoTheyD9C2.Checked) { pronoun = "they"; }
 
-                    charD9C2.setName(txtD9C2.Text);
+                    charD9C2.Name = txtD9C2.Text;
                     charD9C2.setPronoun(pronoun);
                     charList.Add(charD9C2);
 
@@ -437,7 +440,7 @@ namespace Carnage
                     else if (rdoFemaleD9C3.Checked) { pronoun = "she"; }
                     else if (rdoTheyD9C3.Checked) { pronoun = "they"; }
 
-                    charD9C3.setName(txtD9C3.Text);
+                    charD9C3.Name = txtD9C3.Text;
                     charD9C3.setPronoun(pronoun);
                     charList.Add(charD9C3);
 
@@ -446,7 +449,7 @@ namespace Carnage
                     else if (rdoFemaleD9C4.Checked) { pronoun = "she"; }
                     else if (rdoTheyD9C4.Checked) { pronoun = "they"; }
 
-                    charD9C4.setName(txtD9C4.Text);
+                    charD9C4.Name = txtD9C4.Text;
                     charD9C4.setPronoun(pronoun);
                     charList.Add(charD9C4);
 
@@ -455,7 +458,7 @@ namespace Carnage
                     else if (rdoFemaleD10C1.Checked) { pronoun = "she"; }
                     else if (rdoTheyD10C1.Checked) { pronoun = "they"; }
 
-                    charD10C1.setName(txtD10C1.Text);
+                    charD10C1.Name = txtD10C1.Text;
                     charD10C1.setPronoun(pronoun);
                     charList.Add(charD10C1);
 
@@ -464,7 +467,7 @@ namespace Carnage
                     else if (rdoFemaleD10C2.Checked) { pronoun = "she"; }
                     else if (rdoTheyD10C2.Checked) { pronoun = "they"; }
 
-                    charD10C2.setName(txtD10C2.Text);
+                    charD10C2.Name = txtD10C2.Text;
                     charD10C2.setPronoun(pronoun);
                     charList.Add(charD10C2);
 
@@ -473,7 +476,7 @@ namespace Carnage
                     else if (rdoFemaleD10C3.Checked) { pronoun = "she"; }
                     else if (rdoTheyD10C3.Checked) { pronoun = "they"; }
 
-                    charD10C3.setName(txtD10C3.Text);
+                    charD10C3.Name = txtD10C3.Text;
                     charD10C3.setPronoun(pronoun);
                     charList.Add(charD10C3);
 
@@ -482,7 +485,7 @@ namespace Carnage
                     else if (rdoFemaleD10C4.Checked) { pronoun = "she"; }
                     else if (rdoTheyD10C4.Checked) { pronoun = "they"; }
 
-                    charD10C4.setName(txtD10C4.Text);
+                    charD10C4.Name = txtD10C4.Text;
                     charD10C4.setPronoun(pronoun);
                     charList.Add(charD10C4);
 
@@ -491,7 +494,7 @@ namespace Carnage
                     else if (rdoFemaleD11C1.Checked) { pronoun = "she"; }
                     else if (rdoTheyD11C1.Checked) { pronoun = "they"; }
 
-                    charD11C1.setName(txtD11C1.Text);
+                    charD11C1.Name = txtD11C1.Text;
                     charD11C1.setPronoun(pronoun);
                     charList.Add(charD11C1);
 
@@ -500,7 +503,7 @@ namespace Carnage
                     else if (rdoFemaleD11C2.Checked) { pronoun = "she"; }
                     else if (rdoTheyD11C2.Checked) { pronoun = "they"; }
 
-                    charD11C2.setName(txtD11C2.Text);
+                    charD11C2.Name = txtD11C2.Text;
                     charD11C2.setPronoun(pronoun);
                     charList.Add(charD11C2);
 
@@ -509,7 +512,7 @@ namespace Carnage
                     else if (rdoFemaleD11C3.Checked) { pronoun = "she"; }
                     else if (rdoTheyD11C3.Checked) { pronoun = "they"; }
 
-                    charD11C3.setName(txtD11C3.Text);
+                    charD11C3.Name = txtD11C3.Text;
                     charD11C3.setPronoun(pronoun);
                     charList.Add(charD11C3);
 
@@ -518,7 +521,7 @@ namespace Carnage
                     else if (rdoFemaleD11C4.Checked) { pronoun = "she"; }
                     else if (rdoTheyD11C4.Checked) { pronoun = "they"; }
 
-                    charD11C4.setName(txtD11C4.Text);
+                    charD11C4.Name = txtD11C4.Text;
                     charD11C4.setPronoun(pronoun);
                     charList.Add(charD11C4);
 
@@ -527,7 +530,7 @@ namespace Carnage
                     else if (rdoFemaleD12C1.Checked) { pronoun = "she"; }
                     else if (rdoTheyD12C1.Checked) { pronoun = "they"; }
 
-                    charD12C1.setName(txtD12C1.Text);
+                    charD12C1.Name = txtD12C1.Text;
                     charD12C1.setPronoun(pronoun);
                     charList.Add(charD12C1);
 
@@ -536,7 +539,7 @@ namespace Carnage
                     else if (rdoFemaleD12C2.Checked) { pronoun = "she"; }
                     else if (rdoTheyD12C2.Checked) { pronoun = "they"; }
 
-                    charD12C2.setName(txtD12C2.Text);
+                    charD12C2.Name = txtD12C2.Text;
                     charD12C2.setPronoun(pronoun);
                     charList.Add(charD12C2);
 
@@ -545,7 +548,7 @@ namespace Carnage
                     else if (rdoFemaleD12C3.Checked) { pronoun = "she"; }
                     else if (rdoTheyD12C3.Checked) { pronoun = "they"; }
 
-                    charD12C3.setName(txtD12C3.Text);
+                    charD12C3.Name = txtD12C3.Text;
                     charD12C3.setPronoun(pronoun);
                     charList.Add(charD12C3);
 
@@ -554,14 +557,14 @@ namespace Carnage
                     else if (rdoFemaleD12C4.Checked) { pronoun = "she"; }
                     else if (rdoTheyD12C4.Checked) { pronoun = "they"; }
 
-                    charD12C4.setName(txtD12C4.Text);
+                    charD12C4.Name = txtD12C4.Text;
                     charD12C4.setPronoun(pronoun);
                     charList.Add(charD12C4);
 
                     charList = rng.shuffleList(charList);
 
                     //The instance of the simulator form is created with the newly-generated character list and game passed in
-                    Simulation game1 = new Simulation(charList, game);
+                    Simulation game1 = new Simulation(charList, game, vs);
 
                     this.Hide();
                     game1.Show();
@@ -577,10 +580,26 @@ namespace Carnage
         /// </summary>
         private void btnBack_Click(object sender, EventArgs e)
         {
-            Start start = new Start();
+            Start start = new Start(vs);
 
             start.Show();
             this.Hide();
+        }
+
+        private void ApplyVisualEffectsToWindow()
+        {
+            if (vs.Mode == "Light")
+            {
+                this.BackgroundImage = Properties.Resources.yellow_gradient;
+                panelCharacterSelect.BackColor = System.Drawing.Color.White;
+                panelCharacterSelect.ForeColor = System.Drawing.Color.Black;
+            }
+            else
+            {
+                this.BackgroundImage = Properties.Resources.super_dark_gradient;
+                panelCharacterSelect.BackColor = System.Drawing.Color.DimGray;
+                panelCharacterSelect.ForeColor = System.Drawing.Color.White;
+            }
         }
     }
 }

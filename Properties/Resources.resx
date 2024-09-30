@@ -121,4 +121,19 @@
   <data name="button_gradient" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Photos\button_gradient.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="white_gradient" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Photos\white_gradient.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dark_gradient" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Photos\dark_gradient.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="super_dark_gradient" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Photos\super_dark_gradient.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="medium_dark_gradient" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Photos\medium_dark_gradient.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="yellow_gradient" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Photos\yellow_gradient.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

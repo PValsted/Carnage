@@ -15,36 +15,39 @@ namespace Carnage
     /// </summary>
     public class character
     {
-        private string id, name, pronounSub, pronounObj, pronounPos, pronounPosAdj, pronounRefl, weaponName = "", weaponType="Unarmed";
-        private int kills=0, district;
+        private string id, name, pronounSub, pronounObj, pronounPos, pronounPosAdj, pronounRefl, healingName;
+        private string weaponName = "", weaponType = "Unarmed", weaponStatus = "None", originalWeaponName = "", weaponPrefix = ""; //Weapon info
+        private int kills=0, district, upgrades = 0;
         private double weaponAttack = 2, health, healingAmount;
-        private double strength = 0, morality = 5.0, speed = 2.0, hunger = 10.0, combatLevel = 0; //Realistic mode only
-        private bool isAlive=true, healSlotFilled = false, hasExplosive = false, weaponProperName = false, isNPC = false;
+        private double strength = 0, morality = 5.0, speed = 2.0, startSpeed = 2.0, hunger = 10.0, combatLevel = 0; //Realistic mode only
+        private bool isAlive=true, healSlotFilled = false, hasExplosive = false, weaponProperName = false, isNPC = false, hasAntidote = false;
+        List<string> KillList = new List<string>();
+        List<string> StatusList = new List<string>();
 
         /// <summary>
         /// Default character instance with they pronouns and full health (20)
         /// </summary>
         public character()
         {
-            pronounSub = "They";
-            pronounObj = "Them";
+            PronounSub = "They";
+            PronounObj = "Them";
             pronounPos = "Theirs";
-            pronounPosAdj = "Their";
-            pronounRefl = "Themselves";
+            PronounPosAdj = "Their";
+            PronounRefl = "Themselves";
             Health = 20;
-        }//end empty-argument constructor
+        }
 
         /// <summary>
         /// Creates a character instance with a field for id and district
         /// </summary>
-        public character(string id, int District)
+        public character(string id, int District, Game game)
         {
-            pronounSub = "They";
-            pronounObj = "Them";
+            PronounSub = "They";
+            PronounObj = "Them";
             pronounPos = "Theirs";
-            pronounPosAdj = "Their";
-            pronounRefl = "Themselves";
-            Health = 20;
+            PronounPosAdj = "Their";
+            PronounRefl = "Themselves";
+            Health = game.StartHealth;
             Id = id; //ID is what identifies a player even when they are passed between different lists and shuffled around in order, it is made up of 4 digits representing the district and character number in that district
             this.District = District;
         }
@@ -52,44 +55,45 @@ namespace Carnage
         /// <summary>
         /// Creates a character instance with a field for id, name, pronoun, and district
         /// </summary>
-        public character(string id, string name, string pronoun, int District)
+        public character(string id, string name, string pronoun, int District, Game game)
         {
             Id=id;
             Name = name;
             this.setPronoun(pronoun);
-            Health = 20;
+            Health = game.StartHealth;
             this.District = District;
         }
 
         /// <summary>
         /// Creates a character instance with fields relating to Realistic mode attributes
         /// </summary>
-        public character(string id, string name, string pronoun, double strength, double morality, double speed, int District)
+        public character(string id, string name, string pronoun, double strength, double morality, double speed, int District, Game game)
         {
             Id = id;
             this.setPronoun(pronoun);
-            Health = 20;
+            Health = game.StartHealth;
             this.Strength = strength;
             this.Morality = morality;
             this.Speed = speed;
+            this.StartSpeed = speed;
             this.District = District;
             combatLevel = Math.Round(((speed + strength) / 4),2);
             this.Name = name;
-            weaponAttack = strength / 2;
+            WeaponAttack = strength / 2;
 
-        } //end realistic mode constructor
+        }
 
         /// <summary>
         /// Creates a character instance with a field for just the name and pronounds of a character
         /// </summary>
-        public character(string name, string pronoun)
+        public character(string name, string pronoun, Game game)
         {
-            setName(name);
+            Name = name;
             setPronoun(pronoun);
-            Health = 20;
-        } //end preferred constructor
+            Health = game.StartHealth;
+        }
 
-        //Encapsulated fields and old-school getters and setters
+        //Encapsulated fields
         public bool HasExplosive { get => hasExplosive; set => hasExplosive = value; }
         public bool IsAlive { get => isAlive; set => isAlive = value; }
         public bool WeaponProperName { get => weaponProperName; set => weaponProperName = value; }
@@ -132,115 +136,75 @@ namespace Carnage
         public double CombatLevel { get => combatLevel; set => combatLevel = value; }
         public double Hunger { get => hunger; set => hunger = value; }
         public string Id { get => id; set => id = value; }
+        public string WeaponStatus { get => weaponStatus; set => weaponStatus = value; }
+        public double StartSpeed { get => startSpeed; set => startSpeed = value; }
+        public string WeaponName { get => weaponName; set => weaponName = value; }
+        public double WeaponAttack { get => weaponAttack; set => weaponAttack = value; }
+        public string WeaponType { get => weaponType; set => weaponType = value; }
+        public string HealingName { get => healingName; set => healingName = value; }
+        public bool HasAntidote { get => hasAntidote; set => hasAntidote = value; }
+        public string OriginalWeaponName { get => originalWeaponName; set => originalWeaponName = value; }
+        public string WeaponPrefix { get => weaponPrefix; set => weaponPrefix = value; }
+        public bool HealSlotFilled { get => healSlotFilled; set => healSlotFilled = value; }
+        public double HealingAmount { get => healingAmount; set => healingAmount = value; }
+        public string PronounSub { get => pronounSub; set => pronounSub = value; }
+        public string PronounObj { get => pronounObj; set => pronounObj = value; }
+        public string PronounPos { get => pronounPos; set => pronounPos = value; }
+        public string PronounPosAdj { get => pronounPosAdj; set => pronounPosAdj = value; }
+        public string PronounRefl { get => pronounRefl; set => pronounRefl = value; }
 
-        public String getName()
-        {
-            return Name;
-        }
-
-        public void setName(String name)
-        {
-            this.Name = name;
-        }
-
-        public void setPronoun(String pronoun)
+        /// <summary>
+        /// Sets the characters entire set of pronouns based on the one passed in
+        /// </summary>
+        public void setPronoun(string pronoun)
         {
             if (pronoun != null)
             {
                 pronoun = pronoun.ToLower();
                 if (pronoun == "he") //sets the appropriate pronoun values for the one given tense "he"
                 {
-                    pronounSub = "He";
-                    pronounObj = "Him";
+                    PronounSub = "He";
+                    PronounObj = "Him";
                     pronounPos = "His";
-                    pronounPosAdj = "His";
-                    pronounRefl = "Himself";
+                    PronounPosAdj = "His";
+                    PronounRefl = "Himself";
                 }
                 if (pronoun == "she") //sets the appropriate pronoun values for the one given tense "she"
                 {
-                    pronounSub = "She";
-                    pronounObj = "Her";
+                    PronounSub = "She";
+                    PronounObj = "Her";
                     pronounPos = "Hers";
-                    pronounPosAdj = "Her";
-                    pronounRefl = "Herself";
+                    PronounPosAdj = "Her";
+                    PronounRefl = "Herself";
                 }
                 if (pronoun == "they") //sets the appropriate pronoun values for the one given tense "they"
                 {
-                    pronounSub = "They";
-                    pronounObj = "Them";
+                    PronounSub = "They";
+                    PronounObj = "Them";
                     pronounPos = "Theirs";
-                    pronounPosAdj = "Their";
-                    pronounRefl = "Themselves";
+                    PronounPosAdj = "Their";
+                    PronounRefl = "Themselves";
                 }
             }
         }
 
-        public String getPronounPos()
+        /// <summary>
+        /// Heals a character, makes sure it can't go above the starting health
+        /// </summary>
+        public void heal(double amount, Game game, string item)
         {
-            return pronounPos;
+            if (Health + amount < game.StartHealth && item == "Chug Jug") //Chug Jug item also clears statuses
+            {
+                this.Health = Health + amount;
+                ClearStatuses();
+            }
+            else if (Health + amount < game.StartHealth) this.Health = Health + amount;
+            else this.Health = game.StartHealth;
         }
 
-        public String getPronounSub()
-        {
-            return pronounSub;
-        }
-
-        public String getPronounObj()
-        {
-            return pronounObj;
-        }
-
-        public String getPronounPosAdj()
-        {
-            return pronounPosAdj;
-        }
-
-        public String getPronounRefl()
-        {
-            return pronounRefl;
-        }
-
-        public String getWeaponName()
-        {
-            return weaponName;
-        }
-
-        public void setWeaponName(String weaponName)
-        {
-            this.weaponName = weaponName;
-        }
-
-        public bool aliveCheck()
-        {
-            return IsAlive;
-        }
-
-        public bool isHealSlotFilled()
-        {
-            return healSlotFilled;
-        }
-
-        public void fillHealSlot(bool isFilled)
-        {
-            healSlotFilled = isFilled;
-        }
-
-        public double getHealingAmount()
-        {
-            return healingAmount;
-        }
-
-        public void setHealingAmount(double healingAmount)
-        {
-            this.healingAmount=healingAmount;
-        }
-
-        public void heal(double amount)
-        {
-            if (Health + amount < 20) this.Health = Health + amount; //cannot set health to more than 20
-            else this.Health = 20;
-        }
-
+        /// <summary>
+        /// Damages a character, makes sure it can't go below 0
+        /// </summary>
         public void hurt(double amount)
         {
             if (Health - amount > 0) this.Health = Health - amount;
@@ -251,28 +215,182 @@ namespace Carnage
             }
         }
 
-        public double getHealth() { 
-            return Health; 
+        /// <summary>
+        /// Sets a character's weapon based on the name, attack, and type given
+        /// </summary>
+        public void SetWeapon(string name, double attack, string type)
+        {
+            this.WeaponName = name;
+            this.OriginalWeaponName = name;
+            this.WeaponType = type;
+            this.WeaponAttack = attack;
         }
 
-        public void setWeaponType(String weaponType)
+        /// <summary>
+        /// When a character kills another character their name is added to their list of kills
+        /// </summary>
+        public void AddKill(string Name)
         {
-            this.weaponType = weaponType;
+            this.KillList.Add(Name);
         }
 
-        public string getWeaponType()
+        /// <summary>
+        /// Iterates through the character's list of kills and returns them in the correct format to be displayed on the winner screen
+        /// </summary>
+        public string GetKillList()
         {
-            return this.weaponType;
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 0; i < this.KillList.Count; i++)
+            {
+                sb.Append(KillList[i].ToString()+", ");
+            }
+
+            string kills= sb.ToString();
+
+            //Removes extra space and comma at the end of the sequence of names
+            int charCount = kills.Length;
+            kills=kills.Remove(charCount-1);
+            kills=kills.Remove(charCount-2);
+
+            return kills;
         }
 
-        public void setWeaponAttack(double weaponAttack)
+        /// <summary>
+        /// When a character gets a status effect inflicted on them it's added to their list of statuses
+        /// </summary>
+        public void AddStatus(string StatusName)
         {
-            this.weaponAttack = weaponAttack;
+            this.StatusList.Add(StatusName);
         }
 
-        public double getWeaponAttack()
+        /// <summary>
+        /// Checks to see if a character has a status effect
+        /// </summary>
+        public bool GetStatus(string StatusName)
         {
-            return this.weaponAttack;
+            return this.StatusList.Contains(StatusName);
         }
+
+        /// <summary>
+        /// Removes a status from their list of statuses
+        /// </summary>
+        public void RemoveStatus(string StatusName)
+        {
+            this.StatusList.Remove(StatusName);
+        }
+
+        /// <summary>
+        /// Determines if a character has any status effects
+        /// </summary>
+        public bool HasStatuses()
+        {
+            if (this.StatusList.Count > 0) return true;
+            else return false;
+        }
+
+        /// <summary>
+        /// Clears character's status list
+        /// </summary>
+        public void ClearStatuses()
+        {
+            this.StatusList.Clear();
+        }
+
+        /// <summary>
+        /// Iterates through the character's list of statuses and returns them in the correct format to be displayed on the character stats screen
+        /// </summary>
+        public string GetStatusList()
+        {
+            StringBuilder sb = new StringBuilder();
+            string statuses = null;
+
+            if (this.StatusList.Count != 0)
+            {
+                for (int i = 0; i < this.StatusList.Count; i++)
+                {
+                    sb.Append(StatusList[i].ToString() + ", ");
+                }
+                statuses = sb.ToString();
+
+                //Removes extra space and comma at the end of the sequence of names
+                int charCount = statuses.Length;
+                statuses = statuses.Remove(charCount - 1);
+                statuses = statuses.Remove(charCount - 2);
+            }
+            else statuses = "None";
+
+            return statuses;
+        }
+
+        /// <summary>
+        /// Takes a wepaon upgrade from the sponsor screen or forest imp exploration event and upgrades
+        /// it and renames it appropriately depending on the upgrade given.
+        /// </summary>
+        public void upgradeWeapon(string type)
+        {
+            if (type == "Strength")
+            {
+                if (weaponPrefix == "")
+                {
+                    upgrades++;
+                    weaponName = originalWeaponName + "+" + upgrades.ToString();
+                    weaponAttack += 2;
+                }
+                else
+                {
+                    upgrades++;
+                    weaponName = weaponPrefix + originalWeaponName + "+" + upgrades.ToString();
+                    weaponAttack += 2;
+                }
+
+            }
+            else if (type == "Poison")
+            {
+                if (upgrades == 0)
+                {
+                    weaponStatus = "Poison";
+                    weaponPrefix = "poisonous ";
+                    weaponName = weaponPrefix + originalWeaponName;
+                }
+                else
+                {
+                    weaponStatus = "Poison";
+                    weaponPrefix = "poisonous ";
+                    weaponName = weaponPrefix + originalWeaponName + "+" + upgrades.ToString();
+                }
+            }
+            else if (type == "Burning")
+            {
+                if (upgrades == 0)
+                {
+                    weaponStatus = "Burning";
+                    weaponPrefix = "firey ";
+                    weaponName = weaponPrefix + originalWeaponName;
+                }
+                else
+                {
+                    weaponStatus = "Burning";
+                    weaponPrefix = "fiery ";
+                    weaponName = weaponPrefix + originalWeaponName + "+" + upgrades.ToString();
+                }
+            }
+            else
+            {
+                if (upgrades == 0)
+                {
+                    weaponStatus = "Freeze";
+                    weaponPrefix = "frozen ";
+                    weaponName = weaponPrefix + originalWeaponName;
+                }
+                else
+                {
+                    weaponStatus = "Freeze";
+                    weaponPrefix = "frozen ";
+                    weaponName = weaponPrefix + originalWeaponName + "+" + upgrades.ToString();
+                }
+            }
+        }
+
     }
 }
